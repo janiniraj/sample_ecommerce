@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Apr 27, 2018 at 04:58 AM
--- Server version: 5.7.22-0ubuntu0.17.10.1
--- PHP Version: 7.1.15-0ubuntu0.17.10.1
+-- Host: localhost
+-- Generation Time: Apr 30, 2018 at 12:54 AM
+-- Server version: 5.7.21-0ubuntu0.16.04.1
+-- PHP Version: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -92,6 +92,30 @@ INSERT INTO `history_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `home_slider`
+--
+
+CREATE TABLE `home_slider` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` enum('image','video','youtubevideo') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image',
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtubevideo_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `home_slider`
+--
+
+INSERT INTO `home_slider` (`id`, `type`, `image`, `youtubevideo_id`, `created_at`, `updated_at`) VALUES
+(1, 'image', '1524992854_ws_Bridge_1920x1080.jpg', 'yIIGQB6EMAM', '2018-04-28 23:30:48', '2018-04-29 01:07:34'),
+(2, 'youtubevideo', NULL, 'LjhCEhWiKXk', '2018-04-29 00:13:54', '2018-04-29 00:13:54'),
+(3, 'youtubevideo', '1525016165_ws_Bridge_1920x1080.jpg', '2Vv-BfVoq4g', '2018-04-29 07:36:06', '2018-04-29 07:36:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -115,7 +139,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2018_04_22_143840_create_products_table', 2),
 (8, '2018_04_25_155718_create_table_category', 3),
 (9, '2018_04_25_155737_create_table_subcategory', 3),
-(10, '2018_04_25_163506_change_table_category', 4);
+(10, '2018_04_25_163506_change_table_category', 4),
+(11, '2018_04_29_024449_create_table_home_slider', 5);
 
 -- --------------------------------------------------------
 
@@ -189,7 +214,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category_id`, `main_image`, `created_at`, `updated_at`) VALUES
-(1, 'Product 1', NULL, 'nobel1.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(1, 'Product 1777', NULL, 'nobel1.jpg', '2018-04-21 16:00:00', '2018-04-29 08:25:44'),
 (3, 'Product 2', NULL, 'nobel2.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
 (4, 'Product 3', NULL, 'nobel3.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
 (5, 'Product 4', NULL, 'nobel4.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
@@ -267,7 +292,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('zMiD7FTWGlLMilfjcBEFSh7wYlq7jarjTUqBBCrf', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJakJYWTBaVE0yRkNOMHMyVUdvd1dXTlplSGw1T1djOVBTSXNJblpoYkhWbElqb2lRelZDZWtFeFpUbGhlbXBsY2pnM1pUazFSMmRZYVdkeFIycE1OV1psV0hwQmNraExUSEprYXpWM1NqSnJWelpLVVhKMlFWUXhUbU0wVVdab2QyaEpaVGh6WkhGMFVHUmtjRVUyYWxGRVNVaEZTR3R2TTNOdGFWd3ZLMUJGVmxScVoyWjViREkxZDJ0dVZXbHhVa2x0TUdSNVoxUldXVEpXYlZOc1JXbFlObE00Tmx3dmQzcEdiWFZ0TldGamJsZG5jbk5tTm5aSE0zVlpUelEzVEhGUE0xbzVlbkkzYUdGcVUzWTVZak14ZGpaeFZWd3ZZMjh6ZW1NeWIyMXlVbGhsSzFwMVlsTlllVXBOV1dwM1RWZ3JlbGRyVDFodmRHWkJia2xHVVRGaU0yMWpaME0xYkdkSVdqWldNRk41UjBob1MyTjNSVGhCUVRVeU1IQnFSVUpNVlVwTlNrSndSWGcwUlhFeVkwbGphamRXUVZOb1YzSnlhRkp6V2t0RE9VTTNOREk0ZWpaY0wwUnlWbEJ0ZFZwamEyaFNjak5wUXpKcWRFeG9lRmxDUTF3dll6UkZhVWRRZFVaT1MxQktaV0p2WTBkQmVrTkVURVpuVjNkdVF6aG1Oa0ZUZWpOMFZXeHJha1pyWTA4eVVFWjRkbEJUT0ZCUGJVcHNXblpjTDNKNVNVcE5ZVGRrZFhSTlNubDFSR054VjA5WVZIRnVNbXh5Tm5aRVJTczVRblZSYjB0bVoxd3ZUVVZqU1VObGFXZzJZMUpDVkdScU9YWk5lVTlNTjNOcVowdHNPV3RhZEcxNGJGd3ZWRmQ2Vm5wUVZqZE1Ta1ZLZDBjclQxRmpVVDA5SWl3aWJXRmpJam9pTXpZek1UTTFOMlU1TnprNE5EUTBOMlppT1Rnd05XRXhOalUwTW1Ga1pHUm1OVGd4TWpabU1ESmhaVGcwTkRCbVptRXhPR0V3TkRVM1lqUmpObUZoTnlKOQ==', 1524769448);
+('adCNatcRPUj9zC5cVf9KHGnYME66f26SlCd7kMzf', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbUZpY25Od2JFUlVVV3RHUTJNeFZUWXdOV0p2Wm5jOVBTSXNJblpoYkhWbElqb2lPVUpFYVdkSU9YUmNMMEpNUTFNeVRHVmhaVTlQT0RGVlR6QkVlVE5VVlUwMGRtcFhPVFJ6Y1VoaFprZ3JhRnd2YzNsRlRXSkRTRkpOWldvMWRrZFdlRFJaSzNOTk5FSXpORFZLU0dSNlQyRmFibGszTjBWcVZrbDBNa3BQV0VsM1dqUkxVa3RUT1dwNlZVMVdNRVJUU2tsNFMybHpOSGRLTkRkWFptNUNSbmhYTUVOSGFVZEtiVlpaU21JMEsyOXlSa1F6Vkd3MVdUTldWM1V3YVV4TVVVUmhkbHd2WkcxT1NIWnBUVm93Y1ZsaFRIcFRSbEJyV21kUlExSmxXRkJVVUdSWWNWRXJLekZxYkZGMVptUTFSalpLWmpaeFdHZ3JkMk5qYUVNNGVXOHlNbXBXYTJsbFZ6ZGtaRUpoZVN0SlEyVnJkbGc0YkZ3dlptMTRiakZ4WVhWYVN6QjROamQzWVRCMFJHRkdZVkZwVEdOSFJWRldaVFpOYkRkRFJtY3JiRll5TmtsRVMyNUNLMjluWEM5SWRqRnFTMVpwTjNNNWJFZDVlV1JhZUdoMVIzZHpkVloyTlZ3dlRrTmFaRUZjTDBjeWRqaGhlRmxTVmtJeGNXMUpZWFJVY2xVeWRtOUhVM296VGtKQ1JsRklUVEZ3Y2xReWVuVnhOSEZRZUUwd2EzTldaMFV6SzFOVlZ6VnpUMVk0SzBKRFpXaG9aazVtUkdwRmRVMHhRVlowTkVKY0wxcFpaMVJ4T1dobEsxb3hPR3RCVkdWbEt6VnBjemRoUzFSVVRFUmpRMWMwWWxVd1lVZENSR1pVWXpSQmNWd3ZielZxWTFwRVVVZERSV3gzWkZWbVlYQTRYQzl0VG1KVmNtYzBWSEZ0UkRCMlIyeEpVbFUxV1UwMFIyOXFlRlpEVTJoV2FHdGpJaXdpYldGaklqb2lOV1JoTVRaaU1UWmlOemMzTjJJMU1qSmtZMk14WldNeFlqRTFOVFE0WkRZek0yTTROV1U1TlRKbVkyTm1aRGsyTXpJM1pqQXhaR1F5T1RrMFl6TTFNeUo5', 1525020761);
 
 -- --------------------------------------------------------
 
@@ -361,6 +386,12 @@ ALTER TABLE `history`
 -- Indexes for table `history_types`
 --
 ALTER TABLE `history_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `home_slider`
+--
+ALTER TABLE `home_slider`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -458,10 +489,15 @@ ALTER TABLE `history`
 ALTER TABLE `history_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `home_slider`
+--
+ALTER TABLE `home_slider`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
