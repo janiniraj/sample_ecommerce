@@ -28,8 +28,8 @@
                         <figure class="snip1174 grey">
                             <img src="{{ url('/').'/img/category/'.$category->icon }}" alt="sq-sample33" />
                             <figcaption>
+                                <a href="{{ route('frontend.product.index', $category->category) }}">Quick View</a>
                                 <h2>{{ $category->category }}</h2>
-                                <a href="/main/page/production">Quick View</a>
                             </figcaption>
                         </figure>
                     </div>

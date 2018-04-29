@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Route::group(['namespace' => 'Product'], function () {
-    Route::get('/shop', 'ProductController@index')->name('index');
+Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
+    Route::get('/products/{category_id}', 'ProductController@index')->name('index');
+    Route::get('/product/{product_id}', 'ProductController@show')->name('show');
 });

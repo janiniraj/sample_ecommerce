@@ -57,6 +57,14 @@
 
 #product .product-desc .path a.heart {
     position: absolute;
+    right: 45px;
+    top: -3px;
+    font-size: 35px;
+    color: #888;
+}
+
+#product .product-desc .path a.share {
+    position: absolute;
     right: 0;
     top: -3px;
     font-size: 35px;

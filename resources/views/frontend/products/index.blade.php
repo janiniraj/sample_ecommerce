@@ -246,8 +246,10 @@
                 <div class="row items">
                     @foreach($products as $product)
                         <div class="col-xs-6 item">
-                            <img src="{{ URL::to('/').'/uploads/products/'.$product->main_image }}" alt="Item" class="img-responsive">
-                            <div class="text-center">{{ $product->name }}</div>
+                            <a href="{{ route('frontend.product.show', $product->id) }}">
+                                <img src="{{ URL::to('/').'/uploads/products/'.$product->main_image }}" alt="Item" class="img-responsive">
+                                <div class="text-center product-title">{{ $product->name }}</div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

@@ -42,7 +42,7 @@
             <li class="{{ active_class(Active::checkUriPattern('admin/product')) }}">
                 <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-dashboard"></i>
-                    <span>Products</span>
+                    <span>Product Management</span>
                 </a>
             </li>
 
@@ -123,6 +123,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/home-slider')) }}">
+                <a href="{{ route('admin.home-slider.index') }}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Slide Management</span>
+                </a>
             </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->

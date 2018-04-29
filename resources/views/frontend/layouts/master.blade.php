@@ -21,6 +21,9 @@
     {{ Html::style('/frontend/css/slick-theme.css') }}
     {{ Html::style('/frontend/css/style.css') }}
     {{ Html::style('/frontend/css/results-style.css') }}
+    {{ Html::style('/frontend/css/product-style.css') }}
+    {{ Html::style('/frontend/css/xzoom.css') }}
+    {{ Html::style('/frontend/css/magnific-popup.css') }}
     {{ Html::style('/frontend/css/custom.css') }}
 
 @yield('after-styles')
@@ -48,6 +51,10 @@
 <!-- Scripts -->
 @yield('before-scripts')
     {!! Html::script('/frontend/js/bootstrap-colorselector.min.js') !!}
+    {!! Html::script('/frontend/js/slick.min.js') !!}
+    {!! Html::script('/frontend/js/slick-lightbox.min.js') !!}
+    {!! Html::script('/frontend/js/xzoom.js') !!}
+    {!! Html::script('/frontend/js/magnific-popup.js') !!}
     {!! Html::script('/frontend/js/custom.js') !!}
     <script>
         $(function() {

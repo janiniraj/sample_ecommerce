@@ -26,10 +26,14 @@ button.slick-arrow:before {
     font-family: 'Glyphicons Halflings';
     font-style: normal;
     font-weight: 400;
-    color: white;
+    color: #000;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+#headerSlider button.slick-arrow:before {
+    color: #fff;
 }
 
 button.slick-prev:before {

@@ -23,9 +23,10 @@ figure.snip1174 img {
     vertical-align: top;
 }
 figure.snip1174 figcaption {
+    text-align: center;
     position: absolute;
-    padding: 40px 25px;
-    top: 0;
+    padding: 5px 25px;
+    bottom: 0;
     left: 0;
 }
 figure.snip1174 h2,
@@ -47,7 +48,8 @@ figure.snip1174 p {
 figure.snip1174 a {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid #ffffff;
+    margin-bottom: 15px;
+    border: 1px solid #fc4348;
     text-decoration: none;
     color: #ffffff;
     letter-spacing: 2px;
@@ -56,9 +58,10 @@ figure.snip1174 a {
     -webkit-transform: translateY(50%);
     transform: translateY(50%);
     opacity: 0;
+    background-color: #fc4348;
 }
 figure.snip1174 a:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #fc4348;
 }
 figure.snip1174.blue {
     background-color: #20638f;
@@ -89,4 +92,15 @@ figure.snip1174.hover a {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
+    font-size: 16px;
+}
+
+.product-title {
+    color: black;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 15px;
+}
+.product-title:hover {
+    text-decoration: none;
 }

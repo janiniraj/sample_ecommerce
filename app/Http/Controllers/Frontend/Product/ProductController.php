@@ -26,12 +26,27 @@ class ProductController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * Product List
+     *
+     * @param $categoryId
+     * @param Request $request
+     * @return $this
      */
-    public function index(Request $request)
+    public function index($categoryId, Request $request)
     {
         $products = $this->products->getAll();
-        return view('frontend.products.index')->with(['products' => $products]);;
+        return view('frontend.products.index')->with(['products' => $products]);
+    }
+
+    /**
+     * Product Show
+     *
+     * @param $productId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($productId)
+    {
+        return view('frontend.products.show');
     }
 
 }
