@@ -102,6 +102,34 @@ return [
                 'view' => 'View User',
             ],
         ],
+        'categories' => [
+            'create'     => 'Create Category',
+            'edit'       => 'Edit Category',
+            'management' => 'Category Management',
+            'title' => 'Category',
+
+            'table' => [
+                'title'          => 'Category',
+                'status'         => 'Status',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
+
+        'subcategories' => [
+            'create'     => 'Create SubCategory',
+            'edit'       => 'Edit SubCategory',
+            'management' => 'SubCategory Management',
+            'title' => 'SubCategory',
+
+            'table' => [
+                'title'          => 'SubCategory',
+                'category'       => 'Category',
+                'status'         => 'Status',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

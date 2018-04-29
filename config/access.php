@@ -40,6 +40,16 @@ return [
      */
     'role_user_table' => 'role_user',
 
+
+    /*
+     * Categories table used to store Helper Categories
+     */
+    'categories_table' => 'categories',
+    /*
+     * Subcategories table used to store Helper Subcategories
+     */
+    'subcategories_table' => 'subcategories',	
+
     /*
      * Configurations for the user
      */

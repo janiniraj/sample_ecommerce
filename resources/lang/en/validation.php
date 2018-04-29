@@ -157,6 +157,15 @@ return [
                     'send_confirmation_email' => 'Send Confirmation E-mail',
                 ],
             ],
+            'categories' => [
+                'title' => 'Category',
+                'is_active' => 'Active',
+            ],
+            'subcategories' => [
+                'title' => 'SubCategory',
+                'category' => 'Select Category',
+                'is_active' => 'Active',
+            ],
         ],
 
         'frontend' => [

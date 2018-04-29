@@ -48,6 +48,20 @@ return [
             'general'   => 'General',
             'system'    => 'System',
         ],
+        'categories' => [
+            'all'        => 'All Categories',
+            'create'     => 'Create Category',
+            'edit'       => 'Edit Category',
+            'management' => 'Category Management',
+            'main'       => 'Category',
+        ],
+        'subcategories' => [
+            'all'        => 'All SubCategories',
+            'create'     => 'Create SubCategory',
+            'edit'       => 'Edit SubCategory',
+            'management' => 'SubCategory Management',
+            'main'       => 'SubCategory',
+        ],
     ],
 
     'language-picker' => [

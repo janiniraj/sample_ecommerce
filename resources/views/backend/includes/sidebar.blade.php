@@ -103,6 +103,27 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/category*')) || active_class(Active::checkUriPattern('admin/subcategory*')) }} treeview">
+                <a href="#">
+                    <i class="fa fa-commenting"></i>
+                    <span>Category management</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+
+                <ul class="treeview-menu {{ active_class(Active::checkUriPattern('admin/category*'), 'menu-open') }}" style="display: none; {{ active_class(Active::checkUriPattern('admin/category*'), 'display: block;') }}">
+                    <li class="{{ active_class(Active::checkUriPattern('admin/categories*')) }}">
+                        <a href="{{ route('admin.categories.index') }}">
+                            <span>Category</span>
+                        </a>
+                    </li>
+                    <li class="{{ active_class(Active::checkUriPattern('admin/subcategories*')) }}">
+                        <a href="{{ route('admin.subcategories.index') }}">
+                            <span>Sub Category</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

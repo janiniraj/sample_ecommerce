@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 23, 2018 at 02:07 AM
--- Server version: 5.7.21-0ubuntu0.16.04.1
--- PHP Version: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
+-- Host: localhost:3306
+-- Generation Time: Apr 27, 2018 at 04:58 AM
+-- Server version: 5.7.22-0ubuntu0.17.10.1
+-- PHP Version: 7.1.15-0ubuntu0.17.10.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `sample_ecommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `category` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `icon` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `category`, `status`, `icon`, `created_at`, `updated_at`) VALUES
+(1, 'category1', 1, '1524765932_sq-sample31.jpg', '2018-04-25 08:41:22', '2018-04-26 10:05:32'),
+(2, 'category2', 1, '1524765987_sq-sample30.jpg', '2018-04-26 10:06:27', '2018-04-26 10:06:27'),
+(3, 'category3', 1, '1524765998_sq-sample38.jpg', '2018-04-26 10:06:38', '2018-04-26 10:06:38'),
+(4, 'category4', 1, '1524766010_sq-sample36.jpg', '2018-04-26 10:06:50', '2018-04-26 10:06:50'),
+(5, 'category5', 1, '1524766026_sq-sample34.jpg', '2018-04-26 10:07:06', '2018-04-26 10:07:06'),
+(6, 'category6', 1, '1524766039_sq-sample33.jpg', '2018-04-26 10:07:19', '2018-04-26 10:07:19'),
+(7, 'category7', 1, '1524766116_sq-sample27.jpg', '2018-04-26 10:08:36', '2018-04-26 10:08:36'),
+(8, 'category8', 1, '1524766128_sq-sample28.jpg', '2018-04-26 10:08:48', '2018-04-26 10:08:48');
 
 -- --------------------------------------------------------
 
@@ -83,7 +112,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2015_12_29_015055_setup_access_tables', 1),
 (5, '2016_07_03_062439_create_history_tables', 1),
 (6, '2017_04_04_131153_create_sessions_table', 1),
-(7, '2018_04_22_143840_create_products_table', 2);
+(7, '2018_04_22_143840_create_products_table', 2),
+(8, '2018_04_25_155718_create_table_category', 3),
+(9, '2018_04_25_155737_create_table_subcategory', 3),
+(10, '2018_04_25_163506_change_table_category', 4);
 
 -- --------------------------------------------------------
 
@@ -235,8 +267,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('ddjoqLRS0gYhU4AGqCFlXiLtrjdPrniBDSOPuH9R', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbTV1ZEcwMGJ6ZHBkRkJEWVRKVVduTm9jblYxUzFFOVBTSXNJblpoYkhWbElqb2lTVlJHVEhOWFRUQXdObmRqVDA5WGVEa3hSVmxXYVhoMGNsVTVlQ3R6UzBzclpqVmpWVGd6TmxOdVExQkhiV0Z3T1ZCWldFdG5ZVzlDWjAxTVUzRmhNM0JqYWpoWUt6UjJabloxVmtadkswVm1SRVpsVmt4a1ZscGxZMEZsY1UxWFduZElaME5PTlVOaU9VdDVjVGR5Y0RCWGVuTjZiMk56ZDBOTVZ5dEJkMUJ5TTIxeFNtNVVaakY1ZUhSV2IxYzRaakV4YVVsc1VtWkxhVkpqZUhkeWVVNDROMHhyU3pSSksyMHdja0ptVkRncldVTkRZbFF5WTI4M1prRmxhazFPVmt4MVp6WmlRbmh2ZVhCYU5pdElUalJWVEU5NWRHVlNaREptUkRoMWExaEVNbXB6V0dwMU0yZE5kM1E0VUhrMFFuYzJZbXRNY2pWTlJERlJhRzR6Y0d0a1dWRkJRVlJLVVRkNFFUSnJWemRTV2xoa1oyTkNTbkJRYTFSeE5FWkJjamxOWWpOUVUzVnVORFp0YWt4c1VXRkJWVUpyZURGNU9VaHdkMnBwY1ZkTlZsWk5WMVp6YUVOQldtTTFiWFp5Yms1VFNtZHFURXBjTDFOUWJEUXpNRkpzUjFCaFRVOUJTbGd4YUVacmFGQjFhRlZJUlZOV1ptSktTRTFaVmtoQlZGaFdWV0ZsUlZCSWVXUkdiV295VkRGaU4yOHliMUpoZERONFdFUXJRV2sxYVhvMlR6RkVLemt5T0RJeWFFaFRVVGhWWkdNeFFqZFdia2h5ZVVGMGVuWkNWVnd2Y0RsMmVtTTNlRU01VFZaWFNFSTViSGhyZHowOUlpd2liV0ZqSWpvaU16QXlPV0ZrTnpOa1lqYzVORGs1WlRjNU5XUTFOalUyTkRjM01qTTNPR1JpT1dKak9HSXhNbVJqT0RBNFpEazBORGN5TW1JMk1tWTVZMlF3TUdJek5pSjk=', 1524420298),
-('dJQF4MFkwp5SGlVpTLTetsjt88OlU0Jh4RVCggBk', NULL, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbEJuZVdGMVZXWnBWSEJ5YWt0UVdub3JlSGh2TkdjOVBTSXNJblpoYkhWbElqb2liRXN5TlVneFRISTNTVkJDZWxsb1ozWkNUWE5TWTBoWVZ6VmtWMmN4TUhoaFZtbGxkbE5VZG14Rk5qSk1kM1oyYUdWUldYZ3ljak5zU1dabFVGd3ZNa3RNWmxoUFVtUTJLMU13YVV0aGJ6TkdNMDQwVlc1cFhDOTNkRGRSU1hSeVVHOUdlbXcwU3psMU5XbG9hVnd2U0RseU4wNXViMUZ6V1RkbVEzQktVVUp2YjB0QlkxUldSalZTSzJ4RmRYYzVUMHM0YVhkRk5GTlNaVTh3ZVVkWU1FY3laRXAwVEZabVRXVXJVV0pZWVdkc1ltMXVTbUp3TUU0MFNISjZWMHBLVVc5Rk5UQkxSRXBvVTJnelIySmhaMXB1ZWsxMWEyUTJSbTQwTUc1SlNuQlVRVFp2WEM5Q2RHWXJPSFZwSzNsMk9HVnZlV3MwYzFSUGJrZElSMGRVZG1jeVlsSkVObEJYTUZGWlExTlFaVlpjTHpsek4wZFhNRlF4WnowOUlpd2liV0ZqSWpvaU1qWXdaV0UyWTJSalpXRTVaalkxT0dZeE1UYzBZbVJqTmpCbFl6ZzFORGN6WkdFNU1HVTBOREU0TnpObU1qVTFZelV6TlRJd1l6Qm1ObVpoTkdJd09DSjk=', 1524420341);
+('zMiD7FTWGlLMilfjcBEFSh7wYlq7jarjTUqBBCrf', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJakJYWTBaVE0yRkNOMHMyVUdvd1dXTlplSGw1T1djOVBTSXNJblpoYkhWbElqb2lRelZDZWtFeFpUbGhlbXBsY2pnM1pUazFSMmRZYVdkeFIycE1OV1psV0hwQmNraExUSEprYXpWM1NqSnJWelpLVVhKMlFWUXhUbU0wVVdab2QyaEpaVGh6WkhGMFVHUmtjRVUyYWxGRVNVaEZTR3R2TTNOdGFWd3ZLMUJGVmxScVoyWjViREkxZDJ0dVZXbHhVa2x0TUdSNVoxUldXVEpXYlZOc1JXbFlObE00Tmx3dmQzcEdiWFZ0TldGamJsZG5jbk5tTm5aSE0zVlpUelEzVEhGUE0xbzVlbkkzYUdGcVUzWTVZak14ZGpaeFZWd3ZZMjh6ZW1NeWIyMXlVbGhsSzFwMVlsTlllVXBOV1dwM1RWZ3JlbGRyVDFodmRHWkJia2xHVVRGaU0yMWpaME0xYkdkSVdqWldNRk41UjBob1MyTjNSVGhCUVRVeU1IQnFSVUpNVlVwTlNrSndSWGcwUlhFeVkwbGphamRXUVZOb1YzSnlhRkp6V2t0RE9VTTNOREk0ZWpaY0wwUnlWbEJ0ZFZwamEyaFNjak5wUXpKcWRFeG9lRmxDUTF3dll6UkZhVWRRZFVaT1MxQktaV0p2WTBkQmVrTkVURVpuVjNkdVF6aG1Oa0ZUZWpOMFZXeHJha1pyWTA4eVVFWjRkbEJUT0ZCUGJVcHNXblpjTDNKNVNVcE5ZVGRrZFhSTlNubDFSR054VjA5WVZIRnVNbXh5Tm5aRVJTczVRblZSYjB0bVoxd3ZUVVZqU1VObGFXZzJZMUpDVkdScU9YWk5lVTlNTjNOcVowdHNPV3RhZEcxNGJGd3ZWRmQ2Vm5wUVZqZE1Ta1ZLZDBjclQxRmpVVDA5SWl3aWJXRmpJam9pTXpZek1UTTFOMlU1TnprNE5EUTBOMlppT1Rnd05XRXhOalUwTW1Ga1pHUm1OVGd4TWpabU1ESmhaVGcwTkRCbVptRXhPR0V3TkRVM1lqUmpObUZoTnlKOQ==', 1524769448);
 
 -- --------------------------------------------------------
 
@@ -254,6 +285,29 @@ CREATE TABLE `social_logins` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subcategories`
+--
+
+CREATE TABLE `subcategories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `subcategory` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `icon` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subcategories`
+--
+
+INSERT INTO `subcategories` (`id`, `category_id`, `subcategory`, `status`, `icon`, `created_at`, `updated_at`) VALUES
+(1, 1, 'subcategory', 1, '1524679971_nobel.jpg', '2018-04-25 10:12:51', '2018-04-25 10:12:51');
 
 -- --------------------------------------------------------
 
@@ -281,13 +335,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `confirmation_code`, `confirmed`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Admin', 'Istrator', 'admin@admin.com', '$2y$10$iWkbhRSbO6juGrPhjoeNN.dRz9QkT5rUHb6KB7FttLoNejOSoO3EC', 1, 'c850b895444768662eb7eba96d3dffc1', 1, 'EgJUj7nfN9Orms7RNRHDyBZDyOAe46xQsvXzSoKr4XAiUgBiHLfOX8Cwkzyk', '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
+(1, 'Admin', 'Istrator', 'admin@admin.com', '$2y$10$iWkbhRSbO6juGrPhjoeNN.dRz9QkT5rUHb6KB7FttLoNejOSoO3EC', 1, 'c850b895444768662eb7eba96d3dffc1', 1, '8FGQ5Es9glGfBfUsYdESYkNf6XK26VuaXJ6ijbaTtVd3Mm7mWI2QHeleBoCo', '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
 (2, 'Backend', 'User', 'executive@executive.com', '$2y$10$gCXWFzWJH5am5baYZ4W3iuTK9JSaK3kl6F/JVWP6.R4eYHNj1SEFO', 1, 'f861e0f0c7654cdc544ac5b6651a51be', 1, NULL, '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
 (3, 'Default', 'User', 'user@user.com', '$2y$10$qZTlUWL.hD7v5UwfgHnsHOXVPjxr/dvJwYXXM4e56FSDzT3Ozrbpm', 1, '7633753dcdc00187001e23742bb52b5f', 1, NULL, '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `history`
@@ -365,6 +425,13 @@ ALTER TABLE `social_logins`
   ADD KEY `social_logins_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `subcategories`
+--
+ALTER TABLE `subcategories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subcategories_category_id_index` (`category_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -375,6 +442,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `history`
 --
@@ -389,7 +461,7 @@ ALTER TABLE `history_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -420,6 +492,11 @@ ALTER TABLE `role_user`
 --
 ALTER TABLE `social_logins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `subcategories`
+--
+ALTER TABLE `subcategories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --

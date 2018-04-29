@@ -34,6 +34,16 @@ return [
             'updated'             => 'The user was successfully updated.',
             'updated_password'    => "The user's password was successfully updated.",
         ],
+	'categories' => [
+            'created' => 'The Category was successfully created.',
+            'deleted' => 'The Category was successfully deleted.',
+            'updated' => 'The Category was successfully updated.',
+        ],
+        'subcategories' => [
+            'created' => 'The SubCategory was successfully created.',
+            'deleted' => 'The SubCategory was successfully deleted.',
+            'updated' => 'The SubCategory was successfully updated.',
+        ],
     ],
 
     'frontend' => [

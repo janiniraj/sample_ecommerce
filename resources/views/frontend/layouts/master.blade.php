@@ -21,6 +21,7 @@
     {{ Html::style('/frontend/css/slick-theme.css') }}
     {{ Html::style('/frontend/css/style.css') }}
     {{ Html::style('/frontend/css/results-style.css') }}
+    {{ Html::style('/frontend/css/custom.css') }}
 
 @yield('after-styles')
 
@@ -37,16 +38,17 @@
 
     @include('frontend.includes.header')
 
-    <div class="container accessories" id="results-page">
+    
         @include('includes.partials.messages')
         @yield('content')
-    </div><!-- container -->
+    
 
     @include('frontend.includes.footer')
 
 <!-- Scripts -->
 @yield('before-scripts')
     {!! Html::script('/frontend/js/bootstrap-colorselector.min.js') !!}
+    {!! Html::script('/frontend/js/custom.js') !!}
     <script>
         $(function() {
             $('#colorselector').colorselector();

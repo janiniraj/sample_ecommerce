@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+<div class="container accessories" id="results-page">
     <div class="section">
 
         <div class="results-limit">
@@ -264,4 +265,5 @@
         </div>
 
     </div>
+</div><!-- container -->
 @endsection
