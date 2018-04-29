@@ -35,7 +35,10 @@ class HomeSliderTableController extends Controller
     public function __invoke(ManageRequest $request)
     {
         return Datatables::of($this->homeslider->getForDataTable())
-            ->escapeColumns(['type'])
+            ->escapeColumns([])
+            ->addColumn('type', function($homesliders){
+                return $homesliders->type == 'youtubevideo' ? 'Video' : 'Image';
+            })
             ->addColumn('image', function ($homesliders) {
                 if ($homesliders->type == 'youtubevideo') {
                     return '<a target="__blank" href="https://www.youtube.com/watch?v='.$homesliders->youtubevideo_id.'" class="label label-success">Video Link</a>';

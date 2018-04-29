@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Categories\CategoriesRepository;
+use App\Repositories\Backend\HomeSlider\HomeSliderRepository;
 
 /**
  * Class FrontendController.
@@ -14,6 +15,7 @@ class FrontendController extends Controller
     public function __construct()
     {
         $this->categories = new CategoriesRepository();
+        $this->homeSlider = new HomeSliderRepository();
     }
 
     /**
@@ -22,7 +24,8 @@ class FrontendController extends Controller
     public function index()
     {
         $categories = $this->categories->query()->where('status', 1)->get();
-        return view('frontend.index')->with(['categories'=> $categories]);
+        $slides     = $this->homeSlider->getAll();
+        return view('frontend.index')->with(['categories'=> $categories, 'slides' => $slides]);
     }
 
     /**

@@ -3,39 +3,17 @@
 @section('content')
     <div class="container-fluid" id="header">
         <section class="slider" id="headerSlider">
-            <div>
-                <iframe class="youtube-video" src="https://www.youtube.com/embed/yIIGQB6EMAM" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div>
-                <img src="http://placehold.it/1920x1080?text=2">
-                <div class="slide-caption">
-                    <h1 class="title">New Collection</h1>
-                </div>
-            </div>
-            <div>
-                <img src="http://placehold.it/1920x1080?text=3">
-                <div class="slide-caption">
-                    <h1 class="title">New Collection</h1>
-                </div>
-            </div>
-            <div>
-                <img src="http://placehold.it/1920x1080?text=4">
-                <div class="slide-caption">
-                    <h1 class="title">New Collection</h1>
-                </div>
-            </div>
-            <div>
-                <img src="http://placehold.it/1920x1080?text=5">
-                <div class="slide-caption">
-                    <h1 class="title">New Collection</h1>
-                </div>
-            </div>
-            <div>
-                <img src="http://placehold.it/1920x1080?text=6">
-                <div class="slide-caption">
-                    <h1 class="title">New Collection</h1>
-                </div>
-            </div>
+            @foreach($slides as $slide)
+                @if($slide->type == 'youtubevideo')
+                    <div>
+                        <iframe class="youtube-video" src="https://www.youtube.com/embed/{{ $slide->youtubevideo_id }}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                @else
+                    <div>
+                        <img src="{{ URL::to('/').'/img/sliders/'.$slide->image }}">
+                    </div>
+                @endif
+            @endforeach
         </section>
     </div>
 
