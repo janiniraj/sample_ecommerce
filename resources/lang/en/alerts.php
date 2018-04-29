@@ -44,6 +44,11 @@ return [
             'deleted' => 'The SubCategory was successfully deleted.',
             'updated' => 'The SubCategory was successfully updated.',
         ],
+        'home_slider' => [
+            'created' => 'The Slide was successfully created.',
+            'deleted' => 'The Slide was successfully deleted.',
+            'updated' => 'The Slide was successfully updated.',
+        ],
     ],
 
     'frontend' => [

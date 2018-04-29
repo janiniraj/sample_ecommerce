@@ -45,10 +45,16 @@ return [
      * Categories table used to store Helper Categories
      */
     'categories_table' => 'categories',
+
     /*
      * Subcategories table used to store Helper Subcategories
      */
-    'subcategories_table' => 'subcategories',	
+    'subcategories_table' => 'subcategories',
+
+    /*
+     * Home Slider
+     */
+    'homeslider_table' => 'home_slider',
 
     /*
      * Configurations for the user

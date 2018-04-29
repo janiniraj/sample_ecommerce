@@ -62,6 +62,14 @@ return [
             'management' => 'SubCategory Management',
             'main'       => 'SubCategory',
         ],
+
+        'home_slider' => [
+            'all'        => 'All Slides',
+            'create'     => 'Create Slide',
+            'edit'       => 'Edit Slide',
+            'management' => 'Slider Management',
+            'main'       => 'HomeSlider',
+        ],
     ],
 
     'language-picker' => [

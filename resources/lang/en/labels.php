@@ -130,6 +130,19 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'home_slider' => [
+            'create'     => 'Create New Slide',
+            'edit'       => 'Edit Slide',
+            'management' => 'Slider Management',
+            'title' => 'HomeSlider',
+
+            'table' => [
+                'type'           => 'Type',
+                'image_video'    => 'Image/Video',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

@@ -28,3 +28,11 @@ Route::group(['namespace' => 'SubCategories'], function () {
     Route::post('subcategories/get', 'SubCategoriesTableController')
         ->name('subcategories.get');
 });
+Route::group(['namespace' => 'HomeSlider'], function () {
+    Route::resource('home-slider', 'HomeSliderController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('home-slider/get', 'HomeSliderTableController')
+        ->name('home-slider.get');
+});
