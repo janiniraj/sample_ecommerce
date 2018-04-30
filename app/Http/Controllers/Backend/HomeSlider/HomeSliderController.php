@@ -91,13 +91,13 @@ class HomeSliderController extends Controller
 
     /**
      * @param HomeSlider              $homeslider
-     * @param DeleteHomeSliderRequest $request
+     * @param DeleteRequest $request
      *
      * @return mixed
      */
-    public function destroy(HomeSlider $homeslider, DeleteHomeSliderRequest $request)
-    {
-        $this->homeSlider->delete($homeslider);
+    public function destroy($id, HomeSlider $homeslider, DeleteRequest $request)
+    { 
+        $this->homeSlider->query()->where('id', $id)->delete();
 
         return redirect()->route('admin.home-slider.index')->withFlashSuccess('Record Successfully Deleted');
     }

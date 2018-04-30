@@ -118,7 +118,7 @@ class HomeSliderRepository extends BaseRepository
                 return true;
             }
 
-            throw new GeneralException(trans('exceptions.backend.subcategories.delete_error'));
+            throw new GeneralException('Error in deleting record.');
         });
     }
 }
