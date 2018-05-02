@@ -58,6 +58,8 @@ class HomeSliderRepository extends BaseRepository
             $homeSlider->type = $input['type'];
             $homeSlider->image = $image ? $image: "";
             $homeSlider->youtubevideo_id = isset($input['youtubevideo_id']) ? $input['youtubevideo_id'] : "";
+            $homeSlider->title = isset($input['title']) ? $input['title'] : "";
+            $homeSlider->url = isset($input['url']) ? $input['url'] : "";
 
             if ($homeSlider->save()) {
                 return true;
@@ -80,6 +82,8 @@ class HomeSliderRepository extends BaseRepository
         $homeSlider = $this->query()->find($input['id']);
         $homeSlider->type = $input['type'];
         $homeSlider->youtubevideo_id = isset($input['youtubevideo_id']) ? $input['youtubevideo_id'] : "";
+        $homeSlider->title = isset($input['title']) ? $input['title'] : "";
+        $homeSlider->url = isset($input['url']) ? $input['url'] : "";
 
         if(!empty($input['image']))
         {

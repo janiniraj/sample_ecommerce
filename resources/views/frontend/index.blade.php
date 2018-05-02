@@ -10,7 +10,12 @@
                     </div>
                 @else
                     <div>
-                        <img src="{{ URL::to('/').'/img/sliders/'.$slide->image }}">
+                        <a href="{{url('/').'/'.$slide->url }}"> <img src="{{ URL::to('/').'/img/sliders/'.$slide->image }}"></a>
+                        @if($slide->title)
+                            <div class="slide-caption">
+                                <h1 class="title">{{ $slide->title }}</h1>
+                            </div>
+                        @endif
                     </div>
                 @endif
             @endforeach
@@ -39,33 +44,20 @@
 
         <div class="section" id="featured">
             <div class="heading">
-                    <hr><h1><span>Featured Items</span></h1>
+                <hr><h1><span>Featured Items</span></h1>
             </div>
             <section class="slider" id="featuredSlider">
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=1">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=2">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=3">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=4">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=5">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=6">
-                    <div class="slide-caption">Item</div>
-                </div>
+                @foreach($collections as $collection)
+                    <div class="">
+                        <figure class="snip1174 grey">
+                            <img src="{{ url('/').'/img/subcategory/'.$collection->icon }}" alt="sq-sample33" />
+                            <figcaption>
+                                <a href="{{ route('frontend.product.index', $collection->subcategory) }}">Quick View</a>
+                                <h2>{{ $collection->subcategory }}</h2>
+                            </figcaption>
+                        </figure>
+                    </div>
+                @endforeach
             </section>
         </div>
 

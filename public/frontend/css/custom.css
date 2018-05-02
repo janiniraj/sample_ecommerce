@@ -28,6 +28,7 @@ figure.snip1174 figcaption {
     padding: 5px 25px;
     bottom: 0;
     left: 0;
+    width: 100%;
 }
 figure.snip1174 h2,
 figure.snip1174 p {
@@ -39,6 +40,7 @@ figure.snip1174 h2 {
     display: inline-block;
     font-weight: 100;
     font-size: 1.8em;
+    display: block;
 }
 figure.snip1174 p {
     font-weight: 300;
@@ -113,4 +115,7 @@ figure.snip1174.hover a {
 }
 img.xzoom {
     width: 100% !important;
+}
+#header .slick-slide .slide-caption h1 {
+    color: #fff;
 }

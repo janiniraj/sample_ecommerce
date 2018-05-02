@@ -50,7 +50,11 @@
                 $(".image-upload-container").removeClass('hidden');
                 $(".video-upload-container").addClass('hidden');
                 $(".youtubevideo_id").prop('required', false);
+                <?php if(!(isset($homeslider->image) && $homeslider->image)) { ?>
                 $(".image").prop('required', true);
+                <?php } else { ?>
+                $(".image").prop('required', false);
+                <?php } ?>
             }
         });
         $(".slide-type").change();

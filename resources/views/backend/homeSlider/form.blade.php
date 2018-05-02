@@ -1,4 +1,18 @@
 <div class="form-group">
+    {{ Form::label('title', 'Title: ', ['class' => 'col-lg-2 control-label']) }}
+
+    <div class="col-lg-10">
+        {{ Form::text('title', null, ['class' => 'form-control box-size', 'placeholder' => 'Title (Only with Image)']) }}
+    </div><!--col-lg-10-->
+</div><!--form control-->
+<div class="form-group">
+    {{ Form::label('url', 'Url: ', ['class' => 'col-lg-2 control-label required']) }}
+
+    <div class="col-lg-10">
+        {{ Form::text('url', null, ['class' => 'form-control box-size', 'placeholder' => 'Url (Only with Image) i.e. /featured-items']) }}
+    </div><!--col-lg-10-->
+</div><!--form control-->
+<div class="form-group">
     {{ Form::label('type', 'Type: ', ['class' => 'col-lg-2 control-label required']) }}
 
     <div class="col-lg-10">
