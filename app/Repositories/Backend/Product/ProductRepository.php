@@ -53,14 +53,21 @@ class ProductRepository extends BaseRepository
         if ($this->query()->where('name', $input['name'])->first()) {
             throw new GeneralException("Product with same name Exist");
         }
-        $file = $input['main_image'];
+        $files = $input['main_image'];
 
-        $destinationPath = public_path(). '/uploads/products/';
-        $filename = time().$file->getClientOriginalName();
+        $imageNameArray = [];
 
-        $file->move($destinationPath, $filename);
+        foreach ($files as $file)
+        {
+            $destinationPath    = public_path(). '/uploads/products/';
+            $filename           = time().$file->getClientOriginalName();
 
-        $input['main_image'] = $filename;
+            $file->move($destinationPath, $filename);
+
+            $imageNameArray[] = $filename;
+        }
+
+        $input['main_image'] = json_encode($imageNameArray);
 
         DB::transaction(function () use ($input) {
             $product = self::MODEL;
@@ -87,21 +94,26 @@ class ProductRepository extends BaseRepository
      */
     public function update(Model $product, array $input)
     {
-
         $product->name = $input['name'];
 
-        if(isset($input['main_image']) && $input['main_image'])
+        if(isset($input['main_image']))
         {
-            $file = $input['main_image'];
+            $files = $input['main_image'];
 
-            $destinationPath = public_path(). '/uploads/products/';
-            $filename = time().$file->getClientOriginalName();
+            $imageNameArray = json_decode($product->main_image, true);
 
-            $file->move($destinationPath, $filename);
+            foreach ($files as $file)
+            {
+                $destinationPath    = public_path(). '/uploads/products/';
+                $filename           = time().$file->getClientOriginalName();
 
-            $product->main_image = $input['main_image'] = $filename;
+                $file->move($destinationPath, $filename);
+
+                $imageNameArray[] = $filename;
+            }
+
+            $product->main_image = json_encode($imageNameArray);
         }
-
 
         DB::transaction(function () use ($product, $input) {
             if ($product->save()) {

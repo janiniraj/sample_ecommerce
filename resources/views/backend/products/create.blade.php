@@ -32,9 +32,12 @@
                 <div class="form-group">
                     {{ Form::label('main_image', 'Product Image', ['class' => 'col-lg-2 control-label']) }}
 
-                    <div class="col-lg-10">
-
-                        {{ Form::file('main_image', ['class' => 'form-control', 'required' => 'required', 'accept' => "image/x-png,image/gif,image/jpeg"]) }}
+                    <div class="col-lg-10 image-container">
+                        <div class="file-input-cloned">
+                        <img class="image-display hidden">
+                        {{ Form::file('main_image[]', ['id' => 'files', 'class' => 'files', 'required' => 'required', 'accept' => "image/x-png,image/gif,image/jpeg"]) }}
+                        </div>
+                        <button id="add_more_image" class="btn btn-success margin-top">Add More</button>
                     </div><!--col-lg-10-->
                 </div><!--form control-->
             </div><!-- /.box-body -->
@@ -55,4 +58,36 @@
         </div><!--box-->
 
     {{ Form::close() }}
+@endsection
+
+@section('after-scripts')
+<script>
+    $(document).ready(function() {
+        $("#add_more_image").on('click', function(e){
+            e.preventDefault();
+            var html = '<div class="file-input-cloned"> <img class="image-display hidden"><input class="files" required="required" accept="image/x-png,image/gif,image/jpeg" name="main_image[]" type="file"><span class="remove">X</span></div>';
+            $(html).insertBefore(this);
+        });
+
+        $(document).on('change', ".files", function ()
+        {
+            var fileInput = $(this);
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    fileInput.closest('div').find('.image-display')
+                        .attr('src', e.target.result).removeClass('hidden');
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+        $(document).on('click', '.remove', function()
+        {
+            $(this).closest('div').remove();
+        });
+    });
+</script>
 @endsection
