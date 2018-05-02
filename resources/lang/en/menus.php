@@ -77,6 +77,13 @@ return [
             'management' => 'Style Management',
             'main'       => 'Style',
         ],
+        'materials' => [
+            'all'        => 'All Materials',
+            'create'     => 'Create Material',
+            'edit'       => 'Edit Material',
+            'management' => 'Material Management',
+            'main'       => 'Material',
+        ],
     ],
 
     'language-picker' => [

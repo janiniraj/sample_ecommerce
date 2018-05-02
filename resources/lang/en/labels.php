@@ -156,6 +156,19 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'materials' => [
+            'create'     => 'Create Material',
+            'edit'       => 'Edit Material',
+            'management' => 'Material Management',
+            'title' => 'Material',
+
+            'table' => [
+                'title'          => 'Material',
+                'status'         => 'Status',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

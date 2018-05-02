@@ -170,7 +170,10 @@ return [
                 'title' => 'Style',
                 'is_active' => 'Active',
             ],
-
+            'materials' => [
+                'title' => 'Material',
+                'is_active' => 'Active',
+            ],
         ],
 
         'frontend' => [

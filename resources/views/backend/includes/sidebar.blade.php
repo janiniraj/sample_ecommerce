@@ -136,6 +136,12 @@
                     <span>Style Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/materials')) }}">
+                <a href="{{ route('admin.materials.index') }}">
+                    <i class="fa fa-delicious"></i>
+                    <span>Material Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

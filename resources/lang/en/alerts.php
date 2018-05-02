@@ -54,6 +54,11 @@ return [
             'deleted' => 'The Style was successfully deleted.',
             'updated' => 'The Style was successfully updated.',
         ],
+        'materials' => [
+            'created' => 'The Material was successfully created.',
+            'deleted' => 'The Material was successfully deleted.',
+            'updated' => 'The Material was successfully updated.',
+        ],
     ],
 
     'frontend' => [

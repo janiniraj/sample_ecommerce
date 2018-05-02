@@ -62,6 +62,11 @@ return [
     'style_table' => 'styles',
 
     /*
+     * Material
+     */
+    'material_table' => 'materials',
+
+    /*
      * Configurations for the user
      */
     'users' => [

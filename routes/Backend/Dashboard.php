@@ -45,8 +45,18 @@ Route::group(['namespace' => 'Style'], function () {
         ['show']]);
 
     //For DataTables
-    Route::get('styles/get', 'StyleTableController')
-        ->name('styles.get');
     Route::post('styles/get', 'StyleTableController')
         ->name('styles.get');
+});
+
+/**
+ *  Material Management
+ */
+Route::group(['namespace' => 'Material'], function () {
+    Route::resource('materials', 'MaterialController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('materials/get', 'MaterialTableController')
+        ->name('materials.get');
 });
