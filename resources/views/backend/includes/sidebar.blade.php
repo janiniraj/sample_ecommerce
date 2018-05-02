@@ -148,6 +148,12 @@
                     <span>Weaves Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/colors')) }}">
+                <a href="{{ route('admin.colors.index') }}">
+                    <i class="fa fa-clone"></i>
+                    <span>Color Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

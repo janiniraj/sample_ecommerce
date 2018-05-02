@@ -91,6 +91,13 @@ return [
             'management' => 'Weave Management',
             'main'       => 'Weave',
         ],
+        'colors' => [
+            'all'        => 'All Colors',
+            'create'     => 'Create Color',
+            'edit'       => 'Edit Color',
+            'management' => 'Color Management',
+            'main'       => 'Color',
+        ],
     ],
 
     'language-picker' => [

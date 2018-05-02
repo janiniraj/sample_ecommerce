@@ -178,6 +178,10 @@ return [
                 'title' => 'Weave',
                 'is_active' => 'Active',
             ],
+            'colors' => [
+                'title' => 'Color',
+                'is_active' => 'Active',
+            ],
         ],
 
         'frontend' => [

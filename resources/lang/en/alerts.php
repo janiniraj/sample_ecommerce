@@ -64,6 +64,11 @@ return [
             'deleted' => 'The Weave was successfully deleted.',
             'updated' => 'The Weave was successfully updated.',
         ],
+        'colors' => [
+            'created' => 'The Color was successfully created.',
+            'deleted' => 'The Color was successfully deleted.',
+            'updated' => 'The Color was successfully updated.',
+        ],
     ],
 
     'frontend' => [

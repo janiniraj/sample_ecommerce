@@ -72,3 +72,15 @@ Route::group(['namespace' => 'Weave'], function () {
     Route::post('weaves/get', 'WeaveTableController')
         ->name('weaves.get');
 });
+
+/**
+ *  Color Management
+ */
+Route::group(['namespace' => 'Color'], function () {
+    Route::resource('colors', 'ColorController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('colors/get', 'ColorTableController')
+        ->name('colors.get');
+});

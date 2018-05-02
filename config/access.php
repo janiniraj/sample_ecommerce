@@ -67,6 +67,11 @@ return [
     'material_table' => 'materials',
 
     /*
+     * Color
+     */
+    'color_table' => 'colors',
+
+    /*
      * Configurations for the user
      */
     'users' => [

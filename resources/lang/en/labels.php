@@ -182,6 +182,19 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'colors' => [
+            'create'     => 'Create Color',
+            'edit'       => 'Edit Color',
+            'management' => 'Color Management',
+            'title' => 'Color',
+
+            'table' => [
+                'title'          => 'Color',
+                'status'         => 'Status',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [
