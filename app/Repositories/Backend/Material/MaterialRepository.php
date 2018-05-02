@@ -52,7 +52,7 @@ class MaterialRepository extends BaseRepository
             $materials = new $materials();
             $materials->name = $input['name'];
             $materials->status = (isset($input['status']) && $input['status'] == 1)
-                 ? 1 : 0;
+                ? 1 : 0;
 
             if ($materials->save()) {
 
@@ -71,7 +71,7 @@ class MaterialRepository extends BaseRepository
      *
      * return bool
      */
-     
+
     public function update(Model $materials, array $input)
     {
         if ($this->query()->where('name', $input['name'])->where('id', '!=', $materials->id)->first()) {
@@ -79,10 +79,10 @@ class MaterialRepository extends BaseRepository
         }
         $materials->name = $input['name'];
         $materials->status = (isset($input['status']) && $input['status'] == 1)
-                 ? 1 : 0;
+            ? 1 : 0;
 
         DB::transaction(function () use ($materials, $input) {
-        	if ($materials->save()) {
+            if ($materials->save()) {
                 // event(new MaterialUpdated($materials));
 
                 return true;
