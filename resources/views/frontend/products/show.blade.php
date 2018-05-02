@@ -5,60 +5,18 @@
         <div class="section">
 
             <div class="row">
-                <div class="col-md-6 product-photos">
-                    <section class="slider" id="productImages">
-                        <div>
-                            <a href="{{ url('/').'/img/products/product2.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product2.jpg' }}" xoriginal="{{ url('/').'/img/products/product2.jpg' }}"></a>
+                <div class="col-md-6">
+                    @php
+                        $images = json_decode($product->main_image, true);
+                    @endphp
+                    <div class="xzoom-container col-md-12">
+                        <img class="xzoom" id="xzoom-default" src="{{ url('/'). '/img/products/thumbnail/'.$images[0] }}" xoriginal="{{ url('/'). '/img/products/'.$images[0] }}" />
+                        <div class="xzoom-thumbs">
+                            @foreach($images as $singleKey => $singleValue)
+                                <a href="{{ url('/'). '/img/products/'.$singleValue }}"><img class="xzoom-gallery" width="80" src="{{ url('/'). '/img/products/thumbnail/'.$singleValue }}" ></a>
+                            @endforeach
                         </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product3.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product3.jpg' }}" xoriginal="{{ url('/').'/img/products/product3.jpg' }}"></a>
-                        </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product4.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product4.jpg' }}" xoriginal="{{ url('/').'/img/products/product4.jpg' }}"></a>
-                        </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product5.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product5.jpg' }}" xoriginal="{{ url('/').'/img/products/product5.jpg' }}"></a>
-                        </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product6.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product6.jpg' }}" xoriginal="{{ url('/').'/img/products/product6.jpg' }}"></a>
-                        </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product7.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product7.jpg' }}" xoriginal="{{ url('/').'/img/products/product7.jpg' }}"></a>
-                        </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product8.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product8.jpg' }}" xoriginal="{{ url('/').'/img/products/product8.jpg' }}"></a>
-                        </div>
-                        <div>
-                            <a href="{{ url('/').'/img/products/product9.jpg' }}"><img class="xzoom5" id="xzoom-magnific" src="{{ url('/').'/img/products/product9.jpg' }}" xoriginal="{{ url('/').'/img/products/product9.jpg' }}"></a>
-                        </div>
-                    </section>
-
-                    <section class="slider" id="productImages-nav">
-                        <div>
-                            <img src="{{ url('/').'/img/products/product2.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product3.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product4.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product5.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product6.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product7.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product8.jpg' }}">
-                        </div>
-                        <div>
-                            <img src="{{ url('/').'/img/products/product9.jpg' }}">
-                        </div>
-                    </section>
+                    </div>
 
                 </div>
 
@@ -286,7 +244,7 @@
 
 @section('after-scripts')
 <script>
-    $('.xzoom5, .xzoom-gallery5').xzoom({
+    /*$('.xzoom5, .xzoom-gallery5').xzoom({
         tint: '#006699',
         Xoffset: 15,
         fadeIn: true,
@@ -296,6 +254,6 @@
     $('#productImages').slickLightbox({
         itemSelector        : 'a',
         navigateByKeyboard  : true
-    });
+    });*/
 </script>
 @endsection

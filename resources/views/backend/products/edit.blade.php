@@ -36,7 +36,7 @@
                         @php
                             $images = json_decode($product->main_image, true);
                             foreach($images as $singleImage) {
-                                echo '<img class="image-display margin" src="'.url('/').'/uploads/products/'.$singleImage.'">';
+                                echo '<img class="image-display margin" src="'.url('/').'/img/products/'.$singleImage.'">';
                             }
                         @endphp
                         <div class="file-input-cloned">

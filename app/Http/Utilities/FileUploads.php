@@ -299,7 +299,7 @@ class FileUploads
             $filePath       = $this->checkAndCreateDir($filePath);
 
             Image::make($referenceFile)
-                    ->fit(200)
+                    ->fit(350)
                     ->save($filePath.DIRECTORY_SEPARATOR.$fileName);
             
             return $this;    

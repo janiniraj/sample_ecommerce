@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Utilities\FileUploads;
 
 /**
  * Class ProductRepository.
@@ -59,10 +60,15 @@ class ProductRepository extends BaseRepository
 
         foreach ($files as $file)
         {
-            $destinationPath    = public_path(). '/uploads/products/';
+            /*$destinationPath    = public_path(). '/uploads/products/';
             $filename           = time().$file->getClientOriginalName();
 
-            $file->move($destinationPath, $filename);
+            $file->move($destinationPath, $filename);*/
+
+            $fileUpload = new FileUploads();
+            $fileUpload->setBasePath('products');
+
+            $filename = $fileUpload->upload($file);
 
             $imageNameArray[] = $filename;
         }
@@ -104,10 +110,15 @@ class ProductRepository extends BaseRepository
 
             foreach ($files as $file)
             {
-                $destinationPath    = public_path(). '/uploads/products/';
+                /*$destinationPath    = public_path(). '/uploads/products/';
                 $filename           = time().$file->getClientOriginalName();
 
-                $file->move($destinationPath, $filename);
+                $file->move($destinationPath, $filename);*/
+
+                $fileUpload = new FileUploads();
+                $fileUpload->setBasePath('products');
+
+                $filename = $fileUpload->upload($file);
 
                 $imageNameArray[] = $filename;
             }

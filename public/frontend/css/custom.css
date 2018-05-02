@@ -97,7 +97,7 @@ figure.snip1174.hover a {
 
 .product-title {
     color: #333;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
     padding: 15px;
 }
@@ -110,4 +110,7 @@ figure.snip1174.hover a {
 }
 .btn.btn-submit {
     background: #e7e7e7;
+}
+img.xzoom {
+    width: 100% !important;
 }

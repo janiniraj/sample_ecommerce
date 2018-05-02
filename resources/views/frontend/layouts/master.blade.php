@@ -12,6 +12,7 @@
 <!-- Styles -->
 @yield('before-styles')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {!! Html::script('/frontend/js/modernizr.js') !!}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
@@ -22,9 +23,15 @@
     {{ Html::style('/frontend/css/style.css') }}
     {{ Html::style('/frontend/css/results-style.css') }}
     {{ Html::style('/frontend/css/product-style.css') }}
+
+    {{ Html::style('/frontend/css/normalize.css') }}
+    {{ Html::style('/frontend/css/foundation.css') }}
     {{ Html::style('/frontend/css/xzoom.css') }}
+    {{ Html::style('/frontend/css/jquery.fancybox.js') }}
     {{ Html::style('/frontend/css/magnific-popup.css') }}
+
     {{ Html::style('/frontend/css/custom.css') }}
+
 
 @yield('after-styles')
 
@@ -54,7 +61,11 @@
     {!! Html::script('/frontend/js/slick.min.js') !!}
     {!! Html::script('/frontend/js/slick-lightbox.min.js') !!}
     {!! Html::script('/frontend/js/xzoom.js') !!}
+    {!! Html::script('/frontend/js/jquery.hammer.min.js') !!}
+    {!! Html::script('/frontend/js/jquery.fancybox.js') !!}
     {!! Html::script('/frontend/js/magnific-popup.js') !!}
+    {!! Html::script('/frontend/js/foundation.min.js') !!}
+    {!! Html::script('/frontend/js/setup.js') !!}
     {!! Html::script('/frontend/js/custom.js') !!}
     <script>
         $(function() {

@@ -74,7 +74,9 @@ class ProductController extends Controller
      */
     public function show($productId)
     {
-        return view('frontend.products.show');
+        $product = $this->products->find($productId);
+
+        return view('frontend.products.show')->with(['product' => $product]);
     }
 
 }

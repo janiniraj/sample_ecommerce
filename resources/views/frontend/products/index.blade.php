@@ -210,7 +210,8 @@
                     @foreach($products as $product)
                         <div class="col-xs-6 item">
                             <a href="{{ route('frontend.product.show', $product->id) }}">
-                                <img src="{{ URL::to('/').'/uploads/products/'.$product->main_image }}" alt="Item" class="img-responsive">
+                                @php $images = json_decode($product->main_image, true); @endphp
+                                <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="Item" class="img-responsive">
                                 <div class="text-center product-title">{{ $product->name }}</div>
                             </a>
                         </div>
