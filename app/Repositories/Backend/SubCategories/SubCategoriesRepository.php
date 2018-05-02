@@ -140,4 +140,9 @@ class SubCategoriesRepository extends BaseRepository
             throw new GeneralException(trans('exceptions.backend.subcategories.delete_error'));
         });
     }
+
+    public function getSubCategoriesByCategory($categoryId)
+    {
+        return $this->query()->where('category_id', $categoryId)->get();
+    }
 }

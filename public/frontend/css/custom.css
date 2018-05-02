@@ -96,11 +96,18 @@ figure.snip1174.hover a {
 }
 
 .product-title {
-    color: black;
-    font-size: 25px;
+    color: #333;
+    font-size: 18px;
     text-decoration: none;
     padding: 15px;
 }
 .product-title:hover {
     text-decoration: none;
+}
+
+.btn {
+    font-size: 18px;
+}
+.btn.btn-submit {
+    background: #e7e7e7;
 }

@@ -136,6 +136,12 @@ class CategoriesRepository extends BaseRepository
         });
     }
 
+    /**
+     * Get Category Id by Name
+     *
+     * @param $categoryName
+     * @return null
+     */
     public function getCategoryIdByName($categoryName)
     {
         $categoryData = $this->query()->where('category', $categoryName)->select('id')->first();
