@@ -38,7 +38,7 @@ Route::group(['namespace' => 'HomeSlider'], function () {
 });
 
 /**
- *  Categories Management
+ *  Style Management
  */
 Route::group(['namespace' => 'Style'], function () {
     Route::resource('styles', 'StyleController', ['except' =>

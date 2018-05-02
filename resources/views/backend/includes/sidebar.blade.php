@@ -130,6 +130,12 @@
                     <span>Slide Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/styles')) }}">
+                <a href="{{ route('admin.styles.index') }}">
+                    <i class="fa fa-adjust"></i>
+                    <span>Style Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>
