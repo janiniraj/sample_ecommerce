@@ -162,7 +162,7 @@ return [
                 'is_active' => 'Active',
             ],
             'subcategories' => [
-                'title' => 'SubCategory',
+                'title' => 'Collection',
                 'category' => 'Select Category',
                 'is_active' => 'Active',
             ],

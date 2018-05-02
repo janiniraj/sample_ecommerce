@@ -117,13 +117,13 @@ return [
         ],
 
         'subcategories' => [
-            'create'     => 'Create SubCategory',
-            'edit'       => 'Edit SubCategory',
-            'management' => 'SubCategory Management',
-            'title' => 'SubCategory',
+            'create'     => 'Create Collection',
+            'edit'       => 'Edit Collection',
+            'management' => 'Collection Management',
+            'title' => 'Collection',
 
             'table' => [
-                'title'          => 'SubCategory',
+                'title'          => 'Collection',
                 'category'       => 'Category',
                 'status'         => 'Status',
                 'createdat'      => 'Created At',

@@ -56,11 +56,11 @@ return [
             'main'       => 'Category',
         ],
         'subcategories' => [
-            'all'        => 'All SubCategories',
-            'create'     => 'Create SubCategory',
-            'edit'       => 'Edit SubCategory',
-            'management' => 'SubCategory Management',
-            'main'       => 'SubCategory',
+            'all'        => 'All Collection',
+            'create'     => 'Create Collection',
+            'edit'       => 'Edit Collection',
+            'management' => 'Collection Management',
+            'main'       => 'Collection',
         ],
 
         'home_slider' => [

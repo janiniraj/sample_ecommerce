@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Product;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Product\ProductRepository;
 use Illuminate\Http\Request;
+use App\Repositories\Backend\Categories\CategoriesRepository;
 
 /**
  * Class ProductController.
@@ -23,17 +24,20 @@ class ProductController extends Controller
     public function __construct(ProductRepository $products)
     {
         $this->products = $products;
+        $this->categories = new CategoriesRepository();
     }
 
     /**
      * Product List
      *
-     * @param $categoryId
+     * @param $categoryName
      * @param Request $request
      * @return $this
      */
-    public function index($categoryId, Request $request)
+    public function index($categoryName, Request $request)
     {
+        $categoryId = $this->categories->getCategoryIdByName($categoryName);
+        
         $products = $this->products->getAll();
         return view('frontend.products.index')->with(['products' => $products]);
     }

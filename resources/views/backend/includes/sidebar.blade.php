@@ -28,7 +28,6 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('menus.backend.sidebar.general') }}</li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/dashboard')) }}">
                 <a href="{{ route('admin.dashboard') }}">
@@ -36,8 +35,6 @@
                     <span>{{ trans('menus.backend.sidebar.dashboard') }}</span>
                 </a>
             </li>
-
-            <li class="header">{{ trans('menus.backend.sidebar.system') }}</li>
 
             <li class="{{ active_class(Active::checkUriPattern('admin/product')) }}">
                 <a href="{{ route('admin.product.index') }}">
@@ -103,26 +100,18 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="{{ active_class(Active::checkUriPattern('admin/category*')) || active_class(Active::checkUriPattern('admin/subcategory*')) }} treeview">
-                <a href="#">
+            
+            <li class="{{ active_class(Active::checkUriPattern('admin/categories*')) }}">
+                <a href="{{ route('admin.categories.index') }}">
                     <i class="fa fa-commenting"></i>
-                    <span>Category management</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <span>Category Management</span>
                 </a>
-
-                <ul class="treeview-menu {{ active_class(Active::checkUriPattern('admin/category*'), 'menu-open') }}" style="display: none; {{ active_class(Active::checkUriPattern('admin/category*'), 'display: block;') }}">
-                    <li class="{{ active_class(Active::checkUriPattern('admin/categories*')) }}">
-                        <a href="{{ route('admin.categories.index') }}">
-                            <span>Category</span>
-                        </a>
-                    </li>
-                    <li class="{{ active_class(Active::checkUriPattern('admin/subcategories*')) }}">
-                        <a href="{{ route('admin.subcategories.index') }}">
-                            <span>Sub Category</span>
-                        </a>
-                    </li>
-                </ul>
+            </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/subcategories*')) }}">
+                <a href="{{ route('admin.subcategories.index') }}">
+                    <i class="fa fa-commenting"></i>
+                    <span>Collection</span>
+                </a>
             </li>
             <li class="{{ active_class(Active::checkUriPattern('admin/home-slider')) }}">
                 <a href="{{ route('admin.home-slider.index') }}">
@@ -150,7 +139,7 @@
             </li>
             <li class="{{ active_class(Active::checkUriPattern('admin/colors')) }}">
                 <a href="{{ route('admin.colors.index') }}">
-                    <i class="fa fa-clone"></i>
+                    <i class="fa fa-css3"></i>
                     <span>Color Management</span>
                 </a>
             </li>

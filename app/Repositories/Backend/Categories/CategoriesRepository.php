@@ -135,4 +135,11 @@ class CategoriesRepository extends BaseRepository
             throw new GeneralException(trans('exceptions.backend.categories.delete_error'));
         });
     }
+
+    public function getCategoryIdByName($categoryName)
+    {
+        $categoryData = $this->query()->where('category', $categoryName)->select('id')->first();
+
+        return $categoryData ? $categoryData->id : null;
+    }
 }

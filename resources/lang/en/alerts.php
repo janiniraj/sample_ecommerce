@@ -40,9 +40,9 @@ return [
             'updated' => 'The Category was successfully updated.',
         ],
         'subcategories' => [
-            'created' => 'The SubCategory was successfully created.',
-            'deleted' => 'The SubCategory was successfully deleted.',
-            'updated' => 'The SubCategory was successfully updated.',
+            'created' => 'The Collection was successfully created.',
+            'deleted' => 'The Collection was successfully deleted.',
+            'updated' => 'The Collection was successfully updated.',
         ],
         'home_slider' => [
             'created' => 'The Slide was successfully created.',
