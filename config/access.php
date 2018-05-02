@@ -57,6 +57,11 @@ return [
     'homeslider_table' => 'home_slider',
 
     /*
+     * Style
+     */
+    'style_table' => 'styles',
+
+    /*
      * Configurations for the user
      */
     'users' => [

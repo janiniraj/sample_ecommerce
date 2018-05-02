@@ -49,6 +49,11 @@ return [
             'deleted' => 'The Slide was successfully deleted.',
             'updated' => 'The Slide was successfully updated.',
         ],
+        'styles' => [
+            'created' => 'The Style was successfully created.',
+            'deleted' => 'The Style was successfully deleted.',
+            'updated' => 'The Style was successfully updated.',
+        ],
     ],
 
     'frontend' => [

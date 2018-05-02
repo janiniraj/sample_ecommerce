@@ -143,6 +143,19 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'styles' => [
+            'create'     => 'Create Style',
+            'edit'       => 'Edit Style',
+            'management' => 'Style Management',
+            'title' => 'Style',
+
+            'table' => [
+                'title'          => 'Style',
+                'status'         => 'Status',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

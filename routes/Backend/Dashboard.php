@@ -36,3 +36,17 @@ Route::group(['namespace' => 'HomeSlider'], function () {
     Route::post('home-slider/get', 'HomeSliderTableController')
         ->name('home-slider.get');
 });
+
+/**
+ *  Categories Management
+ */
+Route::group(['namespace' => 'Style'], function () {
+    Route::resource('styles', 'StyleController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::get('styles/get', 'StyleTableController')
+        ->name('styles.get');
+    Route::post('styles/get', 'StyleTableController')
+        ->name('styles.get');
+});

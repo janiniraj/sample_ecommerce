@@ -67,6 +67,13 @@ return [
             'not_found'         => 'That SubCategory does not exist.',
             'update_error'      => 'There was a problem updating this SubCategory. Please try again.',
         ],
+        'styles' => [
+            'already_exists'    => 'That Style already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this Style. Please try again.',
+            'delete_error'      => 'There was a problem deleting this Style. Please try again.',
+            'not_found'         => 'That Style does not exist.',
+            'update_error'      => 'There was a problem updating this Style. Please try again.',
+        ],
     ],
 
     'frontend' => [

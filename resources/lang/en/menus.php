@@ -70,6 +70,13 @@ return [
             'management' => 'Slider Management',
             'main'       => 'HomeSlider',
         ],
+        'styles' => [
+            'all'        => 'All Styles',
+            'create'     => 'Create Style',
+            'edit'       => 'Edit Style',
+            'management' => 'Style Management',
+            'main'       => 'Style',
+        ],
     ],
 
     'language-picker' => [

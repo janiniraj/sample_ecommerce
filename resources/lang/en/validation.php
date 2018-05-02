@@ -166,6 +166,11 @@ return [
                 'category' => 'Select Category',
                 'is_active' => 'Active',
             ],
+            'styles' => [
+                'title' => 'Style',
+                'is_active' => 'Active',
+            ],
+
         ],
 
         'frontend' => [
