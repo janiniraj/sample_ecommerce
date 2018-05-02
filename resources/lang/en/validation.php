@@ -174,6 +174,10 @@ return [
                 'title' => 'Material',
                 'is_active' => 'Active',
             ],
+            'weaves' => [
+                'title' => 'Weave',
+                'is_active' => 'Active',
+            ],
         ],
 
         'frontend' => [

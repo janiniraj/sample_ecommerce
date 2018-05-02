@@ -59,6 +59,11 @@ return [
             'deleted' => 'The Material was successfully deleted.',
             'updated' => 'The Material was successfully updated.',
         ],
+        'weaves' => [
+            'created' => 'The Weave was successfully created.',
+            'deleted' => 'The Weave was successfully deleted.',
+            'updated' => 'The Weave was successfully updated.',
+        ],
     ],
 
     'frontend' => [

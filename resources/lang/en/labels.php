@@ -169,6 +169,19 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'weaves' => [
+            'create'     => 'Create Weave',
+            'edit'       => 'Edit Weave',
+            'management' => 'Weave Management',
+            'title' => 'Weave',
+
+            'table' => [
+                'title'          => 'Weave',
+                'status'         => 'Status',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

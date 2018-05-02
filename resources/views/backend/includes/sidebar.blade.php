@@ -142,6 +142,12 @@
                     <span>Material Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/weaves')) }}">
+                <a href="{{ route('admin.weaves.index') }}">
+                    <i class="fa fa-clone"></i>
+                    <span>Weaves Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

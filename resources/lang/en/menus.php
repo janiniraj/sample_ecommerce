@@ -84,6 +84,13 @@ return [
             'management' => 'Material Management',
             'main'       => 'Material',
         ],
+        'weaves' => [
+            'all'        => 'All Weaves',
+            'create'     => 'Create Weave',
+            'edit'       => 'Edit Weave',
+            'management' => 'Weave Management',
+            'main'       => 'Weave',
+        ],
     ],
 
     'language-picker' => [

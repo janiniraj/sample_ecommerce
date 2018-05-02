@@ -60,3 +60,15 @@ Route::group(['namespace' => 'Material'], function () {
     Route::post('materials/get', 'MaterialTableController')
         ->name('materials.get');
 });
+
+/**
+ *  Weave Management
+ */
+Route::group(['namespace' => 'Weave'], function () {
+    Route::resource('weaves', 'WeaveController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('weaves/get', 'WeaveTableController')
+        ->name('weaves.get');
+});
