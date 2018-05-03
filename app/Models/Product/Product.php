@@ -26,7 +26,28 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'category_id', 'main_image', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'name', 
+        'category_id', 
+        'main_image', 
+        'created_at', 
+        'updated_at',
+        'sku',
+        'brand',
+        'category_id',
+        'subcategory_id',
+        'style_id',
+        'material_id',
+        'weave_id',
+        'color_id',
+        'border_color_id',
+        'shape',
+        'length',
+        'width',
+        'foundation',
+        'knote_per_sq',
+        'shop'
+        ];
 
     /**
      * @param array $attributes

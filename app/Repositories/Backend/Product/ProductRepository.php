@@ -76,10 +76,25 @@ class ProductRepository extends BaseRepository
         $input['main_image'] = json_encode($imageNameArray);
 
         DB::transaction(function () use ($input) {
-            $product = self::MODEL;
-            $product = new $product();
-            $product->name = $input['name'];
-            $product->main_image = $input['main_image'];
+            $product                    = self::MODEL;
+            $product                    = new $product();
+            $product->name              = $input['name'];
+            $product->main_image        = $input['main_image'];
+            $product->sku               = $input['sku'];
+            $product->brand             = $input['brand'];
+            $product->category_id       = $input['category_id'];
+            $product->subcategory_id    = isset($input['subcategory_id']) ? $input['subcategory_id'] : '';
+            $product->style_id          = $input['style_id'];
+            $product->material_id       = $input['material_id'];
+            $product->weave_id          = $input['weave_id'];
+            $product->color_id          = $input['color_id'];
+            $product->border_color_id   = $input['border_color_id'];
+            $product->shape             = $input['shape'];
+            $product->length            = $input['length'];
+            $product->width             = $input['width'];
+            $product->foundation        = $input['foundation'];
+            $product->knote_per_sq      = $input['knote_per_sq'];
+            $product->shop              = $input['shop'];
 
             if ($product->save()) {
 
@@ -124,6 +139,81 @@ class ProductRepository extends BaseRepository
             }
 
             $product->main_image = json_encode($imageNameArray);
+        }
+
+        if(isset($input['sku']))
+        {
+            $product->sku = $input['sku'];
+        }
+
+        if(isset($input['brand']))
+        {
+            $product->brand = $input['brand'];
+        }
+
+        if(isset($input['category_id']))
+        {
+            $product->category_id = $input['category_id'];
+        }
+
+        if(isset($input['subcategory_id']))
+        {
+            $product->subcategory_id = $input['subcategory_id'];
+        }
+
+        if(isset($input['style_id']))
+        {
+            $product->style_id = $input['style_id'];
+        }
+
+        if(isset($input['material_id']))
+        {
+            $product->material_id = $input['material_id'];
+        }
+
+        if(isset($input['weave_id']))
+        {
+            $product->weave_id = $input['weave_id'];
+        }
+
+        if(isset($input['color_id']))
+        {
+            $product->color_id = $input['color_id'];
+        }
+
+        if(isset($input['border_color_id']))
+        {
+            $product->border_color_id = $input['border_color_id'];
+        }
+
+        if(isset($input['shape']))
+        {
+            $product->shape = $input['shape'];
+        }
+
+        if(isset($input['length']))
+        {
+            $product->length = $input['length'];
+        }
+
+        if(isset($input['width']))
+        {
+            $product->width = $input['width'];
+        }
+
+        if(isset($input['foundation']))
+        {
+            $product->foundation = $input['foundation'];
+        }
+
+        if(isset($input['knote_per_sq']))
+        {
+            $product->knote_per_sq = $input['knote_per_sq'];
+        }
+
+        if(isset($input['shop']))
+        {
+            $product->shop = $input['shop'];
         }
 
         DB::transaction(function () use ($product, $input) {
