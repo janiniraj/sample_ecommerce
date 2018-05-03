@@ -119,3 +119,16 @@ img.xzoom {
 #header .slick-slide .slide-caption h1 {
     color: #fff;
 }
+span.color-btn {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    position: relative;
+    -webkit-transition: all ease .1s;
+    transition: all ease .1s;
+    float: left;
+    margin-right: 15px;
+}

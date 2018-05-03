@@ -94,7 +94,8 @@ class ProductRepository extends BaseRepository
             $product->width             = $input['width'];
             $product->foundation        = $input['foundation'];
             $product->knote_per_sq      = $input['knote_per_sq'];
-            $product->shop              = $input['shop'];
+            $product->detail            = $input['detail'];
+            $product->shop              = $input['shop'];            
 
             if ($product->save()) {
 
@@ -209,6 +210,11 @@ class ProductRepository extends BaseRepository
         if(isset($input['knote_per_sq']))
         {
             $product->knote_per_sq = $input['knote_per_sq'];
+        }
+
+        if(isset($input['detail']))
+        {
+            $product->detail = $input['detail'];
         }
 
         if(isset($input['shop']))

@@ -27,7 +27,7 @@
                         <a class="share" href="#"><i class="fas fa-share-alt"></i></a>
                     </div>
 
-                    <h2>Product Name</h2>
+                    <h2>{{ $product->name }}</h2>
 
                     <ul class="nav nav-pills nav-justified">
                         <li class="active"><a data-toggle="pill" href="#specs">Specs</a></li>
@@ -40,55 +40,57 @@
                             <table>
                                 <tr>
                                     <td>SKU</td>
-                                    <td></td>
+                                    <td>{{ $product->sku }}</td>
                                 </tr>
                                 <tr>
                                     <td>Brand</td>
-                                    <td></td>
+                                    <td>{{ $product->brand }}</td>
                                 </tr>
+                                @if($product->subcategory_id)
                                 <tr>
                                     <td>Collection</td>
                                     <td></td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td>Size</td>
-                                    <td></td>
+                                    <td>{{ $product->length }} x {{ $product->width }} feet</td>
                                 </tr>
                                 <tr>
                                     <td>Shape</td>
-                                    <td></td>
+                                    <td>{{ $product->shape }}</td>
                                 </tr>
                                 <tr>
                                     <td>Design</td>
-                                    <td></td>
+                                    <td>{{ (isset($product->style) && $product->style) ? $product->style->name : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Matterials</td>
-                                    <td></td>
+                                    <td>{{ (isset($product->material) && $product->material) ? $product->material->name : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Color</td>
-                                    <td></td>
+                                    <td>{!! (isset($product->color) && $product->color) ? '<span class="color-btn" style="background-color: '.$product->color->name.'"> </span>' : '' !!}</td>
                                 </tr>
                                 <tr>
                                     <td>Border Color</td>
-                                    <td></td>
+                                    <td>{!! (isset($product->borderColor) && $product->borderColor) ? '<span class="color-btn" style="background-color: '.$product->borderColor->name.'"> </span>' : '' !!}</td>
                                 </tr>
                                 <tr>
                                     <td>Foundation</td>
-                                    <td></td>
+                                    <td>{{ $product->foundation }}</td>
                                 </tr>
                                 <tr>
                                     <td>Knote per sq.</td>
-                                    <td></td>
+                                    <td>{{ $product->knote_per_sq }}</td>
                                 </tr>
                             </table>
                         </div>
                         <div id="shop" class="tab-pane fade">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            <p>{{ $product->shop }}</p>
                         </div>
                         <div id="review" class="tab-pane fade">
-                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                            <p>Review</p>
                         </div>
                     </div>
 
@@ -100,9 +102,7 @@
                 <h2>Product Deatail</h2>
                 <div class="row">
                     <div class="col-md-11 col-md-offset-1">
-                        <p>This is a paragraph, This is a paragraph, This is a paragraph, This is a paragraph,
-                            This is a paragraph, This is a paragraph, This is a paragraph, This is a paragraph
-                            This is a  paragraph</p>
+                        <p>{{ $product->detail }}</p>
                     </div>
                 </div>
             </div>
