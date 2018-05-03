@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 30, 2018 at 12:54 AM
+-- Generation Time: May 03, 2018 at 07:05 AM
 -- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -48,6 +48,28 @@ INSERT INTO `categories` (`id`, `category`, `status`, `icon`, `created_at`, `upd
 (6, 'category6', 1, '1524766039_sq-sample33.jpg', '2018-04-26 10:07:19', '2018-04-26 10:07:19'),
 (7, 'category7', 1, '1524766116_sq-sample27.jpg', '2018-04-26 10:08:36', '2018-04-26 10:08:36'),
 (8, 'category8', 1, '1524766128_sq-sample28.jpg', '2018-04-26 10:08:48', '2018-04-26 10:08:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `colors`
+--
+
+CREATE TABLE `colors` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `colors`
+--
+
+INSERT INTO `colors` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, '#3c1c1c', 1, '2018-05-02 09:28:05', '2018-05-02 10:44:09'),
+(2, '#f31fd2', 1, '2018-05-02 09:42:27', '2018-05-02 10:38:23');
 
 -- --------------------------------------------------------
 
@@ -98,20 +120,42 @@ INSERT INTO `history_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `home_slider` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` enum('image','video','youtubevideo') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image',
+  `url` text COLLATE utf8mb4_unicode_ci,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `youtubevideo_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `home_slider`
 --
 
-INSERT INTO `home_slider` (`id`, `type`, `image`, `youtubevideo_id`, `created_at`, `updated_at`) VALUES
-(1, 'image', '1524992854_ws_Bridge_1920x1080.jpg', 'yIIGQB6EMAM', '2018-04-28 23:30:48', '2018-04-29 01:07:34'),
-(2, 'youtubevideo', NULL, 'LjhCEhWiKXk', '2018-04-29 00:13:54', '2018-04-29 00:13:54'),
-(3, 'youtubevideo', '1525016165_ws_Bridge_1920x1080.jpg', '2Vv-BfVoq4g', '2018-04-29 07:36:06', '2018-04-29 07:36:06');
+INSERT INTO `home_slider` (`id`, `type`, `url`, `image`, `youtubevideo_id`, `created_at`, `updated_at`, `title`) VALUES
+(6, 'image', 'products/1', '1525297647_ws_Bridge_1920x1080.jpg', '', '2018-04-29 17:40:24', '2018-05-02 14:53:46', 'Featured Image'),
+(7, 'youtubevideo', NULL, '', 'yIIGQB6EMAM', '2018-05-02 13:47:39', '2018-05-02 13:47:39', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materials`
+--
+
+CREATE TABLE `materials` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Material1', 1, '2018-05-02 06:45:23', '2018-05-02 06:45:23');
 
 -- --------------------------------------------------------
 
@@ -140,7 +184,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2018_04_25_155718_create_table_category', 3),
 (9, '2018_04_25_155737_create_table_subcategory', 3),
 (10, '2018_04_25_163506_change_table_category', 4),
-(11, '2018_04_29_024449_create_table_home_slider', 5);
+(11, '2018_04_29_024449_create_table_home_slider', 5),
+(12, '2018_05_02_082832_create_table_styles', 6),
+(13, '2018_05_02_104309_create_table_materials', 6),
+(14, '2018_05_02_120137_create_table_weaves', 6),
+(15, '2018_05_02_165742_colors', 7);
 
 -- --------------------------------------------------------
 
@@ -204,7 +252,7 @@ CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `main_image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `main_image` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -214,18 +262,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category_id`, `main_image`, `created_at`, `updated_at`) VALUES
-(1, 'Product 1777', NULL, 'nobel1.jpg', '2018-04-21 16:00:00', '2018-04-29 08:25:44'),
-(3, 'Product 2', NULL, 'nobel2.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(4, 'Product 3', NULL, 'nobel3.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(5, 'Product 4', NULL, 'nobel4.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(6, 'Product 5', NULL, 'nobel5.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(7, 'Product 6', NULL, 'nobel6.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(8, 'Product 7', NULL, 'nobel7.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(9, 'Product 8', NULL, 'nobel8.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(10, 'Product 9', NULL, 'nobel9.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(11, 'Product 10', NULL, 'nobel10.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(12, 'Product 11', NULL, 'nobel11.jpg', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(13, 'Product 12', NULL, 'nobel12.jpg', '2018-04-22 09:28:35', '2018-04-22 09:36:32');
+(1, 'Product 1777', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-29 08:25:44'),
+(3, 'Product 2', NULL, '["1525295679_product7.jpg","1525295679_product4.jpg","1525295678_product2.jpg","1525295679_product5.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(4, 'Product 3', NULL, '["1525295679_product5.jpg","1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(5, 'Product 4', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(6, 'Product 5', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(7, 'Product 6', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(8, 'Product 7', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(9, 'Product 8', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(10, 'Product 9', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(11, 'Product 10', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-05-02 13:14:39'),
+(12, 'Product 11', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(13, 'Product 12', NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32');
 
 -- --------------------------------------------------------
 
@@ -292,7 +340,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('adCNatcRPUj9zC5cVf9KHGnYME66f26SlCd7kMzf', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbUZpY25Od2JFUlVVV3RHUTJNeFZUWXdOV0p2Wm5jOVBTSXNJblpoYkhWbElqb2lPVUpFYVdkSU9YUmNMMEpNUTFNeVRHVmhaVTlQT0RGVlR6QkVlVE5VVlUwMGRtcFhPVFJ6Y1VoaFprZ3JhRnd2YzNsRlRXSkRTRkpOWldvMWRrZFdlRFJaSzNOTk5FSXpORFZLU0dSNlQyRmFibGszTjBWcVZrbDBNa3BQV0VsM1dqUkxVa3RUT1dwNlZVMVdNRVJUU2tsNFMybHpOSGRLTkRkWFptNUNSbmhYTUVOSGFVZEtiVlpaU21JMEsyOXlSa1F6Vkd3MVdUTldWM1V3YVV4TVVVUmhkbHd2WkcxT1NIWnBUVm93Y1ZsaFRIcFRSbEJyV21kUlExSmxXRkJVVUdSWWNWRXJLekZxYkZGMVptUTFSalpLWmpaeFdHZ3JkMk5qYUVNNGVXOHlNbXBXYTJsbFZ6ZGtaRUpoZVN0SlEyVnJkbGc0YkZ3dlptMTRiakZ4WVhWYVN6QjROamQzWVRCMFJHRkdZVkZwVEdOSFJWRldaVFpOYkRkRFJtY3JiRll5TmtsRVMyNUNLMjluWEM5SWRqRnFTMVpwTjNNNWJFZDVlV1JhZUdoMVIzZHpkVloyTlZ3dlRrTmFaRUZjTDBjeWRqaGhlRmxTVmtJeGNXMUpZWFJVY2xVeWRtOUhVM296VGtKQ1JsRklUVEZ3Y2xReWVuVnhOSEZRZUUwd2EzTldaMFV6SzFOVlZ6VnpUMVk0SzBKRFpXaG9aazVtUkdwRmRVMHhRVlowTkVKY0wxcFpaMVJ4T1dobEsxb3hPR3RCVkdWbEt6VnBjemRoUzFSVVRFUmpRMWMwWWxVd1lVZENSR1pVWXpSQmNWd3ZielZxWTFwRVVVZERSV3gzWkZWbVlYQTRYQzl0VG1KVmNtYzBWSEZ0UkRCMlIyeEpVbFUxV1UwMFIyOXFlRlpEVTJoV2FHdGpJaXdpYldGaklqb2lOV1JoTVRaaU1UWmlOemMzTjJJMU1qSmtZMk14WldNeFlqRTFOVFE0WkRZek0yTTROV1U1TlRKbVkyTm1aRGsyTXpJM1pqQXhaR1F5T1RrMFl6TTFNeUo5', 1525020761);
+('5VeBfPrKWxyDUSRCisKamEkK3jU2V5HjOiJhCD2r', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJazVUVmxFNVREQldTa3hSZFZrM2JUQmpYQzh6YVVWUlBUMGlMQ0oyWVd4MVpTSTZJa2h0VVZKcU1tOU1NelpMZUhSWWJIZzVTMFJWYlVNME5XeDNjRVZQVlhWT2VqTTBSVXRQTTNjcmRuUlZkMWxqVmxSdlFuVjBSMUJEUlZoaE1rUmhkbFZyZEd4VlpXUjNiR1ZjTDFoQ0t6QmlVVEIwVmtGdmNXOVRNMXBMT1hSNlMzRlBUVEk0YmxOVmVrTmNMMlIwWkU1WFpsd3ZkVkJ1WjJGblJXUmFSbnBrWmtGV1NUZ3lPSE5RV0hsVFpFaFBaVVZHT1N0WlVsbDNNVGxFUmt0U1VFd3dUalE0U1RCclFtOTBZblUwTURKeU5WQlFZMjAxYVVKSlZtZ3lWVWQxYkZsY0wyc3dVbEJFTUd4NFVXNUxOMmsyVFhSeWNFVlBXRVlyYjFoWFFsUlBibFk1Tms5M2Mxd3ZNVTAwWkcxS1FUWjNXa1JqZVdneGFDdEllRTUzWkZwY0wyeGpaR1ZEU3pscE5reE5iME5GTlN0VE9YSnlkMDlqTTNVeVkxSlRjRTF2Y2twd2NERkRUREJXWm1WMWRtVmtkVEZ6UnpOcWF6TlJORTVJYUVSUVhDOTBXa2x2Vm00MU5XWk5VbWgwVFRVMGFqSjRLM1kzWjBSM01ITXpNVFJsY2l0WWNqTlFPWEJwY1RGa1ZXRnNUVzljTDFoT1pWcFljRFpWTld4NFdqRTNTRFpTZVV4Y0wzazBiV1J0VWsxbWIwZG5ZbGRMV21kb1pFUXlkamRwSzA4d2RtNU9WRzVEYkVwM2VuUnhVMkl3VkZRNFVrNWhhMkpXZFdGVlFYcHRkblZNZFhZMlpVRXpOamw1Vm5SbVFTdGplVmxoU2poeE9URjBOa2hYV2tkdVRHdFFXRnBHWlZoTE1IVnRia055VmpOM1RrcEplU3RNUmxGMFMwWXJSV1ZTV0dSbFdXVmNMeUlzSW0xaFl5STZJbVU1TTJGa09XWXlZakZrWldFd01qVmpPVGc0Tm1ReU5qVTBNall4TTJRM09XUXlaR0V3WVdZM05HVmhabUV4T1dGa016RXlaVGsxTnpjM05ESm1OelFpZlE9PQ==', 1525302263),
+('vQeLoL8m7BLlaHRetdNtOIGZ3F4Vrz5KF9ev4cl2', NULL, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJaXMxVDBsamEwUm5NakEwU2pGVVpWWlZSVXA0ZVVFOVBTSXNJblpoYkhWbElqb2lSWGRrVHpaTlptOXpTVzV2Vld3eWFYcE5ka3BJWXl0TGIzbFVhVkpIYkdnMk9GaHdkakJ2U0ZjeU1tSkxObVpxVkRkemJucERla3A2ZVVKdloxYzNaM1k0YVhoc1MxTlNWMUI1TWtsY0wyOVZVekZZU1hjd1JGTldibUZDYmxobGIzSkxaamRsVERFeGRYSkpRbFZ0VmtkNVFWTTNRMHBqY2poUFZIWm9UVlJRVWxkVmFWSlNTak4xUmtkUFFuaG5ObFJwYTNGVE5FUnJXWGxqYjFvMFFqRnBhRUZjTDJGMFltNDJZMVZMVXpONmRrUTFlVkppVGtOaWMxbDFNRUpoTVhWNlVqZGxibFZDY2psbVZHNVFjR2xzUVU1MWNVWkdXR3N4Y1dSUmR6TlVkM2hJWkZkalhDOW1PWFEyWEM5RWJtVXJSbmR1TWs1WVozZFdaM2RJTW1wR0t6Vmhiekp2U2t3eWR6TTJhRlZGVGpOQ2FtZG9RMFl5UzJSRVVWZEpSMkp6VVVwNWExd3ZOWGhjTDJKbE5sazBYQzl4YW5FMFRHOXZWVmdyUXl0TlRHWldSRkZTY201SU0ycFhlRkpIT0VWTVIzQlFObWhSTkU5bVFUMDlJaXdpYldGaklqb2lZMlJsTXpVME9ESTVNbUZpT1RsaE9EUTNOR0ppWmpFM1pUYzBNalV6TjJOa01EVTJZV1E0WTJaaFlqazJOelEyTVdRek5UUmlNelJpTURBM05qY3lNeUo5', 1525294018);
 
 -- --------------------------------------------------------
 
@@ -310,6 +359,28 @@ CREATE TABLE `social_logins` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `styles`
+--
+
+CREATE TABLE `styles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `styles`
+--
+
+INSERT INTO `styles` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Style 1', 1, '2018-05-02 11:46:50', '2018-05-02 11:46:50'),
+(2, 'Style 2', 1, '2018-05-02 11:47:00', '2018-05-02 11:47:00');
 
 -- --------------------------------------------------------
 
@@ -332,7 +403,9 @@ CREATE TABLE `subcategories` (
 --
 
 INSERT INTO `subcategories` (`id`, `category_id`, `subcategory`, `status`, `icon`, `created_at`, `updated_at`) VALUES
-(1, 1, 'subcategory', 1, '1524679971_nobel.jpg', '2018-04-25 10:12:51', '2018-04-25 10:12:51');
+(1, 1, 'Collection', 1, '1525297983_ws_Bridge_1920x1080.jpg', '2018-04-25 10:12:51', '2018-05-02 13:53:03'),
+(2, 2, 'Collection 2', 1, '1525298409_Clevenger+Camel+Back+Sofa.jpg', '2018-05-02 14:00:09', '2018-05-02 14:00:09'),
+(3, 3, 'Collection 3', 1, '1525298462_sofa.jpg', '2018-05-02 14:01:02', '2018-05-02 14:01:02');
 
 -- --------------------------------------------------------
 
@@ -360,9 +433,30 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `confirmation_code`, `confirmed`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Admin', 'Istrator', 'admin@admin.com', '$2y$10$iWkbhRSbO6juGrPhjoeNN.dRz9QkT5rUHb6KB7FttLoNejOSoO3EC', 1, 'c850b895444768662eb7eba96d3dffc1', 1, '8FGQ5Es9glGfBfUsYdESYkNf6XK26VuaXJ6ijbaTtVd3Mm7mWI2QHeleBoCo', '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
+(1, 'Admin', 'Istrator', 'admin@admin.com', '$2y$10$iWkbhRSbO6juGrPhjoeNN.dRz9QkT5rUHb6KB7FttLoNejOSoO3EC', 1, 'c850b895444768662eb7eba96d3dffc1', 1, 'gA7Tm2GO6MPwnnGKDEg9qu9ztBBPV7M8r3sj9Bm7upztn9A7Qh1xa76k9TlQ', '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
 (2, 'Backend', 'User', 'executive@executive.com', '$2y$10$gCXWFzWJH5am5baYZ4W3iuTK9JSaK3kl6F/JVWP6.R4eYHNj1SEFO', 1, 'f861e0f0c7654cdc544ac5b6651a51be', 1, NULL, '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
 (3, 'Default', 'User', 'user@user.com', '$2y$10$qZTlUWL.hD7v5UwfgHnsHOXVPjxr/dvJwYXXM4e56FSDzT3Ozrbpm', 1, '7633753dcdc00187001e23742bb52b5f', 1, NULL, '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weaves`
+--
+
+CREATE TABLE `weaves` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `weaves`
+--
+
+INSERT INTO `weaves` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'weave1', 1, '2018-05-02 06:45:56', '2018-05-02 06:45:56');
 
 --
 -- Indexes for dumped tables
@@ -372,6 +466,12 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `stat
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `colors`
+--
+ALTER TABLE `colors`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -392,6 +492,12 @@ ALTER TABLE `history_types`
 -- Indexes for table `home_slider`
 --
 ALTER TABLE `home_slider`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -456,6 +562,12 @@ ALTER TABLE `social_logins`
   ADD KEY `social_logins_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `styles`
+--
+ALTER TABLE `styles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -470,6 +582,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `weaves`
+--
+ALTER TABLE `weaves`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -478,6 +596,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `colors`
+--
+ALTER TABLE `colors`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `history`
 --
@@ -492,12 +615,17 @@ ALTER TABLE `history_types`
 -- AUTO_INCREMENT for table `home_slider`
 --
 ALTER TABLE `home_slider`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -529,15 +657,25 @@ ALTER TABLE `role_user`
 ALTER TABLE `social_logins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `styles`
+--
+ALTER TABLE `styles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `weaves`
+--
+ALTER TABLE `weaves`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
