@@ -94,8 +94,10 @@ class WeaveController extends Controller
      *
      * @return mixed
      */
-    public function destroy(Weave $weave, DeleteRequest $request)
+    public function destroy($id, Weave $weave, DeleteRequest $request)
     {
+        $weave = $this->weaves->find($id);
+
         $this->weaves->delete($weave);
 
         return redirect()->route('admin.weaves.index')->withFlashSuccess(trans('alerts.backend.weaves.deleted'));

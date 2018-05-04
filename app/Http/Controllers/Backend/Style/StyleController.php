@@ -94,8 +94,10 @@ class StyleController extends Controller
      *
      * @return mixed
      */
-    public function destroy(Style $style, DeleteRequest $request)
+    public function destroy($id, Style $style, DeleteRequest $request)
     {
+        $style = $this->styles->find($id);
+
         $this->styles->delete($style);
 
         return redirect()->route('admin.styles.index')->withFlashSuccess(trans('alerts.backend.styles.deleted'));

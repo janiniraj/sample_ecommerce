@@ -94,8 +94,10 @@ class MaterialController extends Controller
      *
      * @return mixed
      */
-    public function destroy(Material $material, DeleteRequest $request)
+    public function destroy($id, Material $material, DeleteRequest $request)
     {
+        $material = $this->materials->find($id);
+
         $this->materials->delete($material);
 
         return redirect()->route('admin.materials.index')->withFlashSuccess(trans('alerts.backend.materials.deleted'));

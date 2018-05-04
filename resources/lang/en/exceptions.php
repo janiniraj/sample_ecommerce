@@ -74,6 +74,27 @@ return [
             'not_found'         => 'That Style does not exist.',
             'update_error'      => 'There was a problem updating this Style. Please try again.',
         ],
+        'materials' => [
+            'already_exists'    => 'That Material already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this Material. Please try again.',
+            'delete_error'      => 'There was a problem deleting this Material. Please try again.',
+            'not_found'         => 'That Material does not exist.',
+            'update_error'      => 'There was a problem updating this Material. Please try again.',
+        ],
+        'weaves' => [
+            'already_exists'    => 'That Weaves already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this Weaves. Please try again.',
+            'delete_error'      => 'There was a problem deleting this Weaves. Please try again.',
+            'not_found'         => 'That Weaves does not exist.',
+            'update_error'      => 'There was a problem updating this Weaves. Please try again.',
+        ],
+        'colors' => [
+            'already_exists'    => 'That Color already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this Color. Please try again.',
+            'delete_error'      => 'There was a problem deleting this Color. Please try again.',
+            'not_found'         => 'That Color does not exist.',
+            'update_error'      => 'There was a problem updating this Color. Please try again.',
+        ],
     ],
 
     'frontend' => [

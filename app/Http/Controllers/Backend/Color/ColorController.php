@@ -94,8 +94,10 @@ class ColorController extends Controller
      *
      * @return mixed
      */
-    public function destroy(Color $color, DeleteRequest $request)
+    public function destroy($id, Color $color, DeleteRequest $request)
     {
+        $color = $this->colors->find($id);
+
         $this->colors->delete($color);
 
         return redirect()->route('admin.colors.index')->withFlashSuccess(trans('alerts.backend.colors.deleted'));
