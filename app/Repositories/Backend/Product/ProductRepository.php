@@ -95,7 +95,9 @@ class ProductRepository extends BaseRepository
             $product->foundation        = $input['foundation'];
             $product->knote_per_sq      = $input['knote_per_sq'];
             $product->detail            = $input['detail'];
-            $product->shop              = $input['shop'];            
+            $product->shop              = $input['shop'];
+            $product->type              = $input['type'];
+            $product->country_origin    = isset($input['country_origin']) ? $input['country_origin'] : '';
 
             if ($product->save()) {
 
@@ -117,6 +119,7 @@ class ProductRepository extends BaseRepository
     public function update(Model $product, array $input)
     {
         $product->name = $input['name'];
+        $product->type = $input['type'];
 
         if(isset($input['main_image']))
         {
@@ -220,6 +223,11 @@ class ProductRepository extends BaseRepository
         if(isset($input['shop']))
         {
             $product->shop = $input['shop'];
+        }
+
+        if(isset($input['country_origin']))
+        {
+            $product->country_origin = $input['country_origin'];
         }
 
         DB::transaction(function () use ($product, $input) {

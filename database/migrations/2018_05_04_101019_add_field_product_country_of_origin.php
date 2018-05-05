@@ -13,7 +13,10 @@ class AddFieldProductCountryOfOrigin extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('products', function($table) {
+            $table->string('type')->nullable()->after('name');
+            $table->string('country_origin')->nullable()->after('shop');
+        });
     }
 
     /**

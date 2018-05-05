@@ -23,6 +23,12 @@
 
             <div class="box-body">
                 <div class="form-group">
+                    {{ Form::label('type', 'Type', ['class' => 'col-lg-2 control-label']) }}
+                    <div class="col-lg-10">
+                        {{ Form::select('type', config('constant.product_types'), null, ['class' => 'form-control', 'required' => 'required']) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
                     {{ Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
@@ -118,6 +124,12 @@
 
                     <div class="col-lg-10">
                         {{ Form::text('knote_per_sq', null, ['class' => 'form-control', 'maxlength' => '191', 'required' => 'required','placeholder' => 'Knote Per Sq.']) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('country_origin', 'Country Of Origin', ['class' => 'col-lg-2 control-label']) }}
+                    <div class="col-lg-10">
+                        {{ Form::select('country_origin', config('constant.countries'), null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Country of Origin']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">

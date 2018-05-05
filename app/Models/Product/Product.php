@@ -47,7 +47,9 @@ class Product extends Model
         'width',
         'foundation',
         'knote_per_sq',
-        'shop'
+        'shop',
+        'country_origin',
+        'type'
         ];
 
     /**
