@@ -11,6 +11,7 @@ use App\Repositories\Backend\Style\StyleRepository;
 use App\Repositories\Backend\Material\MaterialRepository;
 use App\Repositories\Backend\Weave\WeaveRepository;
 use App\Repositories\Backend\Color\ColorRepository;
+use Redirect;
 
 /**
  * Class ProductController.
@@ -46,15 +47,83 @@ class ProductController extends Controller
      */
     public function index($categoryName, Request $request)
     {
+        $filterData = $request->all();
+
+        if(isset($filterData['category']) && $filterData['category'])
+        {
+            $categoryId = $filterData['category'];
+
+            unset($filterData['category']);
+
+            $appendData = http_build_query($filterData);
+
+            return Redirect::to('products/'.$categoryId.'?'.$appendData);
+        }
+
         $categoryId     = $this->categories->getCategoryIdByName($categoryName);
         $categoryList   = $this->categories->getAll();
         $collectionList = $this->subcategories->getSubCategoriesByCategory($categoryId);
         $styleList      = $this->style->getAll();
-        $materialList      = $this->material->getAll();
+        $materialList   = $this->material->getAll();
         $weaveList      = $this->weave->getAll();
         $colorList      = $this->color->getAll();
 
-        $products = $this->products->getAll();
+        $products = $this->products->query();
+
+        if(!empty($filterData))
+        {
+            if(isset($filterData['collection']) && $filterData['collection'])
+            {
+                $products = $products->where('subcategory_id', $filterData['collection']);
+            }
+
+            if(isset($filterData['style']) && $filterData['style'])
+            {
+                $products = $products->where('style_id', $filterData['style']);
+            }
+
+            if(isset($filterData['material']) && $filterData['material'])
+            {
+                $products = $products->where('material_id', $filterData['style']);
+            }
+
+            if(isset($filterData['weave']) && $filterData['weave'])
+            {
+                $products = $products->where('weave_id', $filterData['weave']);
+            }
+
+            if(isset($filterData['color']) && $filterData['color'])
+            {
+                $products = $products->where('color_id', $filterData['color']);
+            }
+
+            if(isset($filterData['shape']) && $filterData['shape'])
+            {
+                $products = $products->where('shape', $filterData['shape']);
+            }
+
+            if(isset($filterData['unit_width']) && $filterData['unit_width'] && isset($filterData['width_min']) && $filterData['width_min'] && isset($filterData['width_max']) && $filterData['width_max'])
+            {
+                if($filterData['unit_width'] == 'inch')
+                {
+                    $filterData['width_min'] = $filterData['width_min']/12;
+                    $filterData['width_max'] = $filterData['width_max']/12;
+                }
+                $products = $products->whereBetween('width', [$filterData['width_min'], $filterData['width_max']]);
+            }
+
+            if(isset($filterData['unit_length']) && $filterData['unit_length'] && isset($filterData['length_min']) && $filterData['length_min'] && isset($filterData['length_max']) && $filterData['length_max'])
+            {
+                if($filterData['unit_length'] == 'inch')
+                {
+                    $filterData['width_min'] = $filterData['width_min']/12;
+                    $filterData['width_max'] = $filterData['width_max']/12;
+                }
+                $products = $products->whereBetween('length', [$filterData['length_min'], $filterData['length_max']]);
+            }
+        }
+
+        $products = $products->get();
         return view('frontend.products.index')->with([
             'products'          => $products,
             'categoryList'      => $categoryList,

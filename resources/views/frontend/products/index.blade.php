@@ -12,12 +12,14 @@
 
         <div class="row">
             <div class="col-sm-4 filters">
+                {{ Form::open(['method' => 'GET']) }}
                 <ul class="filters-list">
                     <li class="list-header">Filters</li>
                 </ul>
-                @if(!empty($categoryList))
                 <div class="panel-group" id="results-accordion">
+                    @if(!empty($categoryList))
                     <div class="panel panel-default">
+                        <input type="hidden" name="category" class="filter-input">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse1">
@@ -29,7 +31,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach($categoryList as $single)
-                                        <li><a href="#">{{ $single->category }}</a></li>
+                                        <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->category }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -39,6 +41,7 @@
 
                     @if(!empty($collectionList))
                     <div class="panel panel-default">
+                        <input type="hidden" name="collection" class="filter-input">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse2">
@@ -50,7 +53,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach($collectionList as $single)
-                                        <li><a href="#">{{ $single->subcategory }}</a></li>
+                                        <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->subcategory }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -60,6 +63,7 @@
 
                     @if(!empty($styleList))
                         <div class="panel panel-default">
+                            <input type="hidden" name="style" class="filter-input">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse3">
@@ -71,7 +75,7 @@
                                 <div class="panel-body">
                                     <ul class="sub-filters">
                                         @foreach($styleList as $single)
-                                            <li><a href="#">{{ $single->name }}</a></li>
+                                            <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -81,6 +85,7 @@
 
                     @if(!empty($materialList))
                         <div class="panel panel-default">
+                            <input type="hidden" name="material" class="filter-input">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse4">
@@ -92,7 +97,7 @@
                                 <div class="panel-body">
                                     <ul class="sub-filters">
                                         @foreach($materialList as $single)
-                                            <li><a href="#">{{ $single->name }}</a></li>
+                                            <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -102,6 +107,7 @@
 
                     @if(!empty($weaveList))
                         <div class="panel panel-default">
+                            <input type="hidden" name="weave" class="filter-input">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse5">
@@ -113,7 +119,7 @@
                                 <div class="panel-body">
                                     <ul class="sub-filters">
                                         @foreach($weaveList as $single)
-                                            <li><a href="#">{{ $single->name }}</a></li>
+                                            <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -121,7 +127,7 @@
                         </div>
                     @endif
 
-                    @if(!empty($weaveList))
+                    @if(!empty($colorList))
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -133,7 +139,7 @@
                             <div id="collapse6" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <span class="color-label">Select Color: </span>
-                                    <select id="colorselector">
+                                    <select name="color" id="colorselector">
                                         @foreach($colorList as $singleKey => $singleValue)
                                             <option {{ $singleKey== 0 ? 'selected' : '' }} value="{{$singleValue->id}}" data-color="{{ $singleValue->name }}">{{ $singleValue->name }}</option>
                                         @endforeach
@@ -157,24 +163,24 @@
                                     <div class="width">
                                         <label>Width</label>
                                         <div class="checkbox">
-                                            <label><input type="radio" name="unit-length" checked> Feet</label>
-                                            <label><input type="radio" name="unit-length"> Inch</label>
+                                            <label><input type="radio" name="unit_width" value="feet" checked> Feet</label>
+                                            <label><input type="radio" name="unit_width" value="inch"> Inch</label>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="min" placeholder="Min" name="min">
-                                            <input type="text" class="form-control" id="max" placeholder="Max" name="max">
+                                            <input type="text" class="form-control" id="min" placeholder="Min" name="width_min">
+                                            <input type="text" class="form-control" id="max" placeholder="Max" name="width_max">
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="length">
                                         <label>length</label>
                                         <div class="checkbox">
-                                            <label><input type="radio" name="unit-width" checked> Feet</label>
-                                            <label><input type="radio" name="unit-width"> Inch</label>
+                                            <label><input type="radio" name="unit_length" value="feet" checked> Feet</label>
+                                            <label><input type="radio" name="unit_length" value="inch"> Inch</label>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="min" placeholder="Min" name="min">
-                                            <input type="text" class="form-control" id="max" placeholder="Max" name="max">
+                                            <input type="text" class="form-control" id="min" placeholder="Min" name="length_min">
+                                            <input type="text" class="form-control" id="max" placeholder="Max" name="length_max">
                                         </div>
                                     </div>
                                 </div>
@@ -183,6 +189,7 @@
                     </div>
 
                     <div class="panel panel-default">
+                        <input type="hidden" name="shape" class="filter-input">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse8">
@@ -194,7 +201,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach(config('constant.shapes') as $single)
-                                        <li><a href="#">{{ $single }}</a></li>
+                                        <li><a class="filter-option" fieldvalue="{{ $single }}" href="javascript:void(0);">{{ $single }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -203,6 +210,7 @@
 
                 </div>
                 <button class="btn btn-submit pull-right" type="submit">Submit</button>
+                {{ Form::close() }}
             </div>
 
             <div class="col-sm-8 resutls">
@@ -219,12 +227,12 @@
                 </div>
 
                 <ul class="pagination">
-                    <li><a href="#"><span>1</span></a></li>
-                    <li><a href="#"><span>2</span></a></li>
-                    <li><a href="#"><span>3</span></a></li>
+                    <li><a href="javascript:void(0);"><span>1</span></a></li>
+                    <li><a href="javascript:void(0);"><span>2</span></a></li>
+                    <li><a href="javascript:void(0);"><span>3</span></a></li>
                     <li class="etc">...</li>
-                    <li><a href="#"><span>54</span></a></li>
-                    <li><a href="#"><span>55</span></a></li>
+                    <li><a href="javascript:void(0);"><span>54</span></a></li>
+                    <li><a href="javascript:void(0);"><span>55</span></a></li>
                 </ul>
 
             </div>
@@ -232,4 +240,13 @@
 
     </div>
 </div><!-- container -->
+@endsection
+
+@section('after-scripts')
+<script>
+    $(".filter-option").on('click', function (e) {
+        var fieldValue = $(this).attr('fieldvalue');
+        $(this).closest('.panel.panel-default').find('.filter-input').val(fieldValue);
+    });
+</script>
 @endsection
