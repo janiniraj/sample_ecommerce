@@ -123,7 +123,7 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->get();
+        $products = $products->paginate(config('constant.perPage'));
         return view('frontend.products.index')->with([
             'products'          => $products,
             'categoryList'      => $categoryList,

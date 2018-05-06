@@ -1,5 +1,6 @@
 <?php
 return [
+    'perPage' => 10,
     'product_types' => [
         'rug'           => 'Rug',
         'furniture'     => 'Furniture',
