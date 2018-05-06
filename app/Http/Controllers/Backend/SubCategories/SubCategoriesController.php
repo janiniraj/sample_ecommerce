@@ -103,4 +103,16 @@ class SubCategoriesController extends Controller
 
         return redirect()->route('admin.subcategories.index')->withFlashSuccess(trans('alerts.backend.subcategories.deleted'));
     }
+
+    public function getByCategory($categoryId)
+    {
+        $data = $this->subcategories->query()->where('category_id', $categoryId)->get();
+
+        if(empty($data))
+        {
+            $data = [];
+        }
+
+        return response()->json($data);
+    }
 }

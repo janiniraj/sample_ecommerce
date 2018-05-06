@@ -96,6 +96,7 @@ class ProductController extends Controller
         $materialList   = $this->material->query()->where('status', 1)->pluck('name', 'id');
         $weaveList      = $this->weave->query()->where('status', 1)->pluck('name', 'id');
         $colorList      = $this->color->query()->where('status', 1)->pluck('name', 'id');
+        $subcategoryList = $this->subCategory->query()->where('category_id', $product->category_id)->pluck('subcategory', 'id');
 
         return view('backend.products.edit')
             ->with([
@@ -104,7 +105,8 @@ class ProductController extends Controller
                     'styleList'     => $styleList,
                     'materialList'  => $materialList,
                     'weaveList'     => $weaveList,
-                    'colorList'     => $colorList
+                    'colorList'     => $colorList,
+                    'subcategoryList' => $subcategoryList
                 ]);
     }
 

@@ -53,14 +53,14 @@
                     {{ Form::label('category_id', 'Category', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::select('category_id', $categoryList, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Category']) }}
+                        {{ Form::select('category_id', $categoryList, null, ['id' => 'category_id', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Category']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">
                     {{ Form::label('subcategory_id', 'Collection', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::select('subcategory_id', [], null, ['class' => 'form-control', 'placeholder' => 'Select Collection']) }}
+                        {{ Form::select('subcategory_id', [], null, ['id' => 'subcategory_id', 'class' => 'form-control', 'placeholder' => 'Select Collection']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">
@@ -211,6 +211,28 @@
         $(document).on('click', '.remove', function()
         {
             $(this).closest('div').remove();
+        });
+
+        $("#category_id").on('change', function (e) {
+            var html = '<option selected="selected" value="">Select Collection</option>';
+            var categoryId = $(this).val();
+            if(categoryId)
+            {
+                $.ajax({
+                    url: "<?php echo url('/') ?>"+"/admin/subcategories/"+categoryId+"/get",
+                    type:'GET',
+                    success:function(data) {
+                        $.each(data, function (singleKey, singleValue) {
+                            html += '<option value="'+singleValue.id+'">'+singleValue.subcategory+'</option>';
+                        });
+                        $("#subcategory_id").html(html);
+                    }
+                });
+            }
+            else
+            {
+                $("#subcategory_id").html(html);
+            }
         });
     });
 </script>
