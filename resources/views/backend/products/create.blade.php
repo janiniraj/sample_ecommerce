@@ -154,14 +154,14 @@
                     {{ Form::label('detail', 'Details', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::textarea('detail', null, ['class' => 'form-control', 'maxlength' => '191', 'required' => 'required', 'placeholder' => 'Product Detail', 'rows' => 3]) }}
+                        {{ Form::textarea('detail', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Product Detail', 'rows' => 3]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">
                     {{ Form::label('shop', 'Shop Details', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::textarea('shop', null, ['class' => 'form-control', 'maxlength' => '191', 'required' => 'required', 'placeholder' => 'Product Shop Details', 'rows' => 3]) }}
+                        {{ Form::textarea('shop', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Product Shop Details', 'rows' => 3]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->                
             </div><!-- /.box-body -->
