@@ -10,10 +10,12 @@
                     </div>
                 @else
                     <div>
-                        <a href="{{url('/').'/'.$slide->url }}"> <img src="{{ URL::to('/').'/img/sliders/'.$slide->image }}"></a>
+                        <img src="{{ URL::to('/').'/img/sliders/'.$slide->image }}">
                         @if($slide->title)
                             <div class="slide-caption">
+                                <a href="{{url('/').'/'.$slide->url }}">
                                 <h1 class="title">{{ $slide->title }}</h1>
+                                </a>
                             </div>
                         @endif
                     </div>
