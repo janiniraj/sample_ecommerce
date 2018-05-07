@@ -1,0 +1,51 @@
+@extends('frontend.layouts.master')
+
+@section('content')
+    <div class="container accessories" id="results-page">
+        <div class="section">
+
+            <div class="results-limit">
+                <select name="resultsLimiter" id="resultsLimiter">
+                    <option value="">Showing 1-10 of 2000 results</option>
+                </select>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12 resutls">
+                    <div class="row items">
+                        @foreach($products as $product)
+                            <div class="col-xs-4 item">
+                                <a href="{{ route('frontend.product.show', $product->id) }}">
+                                    @php $images = json_decode($product->main_image, true); @endphp
+                                    <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="Item" class="img-responsive">
+                                    <div class="text-center product-title">{{ $product->name }}</div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <ul class="pagination">
+                        <li><a href="javascript:void(0);"><span>1</span></a></li>
+                        <li><a href="javascript:void(0);"><span>2</span></a></li>
+                        <li><a href="javascript:void(0);"><span>3</span></a></li>
+                        <li class="etc">...</li>
+                        <li><a href="javascript:void(0);"><span>54</span></a></li>
+                        <li><a href="javascript:void(0);"><span>55</span></a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div><!-- container -->
+@endsection
+
+@section('after-scripts')
+    <script>
+        $(".filter-option").on('click', function (e) {
+            var fieldValue = $(this).attr('fieldvalue');
+            $(this).closest('.panel.panel-default').find('.filter-input').val(fieldValue);
+        });
+    </script>
+@endsection

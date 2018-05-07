@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 04, 2018 at 12:47 AM
--- Server version: 5.7.21-0ubuntu0.16.04.1
+-- Generation Time: May 08, 2018 at 01:00 AM
+-- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -190,7 +190,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2018_05_02_120137_create_table_weaves', 6),
 (15, '2018_05_02_165742_colors', 7),
 (16, '2018_05_02_221427_add_slider_title', 8),
-(17, '2018_05_03_140406_add_fields_products', 9);
+(17, '2018_05_03_140406_add_fields_products', 9),
+(18, '2018_05_04_101019_add_field_product_country_of_origin', 10);
 
 -- --------------------------------------------------------
 
@@ -253,9 +254,11 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`) VALUES
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `detail` text COLLATE utf8mb4_unicode_ci,
   `brand` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shop` text COLLATE utf8mb4_unicode_ci,
+  `country_origin` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `knote_per_sq` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `foundation` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shape` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -278,20 +281,20 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `detail`, `brand`, `shop`, `knote_per_sq`, `foundation`, `shape`, `border_color_id`, `color_id`, `weave_id`, `material_id`, `style_id`, `width`, `length`, `sku`, `category_id`, `subcategory_id`, `main_image`, `created_at`, `updated_at`) VALUES
-(1, 'Product 1777', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-29 08:25:44'),
-(3, 'Product 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295679_product7.jpg","1525295679_product4.jpg","1525295678_product2.jpg","1525295679_product5.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(4, 'Product 3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295679_product5.jpg","1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(5, 'Product 4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(6, 'Product 5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(7, 'Product 6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(8, 'Product 7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(9, 'Product 8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(10, 'Product 9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(11, 'Product 10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-05-02 13:14:39'),
-(12, 'Product 11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
-(13, 'Product 12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(14, 'New Product With detail', 'Product Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail', 'New Brand', 'Shop Address\r\nShop Address\r\nShop Address\r\nShop Address\r\nShop Address\r\nShop Address', '15', 'Foundation', 'Accent', 2, 1, 1, 1, 1, '15', '10', 'sku001', 1, '', '["1525363526_product9.jpg","1525363526_product8.jpg","1525363526_product3.jpg","1525363526_product4.jpg"]', '2018-05-03 08:05:27', '2018-05-03 08:44:54');
+INSERT INTO `products` (`id`, `name`, `type`, `detail`, `brand`, `shop`, `country_origin`, `knote_per_sq`, `foundation`, `shape`, `border_color_id`, `color_id`, `weave_id`, `material_id`, `style_id`, `width`, `length`, `sku`, `category_id`, `subcategory_id`, `main_image`, `created_at`, `updated_at`) VALUES
+(1, 'Product 1777', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-29 08:25:44'),
+(3, 'Product 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295679_product7.jpg","1525295679_product4.jpg","1525295678_product2.jpg","1525295679_product5.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(4, 'Product 3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295679_product5.jpg","1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(5, 'Product 4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(6, 'Product 5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(7, 'Product 6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(8, 'Product 7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(9, 'Product 8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(10, 'Product 9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(11, 'Product 10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-05-02 13:14:39'),
+(12, 'Product 11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
+(13, 'Product 12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
+(14, 'New Product With detail', 'rug', 'Product Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail', 'New Brand', 'Shop Address\r\nShop Address\r\nShop Address\r\nShop Address\r\nShop Address\r\nShop Address', 'India', '15', 'Foundation', 'Accent', 2, 1, 1, 1, 1, '15', '10', 'sku001', 1, '1', '["1525363526_product9.jpg","1525363526_product8.jpg","1525363526_product3.jpg","1525363526_product4.jpg"]', '2018-05-03 08:05:27', '2018-05-06 03:54:57');
 
 -- --------------------------------------------------------
 
@@ -358,7 +361,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5VeBfPrKWxyDUSRCisKamEkK3jU2V5HjOiJhCD2r', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbXROYVZGM05qRktVVmcyZWpBd2IwMHJRV1JWSzNjOVBTSXNJblpoYkhWbElqb2lUWEZ0TWtkbGVrNUpjRUZrSzNObmF6RjFNMGhOTmxGNFZVcDJZVTF5TW5kMFNteERPRlJHU0d4b1prWkJNSEJrZEdzM1dXcENkbGRWTldwdmVURnZkME5rSzI5TE1VSkNhM1YwTkZKRVlYVnRhazlsUVVocmRrMDVXVlpYYWpSbGNIZEZVMFIwWWpOVVJWbzFkelpWWEM5U1VIVTVRamxDYm5JNFRsbzRkWEZ3WlZoV1dqVldkWGhXZWpOSWIyZFBVVVpKUWpKSFJHRkhXbmh5YjJSd2NtTlNRVEJIZEd0aldWRkhaRkE0YkdoVVUxQmpZMmxDVEVGQ1NHaFdNMDAxWEM5Mk9XUTVYQzkzTjBadFlXeEZOMjFPYUVWUGJIbEZlbWN4ZEhOeE9UZHROSE5KVTNOWVVVMUJUMnRNVVhodVQyWjFORVJjTDA5blYyeFNRMFJvTlRCMFFWTkpXbEZ6UzJ0SlozZGtNMEk1UmtOdU5uWlZlbU5MYmt4c1ZWcGlhM0JGZEU1TmVuRkZabFZHTVdwb2JsWjNaMU5QV25aNGNFRmhjMHBYWjA1SVdHRkRYQzljTDFKdEsyOTFTMk4wU0ZOMWN6ZDROM2h2UkhaNlVXNTNOMXBCYmsxSVVGWklUbUpzV0U5dlMwMDRXblZLY0RnclNHaGpabGhXTmtkbGJHNU1TMDEwWEM5UldYaDVTbFJjTDNVMFNXeEVOREZXUTFCWWMyRTFkM2RsTTF3dlZHOWFNMlpRUlhaWWJXNDBOalYyTVhSWlpsTTNhRTk1VUZGT2RtdFRNR1ozZVd0dU5FcGtkVzVZU21JeFpXaHhiaXN6WlRGMFIyOVBXV2R5T1ZoclZFVlFORkpyWm5velNtVnRORlUxV25wNVEwSk5WM2h3VWt0YWRFOXVSbkpoWkZGNFF6Z2lMQ0p0WVdNaU9pSTFOR1JqTlRjNU9EZGlNVE13WWpBeU9UTTRaREJrTWpsaVpXRmhNMk5qT1RkbFl6ZGlNamsyTXpVek4yWXlZbUpsTW1Ga05EWTNORGt5T1dZMk4yUmpJbjA9', 1525365898),
+('5VeBfPrKWxyDUSRCisKamEkK3jU2V5HjOiJhCD2r', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJa2RtWEM4eGNHdGhWRU5MTmpscFJERlFXVVZjTDJoUVVUMDlJaXdpZG1Gc2RXVWlPaUpqTVZ3dlRuSnNhaXRwT0VGWVNUWmlVRlU1TjNabWN5dFpVR2RLTUVGeGVuZFVSSEEwYVc5Wk9GUmplRzFCUkdSWmJHeHhlVFowV0Z3dlFqZzVOa0ptUWsxVGRqVkRkek5DSzFwdFNGaFlLMHBpYmtzMVlUTTJhVlV5VW5Sa1NUZExhM0F3U1V0VGNtTkljR1ZYZGtKelRVRTNLM3BETnpOemEwNXZkblkxZEZkSGMyeFJORnd2ZFhKQ1duSmpXazlHTTNOdGNrUnRaMWx3V1dkS09XOUtZbUozVFRaSFlXSTJiRzAxVW1kcFYyNTJaRlZFVTJVeVVYWjRlVWRjTDBkR1oxbFZSRTlpUWxKRWNrTlRkRUZGUldSNWJHSmpjU3RTUkdSMWJqWk9SR3B2VFdOR2N6Rk9TSHBRZDI1cVVYaElaREZXUmpNNVRIVkJWVTFpTldsSWQzUXlWakZhT1ZSVU4zY3lUbkZGWEM5TWRubHdZbVpZYnpSSlpVaFNkbTFpWjF3dlYwNXlhVXQxYzF3dlJGVlFWbE5QUkdOWlVsWmliR1ZaTTFsVlJVTnNaWFprZVVWd1prMWFTMWh2YjNOcmRVaHRZU3RFWEM5Q2VsYzNNbXRsTjJGU1ZETlRTMGRhUm5oelJGbHhVM1ZaU0VWcVFuVjJjVEZrVmpSUU0zTlFRWHBCSzJnM2NWY3JibEZCVW5CclUwVm9XbVJEYVZSeU9EazBVbmhuY2tOWVVXVkVYQzh5YzFCb056SnRNRWRGUlhCM2VqRlNiMjg1UzAxMFlrcFBaa1Z4UjA0MGVsSndOR2RQU0RGM2JYcEdaMk5OWjA5NVJrbzViSE5zV25sclNGaE5XWFZRYjFObU5GTnJSbTVJVFdWTmNtOVFNakJKY3pGWVNtaGpVVk5RTjJod09IRTFkQ0lzSW0xaFl5STZJalppWkdRMVlqSmtPVEJrTUdFeFptUXpNakl4TlRoak0yVTRNREE0WWpjek16UmtZV1poT1dJd01EUXlOVGN5T1RNMU4yTXlNRE14WlRZM09EVTROellpZlE9PQ==', 1525712323),
 ('vQeLoL8m7BLlaHRetdNtOIGZ3F4Vrz5KF9ev4cl2', NULL, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJaXMxVDBsamEwUm5NakEwU2pGVVpWWlZSVXA0ZVVFOVBTSXNJblpoYkhWbElqb2lSWGRrVHpaTlptOXpTVzV2Vld3eWFYcE5ka3BJWXl0TGIzbFVhVkpIYkdnMk9GaHdkakJ2U0ZjeU1tSkxObVpxVkRkemJucERla3A2ZVVKdloxYzNaM1k0YVhoc1MxTlNWMUI1TWtsY0wyOVZVekZZU1hjd1JGTldibUZDYmxobGIzSkxaamRsVERFeGRYSkpRbFZ0VmtkNVFWTTNRMHBqY2poUFZIWm9UVlJRVWxkVmFWSlNTak4xUmtkUFFuaG5ObFJwYTNGVE5FUnJXWGxqYjFvMFFqRnBhRUZjTDJGMFltNDJZMVZMVXpONmRrUTFlVkppVGtOaWMxbDFNRUpoTVhWNlVqZGxibFZDY2psbVZHNVFjR2xzUVU1MWNVWkdXR3N4Y1dSUmR6TlVkM2hJWkZkalhDOW1PWFEyWEM5RWJtVXJSbmR1TWs1WVozZFdaM2RJTW1wR0t6Vmhiekp2U2t3eWR6TTJhRlZGVGpOQ2FtZG9RMFl5UzJSRVVWZEpSMkp6VVVwNWExd3ZOWGhjTDJKbE5sazBYQzl4YW5FMFRHOXZWVmdyUXl0TlRHWldSRkZTY201SU0ycFhlRkpIT0VWTVIzQlFObWhSTkU5bVFUMDlJaXdpYldGaklqb2lZMlJsTXpVME9ESTVNbUZpT1RsaE9EUTNOR0ppWmpFM1pUYzBNalV6TjJOa01EVTJZV1E0WTJaaFlqazJOelEyTVdRek5UUmlNelJpTURBM05qY3lNeUo5', 1525294018);
 
 -- --------------------------------------------------------
@@ -643,7 +646,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `permissions`
 --

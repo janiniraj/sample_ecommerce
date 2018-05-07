@@ -132,3 +132,8 @@ span.color-btn {
     float: left;
     margin-right: 15px;
 }
+
+.btn-view-all {
+    position: relative;
+    left: 45.5%;
+}

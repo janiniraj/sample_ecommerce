@@ -96,26 +96,21 @@
         <div class="section" id="arrivals">
             <div class="heading">
                     <hr><h1><span>New Arrivals</span></h1>
+                <a href="{{ route('frontend.product.new-arrival') }}" class="btn btn-default btn-view-all">View All</a>
             </div>
             <section class="slider" id="arrivalsSlider">
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=1">
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=2">
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=3">
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=4">
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=5">
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=6">
-                </div>
+                @foreach($newArrivals as $product)
+                    @php $images = json_decode($product->main_image, true); @endphp
+                    <div class="">
+                        <figure class="snip1174 grey">
+                            <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                            <figcaption>
+                                <a href="{{ route('frontend.product.show', $product->id) }}">Quick View</a>
+                                <h2>{{ $product->name }}</h2>
+                            </figcaption>
+                        </figure>
+                    </div>
+                @endforeach
             </section>
         </div>
 
