@@ -6,7 +6,7 @@
 
         <div class="results-limit">
             <select name="resultsLimiter" id="resultsLimiter">
-                <option value="">Showing 1-10 of 2000 results</option>
+                <option value="">{{ 'Showing '. (($products->currentPage()-1)*config('constant.perPage')+1).'-'.(($products->currentPage()-1)*config('constant.perPage')+$products->count()).' of '.$products->total() }} results</option>
             </select>
         </div>
 
@@ -226,14 +226,7 @@
                     @endforeach
                 </div>
 
-                <ul class="pagination">
-                    <li><a href="javascript:void(0);"><span>1</span></a></li>
-                    <li><a href="javascript:void(0);"><span>2</span></a></li>
-                    <li><a href="javascript:void(0);"><span>3</span></a></li>
-                    <li class="etc">...</li>
-                    <li><a href="javascript:void(0);"><span>54</span></a></li>
-                    <li><a href="javascript:void(0);"><span>55</span></a></li>
-                </ul>
+                {{ $products->links() }}
 
             </div>
         </div>

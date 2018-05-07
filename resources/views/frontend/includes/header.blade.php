@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse hidden-sm hidden-xs" id="socialNavbar">
             <ul class="nav navbar-nav navbar-right social">
                 <li>{{ link_to_route('frontend.auth.login', trans('navs.frontend.login'), [], ['class' => 'login' ]) }}</li>
-                <li><a class="heart" href="#"><i class="fas fa-heart"></i></a></li>
+                <li><a class="heart" href=""><i class="fas fa-heart"></i></a></li>
                 <li class="rounded"><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="rounded"><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
                 <li class="rounded"><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
@@ -27,9 +27,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">Rug</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.product.index', 1) }}">Rug</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Discontinued</a></li>
+                        <li><a href="{{ route('frontend.product.index', 1) }}">Discontinued</a></li>
                         <li><a href="#">Padding</a></li>
                         <li><a href="#">Collections</a></li>
                         <li><a href="#">Styles</a></li>

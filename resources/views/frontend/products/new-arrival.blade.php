@@ -24,15 +24,7 @@
                             </div>
                         @endforeach
                     </div>
-
-                    <ul class="pagination">
-                        <li><a href="javascript:void(0);"><span>1</span></a></li>
-                        <li><a href="javascript:void(0);"><span>2</span></a></li>
-                        <li><a href="javascript:void(0);"><span>3</span></a></li>
-                        <li class="etc">...</li>
-                        <li><a href="javascript:void(0);"><span>54</span></a></li>
-                        <li><a href="javascript:void(0);"><span>55</span></a></li>
-                    </ul>
+                    {{ $products->links() }}
 
                 </div>
             </div>
