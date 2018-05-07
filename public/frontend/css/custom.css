@@ -137,3 +137,8 @@ span.color-btn {
     position: relative;
     left: 45.5%;
 }
+
+.main-logo {
+    padding: 0;
+    background: none;
+}

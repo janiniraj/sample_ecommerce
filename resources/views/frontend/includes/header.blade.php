@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url('/') }}">noble</a>
+            <a class="navbar-brand main-logo" href="{{ url('/') }}"><img src="{{ url('/').'/logo.jpg' }}"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
