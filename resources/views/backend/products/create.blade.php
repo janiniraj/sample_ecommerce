@@ -234,6 +234,9 @@
                 $("#subcategory_id").html(html);
             }
         });
+        CKEDITOR.disableAutoInline = true;
+
+        CKEDITOR.replace( 'shop' );
     });
 </script>
 @endsection

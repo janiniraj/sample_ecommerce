@@ -87,7 +87,7 @@
                             </table>
                         </div>
                         <div id="shop" class="tab-pane fade">
-                            <p>{{ $product->shop }}</p>
+                            <p>{!! $product->shop !!}</p>
                         </div>
                         <div id="review" class="tab-pane fade">
                             <p>Review</p>

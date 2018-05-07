@@ -218,6 +218,9 @@
             {
                 $(this).closest('div').remove();
             });
+            CKEDITOR.disableAutoInline = true;
+
+            CKEDITOR.replace( 'shop' );
         });
     </script>
 @endsection
