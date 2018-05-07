@@ -51,7 +51,7 @@ figure.snip1174 a {
     display: inline-block;
     padding: 10px 20px;
     margin-bottom: 15px;
-    border: 1px solid #fc4348;
+    border: 1px solid #808080;
     text-decoration: none;
     color: #ffffff;
     letter-spacing: 2px;
@@ -60,10 +60,10 @@ figure.snip1174 a {
     -webkit-transform: translateY(50%);
     transform: translateY(50%);
     opacity: 0;
-    background-color: #fc4348;
+    background-color: #808080;
 }
 figure.snip1174 a:hover {
-    background-color: #fc4348;
+    background-color: #808080;
 }
 figure.snip1174.blue {
     background-color: #20638f;
