@@ -68,30 +68,18 @@
                     <hr><h1><span>Chic & Modern Furniture</span></h1>
             </div>
             <section class="slider" id="servicesSlider">
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=1">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=2">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=3">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=4">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=5">
-                    <div class="slide-caption">Item</div>
-                </div>
-                <div>
-                    <img src="http://placehold.it/1920x1080?text=6">
-                    <div class="slide-caption">Item</div>
-                </div>
+                @foreach($furnitures as $product)
+                    @php $images = json_decode($product->main_image, true); @endphp
+                    <div class="">
+                        <figure class="snip1174 grey">
+                            <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                            <figcaption>
+                                <a href="{{ route('frontend.product.show', $product->id) }}">Quick View</a>
+                                <h2>{{ $product->name }}</h2>
+                            </figcaption>
+                        </figure>
+                    </div>
+                @endforeach
             </section>
         </div>
 

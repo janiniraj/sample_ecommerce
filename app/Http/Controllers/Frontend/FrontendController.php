@@ -33,11 +33,14 @@ class FrontendController extends Controller
 
         $newArrivals    = $this->product->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->limit(10)->get();
 
+        $furnitures    = $this->product->query()->where('type','furniture')->limit(10)->get();
+
         return view('frontend.index')->with([
             'categories'    => $categories,
             'slides'        => $slides,
             'collections'   => $collections,
-            'newArrivals'   => $newArrivals
+            'newArrivals'   => $newArrivals,
+            'furnitures'	=> $furnitures
         ]);
     }
 

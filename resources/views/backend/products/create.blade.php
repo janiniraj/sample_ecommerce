@@ -125,12 +125,6 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-10 col-md-offset-2">
-                        <button class="btn btn-success add-size">Add More Size</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     {{ Form::label('foundation', 'Foundation', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
