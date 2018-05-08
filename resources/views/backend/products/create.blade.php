@@ -158,12 +158,26 @@
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">
-                    {{ Form::label('shop', 'Shop Details', ['class' => 'col-lg-2 control-label']) }}
+                    {{ Form::label('amazon_link', 'Amazon Link', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::textarea('shop', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Product Shop Details', 'rows' => 3]) }}
+                        {{ Form::text('amazon_link', null, ['class' => 'form-control', 'placeholder' => 'Product Amazon Link', 'rows' => 3]) }}
                     </div><!--col-lg-10-->
-                </div><!--form control-->                
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('ebay_link', 'Ebay Link', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::text('ebay_link', null, ['class' => 'form-control', 'placeholder' => 'Product Ebay Link', 'rows' => 3]) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('other_link', 'Other Link', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::text('other_link', null, ['class' => 'form-control', 'placeholder' => 'Product Other Store Link', 'rows' => 3]) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
             </div><!-- /.box-body -->
         </div><!--box-->
 
@@ -234,9 +248,6 @@
                 $("#subcategory_id").html(html);
             }
         });
-        CKEDITOR.disableAutoInline = true;
-
-        CKEDITOR.replace( 'shop' );
     });
 </script>
 @endsection

@@ -15,8 +15,8 @@
     {!! Html::script('/frontend/js/modernizr.js') !!}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
-          crossorigin="anonymous">
+
+    {{ Html::style('/fontawesome/css/fontawesome-all.min.css') }}
     {{ Html::style('/frontend/css/bootstrap-colorselector.min.css') }}
     {{ Html::style('/frontend/css/slick.css') }}
     {{ Html::style('/frontend/css/slick-theme.css') }}

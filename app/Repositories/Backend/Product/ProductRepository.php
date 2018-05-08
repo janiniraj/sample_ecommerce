@@ -95,9 +95,27 @@ class ProductRepository extends BaseRepository
             $product->foundation        = $input['foundation'];
             $product->knote_per_sq      = $input['knote_per_sq'];
             $product->detail            = $input['detail'];
-            $product->shop              = $input['shop'];
             $product->type              = $input['type'];
             $product->country_origin    = isset($input['country_origin']) ? $input['country_origin'] : '';
+
+            $shopLinks = [];
+
+            if(isset($input['amazon_link']))
+            {
+                $shopLinks['amazon_link'] = $input['amazon_link'];
+            }
+
+            if(isset($input['ebay_link']))
+            {
+                $shopLinks['ebay_link'] = $input['ebay_link'];
+            }
+
+            if(isset($input['other_link']))
+            {
+                $shopLinks['other_link'] = $input['other_link'];
+            }
+
+            $product->shop = json_encode($shopLinks);
 
             if ($product->save()) {
 
@@ -229,6 +247,25 @@ class ProductRepository extends BaseRepository
         {
             $product->country_origin = $input['country_origin'];
         }
+
+        $shopLinks = [];
+
+        if(isset($input['amazon_link']))
+        {
+            $shopLinks['amazon_link'] = $input['amazon_link'];
+        }
+
+        if(isset($input['ebay_link']))
+        {
+            $shopLinks['ebay_link'] = $input['ebay_link'];
+        }
+
+        if(isset($input['other_link']))
+        {
+            $shopLinks['other_link'] = $input['other_link'];
+        }
+
+        $product->shop = json_encode($shopLinks);
 
         DB::transaction(function () use ($product, $input) {
             if ($product->save()) {

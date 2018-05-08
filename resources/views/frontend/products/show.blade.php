@@ -86,8 +86,23 @@
                                 </tr>
                             </table>
                         </div>
-                        <div id="shop" class="tab-pane fade">
-                            <p>{!! $product->shop !!}</p>
+                        <div id="shop" class="tab-pane fade text-center padding">
+                            @php
+                                $shop = json_decode($product->shop, true);
+                            @endphp
+
+                            @if(isset($shop['amazon_link']))
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['amazon_link'] }}"><i class="fab fa-amazon"></i></a>
+                            @endif
+
+                            @if(isset($shop['ebay_link']))
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['ebay_link'] }}"><i class="fab fa-ebay "></i></a>
+                            @endif
+
+                            @if(isset($shop['other_link']))
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['other_link'] }}"><i class="fas fa-link"></i></a>
+                            @endif
+
                         </div>
                         <div id="review" class="tab-pane fade">
                             <p>Review</p>

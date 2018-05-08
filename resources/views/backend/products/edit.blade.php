@@ -163,11 +163,28 @@
                         {{ Form::textarea('detail', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Product Detail', 'rows' => 3]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
+                @php
+                    $shop = json_decode($product->shop, true);
+                @endphp
                 <div class="form-group">
-                    {{ Form::label('shop', 'Shop Details', ['class' => 'col-lg-2 control-label']) }}
+                    {{ Form::label('amazon_link', 'Amazon Link', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::textarea('shop', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Product Shop Details', 'rows' => 3]) }}
+                        {{ Form::text('amazon_link', isset($shop['amazon_link']) ? $shop['amazon_link'] : '', ['class' => 'form-control', 'placeholder' => 'Product Amazon Link', 'rows' => 3]) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('ebay_link', 'Ebay Link', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::text('ebay_link', isset($shop['ebay_link']) ? $shop['ebay_link'] : '', ['class' => 'form-control', 'placeholder' => 'Product Ebay Link', 'rows' => 3]) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('other_link', 'Other Link', ['class' => 'col-lg-2 control-label']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::text('other_link', isset($shop['other_link']) ? $shop['other_link'] : '', ['class' => 'form-control', 'placeholder' => 'Product Other Store Link', 'rows' => 3]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control--> 
             </div><!-- /.box-body -->
@@ -218,9 +235,6 @@
             {
                 $(this).closest('div').remove();
             });
-            CKEDITOR.disableAutoInline = true;
-
-            CKEDITOR.replace( 'shop' );
         });
     </script>
 @endsection
