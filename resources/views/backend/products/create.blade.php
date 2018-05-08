@@ -105,20 +105,31 @@
                         {{ Form::select('shape', config('constant.shapes'), null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Shape']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
-                <div class="form-group">
-                    {{ Form::label('length', 'Size Length (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
-                    <div class="col-lg-10">
-                        {{ Form::number('length', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
-                    </div><!--col-lg-10-->
-                </div><!--form control-->
-                <div class="form-group">
-                    {{ Form::label('width', 'Size Width (Feet)', ['class' => 'col-lg-2 control-label']) }}
+                <div class="size-container">
+                    <div class="form-group">
+                        {{ Form::label('length', 'Size Length (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
-                    <div class="col-lg-10">
-                        {{ Form::number('width', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
-                    </div><!--col-lg-10-->
-                </div><!--form control-->
+                        <div class="col-lg-10">
+                            {{ Form::number('length[0]', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+
+                    <div class="form-group">
+                        {{ Form::label('width', 'Size Width (Feet)', ['class' => 'col-lg-2 control-label']) }}
+
+                        <div class="col-lg-10">
+                            {{ Form::number('width[0]', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button class="btn btn-success add-size">Add More Size</button>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     {{ Form::label('foundation', 'Foundation', ['class' => 'col-lg-2 control-label']) }}
 
@@ -126,6 +137,7 @@
                         {{ Form::text('foundation', null, ['class' => 'form-control', 'maxlength' => '191', 'required' => 'required','placeholder' => 'Product Foundation']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
+
                 <div class="form-group">
                     {{ Form::label('knote_per_sq', 'Knote Per Sq.', ['class' => 'col-lg-2 control-label']) }}
 
@@ -247,6 +259,19 @@
             {
                 $("#subcategory_id").html(html);
             }
+        });
+        var closeButtonHtml = "<div class='col-md-1'><button class='btn btn-sm btn-warning delete-rule'>X</button></div>";
+        ruleIndex = 0;
+        $(".add-size").on('click', function(e){
+            e.preventDefault();
+            var clonedInput = $('.size-container').eq(0).clone();
+            ruleIndex++;
+            clonedInput.find('input').each(function() {
+                this.name   = this.name.replace('[0]', '['+ruleIndex+']');
+                this.value  = "";
+            });
+            $(clonedInput).insertBefore(".size-container:last");
+            $('.distance-rule-container:last').append(closeButtonHtml);
         });
     });
 </script>
