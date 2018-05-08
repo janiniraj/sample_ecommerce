@@ -271,7 +271,12 @@
                 this.value  = "";
             });
             $(clonedInput).insertBefore(".size-container:last");
-            $('.distance-rule-container:last').append(closeButtonHtml);
+            $('.size-container:last').append(closeButtonHtml);
+        });
+
+        $(document).on('click', ".delete-rule", function(e){
+            e.preventDefault();
+            $(this).closest('.size-container').remove();
         });
     });
 </script>
