@@ -94,9 +94,9 @@ class StyleController extends Controller
      *
      * @return mixed
      */
-    public function destroy($id, Style $style, DeleteRequest $request)
+    public function destroy(Style $style, DeleteRequest $request)
     {
-        $style = $this->styles->find($id);
+        //$style = $this->styles->find($id);
 
         $this->styles->delete($style);
 

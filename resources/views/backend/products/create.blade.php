@@ -111,7 +111,7 @@
                         {{ Form::label('length', 'Size Length (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-10">
-                            {{ Form::number('length[0]', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
+                            {{ Form::number('length', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
@@ -119,7 +119,7 @@
                         {{ Form::label('width', 'Size Width (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-10">
-                            {{ Form::number('width[0]', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
+                            {{ Form::number('width', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
                 </div>
