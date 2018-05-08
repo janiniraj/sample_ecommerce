@@ -271,7 +271,7 @@
                 this.value  = "";
             });
             $(clonedInput).insertBefore(".size-container:last");
-            $('.size-container:last').append(closeButtonHtml);
+            //$('.size-container:last').append(closeButtonHtml);
         });
 
         $(document).on('click', ".delete-rule", function(e){
