@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 08, 2018 at 02:04 AM
+-- Generation Time: May 08, 2018 at 09:26 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -191,7 +191,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2018_05_02_165742_colors', 7),
 (16, '2018_05_02_221427_add_slider_title', 8),
 (17, '2018_05_03_140406_add_fields_products', 9),
-(18, '2018_05_04_101019_add_field_product_country_of_origin', 10);
+(18, '2018_05_04_101019_add_field_product_country_of_origin', 10),
+(19, '2018_05_08_070613_create_table_product_sizes', 11);
 
 -- --------------------------------------------------------
 
@@ -294,7 +295,26 @@ INSERT INTO `products` (`id`, `name`, `type`, `detail`, `brand`, `shop`, `countr
 (11, 'Product 10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-05-02 13:14:39'),
 (12, 'Product 11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-21 16:00:00', '2018-04-22 09:36:44'),
 (13, 'Product 12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '["1525295678_product2.jpg","1525295679_product4.jpg","1525295679_product5.jpg","1525295679_product7.jpg","1525295679_product8.jpg","1525295679_product9.jpg"]', '2018-04-22 09:28:35', '2018-04-22 09:36:32'),
-(14, 'New Product With detail', 'rug', 'Product Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail', 'New Brand', '<p>Shop Address Shop Address Shop Address Shop Address Shop Address Shop Address</p>\r\n\r\n<p><a href="http://www.google.com" target="_blank">Google Product Link</a></p>\r\n\r\n<p><a href="http://www.amazon.com" target="_blank">Amazon Link</a></p>', 'India', '15', 'Foundation', 'Accent', 2, 1, 1, 1, 1, '15', '10', 'sku001', 1, '1', '["1525363526_product9.jpg","1525363526_product8.jpg","1525363526_product3.jpg","1525363526_product4.jpg"]', '2018-05-03 08:05:27', '2018-05-07 09:09:26');
+(14, 'New Product With detail', 'rug', 'Product Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail\r\nProduct Detail', 'New Brand', '<p>Shop Address Shop Address Shop Address Shop Address Shop Address Shop Address</p>\r\n\r\n<p><a href="http://www.google.com" target="_blank">Google Product Link</a></p>\r\n\r\n<p><a href="http://www.amazon.com" target="_blank">Amazon Link</a></p>', 'India', '15', 'Foundation', 'Accent', 2, 1, 1, 1, 1, '15', '10', 'sku001', 1, '1', '["1525363526_product9.jpg","1525363526_product8.jpg","1525363526_product3.jpg","1525363526_product4.jpg"]', '2018-05-03 08:05:27', '2018-05-07 09:09:26'),
+(15, 'New FUrniture', 'furniture', 'erererererererererererererererererer', 'furniture brand', '{"amazon_link":"http:\\/\\/www.amazon.com","ebay_link":"http:\\/\\/www.ebay.com","other_link":"http:\\/\\/www.example.org"}', 'India', '12', 'foundation', 'Accent', 1, 1, 1, 1, 1, '12', '15', 'furniture sku', 1, '1', '["1525785228_product8.jpg","1525785228_product9.jpg"]', '2018-05-08 05:13:49', '2018-05-08 05:13:49'),
+(16, 'Furniture 2', 'furniture', 'rddrtrdtrdtdrt', 'brand', '{"amazon_link":"http:\\/\\/www.amazon.com","ebay_link":"http:\\/\\/www.ebay.com","other_link":"http:\\/\\/www.example.org"}', 'India', '32', 'FOundation', 'Large Rectangle', 2, 2, 1, 1, 2, '16', '18', 'sku2', 1, '1', '["1525785558_product8.jpg","1525785558_product4.jpg"]', '2018-05-08 05:19:18', '2018-05-08 05:19:18'),
+(17, 'Furniture 3', 'furniture', 'fdfdfzdfdzfdzfzdfdz', 'furniture brand', '{"amazon_link":"http:\\/\\/www.amazon.com","ebay_link":"http:\\/\\/www.ebay.com","other_link":"http:\\/\\/www.example.org"}', 'Iceland', '17', 'Foundation', 'Accent', 2, 1, 1, 1, 1, '12', '15', 'sku001', 1, '1', '["1525785743_product7.jpg","1525785743_product3.jpg"]', '2018-05-08 05:22:24', '2018-05-08 05:22:24'),
+(18, 'Furniture 4', 'furniture', 'dfdfxdgfxgfxgfxgfxgxfgfxgfxgxfgxfgxfgxfgfxgxfgxfgxfgxfgxfgxfgxfgfxgfxgxfgfx', 'sdsdsdsdsds', '{"amazon_link":"http:\\/\\/www.amazon.com","ebay_link":"http:\\/\\/www.ebay.com","other_link":"http:\\/\\/www.example.org"}', 'American Samoa', '15', 'Foundation', 'Accent', 1, 1, 1, 1, 1, '21', '24', 'sds', 1, '1', '["1525785814_product3.jpg","1525785814_product5.jpg"]', '2018-05-08 05:23:34', '2018-05-08 05:23:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_sizes`
+--
+
+CREATE TABLE `product_sizes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `width` decimal(10,2) NOT NULL,
+  `length` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -361,7 +381,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5VeBfPrKWxyDUSRCisKamEkK3jU2V5HjOiJhCD2r', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbU5tYVhSSU1ucGFVazQyTlhOYWNqRTRXbHAwU0VFOVBTSXNJblpoYkhWbElqb2lkMnhPY2xkR2NGcHJUM0IzVFVaM09XbzRSRUZsZVN0eU9ETlBXRlp2S3psTVV6STFUVmszYlVOcGFFeDNkVWRJY2t0TFlVMTNabFZrYlVoaWJGUnBkSFJRWlZCeGVtUm1Ra2RDWVV4UlIyWm1hRE14VmxGRFNXZHdaMXBFZG1OcE9URnNlbXRGVFdkbk1EQlVXREZsV1ZjcmFYVnpSWEYyY0c5c09XY3hSa2xjTDJaQ05rTkpkbE0zVDFoVFpHSnlWWG8wTUdSQ2JHOVVVVmQ2Y1c1TlJsWjNORGhhVm1aek9XeFhiRkpjTDJaMFVuSnVNMU0yYkROV1FuUXllbkpjTDBGRGRtUm1jMHRrT0hGQlUyY3piR1pYU2xRNFUxbEpSelpqU3pkNFdGd3ZabEZVT1cwNGIxcHhaMjFxVWtSbFVHWTRZMXd2WjBocFIyaE5VV1p2ZWtrMlFtZG9iVE51Wlhwek5WTnRjRTlZYVUxME5EbHlXVlZyUnpCcGNsUlFjVk5IWmpjM1YxRkJjRGRWU21Zd2EwNHJkbVZpZW1FNWVtVTRZWGxFVm5sSU1IZG5XSEF4ZUNzMFprRmxNVnd2UTNOVE5FbEhVMGswWlVjMk1YZFFZMjVtYzJaQmNVcDRZVUZTYm5wbVFtZDRjSGhtV1hsSlVVeE5aeloxVTA1bGRVUmpORk5TVmxGc1pHWndkMFZYZFhRMWFHMDNhMUk1ZWxKWlJUaDFRbXQxYlN0M1dEWnVSa3ByYmlzMlZtMTRlbVUzUW5kWVpFNW5lRGhDUW5KUE1qaDVaR1JDTUcxa1NuWlBTMEpYWTNnclZIbE9TR3RRU1doS1NHcEZUVmxMWW1GcU1rVjJSbTFEVUZoWGFXRkxkRVZTTm05NmJsbFFka3B0UkU1c1EwWTFPR0pFVm5naUxDSnRZV01pT2lJelpXWmpOMlUxWkRObU9XTXpNVGRsWXpOaE5tSXdOR1l4WlRBNU9UVm1aVFl3Tnpsa05tRXhaR1k1WWpRd01qTTVOekZpWlRnM1ptTTNZamxoWVRRNUluMD0=', 1525716228),
+('O1JlRgdcBI5OHbmOYjM9kAWXok9XxmZXKUi1JKFJ', 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJbkkyTkZKd1JtSm1NbGRXWlVaa1hDOVdRazFpWEM5dlFUMDlJaXdpZG1Gc2RXVWlPaUpoY3pSaFJrMWljalpCY1N0Q1dETmNMelZ6WVZOMFEzbFRUMEZ6UWtGeVdHUk9RekpjTHpScVVqQTJNR2w0WVVocFYzbDBWR0p2ZWxwSmJESkRaMjFrYnpaNllUTTRRVFZvYmpoR1MzQldORlZSSzFwR1RWcDJSVzVLVTJJNVMxaFhka0ZKTTAxdlZXVkRhVVJXYTFsNFMydzRaMUExYjJGUU9FRXJhMVV4UjJsd1FtUm1WalJOUlU5bmFsaEdiRWQ0UkVwaE16Tm5SSE52S3psalMyOVhWMmhGYVRaVGFFc3Jha2xoUW14bk1GTjRYQzgxZVhkS2NGbHhTMDVDUjJrMlNURXhYQzkxYkc5RmMwWXlXVGhLTURSaGJFNXFaM0JoUTNWTlhDOVVaMEpIWlc1ME9VZzBaRVpHTlhaTk4zcFdhR1JHWlRKa1kyZFROVFkxY0ZSa05ubDViM2RXWEM5Y0wxd3ZUVTFtUlhKc05EQklVbkJJYVVwaFRWbExNMWxOWWpFd1VWZEhXRXBYTVV4QllqVjJOakZOZEZRNFRIRkJiRTk0YkZKbVIwazNaVEZ5VWxKSWF6UTJXVGRKZG1oVFdFWk5VVU5uV1ZkTGIxUnhZemg2WjNCclFUZGpPR0ZJWlZ3dmVWQmxXR1JtT1V4UFNUTjNWSFI0VG5wTmVFcFRiRGcyU1d4NVFVZDZRMk5sYzAxaE0zVmxhbHd2WW5SVGR6WlpkVWd5VVVkcFpFNXdNelI1V0Z3dmMwbE1SVVpuWkdGdVJsbEdUSFZOZEdreE5WZFBaekJHVUZWalkwbG5LMGxoY0ZGSldURjBUbnB6VFhoTk56RlJkblJWZWl0QlBUMGlMQ0p0WVdNaU9pSXpaREZoTXpZM05qUXhOVEk0TW1SaVpEazRZekV6T0RRM056QmlNRFEzWVRjMVltRXpNR1l4T1RCa1pUazRNemN5TURCaFpqVXlaamN6T0dFek1UWTVJbjA9', 1525785910),
 ('vQeLoL8m7BLlaHRetdNtOIGZ3F4Vrz5KF9ev4cl2', NULL, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', 'ZXlKcGRpSTZJaXMxVDBsamEwUm5NakEwU2pGVVpWWlZSVXA0ZVVFOVBTSXNJblpoYkhWbElqb2lSWGRrVHpaTlptOXpTVzV2Vld3eWFYcE5ka3BJWXl0TGIzbFVhVkpIYkdnMk9GaHdkakJ2U0ZjeU1tSkxObVpxVkRkemJucERla3A2ZVVKdloxYzNaM1k0YVhoc1MxTlNWMUI1TWtsY0wyOVZVekZZU1hjd1JGTldibUZDYmxobGIzSkxaamRsVERFeGRYSkpRbFZ0VmtkNVFWTTNRMHBqY2poUFZIWm9UVlJRVWxkVmFWSlNTak4xUmtkUFFuaG5ObFJwYTNGVE5FUnJXWGxqYjFvMFFqRnBhRUZjTDJGMFltNDJZMVZMVXpONmRrUTFlVkppVGtOaWMxbDFNRUpoTVhWNlVqZGxibFZDY2psbVZHNVFjR2xzUVU1MWNVWkdXR3N4Y1dSUmR6TlVkM2hJWkZkalhDOW1PWFEyWEM5RWJtVXJSbmR1TWs1WVozZFdaM2RJTW1wR0t6Vmhiekp2U2t3eWR6TTJhRlZGVGpOQ2FtZG9RMFl5UzJSRVVWZEpSMkp6VVVwNWExd3ZOWGhjTDJKbE5sazBYQzl4YW5FMFRHOXZWVmdyUXl0TlRHWldSRkZTY201SU0ycFhlRkpIT0VWTVIzQlFObWhSTkU5bVFUMDlJaXdpYldGaklqb2lZMlJsTXpVME9ESTVNbUZpT1RsaE9EUTNOR0ppWmpFM1pUYzBNalV6TjJOa01EVTJZV1E0WTJaaFlqazJOelEyTVdRek5UUmlNelJpTURBM05qY3lNeUo5', 1525294018);
 
 -- --------------------------------------------------------
@@ -454,7 +474,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `confirmation_code`, `confirmed`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Admin', 'Istrator', 'admin@admin.com', '$2y$10$iWkbhRSbO6juGrPhjoeNN.dRz9QkT5rUHb6KB7FttLoNejOSoO3EC', 1, 'c850b895444768662eb7eba96d3dffc1', 1, 'gA7Tm2GO6MPwnnGKDEg9qu9ztBBPV7M8r3sj9Bm7upztn9A7Qh1xa76k9TlQ', '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
+(1, 'Admin', 'Istrator', 'admin@admin.com', '$2y$10$iWkbhRSbO6juGrPhjoeNN.dRz9QkT5rUHb6KB7FttLoNejOSoO3EC', 1, 'c850b895444768662eb7eba96d3dffc1', 1, 'ekv5qTfSVx5wLNcdUOfGO75WUxUH1wfKo0YneJ6p0KcPA9cTQQzVknMbXlZa', '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
 (2, 'Backend', 'User', 'executive@executive.com', '$2y$10$gCXWFzWJH5am5baYZ4W3iuTK9JSaK3kl6F/JVWP6.R4eYHNj1SEFO', 1, 'f861e0f0c7654cdc544ac5b6651a51be', 1, NULL, '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL),
 (3, 'Default', 'User', 'user@user.com', '$2y$10$qZTlUWL.hD7v5UwfgHnsHOXVPjxr/dvJwYXXM4e56FSDzT3Ozrbpm', 1, '7633753dcdc00187001e23742bb52b5f', 1, NULL, '2018-04-22 04:23:26', '2018-04-22 04:23:26', NULL);
 
@@ -555,6 +575,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_sizes`
+--
+ALTER TABLE `product_sizes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -646,7 +672,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -661,7 +687,12 @@ ALTER TABLE `permission_role`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `product_sizes`
+--
+ALTER TABLE `product_sizes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -681,7 +712,7 @@ ALTER TABLE `social_logins`
 -- AUTO_INCREMENT for table `styles`
 --
 ALTER TABLE `styles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
