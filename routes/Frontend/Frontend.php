@@ -36,4 +36,5 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
     Route::get('/products/{category_id}', 'ProductController@index')->name('index');
     Route::get('/product/{product_id}', 'ProductController@show')->name('show');
     Route::get('/new-arrival', 'ProductController@newArrival')->name('new-arrival');
+    Route::get('/products', 'ProductController@index')->name('product-by-type');
 });

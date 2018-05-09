@@ -45,7 +45,7 @@ class ProductController extends Controller
      * @param Request $request
      * @return $this
      */
-    public function index($categoryName, Request $request)
+    public function index($categoryName = NULL, Request $request)
     {
         $filterData = $request->all();
 
@@ -62,9 +62,17 @@ class ProductController extends Controller
             return Redirect::to('products/'.$categoryName.'?'.$appendData);
         }
 
-        $categoryId     = $this->categories->getCategoryIdByName($categoryName);
-        $categoryList   = $this->categories->getAll();
-        $collectionList = $this->subcategories->getSubCategoriesByCategory($categoryId);
+        if($categoryName)
+        {
+            $categoryId     = $this->categories->getCategoryIdByName($categoryName);
+            $collectionList = $this->subcategories->getSubCategoriesByCategory($categoryId); 
+        }
+        else
+        {
+            $collectionList = $this->subcategories->getAll();
+        }
+
+        $categoryList   = $this->categories->getAll();        
         $styleList      = $this->style->getAll();
         $materialList   = $this->material->getAll();
         $weaveList      = $this->weave->getAll();
@@ -73,13 +81,18 @@ class ProductController extends Controller
 
         $products = $this->products->query();
 
-        if($categoryId)
+        if(isset($categoryId) && $categoryId)
         {
             $products = $products->where('category_id', $categoryId);
         }        
 
         if(!empty($filterData))
         {
+            if(isset($filterData['type']) && $filterData['type'])
+            {
+                $products = $products->where('type', $filterData['type']);
+            }
+
             if(isset($filterData['collection']) && $filterData['collection'])
             {
                 $products = $products->where('subcategory_id', $filterData['collection']);

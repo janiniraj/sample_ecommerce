@@ -27,7 +27,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="{{ route('frontend.product.index', 1) }}">Rug</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'rug']) }}">Rug</a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('frontend.product.index', 1) }}">Discontinued</a></li>
                         <li><a href="#">Padding</a></li>
@@ -41,7 +41,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">Furniture</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'furniture']) }}">Furniture</a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Sofas</a></li>
                         <li><a href="#">Accent Chairs</a></li>
@@ -51,7 +51,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">Lighting</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'lighting']) }}">Lighting</a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Chandeliers</a></li>
                         <li><a href="#">Floor Lamps</a></li>
@@ -65,7 +65,7 @@
 
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">Accessories</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'accessories']) }}">Accessories</a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Mirrors</a></li>
                         <li><a href="#">Pillows</a></li>
