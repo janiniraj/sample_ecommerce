@@ -1,5 +1,14 @@
 /* ////////////////////////Global CSS */
+/*@font-face {
+    font-family: FontAwesome;
+    src: url(../fonts/FontAwesome.otf);
+}*/
+
 @font-face {
+    font-family: FontAwesome;
+}
+
+body {
     font-family: FontAwesome;
 }
 
@@ -139,7 +148,7 @@ ul.social li a i:before {
 }
 
 .navbar-default ul.navbar-nav li a {
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 
