@@ -131,7 +131,8 @@ class ProductController extends Controller
             'styleList'         => $styleList,
             'materialList'      => $materialList,
             'weaveList'         => $weaveList,
-            'colorList'         => $colorList
+            'colorList'         => $colorList,
+            'filterData'        => $filterData
         ]);
     }
 

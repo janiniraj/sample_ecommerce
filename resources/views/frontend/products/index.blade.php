@@ -31,7 +31,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach($categoryList as $single)
-                                        <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->category }}</a></li>
+                                        <li><a class="filter-option " fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->category }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -53,7 +53,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach($collectionList as $single)
-                                        <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->subcategory }}</a></li>
+                                        <li><a class="filter-option {{ isset($filterData['collection']) && $filterData['collection'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->subcategory }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -75,7 +75,7 @@
                                 <div class="panel-body">
                                     <ul class="sub-filters">
                                         @foreach($styleList as $single)
-                                            <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                            <li><a class="filter-option {{ isset($filterData['style']) && $filterData['style'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -97,7 +97,7 @@
                                 <div class="panel-body">
                                     <ul class="sub-filters">
                                         @foreach($materialList as $single)
-                                            <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                            <li><a class="filter-option {{ isset($filterData['material']) && $filterData['material'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -119,7 +119,7 @@
                                 <div class="panel-body">
                                     <ul class="sub-filters">
                                         @foreach($weaveList as $single)
-                                            <li><a class="filter-option" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                            <li><a class="filter-option {{ isset($filterData['weave']) && $filterData['weave'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -201,7 +201,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach(config('constant.shapes') as $single)
-                                        <li><a class="filter-option" fieldvalue="{{ $single }}" href="javascript:void(0);">{{ $single }}</a></li>
+                                        <li><a class="filter-option {{ isset($filterData['shape']) && $filterData['shape'] == $single ? 'active' : '' }}" fieldvalue="{{ $single }}" href="javascript:void(0);">{{ $single }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -238,6 +238,13 @@
 @section('after-scripts')
 <script>
     $(".filter-option").on('click', function (e) {
+        $(this).closest('.panel.panel-default').find('.filter-option').each(function(){
+            if($(this).hasClass('active'))
+            {
+                $(this).removeClass('active');
+            }
+        });
+        $(this).addClass('active');
         var fieldValue = $(this).attr('fieldvalue');
         $(this).closest('.panel.panel-default').find('.filter-input').val(fieldValue);
     });
