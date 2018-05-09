@@ -57,7 +57,9 @@ class ProductController extends Controller
 
             $appendData = http_build_query($filterData);
 
-            return Redirect::to('products/'.$categoryId.'?'.$appendData);
+            $categoryName = $this->categories->getCategoryNameById($categoryId);
+
+            return Redirect::to('products/'.$categoryName.'?'.$appendData);
         }
 
         $categoryId     = $this->categories->getCategoryIdByName($categoryName);
@@ -68,7 +70,13 @@ class ProductController extends Controller
         $weaveList      = $this->weave->getAll();
         $colorList      = $this->color->getAll();
 
+
         $products = $this->products->query();
+
+        if($categoryId)
+        {
+            $products = $products->where('category_id', $categoryId);
+        }        
 
         if(!empty($filterData))
         {
@@ -124,6 +132,7 @@ class ProductController extends Controller
         }
 
         $products = $products->paginate(config('constant.perPage'));
+
         return view('frontend.products.index')->with([
             'products'          => $products,
             'categoryList'      => $categoryList,

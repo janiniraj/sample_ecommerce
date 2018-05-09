@@ -215,15 +215,21 @@
 
             <div class="col-sm-8 resutls">
                 <div class="row items">
-                    @foreach($products as $product)
-                        <div class="col-xs-6 item">
-                            <a href="{{ route('frontend.product.show', $product->id) }}">
-                                @php $images = json_decode($product->main_image, true); @endphp
-                                <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="Item" class="img-responsive">
-                                <div class="text-center product-title">{{ $product->name }}</div>
-                            </a>
+                    @if(count($products))
+                        @foreach($products as $product)
+                            <div class="col-xs-6 item">
+                                <a href="{{ route('frontend.product.show', $product->id) }}">
+                                    @php $images = json_decode($product->main_image, true); @endphp
+                                    <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="Item" class="img-responsive">
+                                    <div class="text-center product-title">{{ $product->name }}</div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="alert alert-warning">
+                            No Products Found.
                         </div>
-                    @endforeach
+                    @endif
                 </div>
 
                 {{ $products->links() }}

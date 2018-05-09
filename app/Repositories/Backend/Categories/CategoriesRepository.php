@@ -148,4 +148,17 @@ class CategoriesRepository extends BaseRepository
 
         return $categoryData ? $categoryData->id : null;
     }
+
+    /**
+     * Get Category Id by Name
+     *
+     * @param $categoryName
+     * @return null
+     */
+    public function getCategoryNameById($categoryId)
+    {
+        $categoryData = $this->query()->where('id', $categoryId)->select('category')->first();
+        
+        return $categoryData ? $categoryData->category : null;
+    }
 }
