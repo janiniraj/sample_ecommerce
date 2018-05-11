@@ -19,6 +19,29 @@
                 <div class="panel-group" id="results-accordion">
                     @if(!empty($categoryList))
                     <div class="panel panel-default">
+                        <input type="hidden" name="type" class="filter-input" value="{{ isset($filterData['type']) && $filterData['type'] ? $filterData['type'] : 'all' }}">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse0">
+                                    Type
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse0" class="panel-collapse collapse in" aria-expanded="true">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    <li><a class="filter-option  {{ !isset($filterData['type']) || (isset($filterData['type']) && $filterData['type'] == 'all') ? 'active' : '' }}" fieldvalue="all" href="javascript:void(0);">All</a></li>
+                                    <li><a class="filter-option {{ isset($filterData['type']) && $filterData['type'] == 'rug' ? 'active' : '' }}" fieldvalue="rug" href="javascript:void(0);">Rug</a></li>
+                                    <li><a class="filter-option {{ isset($filterData['type']) && $filterData['type'] == 'furniture' ? 'active' : '' }}" fieldvalue="furniture" href="javascript:void(0);">Furniture</a></li>
+                                    <li><a class="filter-option  {{ isset($filterData['type']) && $filterData['type'] == 'lighting' ? 'active' : '' }}" fieldvalue="lighting" href="javascript:void(0);">Lighting</a></li>
+                                    <li><a class="filter-option {{ isset($filterData['type']) && $filterData['type'] == 'accessories' ? 'active' : '' }}" fieldvalue="accessories" href="javascript:void(0);">Accessories</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @if(!empty($categoryList))
+                    <div class="panel panel-default">
                         <input type="hidden" name="category" class="filter-input">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -31,7 +54,7 @@
                             <div class="panel-body">
                                 <ul class="sub-filters">
                                     @foreach($categoryList as $single)
-                                        <li><a class="filter-option " fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->category }}</a></li>
+                                        <li><a class="filter-option {{ isset($categoryId) && $categoryId == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->category }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -209,6 +232,7 @@
                     </div>
 
                 </div>
+                <a href="{{ route('frontend.product.product-by-type',['type' => 'all']) }}" class="btn btn-default pull-left" >Clear Filter</a>
                 <button class="btn btn-submit pull-right" type="submit">Submit</button>
                 {{ Form::close() }}
             </div>

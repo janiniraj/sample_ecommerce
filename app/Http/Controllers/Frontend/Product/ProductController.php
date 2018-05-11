@@ -83,44 +83,44 @@ class ProductController extends Controller
 
         if(isset($categoryId) && $categoryId)
         {
-            $products = $products->where('category_id', $categoryId);
+            $products = $products->where('products.category_id', $categoryId);
         }        
 
         if(!empty($filterData))
         {
-            if(isset($filterData['type']) && $filterData['type'])
+            if(isset($filterData['type']) && $filterData['type'] != 'all')
             {
-                $products = $products->where('type', $filterData['type']);
+                $products = $products->where('products.type', $filterData['type']);
             }
 
             if(isset($filterData['collection']) && $filterData['collection'])
             {
-                $products = $products->where('subcategory_id', $filterData['collection']);
+                $products = $products->where('products.subcategory_id', $filterData['collection']);
             }
 
             if(isset($filterData['style']) && $filterData['style'])
             {
-                $products = $products->where('style_id', $filterData['style']);
+                $products = $products->where('products.style_id', $filterData['style']);
             }
 
             if(isset($filterData['material']) && $filterData['material'])
             {
-                $products = $products->where('material_id', $filterData['style']);
+                $products = $products->where('products.material_id', $filterData['style']);
             }
 
             if(isset($filterData['weave']) && $filterData['weave'])
             {
-                $products = $products->where('weave_id', $filterData['weave']);
+                $products = $products->where('products.weave_id', $filterData['weave']);
             }
 
             if(isset($filterData['color']) && $filterData['color'])
             {
-                $products = $products->where('color_id', $filterData['color']);
+                $products = $products->where('products.color_id', $filterData['color']);
             }
 
             if(isset($filterData['shape']) && $filterData['shape'])
             {
-                $products = $products->where('shape', $filterData['shape']);
+                $products = $products->where('products.shape', $filterData['shape']);
             }
 
             if(isset($filterData['unit_width']) && $filterData['unit_width'] && isset($filterData['width_min']) && $filterData['width_min'] && isset($filterData['width_max']) && $filterData['width_max'])
@@ -144,7 +144,21 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->paginate(config('constant.perPage'));
+        $queryParam = $products;
+
+        $products   = $products->paginate(config('constant.perPage'));
+
+        $categoryList = $queryParam->join('categories', 'categories.id', '=', 'products.category_id')->select('categories.*')->groupBy('products.category_id')->get();
+
+        $collectionList = $queryParam->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')->select('subcategories.*')->groupBy('products.subcategory_id')->get();
+
+        $styleList = $queryParam->join('styles', 'styles.id', '=', 'products.style_id')->select('styles.*')->groupBy('products.style_id')->get();
+
+        $materialList = $queryParam->join('materials', 'materials.id', '=', 'products.material_id')->select('materials.*')->groupBy('products.material_id')->get();
+
+        $weaveList = $queryParam->join('weaves', 'weaves.id', '=', 'products.weave_id')->select('weaves.*')->groupBy('products.weave_id')->get();
+
+        $colorList = $queryParam->join('colors', 'colors.id', '=', 'products.color_id')->select('colors.*')->groupBy('products.color_id')->get();       
 
         return view('frontend.products.index')->with([
             'products'          => $products,
@@ -154,7 +168,8 @@ class ProductController extends Controller
             'materialList'      => $materialList,
             'weaveList'         => $weaveList,
             'colorList'         => $colorList,
-            'filterData'        => $filterData
+            'filterData'        => $filterData,
+            'categoryId'        => isset($categoryId) ? $categoryId : ''
         ]);
     }
 
