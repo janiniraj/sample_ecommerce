@@ -23,3 +23,20 @@
             </div>
         </div><!--col-lg-3-->
     </div>
+
+    <div class="form-group">
+        {{ Form::label('status', trans('validation.attributes.backend.colors.is_menu'), ['class' => 'col-lg-2 control-label']) }}
+
+        <div class="col-lg-10">
+            <div class="control-group">
+                <label class="control control--checkbox">
+                        @if(isset($color->is_menu) && !empty ($color->is_menu))
+                            {{ Form::checkbox('is_menu', 1, true) }}
+                        @else
+                            {{ Form::checkbox('is_menu', 1, false) }}
+                        @endif
+                    <div class="control__indicator"></div>
+                </label>
+            </div>
+        </div><!--col-lg-3-->
+    </div>

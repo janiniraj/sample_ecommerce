@@ -181,6 +181,7 @@ return [
             'colors' => [
                 'title' => 'Color',
                 'is_active' => 'Active',
+                'is_menu'   => 'Show in Menu'
             ],
         ],
 

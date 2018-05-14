@@ -53,6 +53,8 @@ class ColorRepository extends BaseRepository
             $colors->name = $input['name'];
             $colors->status = (isset($input['status']) && $input['status'] == 1)
                  ? 1 : 0;
+             $colors->is_menu = (isset($input['is_menu']) && $input['is_menu'] == 1)
+                 ? 1 : 0;
 
             if ($colors->save()) {
 
@@ -79,6 +81,9 @@ class ColorRepository extends BaseRepository
         }
         $colors->name = $input['name'];
         $colors->status = (isset($input['status']) && $input['status'] == 1)
+                 ? 1 : 0;
+
+        $colors->is_menu = (isset($input['is_menu']) && $input['is_menu'] == 1)
                  ? 1 : 0;
 
         DB::transaction(function () use ($colors, $input) {

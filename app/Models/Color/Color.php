@@ -17,7 +17,7 @@ class Color extends Model
      */
     protected $table;
 
-    protected $fillable = ["name", "status"];
+    protected $fillable = ["name", "status", "is_menu"];
 
     public function __construct(array $attributes = [])
     {
