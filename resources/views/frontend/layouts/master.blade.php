@@ -29,9 +29,9 @@
     {{ Html::style('/frontend/css/xzoom.css') }}
     {{ Html::style('/frontend/css/jquery.fancybox.js') }}
     {{ Html::style('/frontend/css/magnific-popup.css') }}
+    {{ Html::style('/frontend/css/bootstrap-tagsinput.css') }}
 
     {{ Html::style('/frontend/css/custom.css') }}
-
 
 @yield('after-styles')
 
@@ -57,6 +57,7 @@
 
 <!-- Scripts -->
 @yield('before-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     {!! Html::script('/frontend/js/bootstrap-colorselector.min.js') !!}
     {!! Html::script('/frontend/js/slick.min.js') !!}
     {!! Html::script('/frontend/js/slick-lightbox.min.js') !!}
@@ -66,6 +67,7 @@
     {!! Html::script('/frontend/js/magnific-popup.js') !!}
     {!! Html::script('/frontend/js/foundation.min.js') !!}
     {!! Html::script('/frontend/js/setup.js') !!}
+    {!! Html::script('/frontend/js/bootstrap-tagsinput.min.js') !!}
     {!! Html::script('/frontend/js/custom.js') !!}
     <script>
         $(function() {
