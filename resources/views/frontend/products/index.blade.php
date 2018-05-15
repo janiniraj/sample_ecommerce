@@ -4,6 +4,7 @@
     <style>
         .bootstrap-tagsinput {
             border: none;
+            box-shadow: none;
         }
         .bootstrap-tagsinput .tag.label {
             font-size: 15px;
@@ -32,7 +33,6 @@
                     <li class="list-header">Filters</li>
                 </ul>
                 <div class="panel-group" id="results-accordion">
-                    @if(!empty($categoryList))
                     <div class="panel panel-default">
                         <input type="hidden" name="type" class="filter-input" value="{{ isset($filterData['type']) && $filterData['type'] ? $filterData['type'] : 'all' }}">
                         <div class="panel-heading">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+
                     @if(!empty($categoryList))
                     <div class="panel panel-default">
                         <input type="hidden" name="category" class="filter-input">
@@ -180,7 +180,7 @@
                                     <select name="color" id="colorselector">
                                         <option value="" data-color="#000">Color</option>
                                         @foreach($colorList as $singleKey => $singleValue)
-                                            <option {{ $singleKey== 0 ? 'selected' : '' }} value="{{$singleValue->id}}" data-color="{{ $singleValue->name }}">{{ $singleValue->name }}</option>
+                                            <option value="{{$singleValue->id}}" data-color="{{ $singleValue->name }}">{{ $singleValue->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -342,6 +342,41 @@
         if(event.item.type == 'Product')
         {
             $('.filter-input[name="type"]').val("");
+        }
+
+        if(event.item.type == 'Category')
+        {
+            $('.filter-input[name="category"]').val("");
+        }
+
+        if(event.item.type == 'Collection')
+        {
+            $('.filter-input[name="Collection"]').val("");
+        }
+
+        if(event.item.type == 'Style')
+        {
+            $('.filter-input[name="Style"]').val("");
+        }
+
+        if(event.item.type == 'Material')
+        {
+            $('.filter-input[name="Material"]').val("");
+        }
+
+        if(event.item.type == 'Weave')
+        {
+            $('.filter-input[name="Weave"]').val("");
+        }
+
+        if(event.item.type == 'Shape')
+        {
+            $('.filter-input[name="Shape"]').val("");
+        }
+
+        if(event.item.type == 'Size')
+        {
+            $('input[name="width_min"],input[name="width_max"],input[name="length_min"],input[name="length_max"]').val("")
         }
         $("#filter_submit").click();
     });

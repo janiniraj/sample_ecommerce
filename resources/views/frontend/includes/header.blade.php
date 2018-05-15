@@ -1,3 +1,7 @@
+<?php
+use App\Helpers\Frontend\MenuHelper;
+$helper = new MenuHelper();
+?>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -26,18 +30,80 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'rug']) }}">Rug</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('frontend.product.index', 1) }}">Discontinued</a></li>
-                        <li><a href="#">Padding</a></li>
-                        <li><a href="#">Collections</a></li>
-                        <li><a href="#">Styles</a></li>
-                        <li><a href="#">Materials</a></li>
-                        <li><a href="#">Weaves</a></li>
-                        <li><a href="#">Colors</a></li>
-                        <li><a href="#">Size</a></li>
-                        <li><a href="#">Shape</a></li>
+                <li>
+                    <a href="{{ route('frontend.product.product-by-type', ['type' => 'rug']) }}" class="dropdown-toggle" data-toggle="dropdown">Rug</a>
+                    <ul class="dropdown-menu multi-level">
+                        <li class="{{ count($helper->rugCategoryList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugCategoryList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugCategoryList) > 0 ? 'data-toggle="dropdown"' : '' }}>Category</a>
+                            @if(count($helper->rugCategoryList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugCategoryList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'/'.$single->category.'?type=rug' }}">{{ $single->category }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->rugCollection) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugCollection) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugCollection) > 0 ? 'data-toggle="dropdown"' : '' }}>Collections</a>
+                            @if(count($helper->rugCollection) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugCollection as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&collection='.$single->id }}">{{ $single->subcategory }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->rugCollection) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugStyleList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugStyleList) > 0 ? 'data-toggle="dropdown"' : '' }}>Styles</a>
+                            @if(count($helper->rugStyleList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugStyleList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&style='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->rugMaterialList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugMaterialList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugMaterialList) > 0 ? 'data-toggle="dropdown"' : '' }}>Materials</a>
+                            @if(count($helper->rugMaterialList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugMaterialList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&material='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->rugWeaveList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugWeaveList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugWeaveList) > 0 ? 'data-toggle="dropdown"' : '' }}>Weaves</a>
+                            @if(count($helper->rugWeaveList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugWeaveList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&weave='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->rugColorList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugColorList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugColorList) > 0 ? 'data-toggle="dropdown"' : '' }}>Colors</a>
+                            @if(count($helper->rugColorList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugColorList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&color='.$single->id }}"><span class="color-btn" style="background-color: {{ $single->name }}"> </span></a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->rugShapeList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->rugShapeList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugShapeList) > 0 ? 'data-toggle="dropdown"' : '' }}>Shapes</a>
+                            @if(count($helper->rugShapeList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->rugShapeList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&shape='.$single->shape }}">{{ $single->shape }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -50,28 +116,157 @@
                         <li><a href="#">Table</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'lighting']) }}">Lighting</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Chandeliers</a></li>
-                        <li><a href="#">Floor Lamps</a></li>
-                        <li><a href="#">Flush lighting</a></li>
-                        <li><a href="#">Pendants</a></li>
-                        <li><a href="#">Outdoor Lighting</a></li>
-                        <li><a href="#">Sconces</a></li>
-                        <li><a href="#">Table Lamps</a></li>
+                <li>
+                    <a href="{{ route('frontend.product.product-by-type', ['type' => 'lighting']) }}" class="dropdown-toggle" data-toggle="dropdown">Lighting</a>
+                    <ul class="dropdown-menu multi-level">
+                        <li class="{{ count($helper->lightingCategoryList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingCategoryList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingCategoryList) > 0 ? 'data-toggle="dropdown"' : '' }}>Category</a>
+                            @if(count($helper->lightingCategoryList) > 0)Lighting
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingCategoryList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'/'.$single->category.'?type=lighting' }}">{{ $single->category }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->lightingCollection) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingCollection) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingCollection) > 0 ? 'data-toggle="dropdown"' : '' }}>Collections</a>
+                            @if(count($helper->lightingCollection) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingCollection as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=lighting&collection='.$single->id }}">{{ $single->subcategory }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->lightingCollection) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingStyleList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingStyleList) > 0 ? 'data-toggle="dropdown"' : '' }}>Styles</a>
+                            @if(count($helper->lightingStyleList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingStyleList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=lighting&style='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->lightingMaterialList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingMaterialList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingMaterialList) > 0 ? 'data-toggle="dropdown"' : '' }}>Materials</a>
+                            @if(count($helper->lightingMaterialList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingMaterialList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=lighting&material='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->lightingWeaveList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingWeaveList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingWeaveList) > 0 ? 'data-toggle="dropdown"' : '' }}>Weaves</a>
+                            @if(count($helper->lightingWeaveList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingWeaveList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=lighting&weave='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->lightingColorList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingColorList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingColorList) > 0 ? 'data-toggle="dropdown"' : '' }}>Colors</a>
+                            @if(count($helper->lightingColorList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingColorList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=lighting&color='.$single->id }}"><span class="color-btn" style="background-color: {{ $single->name }}"> </span></a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->lightingShapeList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->lightingShapeList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingShapeList) > 0 ? 'data-toggle="dropdown"' : '' }}>Shapes</a>
+                            @if(count($helper->lightingShapeList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->lightingShapeList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=lighting&shape='.$single->shape }}">{{ $single->shape }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+
                     </ul>
-
-
                 </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="{{ route('frontend.product.product-by-type', ['type' => 'accessories']) }}">Accessories</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Mirrors</a></li>
-                        <li><a href="#">Pillows</a></li>
-                        <li><a href="#">Wall Décor</a></li>
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">Garden Stools </a></li>
+
+                <li>
+                    <a href="{{ route('frontend.product.product-by-type', ['type' => 'accessories']) }}" class="dropdown-toggle" data-toggle="dropdown">Accessories</a>
+                    <ul class="dropdown-menu multi-level">
+                        <li class="{{ count($helper->accessoriesCategoryList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesCategoryList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesCategoryList) > 0 ? 'data-toggle="dropdown"' : '' }}>Category</a>
+                            @if(count($helper->accessoriesCategoryList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesCategoryList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'/'.$single->category.'?type=accessories' }}">{{ $single->category }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->accessoriesCollection) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesCollection) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesCollection) > 0 ? 'data-toggle="dropdown"' : '' }}>Collections</a>
+                            @if(count($helper->accessoriesCollection) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesCollection as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=accessories&collection='.$single->id }}">{{ $single->subcategory }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->accessoriesCollection) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesStyleList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesStyleList) > 0 ? 'data-toggle="dropdown"' : '' }}>Styles</a>
+                            @if(count($helper->accessoriesStyleList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesStyleList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=accessories&style='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->accessoriesMaterialList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesMaterialList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesMaterialList) > 0 ? 'data-toggle="dropdown"' : '' }}>Materials</a>
+                            @if(count($helper->accessoriesMaterialList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesMaterialList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=accessories&material='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->accessoriesWeaveList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesWeaveList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesWeaveList) > 0 ? 'data-toggle="dropdown"' : '' }}>Weaves</a>
+                            @if(count($helper->accessoriesWeaveList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesWeaveList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=accessories&weave='.$single->id }}">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->accessoriesColorList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesColorList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesColorList) > 0 ? 'data-toggle="dropdown"' : '' }}>Colors</a>
+                            @if(count($helper->accessoriesColorList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesColorList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=accessories&color='.$single->id }}"><span class="color-btn" style="background-color: {{ $single->name }}"> </span></a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="{{ count($helper->accessoriesShapeList) > 0 ? 'dropdown-submenu' : '' }}">
+                            <a href="javascript:void(0);" class="{{ count($helper->accessoriesShapeList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->accessoriesShapeList) > 0 ? 'data-toggle="dropdown"' : '' }}>Shapes</a>
+                            @if(count($helper->accessoriesShapeList) > 0)
+                                <ul class="dropdown-menu">
+                                    @foreach($helper->accessoriesShapeList as $single)
+                                        <li><a href="{{ route('frontend.product.product-by-type').'?type=accessories&shape='.$single->shape }}">{{ $single->shape }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+
                     </ul>
                 </li>
                 <li>
@@ -101,7 +296,9 @@
                     </ul>
                 </li>
 
+
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown language">
                     <a class="dropdown-toggle" href="#">Language</a>

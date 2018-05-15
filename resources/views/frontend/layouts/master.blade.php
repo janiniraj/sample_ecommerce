@@ -72,6 +72,11 @@
     <script>
         $(function() {
             $('#colorselector').colorselector();
+            /*$(".dropdown-submenu a.dropdown-toggle").hover(function(){
+                $(this).next('ul').show();
+            }, function() {
+                $(this).next('ul').hide();
+            });*/
         });
     </script>
 @yield('after-scripts')

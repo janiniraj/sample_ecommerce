@@ -105,7 +105,7 @@ class ProductController extends Controller
 
             if(isset($filterData['material']) && $filterData['material'])
             {
-                $products = $products->where('products.material_id', $filterData['style']);
+                $products = $products->where('products.material_id', $filterData['material']);
             }
 
             if(isset($filterData['weave']) && $filterData['weave'])
@@ -179,9 +179,39 @@ class ProductController extends Controller
                 $filterDisplay[$labelType[$singleKey]] = $labelType[$singleKey] . ' : ' . ucfirst($singleValue);
             }
 
+            if($singleKey == 'type' && $singleValue)
+            {
+                $filterDisplay['Product'] = 'Product : '. ucfirst($singleValue);
+            }
+
             if($categoryName)
             {
-                $filterDisplay['Category'] = 'Category : '. $categoryName;
+                $filterDisplay['Category'] = 'Category : '. ucfirst($categoryName);
+            }
+
+            if($singleKey == 'collection' && $singleValue)
+            {
+                $filterDisplay['Collection'] = 'Collection : '. ucfirst($this->subcategories->find($singleValue)->subcategory);
+            }
+
+            if($singleKey == 'style' && $singleValue)
+            {
+                $filterDisplay['Style'] = 'Style : '. ucfirst($this->style->find($singleValue)->name);
+            }
+
+            if($singleKey == 'material' && $singleValue)
+            {
+                $filterDisplay['Material'] = 'Material : '. ucfirst($this->material->find($singleValue)->name);
+            }
+
+            if($singleKey == 'weave' && $singleValue)
+            {
+                $filterDisplay['Weave'] = 'Weave : '. ucfirst($this->weave->find($singleValue)->name);
+            }
+
+            if($singleKey == 'shape' && $singleValue)
+            {
+                $filterDisplay['Weave'] = 'shape : '. ucfirst($singleValue);
             }
 
             if($singleKey == 'color' && $singleValue)
