@@ -1,13 +1,28 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+    <style>
+        .bootstrap-tagsinput {
+            border: none;
+        }
+        .bootstrap-tagsinput .tag.label {
+            font-size: 15px;
+        }
+        .bootstrap-tagsinput input {
+            display: none;
+        }
+    </style>
 <div class="container accessories" id="results-page">
     <div class="section">
-
-        <div class="results-limit">
-            <select name="resultsLimiter" id="resultsLimiter">
-                <option value="">{{ 'Showing '. (($products->currentPage()-1)*config('constant.perPage')+1).'-'.(($products->currentPage()-1)*config('constant.perPage')+$products->count()).' of '.$products->total() }} results</option>
-            </select>
+        <div class="row">
+            <div class="col-md-8">
+                <input value="" id="filter_display">
+            </div>
+            <div class="results-limit col-md-4">
+                <select name="resultsLimiter" id="resultsLimiter">
+                    <option value="">{{ 'Showing '. (($products->currentPage()-1)*config('constant.perPage')+1).'-'.(($products->currentPage()-1)*config('constant.perPage')+$products->count()).' of '.$products->total() }} results</option>
+                </select>
+            </div>
         </div>
 
         <div class="row">
@@ -23,7 +38,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse0">
-                                    Type
+                                    Products
                                 </a>
                             </h4>
                         </div>
@@ -163,6 +178,7 @@
                                 <div class="panel-body">
                                     <span class="color-label">Select Color: </span>
                                     <select name="color" id="colorselector">
+                                        <option value="" data-color="#000">Color</option>
                                         @foreach($colorList as $singleKey => $singleValue)
                                             <option {{ $singleKey== 0 ? 'selected' : '' }} value="{{$singleValue->id}}" data-color="{{ $singleValue->name }}">{{ $singleValue->name }}</option>
                                         @endforeach
@@ -232,12 +248,13 @@
                     </div>
 
                 </div>
-                <a href="{{ route('frontend.product.product-by-type',['type' => 'all']) }}" class="btn btn-default pull-left" >Clear Filter</a>
-                <button class="btn btn-submit pull-right" type="submit">Submit</button>
+                <a href="{{ route('frontend.product.product-by-type',['type' => 'all']) }}" class="btn btn-remove pull-left" >Clear Filter</a>
+                <button id="filter_submit" class="btn btn-submit pull-right" type="submit">SUBMIT</button>
                 {{ Form::close() }}
             </div>
 
             <div class="col-sm-8 resutls">
+
                 <div class="row items">
                     @if(count($products))
                         @foreach($products as $product)
@@ -267,6 +284,8 @@
 
 @section('after-scripts')
 <script>
+    var filterData = <?php echo json_encode($filterDisplay); ?>;
+
     $(".filter-option").on('click', function (e) {
         $(this).closest('.panel.panel-default').find('.filter-option').each(function(){
             if($(this).hasClass('active'))
@@ -277,6 +296,54 @@
         $(this).addClass('active');
         var fieldValue = $(this).attr('fieldvalue');
         $(this).closest('.panel.panel-default').find('.filter-input').val(fieldValue);
+    });
+    var elt = $('#filter_display');
+    $('#filter_display').tagsinput({
+        tagClass: function(item) {
+            if(item.type=='Color')
+            {
+                return 'label cl color-' + item.value;
+            }
+            return 'label label-default';
+        },
+        itemValue: 'value',
+        itemText: 'text'
+    });
+
+    $.each(filterData, function( i , v )
+    {
+        elt.tagsinput('add', { "value": v , "text": v , "type": i });
+        changeColor();
+    });
+
+    function changeColor()
+    {
+        $(".cl").each(function(){
+            var classList = this.classList;
+            var label = this;
+            $.each(classList, function(){
+                if(this.indexOf("color-") != -1)
+                {
+                    var colorName = this.replace("color-",'');
+                    $(label).attr('style', 'background: '+ colorName);
+                    var html = $(label).html();
+                    $(label).html(html.replace(colorName,'Color'));
+                }
+            });
+        });
+    }
+
+    elt.on('itemRemoved', function(event) {
+        if(event.item.type == 'Color')
+        {
+            $('select[name="color"]').val("");
+        }
+
+        if(event.item.type == 'Product')
+        {
+            $('.filter-input[name="type"]').val("");
+        }
+        $("#filter_submit").click();
     });
 </script>
 @endsection

@@ -110,11 +110,7 @@ figure.snip1174.hover a {
 .btn {
     font-size: 18px;
 }
-.btn.btn-submit {
-    background: #808080;
-    color: white;
-    text-transform: uppercase;
-}
+
 img.xzoom {
     width: 100% !important;
 }
@@ -164,4 +160,10 @@ span.color-btn {
 }
 .filter-option.active {
     color: red !important;
+}
+
+.btn-remove, .btn-submit {
+    font-size: 15px;
+    background: #808080;
+    color: white;
 }

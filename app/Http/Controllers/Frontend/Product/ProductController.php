@@ -160,6 +160,53 @@ class ProductController extends Controller
 
         $colorList = $queryParam->join('colors', 'colors.id', '=', 'products.color_id')->select('colors.*')->groupBy('products.color_id')->get();       
 
+        $filterDisplay = [];
+
+        $labelType= [
+            'type'          => 'Product',
+            'category'      => 'Category',
+            'collection'    => 'Collection',
+            'style'         => 'Style',
+            'material'      => 'Material',
+            'weave'         => 'Weave',
+            'shape'         => 'Shape'
+        ];
+
+        foreach ($filterData as $singleKey => $singleValue)
+        {
+            if(in_array($singleKey,array_keys($labelType)) && $singleValue)
+            {
+                $filterDisplay[$labelType[$singleKey]] = $labelType[$singleKey] . ' : ' . ucfirst($singleValue);
+            }
+
+            if($categoryName)
+            {
+                $filterDisplay['Category'] = 'Category : '. $categoryName;
+            }
+
+            if($singleKey == 'color' && $singleValue)
+            {
+                $filterDisplay['Color'] = $this->color->find($singleValue)->name;
+            }
+        }
+
+        $sizeDisplay = [];
+
+        if(isset($filterData['width_min']) && $filterData['width_min'] && isset($filterData['width_max']) && $filterData['width_max'])
+        {
+            $sizeDisplay[] = 'Width : '.$filterData['width_min']. ' - '. $filterData['width_max'].' '. ucfirst($filterData['unit_width']);
+        }
+
+        if(isset($filterData['length_min']) && $filterData['length_min'] && isset($filterData['length_max']) && $filterData['length_max'])
+        {
+            $sizeDisplay[] = 'Width : '.$filterData['length_min']. ' - '. $filterData['length_max'].' '. ucfirst($filterData['unit_length']);
+        }
+
+        if(!empty($sizeDisplay))
+        {
+            $filterDisplay['Size'] = 'Size : '. implode(' , ', $sizeDisplay);
+        }
+
         return view('frontend.products.index')->with([
             'products'          => $products,
             'categoryList'      => $categoryList,
@@ -169,7 +216,8 @@ class ProductController extends Controller
             'weaveList'         => $weaveList,
             'colorList'         => $colorList,
             'filterData'        => $filterData,
-            'categoryId'        => isset($categoryId) ? $categoryId : ''
+            'categoryId'        => isset($categoryId) ? $categoryId : '',
+            'filterDisplay'     => $filterDisplay
         ]);
     }
 
