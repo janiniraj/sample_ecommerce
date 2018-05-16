@@ -14,8 +14,14 @@ $helper = new MenuHelper();
         </div>
         <div class="collapse navbar-collapse hidden-sm hidden-xs" id="socialNavbar">
             <ul class="nav navbar-nav navbar-right social">
-                <li>{{ link_to_route('frontend.auth.login', trans('navs.frontend.login'), [], ['class' => 'login' ]) }}</li>
-                <li><a class="heart" href=""><i class="fas fa-heart"></i></a></li>
+                <li>
+                    @if(Auth::check())
+                        {{ link_to_route('frontend.auth.logout', 'Logout', [], ['class' => 'login' ]) }}
+                    @else
+                        {{ link_to_route('frontend.auth.login', trans('navs.frontend.login'), [], ['class' => 'login' ]) }}
+                    @endif
+                </li>
+                <li><a class="heart" href="{{ route('frontend.product.favourites') }}"><i class="fas fa-heart"></i></a></li>
                 <li class="rounded"><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="rounded"><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
                 <li class="rounded"><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>

@@ -219,3 +219,7 @@ span.color-btn {
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
+#product .product-desc .path a.heart.active {
+    color: rgb(48, 133, 214);
+}

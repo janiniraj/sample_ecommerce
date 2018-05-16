@@ -15,6 +15,7 @@
     {!! Html::script('/frontend/js/modernizr.js') !!}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.15.1/dist/sweetalert2.all.js"></script>
 
     {{ Html::style('/fontawesome/css/fontawesome-all.min.css') }}
     {{ Html::style('/frontend/css/bootstrap-colorselector.min.css') }}

@@ -6,7 +6,7 @@
 
             <div class="results-limit">
                 <select name="resultsLimiter" id="resultsLimiter">
-                    <option value="">Showing 1-10 of 2000 results</option>
+                    <option value="">{{ 'Showing '. (($products->currentPage()-1)*config('constant.perPage')+1).'-'.(($products->currentPage()-1)*config('constant.perPage')+$products->count()).' of '.$products->total() }} results</option>
                 </select>
             </div>
 

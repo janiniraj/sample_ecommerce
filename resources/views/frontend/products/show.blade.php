@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container" id="product">
+        <input id="product_id" type="hidden" value="{{ $product->id }}">
         <div class="section">
 
             <div class="row">
@@ -23,7 +24,7 @@
                 <div class="col-md-6 product-desc">
                     <div class="path">
 
-                        <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+                        <a id="favourite" class="heart {{ $favourite ? 'active' : '' }}" href="javascript:void(0);"><i class="fas fa-heart"></i></a>
                         <a class="share" href="#"><i class="fas fa-share-alt"></i></a>
                     </div>
 
@@ -256,5 +257,53 @@
         itemSelector        : 'a',
         navigateByKeyboard  : true
     });*/
+    $(document).ready(function() {
+
+        var productId = $("#product_id").val();
+        $("#favourite").on('click', function(e){
+            e.preventDefault();
+
+            var data = {
+                product_id: productId
+            };
+
+            if($(this).hasClass('active'))
+            {
+                data['favourite'] = 0;
+            }
+            else
+            {
+                data['favourite'] = 1;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: "<?php echo route('frontend.product.add-favourites'); ?>",
+                data: data,
+                success: function(data){
+                    if(data.error)
+                    {
+                        swal({
+                            title:'Errors',
+                            text: data.message,
+                            type:'error'
+                        }).then(function () {
+
+                        });
+                    }
+                    else
+                    {
+                        swal({
+                            title:'Thank you!',
+                            text: data.message,
+                            type:'success'
+                        }).then(function () {
+                            $("#favourite").toggleClass('active');
+                        });
+                    }
+                }
+            });
+        });
+    });
 </script>
 @endsection

@@ -12,6 +12,8 @@ use App\Repositories\Backend\Material\MaterialRepository;
 use App\Repositories\Backend\Weave\WeaveRepository;
 use App\Repositories\Backend\Color\ColorRepository;
 use Redirect;
+use App\Models\Product\UserFavourite;
+use Auth;
 
 /**
  * Class ProductController.
@@ -36,6 +38,7 @@ class ProductController extends Controller
         $this->material         = new MaterialRepository();
         $this->weave            = new WeaveRepository();
         $this->color            = new ColorRepository();
+        $this->userFavourite    = new UserFavourite();
     }
 
     /**
@@ -263,12 +266,34 @@ class ProductController extends Controller
 
         $newArrivals = $this->products->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->limit(10)->get();
 
+        $favourite = 0;
+
+        if(Auth::check())
+        {
+            $check = $this->userFavourite->where([
+                'user_id'       => Auth::user()->id,
+                'product_id'    => $productId
+            ])->first();
+
+            if($check)
+            {
+                $favourite = 1;
+            }
+        }
+
         return view('frontend.products.show')->with([
-            'product' => $product,
-            'newArrivals'   => $newArrivals
+            'product'       => $product,
+            'newArrivals'   => $newArrivals,
+            'favourite'     => $favourite
             ]);
     }
 
+    /**
+     * New Arrival
+     *
+     * @param Request $request
+     * @return $this
+     */
     public function newArrival(Request $request)
     {
         $filterData = $request->all();
@@ -353,4 +378,171 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * Add Favourites
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addFavourites(Request $request)
+    {
+        $postData = $request->all();
+
+        if(isset($postData['product_id']) && $postData['product_id'])
+        {
+            $userCheck = Auth::check();
+            if($userCheck == false)
+            {
+                return response()->json([
+                    'error' => true,
+                    'redirect' => true,
+                    'message' => 'Login first to add to favourite.'
+                ]);
+            }
+
+            $check = $this->userFavourite->where([
+                'user_id'       => Auth::user()->id,
+                'product_id'    => $postData['product_id']
+            ])->first();
+
+            if($postData['favourite'] == 0)
+            {
+                if(!empty($check))
+                {
+                    $this->userFavourite->where('id', $check->id)->delete();
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Removed from Favourite List.'
+                    ]);
+                }
+                else
+                {
+                    return response()->json([
+                        'error' => true,
+                        'message' => 'Add to Favourite List First.'
+                    ]);
+                }
+            }
+            else
+            {
+                if(!empty($check))
+                {
+                    return response()->json([
+                        'error' => true,
+                        'message' => 'Already Exist in Favourite List.'
+                    ]);
+                }
+                else
+                {
+                    $this->userFavourite->create([
+                        'user_id'       => Auth::user()->id,
+                        'product_id'    => $postData['product_id']
+                    ]);
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Successfully Added in Favourite List'
+                    ]);
+                }
+            }
+        }
+        else
+        {
+            return response()->json([
+               'error' => true,
+               'message' => 'Error in Data'
+            ]);
+        }
+    }
+
+    public function favourites(Request $request)
+    {
+        if(!Auth::check())
+        {
+            return redirect()->route('login')->withFlashSuccess(trans('alerts.backend.subcategories.created'));;
+        }
+
+        $user = AUth::user();
+
+        $categoryList   = $this->categories->getAll();
+        $collectionList = $this->subcategories->getAll();
+        $styleList      = $this->style->getAll();
+        $materialList   = $this->material->getAll();
+        $weaveList      = $this->weave->getAll();
+        $colorList      = $this->color->getAll();
+
+        $products = $this->products->query();
+
+        if(!empty($filterData))
+        {
+            if(isset($filterData['category']) && $filterData['category'])
+            {
+                $products = $products->where('category_id', $filterData['category']);
+            }
+
+            if(isset($filterData['collection']) && $filterData['collection'])
+            {
+                $products = $products->where('subcategory_id', $filterData['collection']);
+            }
+
+            if(isset($filterData['style']) && $filterData['style'])
+            {
+                $products = $products->where('style_id', $filterData['style']);
+            }
+
+            if(isset($filterData['material']) && $filterData['material'])
+            {
+                $products = $products->where('material_id', $filterData['style']);
+            }
+
+            if(isset($filterData['weave']) && $filterData['weave'])
+            {
+                $products = $products->where('weave_id', $filterData['weave']);
+            }
+
+            if(isset($filterData['color']) && $filterData['color'])
+            {
+                $products = $products->where('color_id', $filterData['color']);
+            }
+
+            if(isset($filterData['shape']) && $filterData['shape'])
+            {
+                $products = $products->where('shape', $filterData['shape']);
+            }
+
+            if(isset($filterData['unit_width']) && $filterData['unit_width'] && isset($filterData['width_min']) && $filterData['width_min'] && isset($filterData['width_max']) && $filterData['width_max'])
+            {
+                if($filterData['unit_width'] == 'inch')
+                {
+                    $filterData['width_min'] = $filterData['width_min']/12;
+                    $filterData['width_max'] = $filterData['width_max']/12;
+                }
+                $products = $products->whereBetween('width', [$filterData['width_min'], $filterData['width_max']]);
+            }
+
+            if(isset($filterData['unit_length']) && $filterData['unit_length'] && isset($filterData['length_min']) && $filterData['length_min'] && isset($filterData['length_max']) && $filterData['length_max'])
+            {
+                if($filterData['unit_length'] == 'inch')
+                {
+                    $filterData['width_min'] = $filterData['width_min']/12;
+                    $filterData['width_max'] = $filterData['width_max']/12;
+                }
+                $products = $products->whereBetween('length', [$filterData['length_min'], $filterData['length_max']]);
+            }
+        }
+
+        $products = $products->join('user_favourites', 'user_favourites.user_id', '=', 'products.id')->paginate(config('constant.perPage'));
+
+        return view('frontend.products.new-arrival')->with([
+            'products'          => $products,
+            'categoryList'      => $categoryList,
+            'collectionList'    => $collectionList,
+            'styleList'         => $styleList,
+            'materialList'      => $materialList,
+            'weaveList'         => $weaveList,
+            'colorList'         => $colorList
+        ]);
+
+    }
 }
