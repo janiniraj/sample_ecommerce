@@ -53,6 +53,21 @@ class MenuHelper
 
     public $accessoriesShapeList;
 
+
+    public $furnitureCategoryList;
+
+    public $furnitureCollection;
+
+    public $furnitureStyleList;
+
+    public $furnitureMaterialList;
+
+    public $furnitureWeaveList;
+
+    public $furnitureColorList;
+
+    public $furnitureShapeList;
+
     public function __construct()
     {
         $this->product          = new Product();
@@ -79,5 +94,13 @@ class MenuHelper
         $this->accessoriesWeaveList    = $this->product->where('products.type', 'accessories')->join('weaves', 'weaves.id', '=', 'products.weave_id')->select('weaves.*')->groupBy('products.weave_id')->get();
         $this->accessoriesColorList    = $this->product->where('products.type', 'accessories')->join('colors', 'colors.id', '=', 'products.color_id')->select('colors.*')->groupBy('products.color_id')->get();
         $this->accessoriesShapeList    = $this->product->where('products.type', 'accessories')->select('products.shape')->groupBy('products.shape')->get();
+
+        $this->furnitureCategoryList = $this->product->where('products.type', 'furniture')->join('categories', 'categories.id', '=', 'products.category_id')->select('categories.*')->groupBy('products.category_id')->get();
+        $this->furnitureCollection   = $this->product->where('products.type', 'furniture')->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')->select('subcategories.*')->groupBy('products.subcategory_id')->get();
+        $this->furnitureStyleList    = $this->product->where('products.type', 'furniture')->join('styles', 'styles.id', '=', 'products.style_id')->select('styles.*')->groupBy('products.style_id')->get();
+        $this->furnitureMaterialList = $this->product->where('products.type', 'furniture')->join('materials', 'materials.id', '=', 'products.material_id')->select('materials.*')->groupBy('products.material_id')->get();
+        $this->furnitureWeaveList    = $this->product->where('products.type', 'furniture')->join('weaves', 'weaves.id', '=', 'products.weave_id')->select('weaves.*')->groupBy('products.weave_id')->get();
+        $this->furnitureColorList    = $this->product->where('products.type', 'furniture')->join('colors', 'colors.id', '=', 'products.color_id')->select('colors.*')->groupBy('products.color_id')->get();
+        $this->furnitureShapeList    = $this->product->where('products.type', 'furniture')->select('products.shape')->groupBy('products.shape')->get();
     }
 }
