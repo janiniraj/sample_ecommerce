@@ -9,6 +9,25 @@ Route::get('macros', 'FrontendController@macros')->name('macros');
 Route::get('contact', 'ContactController@index')->name('contact');
 Route::post('contact/send', 'ContactController@send')->name('contact.send');
 
+Route::get('about-us', 'PageController@aboutUs')->name('page.about-us');
+Route::get('press', 'PageController@press')->name('page.press');
+Route::get('store', 'PageController@store')->name('page.store');
+Route::get('contact-us', 'PageController@contactUs')->name('page.contact-us');
+
+Route::get('history', 'PageController@history')->name('page.history');
+Route::get('awards-certifications', 'PageController@awardsCertifications')->name('page.awards-certifications');
+Route::get('terms-conditions', 'PageController@termsConditions')->name('page.terms-conditions');
+Route::get('privacy-policy', 'PageController@privacyPolicy')->name('page.privacy-policy');
+Route::get('return-policy', 'PageController@returnPolicy')->name('page.return-policy');
+Route::get('show-room', 'PageController@showRoom')->name('page.show-room');
+Route::get('cleaning-restoration', 'PageController@cleaningRestoration')->name('page.cleaning-restoration');
+Route::get('rug-school', 'PageController@rugSchool')->name('page.rug-school');
+Route::get('hospitality', 'PageController@hospitality')->name('page.hospitality');
+Route::get('become-dealer', 'PageController@becomeDealer')->name('page.become-dealer');
+Route::get('careers', 'PageController@careers')->name('page.careers');
+Route::get('site-map', 'PageController@siteMap')->name('page.site-map');
+Route::get('faq', 'PageController@faq')->name('page.faq');
+
 /*
  * These frontend controllers require the user to be logged in
  * All route names are prefixed with 'frontend.'

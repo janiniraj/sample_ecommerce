@@ -286,16 +286,16 @@ $helper = new MenuHelper();
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">About</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.page.about-us') }}">About</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Press</a></li>
+                        <li><a href="{{ route('frontend.page.about-us') }}">About Us</a></li>
+                        <li><a href="{{ route('frontend.page.press') }}">Press</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">Contact Us</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.page.contact-us') }}">Contact Us</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Our Store</a></li>
+                        <li><a href="{{ route('frontend.page.store') }}">Our Store</a></li>
                         <li><a href="#">Inquire</a></li>
                         <li><a href="#">Live Chat</a></li>
                         <li><a href="#">Join Mailing List</a></li>

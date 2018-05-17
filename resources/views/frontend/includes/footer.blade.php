@@ -2,20 +2,20 @@
     <div class="row">
         <div class="col-sm-7 links">
             <ul>
-                <li class="list-heading no-arrow ">About Us</li>
-                <li><a href="#">History</li>
-                <li><a href="#">Awards & Certifications</a></li>
-                <li><a href="#">Term and Condition</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Return Policy</a></li>
-                <li><a href="#">Show Room</a></li>
-                <li><a href="#">Site Map</a></li>
+                <li class="list-heading no-arrow "><a href="{{ route('frontend.page.about-us') }}">About Us</a></li>
+                <li><a href="">History</a></li>
+                <li><a href="{{ route('frontend.page.awards-certifications') }}">Awards & Certifications</a></li>
+                <li><a href="{{ route('frontend.page.terms-conditions') }}">Term and Condition</a></li>
+                <li><a href="{{ route('frontend.page.privacy-policy') }}">Privacy Policy</a></li>
+                <li><a href="{{ route('frontend.page.return-policy') }}">Return Policy</a></li>
+                <li><a href="{{ route('frontend.page.show-room') }}">Show Room</a></li>
+                <li><a href="{{ route('frontend.page.site-map') }}">Site Map</a></li>
             </ul>
             <ul>
-                <li class="list-heading no-arrow">Contact Us</li>
-                <li><a href="#">Cleaning & Restoration</a></li>
-                <li><a href="#">Rug School</a></li>
-                <li><a href="#">Hospitality</a></li>
+                <li class="list-heading no-arrow"><a href="{{ route('frontend.page.contact-us') }}">Contact Us</a></li>
+                <li><a href="{{ route('frontend.page.cleaning-restoration') }}">Cleaning & Restoration</a></li>
+                <li><a href="{{ route('frontend.page.rug-school') }}">Rug School</a></li>
+                <li><a href="{{ route('frontend.page.hospitality') }}">Hospitality</a></li>
                 <li class="no-arrow">&nbsp;</li>
                 <li class="list-heading no-arrow">Association</li>
                 <li><a href="#">ABCD</a></li>
@@ -23,9 +23,9 @@
             </ul>
             <ul>
                 <li class="list-heading no-arrow">CONNECT WITH US</li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Become a Dealer</a></li>
-                <li><a href="#">Careers</a></li>
+                <li><a href="{{ route('frontend.page.contact-us') }}">Contact Us</a></li>
+                <li><a href="{{ route('frontend.page.become-dealer') }}">Become a Dealer</a></li>
+                <li><a href="{{ route('frontend.page.careers') }}">Careers</a></li>
                 <li><a href="#">Affiliate Log In</a></li>
                 <li><a href="#">View Catalogue</a></li>
             </ul>
@@ -50,7 +50,7 @@
             </form>
             <ul>
                 <li><a href="#">Where to Buy</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="{{ route('frontend.page.faq') }}">FAQ</a></li>
             </ul>
         </div>
 
