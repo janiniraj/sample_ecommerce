@@ -249,7 +249,7 @@
 
                 </div>
                 <a href="{{ route('frontend.product.product-by-type',['type' => 'all']) }}" class="btn btn-remove pull-left" >Clear Filter</a>
-                <button id="filter_submit" class="btn btn-submit pull-right" type="submit">SUBMIT</button>
+                <button id="filter_submit" class="btn btn-submit pull-right" type="submit">Submit</button>
                 {{ Form::close() }}
             </div>
 

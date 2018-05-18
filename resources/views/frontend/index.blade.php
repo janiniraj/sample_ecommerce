@@ -54,7 +54,7 @@
                         <figure class="snip1174 grey">
                             <img src="{{ url('/').'/img/subcategory/'.$collection->icon }}" alt="sq-sample33" />
                             <figcaption>
-                                <a href="{{ route('frontend.product.index', $collection->subcategory) }}">Quick View</a>
+                                <a href="{{ route('frontend.product.product-by-type').'?collection='.$collection->id }}">Quick View</a>
                                 <h2>{{ $collection->subcategory }}</h2>
                             </figcaption>
                         </figure>
