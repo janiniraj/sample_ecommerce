@@ -183,7 +183,7 @@ $helper = new MenuHelper();
                     <ul class="dropdown-menu multi-level">
                         <li class="{{ count($helper->lightingCategoryList) > 0 ? 'dropdown-submenu' : '' }}">
                             <a href="javascript:void(0);" class="{{ count($helper->lightingCategoryList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->lightingCategoryList) > 0 ? 'data-toggle="dropdown"' : '' }}>Category</a>
-                            @if(count($helper->lightingCategoryList) > 0)Lighting
+                            @if(count($helper->lightingCategoryList) > 0)
                                 <ul class="dropdown-menu">
                                     @foreach($helper->lightingCategoryList as $single)
                                         <li><a href="{{ route('frontend.product.product-by-type').'/'.$single->category.'?type=lighting' }}">{{ $single->category }}</a></li>

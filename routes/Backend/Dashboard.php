@@ -87,3 +87,15 @@ Route::group(['namespace' => 'Color'], function () {
     Route::post('colors/get', 'ColorTableController')
         ->name('colors.get');
 });
+
+/**
+ *  Page Management
+ */
+Route::group(['namespace' => 'Page'], function () {
+    Route::resource('pages', 'PageController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('pages/get', 'PageTableController')
+        ->name('pages.get');
+});

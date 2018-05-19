@@ -69,6 +69,11 @@ return [
             'deleted' => 'The Color was successfully deleted.',
             'updated' => 'The Color was successfully updated.',
         ],
+        'pages' => [
+            'created' => 'The Page was successfully created.',
+            'deleted' => 'The Page was successfully deleted.',
+            'updated' => 'The Page was successfully updated.',
+        ],
     ],
 
     'frontend' => [

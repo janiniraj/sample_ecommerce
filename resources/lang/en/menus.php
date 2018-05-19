@@ -98,6 +98,13 @@ return [
             'management' => 'Color Management',
             'main'       => 'Color',
         ],
+        'pages' => [
+            'all'        => 'All Pages',
+            'create'     => 'Create Page',
+            'edit'       => 'Edit Page',
+            'management' => 'Page Management',
+            'main'       => 'Page',
+        ],
     ],
 
     'language-picker' => [

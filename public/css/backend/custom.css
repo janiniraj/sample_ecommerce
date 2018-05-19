@@ -53,3 +53,8 @@
     float: left;
     margin-right: 15px;
 }
+
+
+.mce-branding.mce-widget.mce-label {
+    display: none;
+}

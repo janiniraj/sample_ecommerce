@@ -183,6 +183,11 @@ return [
                 'is_active' => 'Active',
                 'is_menu'   => 'Show in Menu'
             ],
+            'pages' => [
+                'title' => 'Page',
+                'slug' => 'Slug',
+                'content' => 'Content',
+            ],
         ],
 
         'frontend' => [

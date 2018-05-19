@@ -195,6 +195,20 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'pages' => [
+            'create'     => 'Create Page',
+            'edit'       => 'Edit Page',
+            'management' => 'Page Management',
+            'title' => 'Page',
+
+            'table' => [
+                'title'          => 'Page',
+                'slug'           => 'Slug',
+                'content'        => 'Content',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

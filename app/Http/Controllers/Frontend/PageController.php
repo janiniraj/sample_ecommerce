@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Backend\Page\PageRepository;
 
 /**
  * Class PageController.
@@ -10,92 +11,177 @@ class PageController extends Controller
 
     public function __construct()
     {
-
+        $this->page = new PageRepository();
     }
 
     public function aboutUs()
     {
-        return view('frontend.page.about-us');
+        $pageData = $this->page->getPageBySlug('about-us');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'about-style.css'
+            ]);
     }
 
     public function press()
     {
-        return view('frontend.page.press');
+        $pageData = $this->page->getPageBySlug('press');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'press-style.css'
+            ]);
     }
 
     public function store()
     {
-        return view('frontend.page.store');
+        $pageData = $this->page->getPageBySlug('stores');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'stores-style.css'
+            ]);
     }
 
     public function contactUs()
     {
-        return view('frontend.page.contact-us');
+        $pageData = $this->page->getPageBySlug('contact-us');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'contact-style.css'
+            ]);
     }
 
     public function history()
     {
-        return view('frontend.page.history');
+        $pageData = $this->page->getPageBySlug('history');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'history-style.css'
+            ]);
     }
 
     public function awardsCertifications()
     {
-        return view('frontend.page.awards-certifications');
+        $pageData = $this->page->getPageBySlug('awards-certifications');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'awards-style.css'
+            ]);
     }
 
     public function termsConditions()
     {
-        return view('frontend.page.terms-conditions');
+        $pageData = $this->page->getPageBySlug('terms-conditions');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'tnc-style.css'
+            ]);
     }
 
     public function privacyPolicy()
     {
-        return view('frontend.page.privacy-policy');
+        $pageData = $this->page->getPageBySlug('privacy-policy');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'privacy-style.css'
+            ]);
     }
 
     public function returnPolicy()
     {
-        return view('frontend.page.return-policy');
+        $pageData = $this->page->getPageBySlug('return-policy');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'return-style.css'
+            ]);
     }
 
     public function showRoom()
     {
-        return view('frontend.page.show-room');
+        $pageData = $this->page->getPageBySlug('showroom');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'showroom-style.css'
+            ]);
     }
 
     public function cleaningRestoration()
     {
-        return view('frontend.page.cleaning-restoration');
+        $pageData = $this->page->getPageBySlug('cleaning-restoration');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'cleaning-style.css'
+            ]);
     }
 
     public function rugSchool()
     {
-        return view('frontend.page.rug-school');
+        $pageData = $this->page->getPageBySlug('rug-school');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'rug-style.css'
+            ]);
     }
 
     public function hospitality()
     {
-        return view('frontend.page.hospitality');
+        $pageData = $this->page->getPageBySlug('hospitality');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'hospitality-style.css'
+            ]);
     }
 
     public function becomeDealer()
     {
-        return view('frontend.page.become-dealer');
+        $pageData = $this->page->getPageBySlug('become-dealer');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'dealers-style.css'
+            ]);
     }
 
     public function careers()
     {
-        return view('frontend.page.careers');
+        $pageData = $this->page->getPageBySlug('careers');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'careers-style.css'
+            ]);
     }
 
     public function siteMap()
     {
-        return view('frontend.page.site-map');
+        $pageData = $this->page->getPageBySlug('site-map');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'site-map-style.css'
+            ]);
     }
 
     public function faq()
     {
-        return view('frontend.page.faq');
+        $pageData = $this->page->getPageBySlug('faq');
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'faq-style.css'
+            ]);
     }
 
 }

@@ -143,6 +143,12 @@
                     <span>Color Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/pages')) }}">
+                <a href="{{ route('admin.pages.index') }}">
+                    <i class="fa fa-file"></i>
+                    <span>Page Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>
