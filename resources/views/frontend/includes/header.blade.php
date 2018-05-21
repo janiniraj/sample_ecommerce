@@ -333,7 +333,6 @@ $helper = new MenuHelper();
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('frontend.page.store') }}">Our Store</a></li>
                         <li><a href="#">Inquire</a></li>
-                        <li><a href="#">Live Chat</a></li>
                         <li><a href="#">Join Mailing List</a></li>
                     </ul>
                 </li>

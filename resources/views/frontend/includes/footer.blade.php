@@ -55,7 +55,6 @@
         </div>
 
     </div>
-
-    <div class="chat"><a href="#"><img src="{{ url('/') }}/frontend/img/chat.png"></a></div>
+    
     <div class="copyrights"><p>© 2018 All Rights Reserved</p></div>
 </div>
