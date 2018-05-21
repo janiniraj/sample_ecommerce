@@ -50,12 +50,18 @@
                                 @if($product->subcategory_id)
                                 <tr>
                                     <td>Collection</td>
-                                    <td></td>
+                                    <td>{{ !empty($product->subcategory) ? $product->subcategory->subcategory : '' }}</td>
                                 </tr>
                                 @endif
                                 <tr>
                                     <td>Size</td>
-                                    <td>{{ $product->length }} x {{ $product->width }} feet</td>
+                                    <td>
+                                        @if(count($product->size))
+                                            @foreach($product->size as $single)
+                                                <span class="badge badge-secondary">{{ $single->length+0 }} x {{ $single->width+0 }} feet</span>
+                                            @endforeach
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Shape</td>

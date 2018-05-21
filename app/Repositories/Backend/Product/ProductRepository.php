@@ -310,9 +310,23 @@ class ProductRepository extends BaseRepository
 
         $product->shop = json_encode($shopLinks);
 
-        DB::transaction(function () use ($product, $input) {
+        DB::transaction(function () use ($product, $input, $sizeArray) {
             if ($product->save()) {
 
+                $productId = $product->id;
+                ProductSize::where('product_id', $productId)->delete();
+
+                if($sizeArray)
+                {
+                    foreach($sizeArray as $singleKey => $singleValue)
+                    {
+                        $productSize = new ProductSize();
+                        $productSize->product_id = $productId;
+                        $productSize->length = $singleValue['length'];
+                        $productSize->width = $singleValue['width'];
+                        $productSize->save();
+                    }
+                }
 
                 return true;
             }
