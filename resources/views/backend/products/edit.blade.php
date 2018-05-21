@@ -105,20 +105,32 @@
                         {{ Form::select('shape', config('constant.shapes'), null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Shape']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
-                <div class="form-group">
-                    {{ Form::label('length', 'Size Length (Feet)', ['class' => 'col-lg-2 control-label']) }}
+                @foreach($product->size as $singleKey => $singleValue)
+                <div class="size-container">
+                    <div class="form-group">
+                        {{ Form::label('length', 'Size Length (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
-                    <div class="col-lg-10">
-                        {{ Form::number('length', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
-                    </div><!--col-lg-10-->
-                </div><!--form control-->
-                <div class="form-group">
-                    {{ Form::label('width', 'Size Width (Feet)', ['class' => 'col-lg-2 control-label']) }}
+                        <div class="col-lg-10">
+                            {{ Form::number('length['.$singleKey.']', $singleValue['length'], ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
 
-                    <div class="col-lg-10">
-                        {{ Form::number('width', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
-                    </div><!--col-lg-10-->
-                </div><!--form control-->
+                    <div class="form-group">
+                        {{ Form::label('width', 'Size Width (Feet)', ['class' => 'col-lg-2 control-label']) }}
+
+                        <div class="col-lg-10">
+                            {{ Form::number('width['.$singleKey.']', $singleValue['length'], ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+                    <button class='btn btn-sm btn-warning delete-rule'>X</button>
+                </div>
+                @endforeach
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button class="btn btn-success add-size">Add More Size</button>
+                    </div>
+                </div>
                 <div class="form-group">
                     {{ Form::label('foundation', 'Foundation', ['class' => 'col-lg-2 control-label']) }}
 
@@ -234,6 +246,29 @@
             $(document).on('click', '.remove', function()
             {
                 $(this).closest('div').remove();
+            });
+            var closeButtonHtml = "<button class='btn btn-sm btn-warning delete-rule'>X</button>";
+            ruleIndex = <?php echo count($product->size); ?>;
+
+            $(".add-size").on('click', function(e){
+                e.preventDefault();
+                var clonedInput = $('.size-container').eq(0).clone();
+                ruleIndex++;
+                clonedInput.find('input').each(function() {
+                    this.name   = this.name.replace('[0]', '['+ruleIndex+']');
+                    this.value  = "";
+                });
+                if(clonedInput.find('.delete-rule').length == 0)
+                {
+                    $(clonedInput).append(closeButtonHtml);
+                }
+                $(clonedInput).insertAfter(".size-container:last");
+                //$('.size-container:last').append(closeButtonHtml);
+            });
+
+            $(document).on('click', ".delete-rule", function(e){
+                e.preventDefault();
+                $(this).closest('.size-container').remove();
             });
         });
     </script>

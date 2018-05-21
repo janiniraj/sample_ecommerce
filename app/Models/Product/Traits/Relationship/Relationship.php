@@ -8,6 +8,7 @@ use App\Models\SubCategories\SubCategory;
 use App\Models\Style\Style;
 use App\Models\Material\Material;
 use App\Models\Weave\Weave;
+use App\Models\Product\ProductSize;
 
 /**
  * Class Relationship.
@@ -49,4 +50,9 @@ trait Relationship
 	{
 		return $this->hasOne(Weave::class, 'id', 'weave_id');
 	}
+
+    public function size()
+    {
+        return $this->hasMany(ProductSize::class);
+    }
 }

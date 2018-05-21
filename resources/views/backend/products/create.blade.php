@@ -111,7 +111,7 @@
                         {{ Form::label('length', 'Size Length (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-10">
-                            {{ Form::number('length', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
+                            {{ Form::number('length[0]', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Length', 'step' => '0.01']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
@@ -119,9 +119,15 @@
                         {{ Form::label('width', 'Size Width (Feet)', ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-10">
-                            {{ Form::number('width', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
+                            {{ Form::number('width[0]', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Size Width', 'step' => '0.01']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button class="btn btn-success add-size">Add More Size</button>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -254,7 +260,7 @@
                 $("#subcategory_id").html(html);
             }
         });
-        var closeButtonHtml = "<div class='col-md-1'><button class='btn btn-sm btn-warning delete-rule'>X</button></div>";
+        var closeButtonHtml = "<button class='btn btn-sm btn-warning delete-rule'>X</button>";
         ruleIndex = 0;
         $(".add-size").on('click', function(e){
             e.preventDefault();
@@ -264,7 +270,11 @@
                 this.name   = this.name.replace('[0]', '['+ruleIndex+']');
                 this.value  = "";
             });
-            $(clonedInput).insertBefore(".size-container:last");
+            if(clonedInput.find('.delete-rule').length == 0)
+            {
+                $(clonedInput).append(closeButtonHtml);
+            }
+            $(clonedInput).insertAfter(".size-container:last");
             //$('.size-container:last').append(closeButtonHtml);
         });
 

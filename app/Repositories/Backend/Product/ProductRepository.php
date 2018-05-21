@@ -6,6 +6,7 @@ use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Utilities\FileUploads;
+use App\Models\Product\ProductSize;
 
 /**
  * Class ProductRepository.
@@ -75,7 +76,21 @@ class ProductRepository extends BaseRepository
 
         $input['main_image'] = json_encode($imageNameArray);
 
-        DB::transaction(function () use ($input) {
+        $sizeArray = [];
+
+        if(isset($input['length']) && !empty($input['length']))
+        {
+            foreach ($input['length'] as $singleKey => $singleValue) {
+                $sizeArray[$singleKey]['length']    = $singleValue;
+                $sizeArray[$singleKey]['width']     = $input['width'][$singleKey];
+            }
+
+            $sizeArray = array_values($sizeArray);
+        }
+
+        unset($input['length'], $input['width']);
+
+        DB::transaction(function () use ($input, $sizeArray) {
             $product                    = self::MODEL;
             $product                    = new $product();
             $product->name              = $input['name'];
@@ -90,8 +105,8 @@ class ProductRepository extends BaseRepository
             $product->color_id          = $input['color_id'];
             $product->border_color_id   = $input['border_color_id'];
             $product->shape             = $input['shape'];
-            $product->length            = $input['length'];
-            $product->width             = $input['width'];
+            /*$product->length            = $input['length'];
+            $product->width             = $input['width'];*/
             $product->foundation        = $input['foundation'];
             $product->knote_per_sq      = $input['knote_per_sq'];
             $product->detail            = $input['detail'];
@@ -119,6 +134,20 @@ class ProductRepository extends BaseRepository
 
             if ($product->save()) {
 
+                $productId = $product->id;
+
+                if($sizeArray)
+                {
+                    foreach($sizeArray as $singleKey => $singleValue)
+                    {
+                        $productSize = new ProductSize();
+                        $productSize->product_id = $productId;
+                        $productSize->length = $singleValue['length'];
+                        $productSize->width = $singleValue['width'];
+                        $productSize->save();
+                    }
+                }
+
                 return true;
             }
 
@@ -138,6 +167,20 @@ class ProductRepository extends BaseRepository
     {
         $product->name = $input['name'];
         $product->type = $input['type'];
+
+        $sizeArray = [];
+
+        if(isset($input['length']) && !empty($input['length']))
+        {
+            foreach ($input['length'] as $singleKey => $singleValue) {
+                $sizeArray[$singleKey]['length']    = $singleValue;
+                $sizeArray[$singleKey]['width']     = $input['width'][$singleKey];
+            }
+
+            $sizeArray = array_values($sizeArray);
+        }
+
+        unset($input['length'], $input['width']);
 
         if(isset($input['main_image']))
         {
@@ -269,6 +312,8 @@ class ProductRepository extends BaseRepository
 
         DB::transaction(function () use ($product, $input) {
             if ($product->save()) {
+
+
                 return true;
             }
 

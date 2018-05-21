@@ -35,6 +35,6 @@ class ProductSize extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = 'products';
+        $this->table = 'product_sizes';
     }
 }
