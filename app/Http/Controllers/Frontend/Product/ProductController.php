@@ -553,6 +553,20 @@ class ProductController extends Controller
 
     public function advanceSearch(Request $request)
     {
-        return view('frontend.products.advance-search');
+        $categoryList   = $this->categories->getAll();
+        $collectionList = $this->subcategories->getAll();        
+        $styleList      = $this->style->getAll();
+        $materialList   = $this->material->getAll();
+        $weaveList      = $this->weave->getAll();
+        $colorList      = $this->color->getAll();
+
+        return view('frontend.products.advance-search')->with([
+            'categoryList'      => $categoryList,
+            'collectionList'    => $collectionList,
+            'styleList'         => $styleList,
+            'materialList'      => $materialList,
+            'weaveList'         => $weaveList,
+            'colorList'         => $colorList
+        ]);
     }
 }
