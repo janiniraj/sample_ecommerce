@@ -13,6 +13,7 @@ $helper = new MenuHelper();
             </button>
         </div>
         <div class="collapse navbar-collapse hidden-sm hidden-xs" id="socialNavbar">
+            <span class="logo-next-text" style="padding-left: 45%;font-size: 36px;position: absolute;">Company</span>
             <ul class="nav navbar-nav navbar-right social">
                 <li>
                     @if(Auth::check())
