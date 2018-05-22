@@ -27,7 +27,7 @@ class ProductController extends Controller
     protected $products;
 
     /**
-     * @param ProductRepository       $products
+     * ProductController constructor.
      */
     public function __construct()
     {
@@ -549,5 +549,10 @@ class ProductController extends Controller
             'colorList'         => $colorList
         ]);
 
+    }
+
+    public function advanceSearch(Request $request)
+    {
+        return view('frontend.products.advance-search');
     }
 }
