@@ -316,9 +316,9 @@ $helper = new MenuHelper();
                     <a href="#">Shop</a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#">Search</a>
+                    <a class="dropdown-toggle" href="{{ route('frontend.product.advance-search') }}">Search</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Advanced Search</a></li>
+                        <li><a href="{{ route('frontend.product.advance-search') }}">Advanced Search</a></li>
 
                     </ul>
                 </li>
