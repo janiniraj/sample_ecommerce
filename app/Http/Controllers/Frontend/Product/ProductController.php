@@ -145,6 +145,36 @@ class ProductController extends Controller
                 }
                 $products = $products->whereBetween('length', [$filterData['length_min'], $filterData['length_max']]);
             }
+
+            if(isset($filterData['search']) && $filterData['search'])
+            {
+                $products = $products->where('products.name', 'LIKE', "%".$filterData['search']."%");
+            }
+
+            if(isset($filterData['sku']) && $filterData['sku'])
+            {
+                $products = $products->where('products.name', 'LIKE', "%".$filterData['sku']."%");
+            }
+
+            if(isset($filterData['country']) && $filterData['country'])
+            {
+                $products = $products->where('products.country_origin', $filterData['country']);
+            }
+
+            if(isset($filterData['knote_per_sq']) && $filterData['knote_per_sq'])
+            {
+                $products = $products->where('products.knote_per_sq', $filterData['knote_per_sq']);
+            }
+
+            if(isset($filterData['foundation']) && $filterData['foundation'])
+            {
+                $products = $products->where('products.foundation', $filterData['foundation']);
+            }
+
+            if(isset($filterData['border_color']) && $filterData['border_color'])
+            {
+                $products = $products->where('products.border_color_id', $filterData['border_color']);
+            }
         }
 
         $categoryParam      = clone $products; 

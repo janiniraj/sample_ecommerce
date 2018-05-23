@@ -74,6 +74,7 @@
     <div class="container" id="results-page">
         <div class="section">
             <div class="col-md-12 padding">
+                {{ Form::open(['method' => 'GET', 'url' => route('frontend.product.product-by-type')]) }}
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
                         <span class="input-group-btn">
@@ -81,29 +82,34 @@
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </span>
-                        <input type="text" class="form-control input-lg" placeholder="Search..." />
+                        <input name="search" type="text" class="form-control input-lg" placeholder="Search..." />
                         
                     </div>
                 </div>
+                {{ Form::close() }}
             </div>
+
+            {{ Form::open(['method' => 'GET', 'url' => route('frontend.product.product-by-type')]) }}
+
             <div class="col-md-12 padding type-container">
                 <label class="btn btn-default col-md-2 col-xs-12 col-sm-12 col-md-offset-1">
-                    <input type="radio" name="options" value="all"> All
+                    <input type="radio" name="type" value="all"> All
                 </label>
                 <label class="btn btn-default col-md-2 col-xs-12 col-sm-12">
-                    <input type="radio" name="options" value="rug"> Rug
+                    <input type="radio" name="type" value="rug"> Rug
                 </label>
                 <label class="btn btn-default col-md-2 col-xs-12 col-sm-12">
-                    <input type="radio" name="options" value="furniture"> Furniture
+                    <input type="radio" name="type" value="furniture"> Furniture
                 </label>
                 <label class="btn btn-default col-md-2 col-xs-12 col-sm-12">
-                    <input type="radio" name="options" value="lighting"> Lighting
+                    <input type="radio" name="type" value="lighting"> Lighting
                 </label>
                 <label class="btn btn-default col-md-2 col-xs-12 col-sm-12">
-                    <input type="radio" name="options" value="accessories"> Accessories
+                    <input type="radio" name="type" value="accessories"> Accessories
                 </label>
             </div>
-            <div class="col-md-12 padding different-container">
+            
+            <div class="col-md-12 padding different-container margin">
                 
                 <div class="col-md-4 filters">
                     
@@ -135,6 +141,28 @@
                                         <li><a class="filter-option {{ isset($filterData['shape']) && $filterData['shape'] == $single ? 'active' : '' }}" fieldvalue="{{ $single }}" href="javascript:void(0);">{{ $single }}</a></li>
                                     @endforeach
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#knotItems">
+                            <h4 class="panel-title">Knots per Sq. <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="knotItems">
+                            <div class="panel-body">
+                                <input type="text" class="form-control" name="knote_per_sq" placeholder="Knots per Sq.">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#foundationItems">
+                            <h4 class="panel-title">Foundation <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="foundationItems">
+                            <div class="panel-body">
+                                <input type="text" class="form-control" name="foundation" placeholder="Foundation">
                             </div>
                         </div>
                     </div>
@@ -203,23 +231,17 @@
                     </div>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-target="#knotItems">
-                            <h4 class="panel-title">Knots per Sq. <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        <input type="hidden" name="weave" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#weaveItems">
+                            <h4 class="panel-title">Weaves <i class="chevron fa fa-fw pull-right" ></i></h4>
                         </div>
-                        <div class="collapse in" id="knotItems">
+                        <div class="collapse in" id="weaveItems">
                             <div class="panel-body">
-                                <input type="text" class="form-control" name="knote_per_sq" placeholder="Knots per Sq.">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-target="#foundationItems">
-                            <h4 class="panel-title">Foundation <i class="chevron fa fa-fw pull-right" ></i></h4>
-                        </div>
-                        <div class="collapse in" id="foundationItems">
-                            <div class="panel-body">
-                                <input type="text" class="form-control" name="knote_per_sq" placeholder="Foundation">
+                                <ul class="sub-filters">
+                                    @foreach($weaveList as $single)
+                                        <li><a class="filter-option {{ isset($filterData['weave']) && $filterData['weave'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -242,23 +264,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <input type="hidden" name="weave" class="filter-input">
-                        <div class="panel-heading" data-toggle="collapse" data-target="#weaveItems">
-                            <h4 class="panel-title">Weaves <i class="chevron fa fa-fw pull-right" ></i></h4>
-                        </div>
-                        <div class="collapse in" id="weaveItems">
-                            <div class="panel-body">
-                                <ul class="sub-filters">
-                                    @foreach($weaveList as $single)
-                                        <li><a class="filter-option {{ isset($filterData['weave']) && $filterData['weave'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
 
                     <div class="panel panel-default">
                         <input type="hidden" name="color" class="filter-input">
@@ -337,10 +343,14 @@
                         </div>
                     </div>
 
+                </div>
 
-                </div>   
+                <div class="col-md-12">
+                    <button id="filter_submit" class="btn btn-submit pull-right" type="submit">Submit</button>
+                </div>
 
             </div>
+            {{ Form::close() }}
         </div>
     </div><!-- container -->
 @endsection
