@@ -342,13 +342,15 @@ $helper = new MenuHelper();
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+            <div id="google_translate_element" style="display: none"></div>
                 <li class="dropdown language">
                     <a class="dropdown-toggle" href="#">Language</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><img src="{{ url('/') }}/frontend/img/flags/us.png"></a></li>
-                        <li><a href="#"><img src="{{ url('/') }}/frontend/img/flags/fr.png"></a></li>
-                        <li><a href="#"><img src="{{ url('/') }}/frontend/img/flags/ch.png"></a></li>
-                        <li><a href="#"><img src="{{ url('/') }}/frontend/img/flags/sp.png"></a></li>
+
+                        <li><a href="javascript:void(0);" id="English" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/us.png"></a></li>
+                        <li><a href="javascript:void(0);" id="French" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/fr.png"></a></li>
+                        <li><a href="javascript:void(0);" id="German" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/ch.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Spanish" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/sp.png"></a></li>
                     </ul>
                 </li>
             </ul>

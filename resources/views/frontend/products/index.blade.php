@@ -304,6 +304,11 @@
             {
                 return 'label cl color-' + item.value;
             }
+
+            if(item.type=='Border Color')
+            {
+                return 'label cl border-' + item.value;
+            }
             return 'label label-default';
         },
         itemValue: 'value',
@@ -328,6 +333,14 @@
                     $(label).attr('style', 'background: '+ colorName);
                     var html = $(label).html();
                     $(label).html(html.replace(colorName,'Color'));
+                }
+
+                if(this.indexOf("border-") != -1)
+                {
+                    var colorName = this.replace("border-",'');
+                    $(label).attr('style', 'background: '+ colorName);
+                    var html = $(label).html();
+                    $(label).html(html.replace(colorName,'Border Color'));
                 }
             });
         });

@@ -153,7 +153,7 @@ class ProductController extends Controller
 
             if(isset($filterData['sku']) && $filterData['sku'])
             {
-                $products = $products->where('products.name', 'LIKE', "%".$filterData['sku']."%");
+                $products = $products->where('products.sku', 'LIKE', "%".$filterData['sku']."%");
             }
 
             if(isset($filterData['country']) && $filterData['country'])
@@ -207,7 +207,11 @@ class ProductController extends Controller
             'style'         => 'Style',
             'material'      => 'Material',
             'weave'         => 'Weave',
-            'shape'         => 'Shape'
+            'shape'         => 'Shape',
+            'country'       => 'Country of Origin',
+            'knote_per_sq'  => 'Knots per Sq',
+            'foundation'    => 'Foundation',
+            'sku'           => 'Item Number'
         ];
 
         foreach ($filterData as $singleKey => $singleValue)
@@ -255,6 +259,11 @@ class ProductController extends Controller
             if($singleKey == 'color' && $singleValue)
             {
                 $filterDisplay['Color'] = $this->color->find($singleValue)->name;
+            }
+
+            if($singleKey == 'border_color' && $singleValue)
+            {
+                $filterDisplay['Border Color'] = $this->color->find($singleValue)->name;
             }
         }
 
