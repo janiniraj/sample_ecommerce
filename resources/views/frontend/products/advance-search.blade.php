@@ -56,6 +56,13 @@
         {
             border-bottom:none;
         }
+        #results-page .panel-body {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .panel-body input[type="text"] {
+            border-radius: 0;
+        }
         /* End */
 
         @media (min-width:1025px) {
@@ -101,8 +108,24 @@
                 <div class="col-md-4 filters">
                     
                     <div class="panel panel-default">
+                        <input type="hidden" name="country" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#countryItems">
+                            <h4 class="panel-title">Country of Origin <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="countryItems">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    @foreach(config('constant.countries') as $single)
+                                        <li><a class="filter-option {{ isset($filterData['country']) && $filterData['country'] == $single ? 'active' : '' }}" fieldvalue="{{ $single }}" href="javascript:void(0);">{{ $single }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
                         <input type="hidden" name="shape" class="filter-input">
-                        <div class="panel-heading" data-toggle="collapse" data-target="#shapeItems"> 
+                        <div class="panel-heading" data-toggle="collapse" data-target="#shapeItems">
                             <h4 class="panel-title">Shape <i class="chevron fa fa-fw pull-right" ></i></h4>
                         </div>
                         <div class="collapse in" id="shapeItems">
@@ -136,6 +159,71 @@
                         </div>
                     </div>
 
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#skuItems">
+                            <h4 class="panel-title">Item Number <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="skuItems">
+                            <div class="panel-body">
+                                <input type="text" class="form-control" name="sku" placeholder="Item Number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <input type="hidden" name="style" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#styleItems">
+                            <h4 class="panel-title">Styles<i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="styleItems">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    @foreach($styleList as $single)
+                                        <li><a class="filter-option {{ isset($filterData['style']) && $filterData['style'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <input type="hidden" name="material" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#materialItems">
+                            <h4 class="panel-title">Materials <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="materialItems">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    @foreach($materialList as $single)
+                                        <li><a class="filter-option {{ isset($filterData['material']) && $filterData['material'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#knotItems">
+                            <h4 class="panel-title">Knots per Sq. <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="knotItems">
+                            <div class="panel-body">
+                                <input type="text" class="form-control" name="knote_per_sq" placeholder="Knots per Sq.">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#foundationItems">
+                            <h4 class="panel-title">Foundation <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="foundationItems">
+                            <div class="panel-body">
+                                <input type="text" class="form-control" name="knote_per_sq" placeholder="Foundation">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col-md-4 filters">
@@ -156,6 +244,100 @@
                         </div>
                     </div>
 
+                    <div class="panel panel-default">
+                        <input type="hidden" name="weave" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#weaveItems">
+                            <h4 class="panel-title">Weaves <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="weaveItems">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    @foreach($weaveList as $single)
+                                        <li><a class="filter-option {{ isset($filterData['weave']) && $filterData['weave'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">{{ $single->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <input type="hidden" name="color" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#colorItems">
+                            <h4 class="panel-title">Colors <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="colorItems">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    @foreach($colorList as $single)
+                                        <li>
+                                            <a class="filter-option {{ isset($filterData['color']) && $filterData['color'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">
+                                                <span class="color-names" colorvalue="{{ $single->name }}">{{ $single->name }}</span>
+                                                <span class="color-btn" style="background-color: #f31fd2"> </span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <input type="hidden" name="border_color" class="filter-input">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#border_colorItems">
+                            <h4 class="panel-title">Border Colors <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="border_colorItems">
+                            <div class="panel-body">
+                                <ul class="sub-filters">
+                                    @foreach($colorList as $single)
+                                        <li>
+                                            <a class="filter-option {{ isset($filterData['color']) && $filterData['color'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">
+                                                <span class="color-names" colorvalue="{{ $single->name }}">{{ $single->name }}</span>
+                                                <span class="color-btn" style="background-color: #f31fd2"> </span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#sizeItems">
+                            <h4 class="panel-title">Size <i class="chevron fa fa-fw pull-right" ></i></h4>
+                        </div>
+                        <div class="collapse in" id="sizeItems">
+                            <div class="panel-body">
+                                <div class="dimensions padding">
+                                    <div class="width">
+                                        <label>Width</label>
+                                        <div class="checkbox">
+                                            <label><input type="radio" name="unit_width" value="feet" checked> Feet</label>
+                                            <label><input type="radio" name="unit_width" value="inch"> Inch</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="min" placeholder="Min" name="width_min">
+                                            <input type="text" class="form-control" id="max" placeholder="Max" name="width_max">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="length">
+                                        <label>length</label>
+                                        <div class="checkbox">
+                                            <label><input type="radio" name="unit_length" value="feet" checked> Feet</label>
+                                            <label><input type="radio" name="unit_length" value="inch"> Inch</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="min" placeholder="Min" name="length_min">
+                                            <input type="text" class="form-control" id="max" placeholder="Max" name="length_max">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>   
 
             </div>
@@ -165,6 +347,24 @@
 
 @section('after-scripts')
     <script>
-
+        $(".filter-option").on('click', function (e) {
+            $(this).closest('.panel.panel-default').find('.filter-option').each(function(){
+                if($(this).hasClass('active'))
+                {
+                    $(this).removeClass('active');
+                }
+            });
+            $(this).addClass('active');
+            var fieldValue = $(this).attr('fieldvalue');
+            $(this).closest('.panel.panel-default').find('.filter-input').val(fieldValue);
+        });
+        $(".color-names").each(function(e){
+            var colorValue = $(this).attr('colorvalue');
+            var n_match  = ntc.name(colorValue);
+            if(n_match[1].length)
+            {
+                $(this).html(n_match[1]);
+            }
+        });
     </script>
 @endsection

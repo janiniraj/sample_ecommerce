@@ -69,6 +69,7 @@
     {!! Html::script('/frontend/js/foundation.min.js') !!}
     {!! Html::script('/frontend/js/setup.js') !!}
     {!! Html::script('/frontend/js/bootstrap-tagsinput.min.js') !!}
+    {!! Html::script('/frontend/js/color_name.js') !!}
     {!! Html::script('/frontend/js/custom.js') !!}
     <script>
         $(function() {
