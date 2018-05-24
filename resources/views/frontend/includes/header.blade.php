@@ -19,7 +19,7 @@ $helper = new MenuHelper();
                     @if(Auth::check())
                         {{ link_to_route('frontend.auth.logout', 'Logout', [], ['class' => 'login' ]) }}
                     @else
-                        {{ link_to_route('frontend.auth.login', trans('navs.frontend.login'), [], ['class' => 'login' ]) }}
+                        {{ link_to_route('frontend.auth.login', trans('navs.frontend.login'), [], ['class' => 'login', 'data-toggle' => "modal", "data-target" => "#login-modal" ]) }}
                     @endif
                 </li>
                 <li><a class="heart" href="{{ route('frontend.product.favourites') }}"><i class="fas fa-heart"></i></a></li>
@@ -361,3 +361,20 @@ $helper = new MenuHelper();
         </div>
     </div>
 </nav>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Login to Your Account</h1><br>
+          {{ Form::open(['route' => 'frontend.auth.login.post', 'class' => 'form-horizontal']) }}
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          {{ Form::close() }}
+            
+          <div class="login-help">
+            <a href="#">Register</a> - <a href="#">Forgot Password</a>
+          </div>
+        </div>
+    </div>
+</div>
