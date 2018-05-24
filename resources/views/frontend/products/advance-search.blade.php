@@ -346,6 +346,7 @@
                 </div>
 
                 <div class="col-md-12">
+                    <a href="{{ route('frontend.product.advance-search') }}" class="btn btn-remove pull-left">Clear Filter</a>
                     <button id="filter_submit" class="btn btn-submit pull-right" type="submit">Submit</button>
                 </div>
 
