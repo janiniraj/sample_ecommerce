@@ -88,14 +88,28 @@
                     {{ Form::label('color_id', 'Color', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::select('color_id', $colorList, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Color']) }}
+                        <?php /*{{ Form::select('color_id', $colorList, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Color']) }}*/ ?>
+                        <select class="form-control" required="required" id="color_id" name="color_id">
+                            <option selected="selected" value="">Select Color</option>
+                            @foreach($colorList as $key => $value)
+                                <option value="{{ $key }}" colorvalue="{{ $value }}">{{ $value }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">
                     {{ Form::label('border_color_id', 'Border Color', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::select('border_color_id', $colorList, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Select Border Color']) }}
+                        <?php /*{{ Form::select('border_color_id', $colorList, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Not Applicable']) }}*/ ?>
+                        <select class="form-control" required="required" id="border_color_id" name="border_color_id">
+                            <option selected="selected" value="">Not Applicable</option>
+                            @foreach($colorList as $key => $value)
+                                <option value="{{ $key }}" colorvalue="{{ $value }}">{{ $value }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group">
@@ -282,6 +296,20 @@
             e.preventDefault();
             $(this).closest('.size-container').remove();
         });
+        $("#color_id option, #border_color_id option").each(function(e){
+            var colorValue = $(this).attr('colorvalue');
+            if(colorValue !== undefined)
+            {
+                console.log(colorValue);
+                var n_match  = ntc.name(colorValue);
+                console.log(n_match);
+                if(n_match[1].length)
+                {
+                    $(this).html(n_match[1]);
+                }
+            }
+        });
+
     });
 </script>
 @endsection

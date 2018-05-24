@@ -77,6 +77,7 @@
         @yield('before-scripts')
         {{ Html::script(mix('js/backend.js')) }}
         <script src="https://cdn.ckeditor.com/4.9.2/standard-all/ckeditor.js"></script>
+        {{ Html::script('js/color_name.js') }}
         @yield('after-scripts')
     </body>
 </html>

@@ -342,7 +342,7 @@ $helper = new MenuHelper();
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-            <div id="google_translate_element" style="display: none"></div>
+                <div id="google_translate_element" style="display: none"></div>
                 <li class="dropdown language">
                     <a class="dropdown-toggle" href="#">Language</a>
                     <ul class="dropdown-menu">
