@@ -78,11 +78,11 @@
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
                         <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
+                            <button class="btn btn-info btn-lg" type="submit">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </span>
-                        <input name="search" type="text" class="form-control input-lg" placeholder="Search..." />
+                        <input name="search" required type="text" class="form-control input-lg" placeholder="Search..." />
                         
                     </div>
                 </div>
@@ -278,7 +278,7 @@
                                         <li>
                                             <a class="filter-option {{ isset($filterData['color']) && $filterData['color'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">
                                                 <span class="color-names" colorvalue="{{ $single->name }}">{{ $single->name }}</span>
-                                                <span class="color-btn" style="background-color: #f31fd2"> </span>
+                                                <span class="color-btn" style="background-color: {{ $single->name }}"> </span>
                                             </a>
                                         </li>
                                     @endforeach
@@ -299,7 +299,7 @@
                                         <li>
                                             <a class="filter-option {{ isset($filterData['color']) && $filterData['color'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">
                                                 <span class="color-names" colorvalue="{{ $single->name }}">{{ $single->name }}</span>
-                                                <span class="color-btn" style="background-color: #f31fd2"> </span>
+                                                <span class="color-btn" style="background-color: {{ $single->name }}"> </span>
                                             </a>
                                         </li>
                                     @endforeach
