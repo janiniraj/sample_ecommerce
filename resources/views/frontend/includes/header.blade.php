@@ -383,7 +383,7 @@ $helper = new MenuHelper();
     <div class="modal-dialog">
         <div class="loginmodal-container">
             <h1>Create Account</h1><br>
-          {{ Form::open(['route' => 'frontend.auth.register.post', 'class' => 'form-horizontal']) }}
+          {{ Form::open(['route' => 'frontend.auth.register.post-ajax', 'class' => 'form-horizontal', 'id' => 'headerRegister']) }}
             <input type="text" required name="first_name" placeholder="First Name">
             <input type="text" required name="last_name" placeholder="Last Name">
             <input type="email" required name="email" placeholder="Email">
