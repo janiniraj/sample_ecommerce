@@ -101,6 +101,16 @@
             }            
             return false;
         }
+        $(document).ready(function(){
+            $(".register-button").on('click', function(){
+                $("#login-modal").modal('hide');
+                $("#register-modal").modal('show');
+            });
+            $(".back-login").on('click', function(){
+                $("#register-modal").modal('hide');
+                $("#login-modal").modal('show');
+            });
+        });
     </script>
 @yield('after-scripts')
 </body>

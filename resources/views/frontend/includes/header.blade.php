@@ -348,7 +348,7 @@ $helper = new MenuHelper();
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0);" id="English" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/us.png"></a></li>
                         <li><a href="javascript:void(0);" id="French" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/fr.png"></a></li>
-                        <li><a href="javascript:void(0);" id="German" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/ch.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Chinese (Simplified)" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/ch.png"></a></li>
                         <li><a href="javascript:void(0);" id="Spanish" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/sp.png"></a></li>
                         <li><a href="javascript:void(0);" id="Arabic" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Arabic.png"></a></li>
                         <li><a href="javascript:void(0);" id="German" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Germany.png"></a></li>
@@ -367,13 +367,33 @@ $helper = new MenuHelper();
         <div class="loginmodal-container">
             <h1>Login to Your Account</h1><br>
           {{ Form::open(['route' => 'frontend.auth.login.post', 'class' => 'form-horizontal']) }}
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
+            <input type="email" required name="email" placeholder="Email">
+            <input type="password" required name="password" placeholder="Password">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           {{ Form::close() }}
             
           <div class="login-help">
-            <a href="#">Register</a> - <a href="#">Forgot Password</a>
+            <a class="register-button" href="javascript:void(0)">Register</a> - <a href="#">Forgot Password</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Create Account</h1><br>
+          {{ Form::open(['route' => 'frontend.auth.register.post', 'class' => 'form-horizontal']) }}
+            <input type="text" required name="first_name" placeholder="First Name">
+            <input type="text" required name="last_name" placeholder="Last Name">
+            <input type="email" required name="email" placeholder="Email">
+            <input type="password" required name="password" placeholder="Password">
+            <input type="password" required name="password_confirmation" placeholder="Confirm Password">
+            <input type="submit" name="register" class="login loginmodal-submit" value="Register">
+          {{ Form::close() }}
+            
+          <div class="login-help">
+            <a class="back-login" href="javascript:void(0)">Back to Login</a>
           </div>
         </div>
     </div>
