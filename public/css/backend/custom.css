@@ -58,3 +58,17 @@
 .mce-branding.mce-widget.mce-label {
     display: none;
 }
+
+.single-image-display {
+    display: inline-block;
+}
+
+.close-image {
+    padding: 2px 5px;
+    background: #444;
+    color: white;
+    position: relative;
+    right: 24px;
+    top: -37px;
+    cursor: pointer;
+}

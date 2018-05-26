@@ -182,6 +182,11 @@ class ProductRepository extends BaseRepository
 
         unset($input['length'], $input['width']);
 
+        if(isset($input['image_old']))
+        {
+            $product->main_image = json_encode($input['image_old']);
+        }
+
         if(isset($input['main_image']))
         {
             $files = $input['main_image'];

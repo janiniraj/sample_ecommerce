@@ -169,12 +169,23 @@
                     {{ Form::label('main_image', 'Product Image', ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10 image-container">
-                        @php
-                            $images = json_decode($product->main_image, true);
-                            foreach($images as $singleImage) {
-                                echo '<img class="image-display margin" src="'.url('/').'/img/products/'.$singleImage.'">';
-                            }
-                        @endphp
+                        <div class="image-display-container">
+                            @php
+                                $images = json_decode($product->main_image, true);
+                                foreach($images as $singleImage) {
+                            @endphp
+
+                            <div class="single-image-display"> 
+                                <input type="hidden" name="image_old[]" value="<?php echo $singleImage; ?>">
+                                <img class="image-display margin" src="<?php echo url('/').'/img/products/'.$singleImage; ?>">
+                                <span class="close-image">X</span>
+                            </div>
+
+                            @php
+                                }
+                            @endphp
+                        </div>
+
                         <div class="file-input-cloned">
                             <img class="image-display hidden">
                             {{ Form::file('main_image[]', ['id' => 'files', 'class' => 'files', 'accept' => "image/x-png,image/gif,image/jpeg"]) }}
@@ -289,14 +300,17 @@
                 var colorValue = $(this).attr('colorvalue');
                 if(colorValue !== undefined)
                 {
-                    console.log(colorValue);
                     var n_match  = ntc.name(colorValue);
-                    console.log(n_match);
+                    
                     if(n_match[1].length)
                     {
                         $(this).html(n_match[1]);
                     }
                 }
+            });
+
+            $(".close-image").on('click', function(e){
+                $(this).closest('.single-image-display').remove();
             });
         });
     </script>
