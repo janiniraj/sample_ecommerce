@@ -15,6 +15,7 @@ use Redirect;
 use App\Models\Product\UserFavourite;
 use Auth;
 use App\Models\Product\ProductReview;
+use DB;
 
 /**
  * Class ProductController.
@@ -324,17 +325,26 @@ class ProductController extends Controller
             if($check)
             {
                 $favourite = 1;
-            }
+            }           
 
-            $reviews = $this->productReview->where('product_id', $productId)->join('users', 'users.id', '=', 'reviews.user_id')->select(['reviews.*', 'users.first_name', 'users.last_name'])->get();
+        }
 
+        $reviews = $this->productReview->where('product_id', $productId)->join('users', 'users.id', '=', 'reviews.user_id')->select(['reviews.*', 'users.first_name', 'users.last_name'])->get();
+
+        $averageStarQuery = $this->productReview->where('product_id', $productId)->select(DB::raw("SUM(star) as sumStar, COUNT(id) as countStar"))->first();
+        $averageStar = 0;
+
+        if(!empty($averageStarQuery))
+        {
+            $averageStar = round($averageStarQuery->sumStar / $averageStarQuery->countStar);
         }
 
         return view('frontend.products.show')->with([
             'product'       => $product,
             'newArrivals'   => $newArrivals,
             'favourite'     => $favourite,
-            'reviews'       => isset($reviews) ? $reviews : []
+            'reviews'       => isset($reviews) ? $reviews : [],
+            'averageStar'   => $averageStar
             ]);
     }
 

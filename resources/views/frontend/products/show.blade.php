@@ -22,13 +22,19 @@
                 </div>
 
                 <div class="col-md-6 product-desc">
-                    <div class="path">
-
+                    <div class="path">                                                
                         <a id="favourite" class="heart {{ $favourite ? 'active' : '' }}" href="javascript:void(0);"><i class="fas fa-heart"></i></a>
                         <a class="share" href="#"><i class="fas fa-share-alt"></i></a>
                     </div>
 
                     <h2>{{ $product->name }}</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if($averageStar > 0)
+                                <div value="{{ $averageStar }}" class="rating-display"></div>
+                            @endif
+                        </div>
+                    </div>
 
                     <ul class="nav nav-pills nav-justified">
                         <li class="active"><a data-toggle="pill" href="#specs">Specs</a></li>
@@ -119,7 +125,6 @@
                 </div>
             </div>
 
-
             <div class="product-details">
                 <h2>Product Deatail</h2>
                 <div class="row">
@@ -171,14 +176,14 @@
                     <a href="{{ route('frontend.product.new-arrival') }}" class="btn btn-default btn-view-all">View All</a>
                 </div>
                 <section class="slider" id="arrivalsSlider">
-                    @foreach($newArrivals as $product)
-                        @php $images = json_decode($product->main_image, true); @endphp
+                    @foreach($newArrivals as $singleProduct)
+                        @php $images = json_decode($singleProduct->main_image, true); @endphp
                         <div class="">
                             <figure class="snip1174 grey">
                                 <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
                                 <figcaption>
-                                    <a href="{{ route('frontend.product.show', $product->id) }}">Quick View</a>
-                                    <h2>{{ $product->name }}</h2>
+                                    <a href="{{ route('frontend.product.show', $singleProduct->id) }}">Quick View</a>
+                                    <h2>{{ $singleProduct->name }}</h2>
                                 </figcaption>
                             </figure>
                         </div>
@@ -327,7 +332,18 @@
             onChange: function (rating, rateYoInstance) { 
               $("#reviewInput").val(rating);
             }
-        });        
+        });  
+
+        if($(".rating-display").length)
+        {
+            var defaultRating = $(".rating-display").attr('value');
+            $(".rating-display").rateYo({
+                rating: defaultRating,
+                fullStar: true,
+                readOnly: true,
+                ratedFill: "#d4122e",
+            });
+        }
     });
 </script>
 @endsection

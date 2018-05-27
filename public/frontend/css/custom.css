@@ -327,3 +327,6 @@ span.color-btn {
 body { 
     top: 0px !important; 
 }
+.rating-display {
+  float: right;
+}
