@@ -33,6 +33,7 @@
     {{ Html::style('/frontend/css/bootstrap-tagsinput.css') }}
 
     {{ Html::style('/frontend/css/custom.css') }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
 @yield('after-styles')
 
@@ -87,6 +88,7 @@
         }
     </script>
     <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
         function translateLanguage(lang) {
 

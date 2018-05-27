@@ -194,48 +194,58 @@
                 </ul>
 
                 <div class="tab-content">
-                    <div id="writeReview" class="tab-pane fade in active">
-                        <form action="">
+                    <div id="writeReview" class="tab-pane fade in active">                    
+                        {{ Form::open(array('url' => route('frontend.product.write-review'), 'id' => 'write_review_form')) }}
+                            
                             <div class="form-group">
                                 <label for="score">Score:</label>
-                                <div class="stars" id="userStars">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <input type="range" class="hidden" id="score" min="1" max="5" value="3">
+                                <div id="reviewDiv"></div>
+                                <input type="hidden" value="2" required id="reviewInput" name="star">
+                                <input type="hidden" value="{{ $product->id }}" name="product_id">
                             </div>
 
                             <div class="form-group">
                                 <label for="title">Title:</label>
-                                <input type="text" class="form-control" id="title">
+                                <input type="text" class="form-control" required id="title" name="title">
                             </div>
 
                             <div class="form-group">
                                 <label for="review">Review:</label>
-                                <textarea class="form-control" rows="5" id="review"></textarea>
+                                <textarea class="form-control" rows="5" required id="review" name="content"></textarea>
                             </div>
-
-                        </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-submit pull-right" type="submit">Submit</button>
+                                </div>
+                            </div>
+                            
+                        {{ Form::close() }}
                     </div>
                     <div id="reviews" class="tab-pane fade">
-                        <div class="user-review">
-                            <div class="username">
-                                <span>Liza</span>
-                            </div>
-                            <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <div class="user-review">
-                                <p>I love this rug! It is subtle but makes a bold statement. It is much softer than I expected for a jute rug. I love it!</p>
-                            </div>
-                        </div>
+                        @if(count($reviews) > 0)
+                            @foreach($reviews as $single)
+                                <div class="user-review">
+                                    <div class="username">
+                                        <span>{{ $single->first_name . ' ' . $single->last_name }}</span>
+                                    </div>
+                                    <div class="stars">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <span class="fa fa-star {{ $i <= $single->star ? 'checked' : '' }}"></span>
+                                        @endfor
+                                    </div>
+                                    <div class="user-review">
+                                        <p>{{ $single->title }}</p>
+                                    </div>
+                                    <div class="user-review">
+                                        <p>{{ $single->content }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                        <div class="alert alert-warning">
+                            No Reviews yet.
+                        </div>                              
+                        @endif
                     </div>
                     <div id="question" class="tab-pane fade">
                         <h3>Menu 2</h3>
@@ -310,6 +320,14 @@
                 }
             });
         });
+        $("#reviewDiv").rateYo({
+            rating: 2,
+            fullStar: true,
+            ratedFill: "#d4122e",
+            onChange: function (rating, rateYoInstance) { 
+              $("#reviewInput").val(rating);
+            }
+        });        
     });
 </script>
 @endsection

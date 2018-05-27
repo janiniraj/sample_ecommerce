@@ -9,6 +9,7 @@ use App\Models\Style\Style;
 use App\Models\Material\Material;
 use App\Models\Weave\Weave;
 use App\Models\Product\ProductSize;
+use App\Models\Product\ProductReview;
 
 /**
  * Class Relationship.
@@ -54,5 +55,10 @@ trait Relationship
     public function size()
     {
         return $this->hasMany(ProductSize::class);
+    }
+
+    public function review()
+    {
+        return $this->hasMany(ProductReview::class);
     }
 }

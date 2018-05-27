@@ -38,4 +38,42 @@ $(function(){
            }
          });
     });
+    $("#write_review_form").submit(function(e){
+        e.preventDefault();
+        var url = $(this).attr('action');
+        $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#write_review_form").serialize(),
+           success: function(data)
+           {
+              if(data.success == true)
+              {
+                swal({
+                    title:'Thank you!',
+                    text:data.message,
+                    type:'success'
+                  }).then(function() {
+                    $("#reviewInput").val('2');
+                    $("#reviewDiv").rateYo("rating", '2');
+                    $("#write_review_form").find("input[type=text], textarea").val(""); 
+                  });
+              }
+              else
+              {
+                var auth = data.auth;
+                swal({
+                  title:'Errors',
+                  text:data.message,
+                  type:'error'
+                }).then(function() {
+                  if(auth == false)
+                  {
+                    $('#login-modal').modal('show');
+                  }    
+                });
+              }               
+           }
+         });
+    });
 });

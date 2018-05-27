@@ -14,6 +14,7 @@ use App\Repositories\Backend\Color\ColorRepository;
 use Redirect;
 use App\Models\Product\UserFavourite;
 use Auth;
+use App\Models\Product\ProductReview;
 
 /**
  * Class ProductController.
@@ -39,6 +40,7 @@ class ProductController extends Controller
         $this->weave            = new WeaveRepository();
         $this->color            = new ColorRepository();
         $this->userFavourite    = new UserFavourite();
+        $this->productReview    = new ProductReview();
     }
 
     /**
@@ -323,12 +325,16 @@ class ProductController extends Controller
             {
                 $favourite = 1;
             }
+
+            $reviews = $this->productReview->where('product_id', $productId)->join('users', 'users.id', '=', 'reviews.user_id')->select(['reviews.*', 'users.first_name', 'users.last_name'])->get();
+
         }
 
         return view('frontend.products.show')->with([
             'product'       => $product,
             'newArrivals'   => $newArrivals,
-            'favourite'     => $favourite
+            'favourite'     => $favourite,
+            'reviews'       => isset($reviews) ? $reviews : []
             ]);
     }
 
@@ -607,5 +613,42 @@ class ProductController extends Controller
             'weaveList'         => $weaveList,
             'colorList'         => $colorList
         ]);
+    }
+
+    public function writeReview(Request $request)
+    {
+        $postData = $request->all();
+        $success = true;
+
+        $userCheck = Auth::check();
+        if($userCheck == false)
+        {
+            return response()->json([
+                'success'   => false,
+                'auth'      => false,
+                'message'   => 'Login first to write a review.'
+            ]);
+        }
+
+        $postData['user_id'] = Auth::user()->id;
+
+        $reviewData = $this->productReview->create($postData);
+
+        if($reviewData)
+        {
+            return response()->json([
+                'success'   => true,
+                'auth'      => true,
+                'message'   => 'Thank you for writing Review.'
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'success'   => false,
+                'auth'      => true,
+                'message'   => 'Error in writing Review.'
+            ]);
+        }
     }
 }

@@ -7,6 +7,7 @@ use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Utilities\FileUploads;
 use App\Models\Product\ProductSize;
+use App\Models\Product\ProductReview;
 
 /**
  * Class ProductRepository.
