@@ -22,7 +22,12 @@ $helper = new MenuHelper();
                         {{ link_to_route('frontend.auth.login', trans('navs.frontend.login'), [], ['class' => 'login', 'data-toggle' => "modal", "data-target" => "#login-modal" ]) }}
                     @endif
                 </li>
-                <li><a class="heart" href="{{ route('frontend.product.favourites') }}"><i class="fas fa-heart"></i></a></li>
+                <li>
+                <a class="heart" href="{{ route('frontend.product.favourites') }}">
+                    <i class="fas fa-heart"></i>
+                    <span  class="cart-items-count"><span class=" notification-counter">{{ $helper->favouriteCount }}</span></span>
+                </a>
+                </li>
                 <li class="rounded"><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="rounded"><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
                 <li class="rounded"><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>

@@ -1,6 +1,8 @@
 <?php namespace App\Helpers\Frontend;
 
 use App\Models\Product\Product;
+use App\Models\Product\UserFavourite;
+use Auth;
 
 /**
  * Class MenuHelper.
@@ -68,6 +70,8 @@ class MenuHelper
 
     public $furnitureShapeList;
 
+    public $favouriteCount;
+
     public function __construct()
     {
         $this->product          = new Product();
@@ -102,5 +106,15 @@ class MenuHelper
         $this->furnitureWeaveList    = $this->product->where('products.type', 'furniture')->join('weaves', 'weaves.id', '=', 'products.weave_id')->select('weaves.*')->groupBy('products.weave_id')->get();
         $this->furnitureColorList    = $this->product->where('products.type', 'furniture')->join('colors', 'colors.id', '=', 'products.color_id')->select('colors.*')->groupBy('products.color_id')->get();
         $this->furnitureShapeList    = $this->product->where('products.type', 'furniture')->select('products.shape')->groupBy('products.shape')->get();
+
+        $this->favouriteCount = 0;
+
+        if(Auth::check())
+        {
+            $userId             = Auth::user()->id;
+            $productFavourite   = new UserFavourite();
+
+            $this->favouriteCount = $productFavourite->where('user_id', $userId)->count();
+        }
     }
 }

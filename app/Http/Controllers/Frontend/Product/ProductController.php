@@ -592,7 +592,7 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->join('user_favourites', 'user_favourites.user_id', '=', 'products.id')->paginate(config('constant.perPage'));
+        $products = $products->join('user_favourites', 'user_favourites.product_id', '=', 'products.id')->where('user_favourites.user_id', $user->id)->paginate(config('constant.perPage'));
 
         return view('frontend.products.new-arrival')->with([
             'products'          => $products,

@@ -330,3 +330,21 @@ body {
 .rating-display {
   float: right;
 }
+
+.cart-items-count{
+    position:relative;
+    display:flex;
+    text-align:center;
+    justify-content: center;
+    top: -29px;
+}
+
+.notification-counter {   
+    position: absolute;
+    left: 16px;
+    background-color: #d4122e;
+    color: #fff;
+    border-radius: 3px;
+    padding: 1px 3px;
+    font: 8px Verdana;
+}
