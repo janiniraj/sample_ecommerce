@@ -60,6 +60,7 @@ class HomeSliderRepository extends BaseRepository
             $homeSlider->youtubevideo_id = isset($input['youtubevideo_id']) ? $input['youtubevideo_id'] : "";
             $homeSlider->title = isset($input['title']) ? $input['title'] : "";
             $homeSlider->url = isset($input['url']) ? $input['url'] : "";
+            $homeSlider->page_type = $input['page_type'];
 
             if ($homeSlider->save()) {
                 return true;
@@ -84,6 +85,7 @@ class HomeSliderRepository extends BaseRepository
         $homeSlider->youtubevideo_id = isset($input['youtubevideo_id']) ? $input['youtubevideo_id'] : "";
         $homeSlider->title = isset($input['title']) ? $input['title'] : "";
         $homeSlider->url = isset($input['url']) ? $input['url'] : "";
+        $homeSlider->page_type = isset($input['page_type']) ? $input['page_type'] : "";
 
         if(!empty($input['image']))
         {

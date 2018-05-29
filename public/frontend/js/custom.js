@@ -76,4 +76,14 @@ $(function(){
            }
          });
     });
+
+    if($(".page-slider-setup").length)
+    {
+      $(".page-slider-setup").slick({
+          dots: false,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+      });
+    }
 });

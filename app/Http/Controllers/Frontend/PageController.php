@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Page\PageRepository;
+use App\Repositories\Backend\HomeSlider\HomeSliderRepository;
 
 /**
  * Class PageController.
@@ -11,16 +12,65 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->page = new PageRepository();
+        $this->page     = new PageRepository();
+        $this->slider   = new HomeSliderRepository(); 
     }
 
     public function aboutUs()
     {
         $pageData = $this->page->getPageBySlug('about-us');
 
+        $slider = $this->slider->query()->where('page_type', 'about-us')->get();
+
+        if(!empty($slider))
+        {
+
+            $sliderHtml = '<div class="row page-slider">
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                    <section class="slider page-slider-setup">';
+
+            foreach($slider as $singleSlider)
+            {
+                $sliderHtml .= '<div>
+                                    <img src="'.url('/').'/img/sliders/'.$singleSlider->image.'">
+                                </div>';
+            }
+            $sliderHtml .='        </section>
+                                </div>
+                            </div>';
+
+
+            /*$sliderHtml = '<div class="row page-slider">
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                    <section class="slider page-slider-setup">
+                        <div>
+                            <img src="http://placehold.it/1920x1080?text=1">
+                        </div>
+                        <div>
+                            <img src="http://placehold.it/1920x1080?text=2">
+                        </div>
+                        <div>
+                            <img src="http://placehold.it/1920x1080?text=3">
+                        </div>
+                        <div>
+                            <img src="http://placehold.it/1920x1080?text=4">
+                        </div>
+                    </section>
+                </div>
+            </div>';*/
+
+            $content = str_replace("[[slider]]", $sliderHtml, $pageData->content);
+        }
+        else
+        {
+            $content = $pageData->content;
+        }
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'about-style.css'
+            'styleName' => 'about-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 

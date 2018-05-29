@@ -13,6 +13,7 @@ use App\Http\Requests\Backend\HomeSlider\EditRequest;
 use App\Http\Requests\Backend\HomeSlider\CreateRequest;
 use App\Http\Requests\Backend\HomeSlider\DeleteRequest;
 use App\Http\Requests\Backend\HomeSlider\UpdateRequest;
+use App\Repositories\Backend\Page\PageRepository;
 
 /**
  * Class HomeSliderController.
@@ -29,7 +30,8 @@ class HomeSliderController extends Controller
      */
     public function __construct(HomeSliderRepository $homeSlider)
     {
-        $this->homeSlider = $homeSlider;
+        $this->homeSlider       = $homeSlider;
+        $this->pageRepository   = new PageRepository();
     }
 
     /**
@@ -49,7 +51,12 @@ class HomeSliderController extends Controller
      */
     public function create(CreateRequest $request)
     {
-        return view('backend.homeSlider.create');
+        $pages = $this->pageRepository->getAll()->pluck('name', 'slug')->toArray();
+        $pages = array_merge(['homepage' => 'Home Page'], $pages);
+
+        return view('backend.homeSlider.create')->with([
+            'pages' => $pages
+        ]);
     }
 
     /**
@@ -73,7 +80,12 @@ class HomeSliderController extends Controller
     public function edit($id, HomeSlider $homeslider, EditRequest $request)
     {
         $homeslider = $this->homeSlider->find($id);
-        return view('backend.homeSlider.edit', compact('homeslider'));
+
+        $pages = $this->pageRepository->getAll()->pluck('name', 'slug')->toArray();
+        $pages = array_merge(['homepage' => 'Home Page'], $pages);
+        return view('backend.homeSlider.edit', compact('homeslider'))->with([
+            'pages' => $pages
+        ]);
     }
 
     /**

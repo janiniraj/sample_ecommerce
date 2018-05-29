@@ -7,7 +7,9 @@
 @endsection
 
 @section('content')
-    @if(isset($pageData->content))
-        {!! $pageData->content !!}
+    @if(isset($content))
+        {!! $content !!}
+    @else
+    	{!! $pageData->content !!}
     @endif
 @endsection

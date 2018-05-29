@@ -1,4 +1,11 @@
 <div class="form-group">
+    {{ Form::label('page_type', 'Type: ', ['class' => 'col-lg-2 control-label required']) }}
+
+    <div class="col-lg-10">
+        {{ Form::select('page_type', $pages, isset($homeslider) ? $homeslider->page_type : 'homepage', ['class' => 'form-control box-size slide-type', 'required' => 'required']) }}
+    </div><!--col-lg-10-->
+</div><!--form control-->
+<div class="form-group">
     {{ Form::label('title', 'Title: ', ['class' => 'col-lg-2 control-label']) }}
 
     <div class="col-lg-10">

@@ -17,7 +17,7 @@ class HomeSlider extends Model
      */
     protected $table;
 
-    protected $fillable = ["title", "url","type", "image", "youtubevideo_id", "created_at", "updated_at"];
+    protected $fillable = ["title", "url","type", "page_type", "image", "youtubevideo_id", "created_at", "updated_at"];
 
     public function __construct(array $attributes = [])
     {
