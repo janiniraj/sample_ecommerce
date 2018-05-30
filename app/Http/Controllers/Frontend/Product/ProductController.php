@@ -334,7 +334,7 @@ class ProductController extends Controller
         $averageStarQuery = $this->productReview->where('product_id', $productId)->select(DB::raw("SUM(star) as sumStar, COUNT(id) as countStar"))->first();
         $averageStar = 0;
 
-        if(!empty($averageStarQuery))
+        if($averageStarQuery->sumStar)
         {
             $averageStar = round($averageStarQuery->sumStar / $averageStarQuery->countStar);
         }

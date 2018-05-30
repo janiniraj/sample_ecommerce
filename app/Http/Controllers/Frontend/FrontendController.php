@@ -29,7 +29,7 @@ class FrontendController extends Controller
     {
         $categories     = $this->categories->query()->where('status', 1)->get();
         $collections    = $this->subcategories->query()->where('status', 1)->get();
-        $slides         = $this->homeSlider->getAll();
+        $slides         = $this->homeSlider->query()->where('page_type', 'homepage')->get();
 
         $newArrivals    = $this->product->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->limit(10)->get();
 
