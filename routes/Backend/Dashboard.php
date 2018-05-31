@@ -99,3 +99,15 @@ Route::group(['namespace' => 'Page'], function () {
     Route::post('pages/get', 'PageTableController')
         ->name('pages.get');
 });
+
+/**
+ *  Review Management
+ */
+Route::group(['namespace' => 'Review'], function () {
+    Route::resource('reviews', 'ReviewController', ['except' => 
+        ['show']]);
+
+    //For DataTables
+    Route::post('reviews/get', 'ReviewTableController')
+        ->name('reviews.get');
+});

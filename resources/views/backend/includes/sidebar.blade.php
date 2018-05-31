@@ -149,6 +149,12 @@
                     <span>Page Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/reviews*')) }}">
+                <a href="{{ route('admin.reviews.index') }}">
+                    <i class="fa fa-star"></i>
+                    <span>Review Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

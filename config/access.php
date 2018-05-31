@@ -72,6 +72,11 @@ return [
     'color_table' => 'colors',
 
     /*
+     * Review
+     */
+    'review_table' => 'reviews',
+
+    /*
      * Configurations for the user
      */
     'users' => [

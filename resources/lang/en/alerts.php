@@ -74,6 +74,11 @@ return [
             'deleted' => 'The Page was successfully deleted.',
             'updated' => 'The Page was successfully updated.',
         ],
+        'reviews' => [
+            'created' => 'The Review was successfully created.',
+            'deleted' => 'The Review was successfully deleted.',
+            'updated' => 'The Review was successfully updated.',
+        ],
     ],
 
     'frontend' => [

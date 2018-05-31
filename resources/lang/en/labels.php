@@ -209,6 +209,21 @@ return [
                 'all'            => 'All',
             ],
         ],
+        'reviews' => [
+            'create'     => 'Create Review',
+            'edit'       => 'Edit Review',
+            'management' => 'Review Management',
+            'title' => 'Review',
+
+            'table' => [
+                'title'          => 'Title',
+                'star'           => 'Star',
+                'content'        => 'Content',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+                'product_name'   => 'Product'
+            ],
+        ],
     ],
 
     'frontend' => [
