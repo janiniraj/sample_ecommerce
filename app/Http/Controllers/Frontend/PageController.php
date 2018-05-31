@@ -16,11 +16,16 @@ class PageController extends Controller
         $this->slider   = new HomeSliderRepository(); 
     }
 
-    public function aboutUs()
+    /**
+     * Get Slider COntent
+     *
+     * @param $slug
+     * @param $pageData
+     * @return mixed
+     */
+    public function getSliderContent($slug, $pageData)
     {
-        $pageData = $this->page->getPageBySlug('about-us');
-
-        $slider = $this->slider->query()->where('page_type', 'about-us')->get();
+        $slider = $this->slider->query()->where('page_type', $slug)->get();
 
         if(!empty($slider))
         {
@@ -39,32 +44,26 @@ class PageController extends Controller
                                 </div>
                             </div>';
 
-
-            /*$sliderHtml = '<div class="row page-slider">
-                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-                    <section class="slider page-slider-setup">
-                        <div>
-                            <img src="http://placehold.it/1920x1080?text=1">
-                        </div>
-                        <div>
-                            <img src="http://placehold.it/1920x1080?text=2">
-                        </div>
-                        <div>
-                            <img src="http://placehold.it/1920x1080?text=3">
-                        </div>
-                        <div>
-                            <img src="http://placehold.it/1920x1080?text=4">
-                        </div>
-                    </section>
-                </div>
-            </div>';*/
-
             $content = str_replace("[[slider]]", $sliderHtml, $pageData->content);
         }
         else
         {
             $content = $pageData->content;
         }
+
+        return $content;
+    }
+
+    public function aboutUs()
+    {
+        $pageData = $this->page->getPageBySlug('about-us');
+
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('about-us', $pageData);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -78,9 +77,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('press');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('press', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'press-style.css'
+            'styleName' => 'press-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -88,9 +96,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('stores');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('stores', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'stores-style.css'
+            'styleName' => 'stores-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -98,9 +115,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('contact-us');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('contact-us', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'contact-style.css'
+            'styleName' => 'contact-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -108,9 +134,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('history');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('history', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'history-style.css'
+            'styleName' => 'history-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -118,9 +153,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('awards-certifications');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('awards-certifications', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'awards-style.css'
+            'styleName' => 'awards-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -128,9 +172,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('terms-conditions');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('terms-conditions', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'tnc-style.css'
+            'styleName' => 'tnc-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -138,9 +191,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('privacy-policy');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('privacy-policy', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'privacy-style.css'
+            'styleName' => 'privacy-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -148,9 +210,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('return-policy');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('return-policy', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'return-style.css'
+            'styleName' => 'return-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -158,9 +229,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('showroom');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('showroom', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'showroom-style.css'
+            'styleName' => 'showroom-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -168,9 +248,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('cleaning-restoration');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('cleaning-restoration', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'cleaning-style.css'
+            'styleName' => 'cleaning-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -178,9 +267,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('rug-school');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('rug-school', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'rug-style.css'
+            'styleName' => 'rug-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -188,9 +286,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('hospitality');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('hospitality', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'hospitality-style.css'
+            'styleName' => 'hospitality-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -198,9 +305,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('become-dealer');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('become-dealer', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'dealers-style.css'
+            'styleName' => 'dealers-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -208,9 +324,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('careers');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('careers', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'careers-style.css'
+            'styleName' => 'careers-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -218,9 +343,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('site-map');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('site-map', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'site-map-style.css'
+            'styleName' => 'site-map-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
@@ -228,9 +362,18 @@ class PageController extends Controller
     {
         $pageData = $this->page->getPageBySlug('faq');
 
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('faq', $pageData);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
-            'styleName' => 'faq-style.css'
+            'styleName' => 'faq-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
             ]);
     }
 
