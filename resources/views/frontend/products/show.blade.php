@@ -195,7 +195,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#writeReview">WRITE A REVIEW</a></li>
                     <li><a data-toggle="tab" href="#reviews">REVIEW</a></li>
-                    <li><a data-toggle="tab" href="#question">QUESTION</a></li>
+                    <?php /*<li><a data-toggle="tab" href="#question">QUESTION</a></li>*/ ?>
                 </ul>
 
                 <div class="tab-content">
@@ -252,10 +252,10 @@
                         </div>                              
                         @endif
                     </div>
-                    <div id="question" class="tab-pane fade">
+                    <?php /*<div id="question" class="tab-pane fade">
                         <h3>Menu 2</h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                    </div>
+                    </div>*/ ?>
                 </div>
             </div>
 

@@ -3,6 +3,9 @@
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Page\PageRepository;
 use App\Repositories\Backend\HomeSlider\HomeSliderRepository;
+use Illuminate\Http\Request;
+use View, Mail;
+use App\Mail\contactEmail;
 
 /**
  * Class PageController.
@@ -122,12 +125,28 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('contact-us', $pageData);
 
+        $contactformView = View::make('frontend.page.contactform');
+
+        $contactform = (string) $contactformView;
+        
+        $content = str_replace("[[contactform]]", $contactform, $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'contact-style.css',
             'slider'    => isset($slider) ? $slider :[],
             'content'   => isset($content) ? $content : ""
             ]);
+    }
+
+    public function contactSubmit(Request $request)
+    {
+        $data = $request->all();
+
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+           ->send(new contactEmail($data));
+
+        return redirect()->route('frontend.page.contact-us')->withFlashError('Thank you for contacting us. We will contact you soon.');
     }
 
     public function history()
