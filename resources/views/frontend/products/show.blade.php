@@ -126,7 +126,7 @@
             </div>
 
             <div class="product-details">
-                <h2>Product Deatail</h2>
+                <h2>Product Detail</h2>
                 <div class="row">
                     <div class="col-md-11 col-md-offset-1">
                         <p>{{ $product->detail }}</p>
@@ -141,31 +141,18 @@
                 </div>
 
                 <section class="slider" id="mightLikeSlider">
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=1">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=2">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=3">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=4">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=5">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=6">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=7">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/1920x1080?text=8">
-                    </div>
-
+                    @foreach($productLike as $singleProduct)
+                        @php $images = json_decode($singleProduct->main_image, true); @endphp
+                        <div class="">
+                            <figure class="snip1174 grey">
+                                <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                                <figcaption>
+                                    <a href="{{ route('frontend.product.show', $singleProduct->id) }}">Quick View</a>
+                                    <h2>{{ $singleProduct->name }}</h2>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endforeach
                 </section>
 
             </div>

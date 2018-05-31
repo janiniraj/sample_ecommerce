@@ -63,7 +63,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('about-us', $pageData);
@@ -82,7 +82,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('press', $pageData);
@@ -101,7 +101,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('stores', $pageData);
@@ -120,7 +120,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('contact-us', $pageData);
@@ -146,7 +146,7 @@ class PageController extends Controller
         Mail::to(env('MAIL_FROM_ADDRESS'))
            ->send(new contactEmail($data));
 
-        return redirect()->route('frontend.page.contact-us')->withFlashError('Thank you for contacting us. We will contact you soon.');
+        return redirect()->route('frontend.page.contact-us')->withFlashWarning('Thank you for contacting us. We will contact you soon.');
     }
 
     public function history()
@@ -155,7 +155,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('history', $pageData);
@@ -174,7 +174,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('awards-certifications', $pageData);
@@ -193,7 +193,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('terms-conditions', $pageData);
@@ -212,7 +212,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('privacy-policy', $pageData);
@@ -231,7 +231,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('return-policy', $pageData);
@@ -250,7 +250,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('showroom', $pageData);
@@ -269,7 +269,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('cleaning-restoration', $pageData);
@@ -288,7 +288,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('rug-school', $pageData);
@@ -307,7 +307,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('hospitality', $pageData);
@@ -326,7 +326,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('become-dealer', $pageData);
@@ -345,7 +345,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('careers', $pageData);
@@ -364,7 +364,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('site-map', $pageData);
@@ -383,7 +383,7 @@ class PageController extends Controller
 
         if(empty($pageData))
         {
-            return redirect()->route('frontend.index')->withFlashError('Page Not Found');
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
         }
 
         $content = $this->getSliderContent('faq', $pageData);

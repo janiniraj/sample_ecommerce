@@ -313,6 +313,14 @@ class ProductController extends Controller
 
         $newArrivals = $this->products->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->limit(10)->get();
 
+        $productLike = $this->products->query()
+                        ->where('category_id', '=', $product->category_id)
+                        ->orWhere('shape', '=', $product->shape)
+                        ->orWhere('color_id', '=', $product->color_id)
+                        ->inRandomOrder()
+                        ->limit(10)
+                        ->get();
+
         $favourite = 0;
 
         if(Auth::check())
@@ -344,7 +352,8 @@ class ProductController extends Controller
             'newArrivals'   => $newArrivals,
             'favourite'     => $favourite,
             'reviews'       => isset($reviews) ? $reviews : [],
-            'averageStar'   => $averageStar
+            'averageStar'   => $averageStar,
+            'productLike'   => $productLike
             ]);
     }
 
@@ -520,7 +529,7 @@ class ProductController extends Controller
     {
         if(!Auth::check())
         {
-            return redirect()->route('login')->withFlashSuccess(trans('alerts.backend.subcategories.created'));;
+            return redirect()->route('frontend.index')->withFlashWarning("Login first to add products in favourite.");;
         }
 
         $user = AUth::user();
