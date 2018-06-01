@@ -396,4 +396,23 @@ class PageController extends Controller
             ]);
     }
 
+    public function padding()
+    {
+        $pageData = $this->page->getPageBySlug('padding');
+
+        if(empty($pageData))
+        {
+            return redirect()->route('frontend.index')->withFlashWarning('Page Not Found');
+        }
+
+        $content = $this->getSliderContent('padding', $pageData);
+
+        return view('frontend.page.main')->with([
+            'pageData'  => $pageData,
+            'styleName' => 'padding-style.css',
+            'slider'    => isset($slider) ? $slider :[],
+            'content'   => isset($content) ? $content : ""
+            ]);
+    }
+
 }

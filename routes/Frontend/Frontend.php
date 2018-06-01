@@ -27,6 +27,7 @@ Route::get('become-dealer', 'PageController@becomeDealer')->name('page.become-de
 Route::get('careers', 'PageController@careers')->name('page.careers');
 Route::get('site-map', 'PageController@siteMap')->name('page.site-map');
 Route::get('faq', 'PageController@faq')->name('page.faq');
+Route::get('padding', 'PageController@padding')->name('page.padding');
 Route::post('contact-submit', 'PageController@contactSubmit')->name('page.contact-submit');
 /*
  * These frontend controllers require the user to be logged in
