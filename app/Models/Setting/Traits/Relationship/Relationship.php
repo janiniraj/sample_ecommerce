@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Page\Traits\Relationship;
+namespace App\Models\Setting\Traits\Relationship;
 
 /**
  * Class Relationship.

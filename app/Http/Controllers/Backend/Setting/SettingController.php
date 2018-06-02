@@ -17,14 +17,14 @@ class SettingController extends Controller
     /**
      * @var SettingRepository
      */
-    protected $Settings;
+    protected $settings;
 
     /**
-     * @param SettingRepository $Settings
+     * @param SettingRepository $settings
      */
-    public function __construct(SettingRepository $Settings)
+    public function __construct(SettingRepository $settings)
     {
-        $this->Settings = $Settings;
+        $this->settings = $settings;
     }
 
     /**
@@ -34,25 +34,31 @@ class SettingController extends Controller
      */
     public function index(ManageRequest $request)
     {
-        return view('backend.settings.index');
+        $settings = $this->settings->getAll();
+
+        return view('backend.settings.index')->with([
+            'settings' => $settings
+            ]);
     }
 
     public function saveData(StoreRequest $request)
     {
-        
+        $this->settings->create($request->all());
+
+        return redirect()->route('admin.settings.index')->withFlashSuccess("Setting Saved Successfully.");
     }
 
     /**
-     * @param Setting              $Setting
+     * @param Setting              $setting
      * @param DeleteRequest $request
      *
      * @return mixed
      */
-    public function destroy(Setting $Setting, DeleteRequest $request)
+    public function destroy(Setting $setting, DeleteRequest $request)
     {
-        //$Setting = $this->Settings->find($id);
+        //$setting = $this->Settings->find($id);
 
-        $this->Settings->delete($Setting);
+        $this->settings->delete($setting);
 
         return redirect()->route('admin.settings.index')->withFlashSuccess(trans('alerts.backend.Settings.deleted'));
     }

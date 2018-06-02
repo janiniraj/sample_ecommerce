@@ -112,6 +112,6 @@ Route::group(['namespace' => 'Review'], function () {
         ->name('reviews.get');
 });
 Route::group(['namespace' => 'Setting'], function () {
-    Route::get('settings', 'SettingController@index')->name('settings.get');
+    Route::get('settings', 'SettingController@index')->name('settings.index');
     Route::post('settings', 'SettingController@saveData')->name('settings.store');
 });

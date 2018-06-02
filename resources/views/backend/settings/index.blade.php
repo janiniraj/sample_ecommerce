@@ -20,33 +20,153 @@
             <div class="box-body">
                 <div class="form-group">
                     {{ Form::label('site_name', 'Site Name: ', ['class' => 'col-lg-2 control-label']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'site_name')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[0][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
 
+                    {{ Form::hidden('setting[0][key]', 'site_name') }}
                     <div class="col-lg-10">
-                        {{ Form::text('site_name', null, ['class' => 'form-control box-size', 'placeholder' => 'Site Name']) }}
+
+                        {{ Form::text('setting[0][value]', $match !== null ? $settings[$match]->value : null, ['class' => 'form-control box-size', 'placeholder' => 'Site Name']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
                 <div class="form-group image-upload-container">
                     {{ Form::label('logo', 'Logo:', ['class' => 'col-lg-2 control-label required']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'logo')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[1][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
 
+                    {{ Form::hidden('setting[1][key]', 'logo') }}
                     <div class="col-lg-10">
+
                         <img class="image-display {{ isset($setting->image) ? '' : 'hidden' }}" src="{{ isset($setting->image) ? URL::to('/').'/img/sliders/'.$setting->image : "" }}" style="max-height: 100px;">
-                        {{ Form::file('logo', $attributes = array('required' => 'required', 'class' => 'image', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
+                        
+                        {{ Form::file('setting[1][value]', $attributes = array($match !== null ? '' : 'required', 'class' => 'image', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
+                        
+                        @if($match !== null)
+                            <a download="{{ $settings[$match]->value}}" href="{{url('/').'/settings/'.$settings[$match]->value}}">{{ $settings[$match]->value }}</a>
+                        @endif
+
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
                 <div class="form-group">
                     {{ Form::label('catalog', 'Catalog:', ['class' => 'col-lg-2 control-label required']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'catalog')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[2][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
 
+                    {{ Form::hidden('setting[2][key]', 'catalog') }}
                     <div class="col-lg-10">
-                        {{ Form::file('catalog', $attributes = array('required' => 'required', 'accept' => "application/pdf")) }}
+                        {{ Form::file('setting[2][value]', $attributes = array($match !== null ? '' : 'required', 'accept' => "application/pdf")) }}
+                        @if($match !== null)
+                            <a target="_blank" href="{{url('/').'/settings/'.$settings[$match]->value}}">{{ $settings[$match]->value }}</a>
+                        @endif
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
                 <div class="form-group">
                     {{ Form::label('vendor_form', 'Vendor Form:', ['class' => 'col-lg-2 control-label required']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'vendor_form')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[3][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
 
+                    {{ Form::hidden('setting[3][key]', 'vendor_form') }}
                     <div class="col-lg-10">
-                        {{ Form::file('vendor_form', $attributes = array('required' => 'required', 'accept' => "application/pdf")) }}
+                        {{ Form::file('setting[3][value]', $attributes = array($match !== null ? '' : 'required', 'accept' => "application/pdf")) }}
+
+                        @if($match !== null)
+                            <a target="_blank" href="{{url('/').'/settings/'.$settings[$match]->value}}">{{ $settings[$match]->value }}</a>
+                        @endif
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('contact_us_latitude', 'Contact Us Latitude:', ['class' => 'col-lg-2 control-label required']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'contact_us_latitude')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[4][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
+
+                    {{ Form::hidden('setting[4][key]', 'contact_us_latitude') }}
+                    <div class="col-lg-10">
+                        <a href="https://www.latlong.net/" target="_blank">To find Latitude and Longitude click here</a>
+                        {{ Form::text('setting[4][value]', $match !== null ? $settings[$match]->value : null, ['class' => 'form-control box-size', 'placeholder' => 'Contact Us Latitude']) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('contact_us_longitude', 'Contact Us Longitude:', ['class' => 'col-lg-2 control-label required']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'contact_us_longitude')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[5][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
+
+                    {{ Form::hidden('setting[5][key]', 'contact_us_longitude') }}
+                    <div class="col-lg-10">
+                        {{ Form::text('setting[5][value]', $match !== null ? $settings[$match]->value : null, ['class' => 'form-control box-size', 'placeholder' => 'Contact Us Longitude']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
             </div>

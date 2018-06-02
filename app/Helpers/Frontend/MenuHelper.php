@@ -2,6 +2,7 @@
 
 use App\Models\Product\Product;
 use App\Models\Product\UserFavourite;
+use App\Models\Setting\Setting;
 use Auth;
 
 /**
@@ -72,6 +73,10 @@ class MenuHelper
 
     public $favouriteCount;
 
+    public $settings;
+
+    public $catalogLink;
+
     public function __construct()
     {
         $this->product          = new Product();
@@ -116,5 +121,18 @@ class MenuHelper
 
             $this->favouriteCount = $productFavourite->where('user_id', $userId)->count();
         }
+
+        $this->settings = Setting::get();
+
+        $this->catalogLink = "#";
+
+        foreach($this->settings as $single)
+        {
+            if($single->key == 'catalog')
+            {
+                $this->catalogLink = url('/').'/settings/'.$single->value;
+            }
+        }
+
     }
 }

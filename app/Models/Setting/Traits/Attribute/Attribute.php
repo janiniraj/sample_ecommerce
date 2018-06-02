@@ -1,4 +1,4 @@
-<?php namespace App\Models\Page\Traits\Attribute;
+<?php namespace App\Models\Setting\Traits\Attribute;
 
 /**
  * Class Attribute.

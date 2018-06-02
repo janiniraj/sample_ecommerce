@@ -8,6 +8,7 @@ use App\Models\Setting\Setting;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Utilities\FileUploads;
 use DB;
+use Image, File;
 
 /**
  * Class SettingRepository.
@@ -28,24 +29,49 @@ class SettingRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        if ($this->query()->where('slug', $input['slug'])->first()) {
-            throw new GeneralException(trans('exceptions.backend.Settings.already_exists'));
+        $basePath = public_path("settings");
+
+        $settings = $input['setting'];
+
+        foreach($settings as $singleKey => $singleValue)
+        {
+            if(isset($singleValue['value']) && is_object($singleValue['value']))
+            {
+                $imageName = $singleValue['value']->getClientOriginalName();
+
+                $singleValue['value']->move(
+                    $basePath, $imageName
+                );
+
+                $settings[$singleKey]['value'] = $imageName;
+            }
         }
 
-        DB::transaction(function () use ($input) {
-            $Settings = self::MODEL;
-            $Settings = new $Settings();
-            $Settings->name = $input['name'];
-            $Settings->slug = $input['slug'];
-            $Settings->content = $input['content'];
+        foreach ($settings as $key => $value) 
+        {
+            if(isset($value['value']) && $value['value'])
+            {
+                if(isset($value['id']) && $value['id'])
+                {
+                    $find           = Setting::find($value['id']);
+                    $find->key      = $value['key'];
+                    $find->value    = $value['value'];
 
-            if ($Settings->save()) {
+                    $find->save();
+                }
+                else
+                {
+                    $saveData = new Setting();
 
-                // event(new SettingCreated($Settings));
-                return true;
-            }
-            throw new GeneralException(trans('exceptions.backend.Settings.create_error'));
-        });
+                    $saveData->key      = $value['key'];
+                    $saveData->value    = $value['value'];
+
+                    $saveData->save();
+                }
+            }      
+        }
+
+        return true;
     }
 
     /**
