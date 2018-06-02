@@ -81,6 +81,7 @@
         
         $('.xzoom5').each(function() {
             var xzoom = $(this).data('xzoom');
+            console.log($(this).hammer());
             $(this).hammer().on("tap", function(event) {
                 event.pageX = event.gesture.center.pageX;
                 event.pageY = event.gesture.center.pageY;

@@ -299,7 +299,9 @@ class FileUploads
             $filePath       = $this->checkAndCreateDir($filePath);
 
             Image::make($referenceFile)
-                    ->fit(350)
+                    ->resize(null, 700, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })
                     ->save($filePath.DIRECTORY_SEPARATOR.$fileName);
             
             return $this;    

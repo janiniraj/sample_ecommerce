@@ -1,12 +1,21 @@
 @extends('frontend.layouts.master')
 
+@section('after-styles')
+{{ Html::style('/frontend/css/normalize.css') }}
+<style type="text/css">
+    body {
+        padding-top: 135px;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="container" id="product">
         <input id="product_id" type="hidden" value="{{ $product->id }}">
         <div class="section">
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     @php
                         $images = json_decode($product->main_image, true);
                     @endphp
@@ -21,7 +30,7 @@
 
                 </div>
 
-                <div class="col-md-6 product-desc">
+                <div class="col-md-7 product-desc">
                     <div class="path">                                                
                         <a id="favourite" class="heart {{ $favourite ? 'active' : '' }}" href="javascript:void(0);"><i class="fas fa-heart"></i></a>
                         <a class="share" href="#"><i class="fas fa-share-alt"></i></a>
