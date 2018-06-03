@@ -155,6 +155,12 @@
                     <span>Review Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/reviews*')) }}">
+                <a href="{{ route('admin.subscriptions.index') }}">
+                    <i class="fa fa-paper-plane"></i>
+                    <span>Subscription Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>
