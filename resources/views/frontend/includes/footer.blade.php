@@ -44,15 +44,15 @@ $helper = new MenuHelper();
         </div>
 
         <div class="col-sm-5 contacts">
-            <form>
+            {{ Form::open(array('url' => route('frontend.email-subscription'))) }}
                 <label for="email">SIGN UP FOR EMAILS</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="email">
+                    <input type="email" class="form-control" required name="email">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">SUBMIT</button>
                     </div>
                 </div>
-            </form>
+            {{ Form::close() }}
             <ul>
                 <li><a href="{{ route('frontend.page.store') }}">Where to Buy</a></li>
                 <li><a href="{{ route('frontend.page.faq') }}">FAQ</a></li>

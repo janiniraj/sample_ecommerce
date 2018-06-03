@@ -163,28 +163,6 @@ class PageController extends Controller
         return redirect()->route('frontend.page.contact-us')->withFlashSuccess('Thank you for contacting us. We will contact you soon.');
     }
 
-    public function dealerSubmit(Request $request)
-    {
-        $data = $request->all();
-
-        $basePath = public_path("dealerforms");
-
-        $fileName = time().'.pdf';
-
-        $data['form']->move(
-                    $basePath, $fileName
-                );
-
-        $fileUrl = url('/').'/dealerforms/'.$fileName;
-        
-        $data['form'] = $fileUrl;
-
-        Mail::to(env('MAIL_FROM_ADDRESS'))
-           ->send(new dealerEmail($data));
-
-        return redirect()->route('frontend.page.become-dealer')->withFlashSuccess('Thank you for submitting Application. We will contact you soon.');
-    }
-
     public function history()
     {
         $pageData = $this->page->getPageBySlug('history');
@@ -392,6 +370,28 @@ class PageController extends Controller
             'slider'    => isset($slider) ? $slider :[],
             'content'   => isset($content) ? $content : ""
             ]);
+    }
+
+    public function dealerSubmit(Request $request)
+    {
+        $data = $request->all();
+
+        $basePath = public_path("dealerforms");
+
+        $fileName = time().'.pdf';
+
+        $data['form']->move(
+                    $basePath, $fileName
+                );
+
+        $fileUrl = url('/').'/dealerforms/'.$fileName;
+        
+        $data['form'] = $fileUrl;
+
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+           ->send(new dealerEmail($data));
+
+        return redirect()->route('frontend.page.become-dealer')->withFlashSuccess('Thank you for submitting Application. We will contact you soon.');
     }
 
     public function careers()

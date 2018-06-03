@@ -30,6 +30,7 @@ Route::get('faq', 'PageController@faq')->name('page.faq');
 Route::get('padding', 'PageController@padding')->name('page.padding');
 Route::post('contact-submit', 'PageController@contactSubmit')->name('page.contact-submit');
 Route::post('dealer-submit', 'PageController@dealerSubmit')->name('page.dealer-submit');
+
 /*
  * These frontend controllers require the user to be logged in
  * All route names are prefixed with 'frontend.'
@@ -63,3 +64,6 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
     Route::get('advance-search', 'ProductController@advanceSearch')->name('advance-search');
     Route::post('write-review', 'ProductController@writeReview')->name('write-review');
 });
+
+
+Route::post('email-subscription', 'FrontendController@emailSubscription')->name('email-subscription');

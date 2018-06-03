@@ -224,6 +224,19 @@ return [
                 'product_name'   => 'Product'
             ],
         ],
+        'subscriptions' => [
+            'create'     => 'Create Subscription',
+            'edit'       => 'Edit Subscription',
+            'management' => 'Subscription Management',
+            'title' => 'Subscription',
+
+            'table' => [
+                'id'             => 'ID',
+                'email'          => 'Email',
+                'createdat'      => 'Created At',
+                'all'            => 'All'
+            ],
+        ],
     ],
 
     'frontend' => [

@@ -7,6 +7,8 @@ use App\Repositories\Backend\Categories\CategoriesRepository;
 use App\Repositories\Backend\HomeSlider\HomeSliderRepository;
 use App\Repositories\Backend\SubCategories\SubCategoriesRepository;
 use App\Repositories\Backend\Product\ProductRepository;
+use Illuminate\Http\Request;
+use App\Repositories\Backend\Subscription\SubscriptionRepository;
 
 /**
  * Class FrontendController.
@@ -20,6 +22,7 @@ class FrontendController extends Controller
         $this->subcategories    = new SubCategoriesRepository();
         $this->homeSlider       = new HomeSliderRepository();
         $this->product          = new ProductRepository();
+        $this->subscription     = new SubscriptionRepository();
     }
 
     /**
@@ -50,5 +53,19 @@ class FrontendController extends Controller
     public function macros()
     {
         return view('frontend.macros');
+    }
+
+    public function emailSubscription(Request $request)
+    {
+        $flag = $this->subscription->create($request->all());
+
+        if($flag)
+        {
+            return redirect()->route('frontend.index')->withFlashSuccess('Thank you for Subscribing.');
+        }
+        else
+        {
+            return redirect()->route('frontend.index')->withFlashWarning('Error in adding email in subscription list.');
+        }
     }
 }
