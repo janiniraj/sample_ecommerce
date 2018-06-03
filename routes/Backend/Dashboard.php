@@ -115,3 +115,15 @@ Route::group(['namespace' => 'Setting'], function () {
     Route::get('settings', 'SettingController@index')->name('settings.index');
     Route::post('settings', 'SettingController@saveData')->name('settings.store');
 });
+
+/**
+ *  Subscription Management
+ */
+Route::group(['namespace' => 'Subscription'], function () {
+    Route::resource('subscriptions', 'SubscriptionController', ['except' => 
+        ['show']]);
+
+    //For DataTables
+    Route::post('subscriptions/get', 'SubscriptionTableController')
+        ->name('subscriptions.get');
+});

@@ -7,7 +7,7 @@ $helper = new MenuHelper();
         <div class="col-sm-7 links">
             <ul>
                 <li class="list-heading no-arrow "><a href="{{ route('frontend.page.about-us') }}">About Us</a></li>
-                <li><a href="">History</a></li>
+                <li><a href="{{ route('frontend.page.history') }}">History</a></li>
                 <li><a href="{{ route('frontend.page.awards-certifications') }}">Awards & Certifications</a></li>
                 <li><a href="{{ route('frontend.page.terms-conditions') }}">Term and Condition</a></li>
                 <li><a href="{{ route('frontend.page.privacy-policy') }}">Privacy Policy</a></li>

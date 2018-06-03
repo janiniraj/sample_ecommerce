@@ -370,6 +370,9 @@ $helper = new MenuHelper();
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="loginmodal-container">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                <span aria-hidden="true">×</span>
+            </button>
             <h1>Login to Your Account</h1><br>
           {{ Form::open(['route' => 'frontend.auth.login.post', 'class' => 'form-horizontal']) }}
             <input type="email" required name="email" placeholder="Email">
@@ -387,6 +390,9 @@ $helper = new MenuHelper();
 <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="loginmodal-container">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                <span aria-hidden="true">×</span>
+            </button>
             <h1>Create Account</h1><br>
           {{ Form::open(['route' => 'frontend.auth.register.post-ajax', 'class' => 'form-horizontal', 'id' => 'headerRegister']) }}
             <input type="text" required name="first_name" placeholder="First Name">

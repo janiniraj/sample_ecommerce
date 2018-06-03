@@ -77,6 +77,11 @@ return [
     'review_table' => 'reviews',
 
     /*
+     * Subscription
+     */
+    'subscription_table' => 'subscriptions',
+
+    /*
      * Configurations for the user
      */
     'users' => [

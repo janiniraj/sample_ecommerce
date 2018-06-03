@@ -29,6 +29,7 @@ Route::get('site-map', 'PageController@siteMap')->name('page.site-map');
 Route::get('faq', 'PageController@faq')->name('page.faq');
 Route::get('padding', 'PageController@padding')->name('page.padding');
 Route::post('contact-submit', 'PageController@contactSubmit')->name('page.contact-submit');
+Route::post('dealer-submit', 'PageController@dealerSubmit')->name('page.dealer-submit');
 /*
  * These frontend controllers require the user to be logged in
  * All route names are prefixed with 'frontend.'

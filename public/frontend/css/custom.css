@@ -348,3 +348,10 @@ body {
     padding: 1px 3px;
     font: 8px Verdana;
 }
+
+.loginmodal-container .close {
+    font-size: 35px;
+    position: relative;
+    top: -20px;
+    right: -15px;
+}

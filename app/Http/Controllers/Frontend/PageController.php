@@ -4,8 +4,10 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Page\PageRepository;
 use App\Repositories\Backend\HomeSlider\HomeSliderRepository;
 use Illuminate\Http\Request;
-use View, Mail;
+use View, Mail, File;
 use App\Mail\contactEmail;
+use App\Mail\dealerEmail;
+use App\Repositories\Backend\Setting\SettingRepository;
 
 /**
  * Class PageController.
@@ -17,6 +19,7 @@ class PageController extends Controller
     {
         $this->page     = new PageRepository();
         $this->slider   = new HomeSliderRepository(); 
+        $this->settings = new SettingRepository();
     }
 
     /**
@@ -131,6 +134,17 @@ class PageController extends Controller
         
         $content = str_replace("[[contactform]]", $contactform, $content);
 
+        $latitudeData = $this->settings->query()->where('key', 'contact_us_latitude')->first();
+
+        $longitudeData = $this->settings->query()->where('key', 'contact_us_longitude')->first();
+
+        if(!empty($latitudeData) && !empty($longitudeData))
+        {
+            $iframeHtml = '<iframe style="border: 0;" src="https://maps.google.com/maps?q='.$latitudeData->value.','.$longitudeData->value.'&hl=es;z=14&amp;output=embed" frameborder="0" allowfullscreen="allowfullscreen"></iframe>';
+
+            $content = preg_replace('/<iframe\s+.*?\s+src=(".*?").*?<\/iframe>/', $iframeHtml, $content);
+        }        
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'contact-style.css',
@@ -141,12 +155,34 @@ class PageController extends Controller
 
     public function contactSubmit(Request $request)
     {
-        $data = $request->all();
+        $data = $request->all();        
 
         Mail::to(env('MAIL_FROM_ADDRESS'))
            ->send(new contactEmail($data));
 
-        return redirect()->route('frontend.page.contact-us')->withFlashWarning('Thank you for contacting us. We will contact you soon.');
+        return redirect()->route('frontend.page.contact-us')->withFlashSuccess('Thank you for contacting us. We will contact you soon.');
+    }
+
+    public function dealerSubmit(Request $request)
+    {
+        $data = $request->all();
+
+        $basePath = public_path("dealerforms");
+
+        $fileName = time().'.pdf';
+
+        $data['form']->move(
+                    $basePath, $fileName
+                );
+
+        $fileUrl = url('/').'/dealerforms/'.$fileName;
+        
+        $data['form'] = $fileUrl;
+
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+           ->send(new dealerEmail($data));
+
+        return redirect()->route('frontend.page.become-dealer')->withFlashSuccess('Thank you for submitting Application. We will contact you soon.');
     }
 
     public function history()
@@ -330,6 +366,25 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('become-dealer', $pageData);
+
+        $vendorPdfData = $this->settings->query()->where('key', 'vendor_form')->first();
+
+        if(!empty($vendorPdfData))
+        {
+            $vendorFormLink = url('/').'/settings/'.$vendorPdfData->value;
+        }
+        else
+        {
+            $vendorFormLink = '#';
+        }
+
+        $dealerformView = View::make('frontend.page.dealerform')->with([
+            'vendorFormLink' => $vendorFormLink
+            ]);
+
+        $dealerform = (string) $dealerformView;
+        
+        $content = str_replace("[[dealerform]]", $dealerform, $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
