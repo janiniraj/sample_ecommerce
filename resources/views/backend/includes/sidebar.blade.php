@@ -155,6 +155,12 @@
                     <span>Review Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/settings*')) }}">
+                <a href="{{ route('admin.settings.index') }}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
             <li class="{{ active_class(Active::checkUriPattern('admin/reviews*')) }}">
                 <a href="{{ route('admin.subscriptions.index') }}">
                     <i class="fa fa-paper-plane"></i>
