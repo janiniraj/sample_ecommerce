@@ -167,6 +167,12 @@
                     <span>Subscription Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/stores*')) }}">
+                <a href="{{ route('admin.stores.index') }}">
+                    <i class="fa fa-home"></i>
+                    <span>Store Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

@@ -138,13 +138,15 @@ class PageController extends Controller
         
         $content = str_replace("[[contactform]]", $contactform, $content);
 
-        $latitudeData = $this->settings->query()->where('key', 'contact_us_latitude')->first();
+        /*$latitudeData = $this->settings->query()->where('key', 'contact_us_latitude')->first();
 
-        $longitudeData = $this->settings->query()->where('key', 'contact_us_longitude')->first();
+        $longitudeData = $this->settings->query()->where('key', 'contact_us_longitude')->first();*/
 
-        if(!empty($latitudeData) && !empty($longitudeData))
+        $addressData = $this->settings->query()->where('key', 'contact_us_address')->first();
+
+        if(!empty($addressData))
         {
-            $iframeHtml = '<iframe style="border: 0;" src="https://maps.google.com/maps?q='.$latitudeData->value.','.$longitudeData->value.'&hl=es;z=14&amp;output=embed" frameborder="0" allowfullscreen="allowfullscreen"></iframe>';
+            $iframeHtml = '<iframe style="border: 0;" src="https://maps.google.com/maps?q='.$addressData->value.'&hl=es;z=14&amp;output=embed" frameborder="0" allowfullscreen="allowfullscreen"></iframe>';
 
             $content = preg_replace('/<iframe\s+.*?\s+src=(".*?").*?<\/iframe>/', $iframeHtml, $content);
         }        

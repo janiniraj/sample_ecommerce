@@ -169,6 +169,28 @@
                         {{ Form::text('setting[5][value]', $match !== null ? $settings[$match]->value : null, ['class' => 'form-control box-size', 'placeholder' => 'Contact Us Longitude']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
+                <div class="form-group">
+                    {{ Form::label('contact_us_address', 'Contact Us Address:', ['class' => 'col-lg-2 control-label required']) }}
+                    
+                    <?php
+                        $match = null;
+                        foreach($settings as $singleKey => $singleValue)
+                        {
+                            if($singleValue->key == 'contact_us_address')
+                            {
+                                $match = $singleKey;
+                            ?>
+                                <input type="hidden" name="setting[6][id]" value="{{ $singleValue->id }}">
+                            <?php
+                            }  
+                        }
+                    ?>
+
+                    {{ Form::hidden('setting[6][key]', 'contact_us_address') }}
+                    <div class="col-lg-10">
+                        {{ Form::text('setting[6][value]', $match !== null ? $settings[$match]->value : null, ['class' => 'form-control box-size', 'placeholder' => 'Contact Us Address']) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
             </div>
         </div><!--box-->
 

@@ -75,37 +75,6 @@ class SettingRepository extends BaseRepository
     }
 
     /**
-     * @param Model $permission
-     * @param  $input
-     *
-     * @throws GeneralException
-     *
-     * return bool
-     */
-     
-    public function update(Model $Settings, array $input)
-    {
-        if ($this->query()->where('slug', $input['slug'])->where('id', '!=', $Settings->id)->first()) {
-            throw new GeneralException(trans('exceptions.backend.Settings.already_exists'));
-        }
-        $Settings->name = $input['name'];
-        $Settings->slug = $input['slug'];
-        $Settings->content = $input['content'];
-
-        DB::transaction(function () use ($Settings, $input) {
-        	if ($Settings->save()) {
-                // event(new SettingUpdated($Settings));
-
-                return true;
-            }
-
-            throw new GeneralException(
-                trans('exceptions.backend.Settings.update_error')
-            );
-        });
-    }
-
-    /**
      * @param Model $category
      *
      * @throws GeneralException
