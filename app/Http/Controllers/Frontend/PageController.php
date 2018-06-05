@@ -8,6 +8,7 @@ use View, Mail, File;
 use App\Mail\contactEmail;
 use App\Mail\dealerEmail;
 use App\Repositories\Backend\Setting\SettingRepository;
+use App\Models\Mailinglist\Mailinglist;
 
 /**
  * Class PageController.
@@ -20,6 +21,7 @@ class PageController extends Controller
         $this->page     = new PageRepository();
         $this->slider   = new HomeSliderRepository(); 
         $this->settings = new SettingRepository();
+        $this->mailinglist = new Mailinglist();
     }
 
     /**
@@ -468,6 +470,30 @@ class PageController extends Controller
             'slider'    => isset($slider) ? $slider :[],
             'content'   => isset($content) ? $content : ""
             ]);
+    }
+
+    public function mailingSubmit(Request $request)
+    {
+        $postData = $request->all();
+        unset($postData['_token']);
+
+        if($this->mailinglist->create($postData))
+        {
+            return $response = [
+                    'success' => true,
+                    'error' => false,
+                    'message' => "Thank you for Subscriing for Mailing List."
+                ];
+        }
+        else
+        {
+            return $response = [
+                    'success' => false,
+                    'error' => true,
+                    'message' => "Error occurred, try again."
+                ]; 
+        }
+        
     }
 
 }

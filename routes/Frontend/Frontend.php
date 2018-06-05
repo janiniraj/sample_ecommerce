@@ -67,3 +67,4 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
 
 
 Route::post('email-subscription', 'FrontendController@emailSubscription')->name('email-subscription');
+Route::post('mailing-submit', 'PageController@mailingSubmit')->name('page.mailing-submit');

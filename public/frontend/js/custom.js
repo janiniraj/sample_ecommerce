@@ -88,4 +88,37 @@ $(function(){
           autoplaySpeed: 2000
       });
     }
+
+    $("#mailingSubmitForm").submit(function(e){
+      e.preventDefault();
+      var url = $(this).attr('action');
+      $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#mailingSubmitForm").serialize(),
+           success: function(data)
+           {
+              if(data.success == true)
+              {
+                swal({
+                    title:'Thank you!',
+                    text:data.message,
+                    type:'success'
+                  }).then(function() {
+                      $('#mailing-modal').modal('hide');
+                      $("#mailingSubmitForm").find("input[type=text], input[type=email]").val("");
+                  });
+              }
+              else
+              {
+
+              swal({
+                      title:'Errors',
+                      text:data.message,
+                      type:'error'
+                    });
+              }               
+           }
+         });
+    });
 });

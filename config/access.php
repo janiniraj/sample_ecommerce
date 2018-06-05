@@ -80,6 +80,11 @@ return [
      * Subscription
      */
     'subscription_table' => 'subscriptions',
+    
+    /*
+     *Mailing List
+     */
+    'mailinglist_table' => 'mailing_list',
 
     /*
      * Configurations for the user

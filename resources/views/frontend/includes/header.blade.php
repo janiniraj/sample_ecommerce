@@ -339,7 +339,7 @@ $helper = new MenuHelper();
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('frontend.page.store') }}">Our Store</a></li>
                         <li><a href="#">Inquire</a></li>
-                        <li><a href="#">Join Mailing List</a></li>
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#mailing-modal">Join Mailing List</a></li>
                     </ul>
                 </li>
 
@@ -406,6 +406,31 @@ $helper = new MenuHelper();
           <div class="login-help">
             <a class="back-login" href="javascript:void(0)">Back to Login</a>
           </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mailing-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                <span aria-hidden="true">×</span>
+            </button>
+            <h1>Join our Mailing List</h1><br>
+          {{ Form::open(['route' => 'frontend.page.mailing-submit', 'class' => 'form-horizontal', 'id' => 'mailingSubmitForm']) }}
+            <input type="text" required name="firstname" placeholder="First Name">
+            <input type="text" required name="lastname" placeholder="Last Name">
+            <input type="email" required name="email" placeholder="Email Address">
+            <input type="text" name="phone" placeholder="Phone Number">
+            <input type="text" required name="address" placeholder="Address">
+            <input type="text" required name="street" placeholder="Street">
+            <input type="text" required name="pobox" placeholder="P. O. Box">
+            <input type="text" required name="city" placeholder="City">
+            <input type="text" required name="state" placeholder="State">
+            <input type="text" required name="country" placeholder="Country">
+            <input type="submit" name="Submit" class="login loginmodal-submit" value="Submit">
+          {{ Form::close() }}
+            
         </div>
     </div>
 </div>
