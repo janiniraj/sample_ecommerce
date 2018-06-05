@@ -603,7 +603,7 @@ class ProductController extends Controller
 
         $products = $products->join('user_favourites', 'user_favourites.product_id', '=', 'products.id')->where('user_favourites.user_id', $user->id)->paginate(config('constant.perPage'));
 
-        return view('frontend.products.new-arrival')->with([
+        return view('frontend.products.favourite')->with([
             'products'          => $products,
             'categoryList'      => $categoryList,
             'collectionList'    => $collectionList,
