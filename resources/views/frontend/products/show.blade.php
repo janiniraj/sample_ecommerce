@@ -2,6 +2,7 @@
 
 @section('after-styles')
 {{ Html::style('/frontend/css/normalize.css') }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <style type="text/css">
     body {
         padding-top: 135px;
@@ -34,6 +35,7 @@
                     <div class="path">                                                
                         <a id="favourite" class="heart {{ $favourite ? 'active' : '' }}" href="javascript:void(0);"><i class="fas fa-heart"></i></a>
                         <a class="share" href="#"><i class="fas fa-share-alt"></i></a>
+                        <div id="shareIcons" class="hidden"></div>
                     </div>
 
                     <h2>{{ $product->name }}</h2>
@@ -123,7 +125,7 @@
 
                             @if(isset($shop['other_link']))
                                 <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['other_link'] }}"><i class="fas fa-link"></i></a>
-                            @endif
+                            @endif                            
 
                         </div>
                         <div id="review" class="tab-pane fade">
@@ -275,6 +277,16 @@
         navigateByKeyboard  : true
     });*/
     $(document).ready(function() {
+
+        $("#shareIcons").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+        });
+
+        $(".share").on('click', function(){
+            $("#shareIcons").toggleClass( "hidden", 1000 );
+        });
 
         var productId = $("#product_id").val();
         $("#favourite").on('click', function(e){

@@ -32,7 +32,8 @@
 
     {{ Html::style('/frontend/css/custom.css') }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
 @yield('after-styles')
 
 <!-- Scripts -->
@@ -58,6 +59,7 @@
 <!-- Scripts -->
 @yield('before-scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
     {!! Html::script('/frontend/js/bootstrap-colorselector.min.js') !!}
     {!! Html::script('/frontend/js/slick.min.js') !!}
     {!! Html::script('/frontend/js/slick-lightbox.min.js') !!}

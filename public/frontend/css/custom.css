@@ -376,3 +376,13 @@ body {
 .shop-container .shop-icon {
   padding: 0 15px 0 0;
 }
+
+#shareIcons {
+      right: -10px;
+    position: absolute;
+    top: 45px;
+    z-index: 99;
+}
+.jssocials-share {
+    display: block !important;
+}
