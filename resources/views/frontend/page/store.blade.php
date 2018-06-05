@@ -12,126 +12,40 @@
             </div>
 
             <div class="row shops">
-                <div class="box col-sm-4 left">
-                    <p>This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph</p>
-                </div>
 
-                <div class="box col-sm-4 right">
-                    <p>This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph</p>
-                </div>
-            </div>
-        </div>
+                @foreach($stores as $single)
+                <div class="shop-container col-sm-12">
+                    <div class="col-sm-6 text-container">
+                        <p>{{ $single->name }}</p>
+                        <p>{{ $single->address }}</p>
+                        <p>{{ $single->street }}</p>
+                        <p>{{ $single->pobox.' , '.$single->city.' , '.$single->state.' , '.$single->country }}</p>
+                        <p><a href="tel:{{ $single->phone }}"><i class="fa fa-phone-square" aria-hidden="true"></i>{{ $single->phone }}</a></p>
+                        <p><a href="mailto:{{ $single->email }}?Subject=Contact" target="_top"><i class="fas fa-envelope" aria-hidden="true"></i>{{ $single->email }}</a></p>
+                        <p>
+                            @php
+                                $shop = json_decode($single->shop, true);
+                            @endphp
 
-        <div class="section" id="search">
-            <div class="heading">
-                <hr><h1><span>Search Us Location</span></h1>
-            </div>
-            <div class="search">
-                <form action="">
-                    <div class="form-group">
-                        <label for="search">Location</label>
-                        <input type="text" class="form-control" id="search" placeholder="Search" name="search">
+                            @if(isset($shop['amazon_link']))
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['amazon_link'] }}"><i class="fab fa-amazon"></i></a>
+                            @endif
+
+                            @if(isset($shop['ebay_link']))
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['ebay_link'] }}"><i class="fab fa-ebay "></i></a>
+                            @endif
+
+                            @if(isset($shop['other_link']))
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['other_link'] }}"><i class="fas fa-link"></i></a>
+                            @endif
+                        </p>
                     </div>
-                    <div class="form-group">
-                        <label for="zip">Zip Code</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" name="zip">
+                    <div class="col-sm-6">
+                        <iframe style="border: 0;width: 100%;min-height: 300px;" src="https://maps.google.com/maps?q={{ $single->address }}&hl=es;z=14&amp;output=embed" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
                     </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="section" id="online">
-            <div class="heading">
-                <hr><h1><span>Search Online</span></h1>
-            </div>
-
-            <div class="row online">
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
                 </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-
-                <div class="box col-sm-4 col-xs-6">
-                    <a href="#"><img src="http://via.placeholder.com/140x100" alt="logo"></a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="section" id="retail">
-            <div class="heading">
-                <hr><h1><span>Visit Our Retail location</span></h1>
-            </div>
-
-            <div class="row retail">
-                <div class="box col-sm-4">
-                    <p>This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph</p>
-                </div>
-
-                <div class="box col-sm-4">
-                    <p>This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph</p>
-                </div>
-
-                <div class="box col-sm-4">
-                    <p>This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph,
-                        This is a paragraph</p>
-                </div>
+                @endforeach
+                
             </div>
         </div>
 

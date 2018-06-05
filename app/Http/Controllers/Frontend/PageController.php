@@ -19,11 +19,11 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->page         = new PageRepository();
-        $this->slider       = new HomeSliderRepository(); 
-        $this->settings     = new SettingRepository();
-        $this->mailinglist  = new Mailinglist();
-        $this->stores       = new StoreRepository();
+        $this->page             = new PageRepository();
+        $this->slider           = new HomeSliderRepository(); 
+        $this->settings         = new SettingRepository();
+        $this->mailinglist      = new Mailinglist();
+        $this->storeRepository  = new StoreRepository();
     }
 
     /**
@@ -102,7 +102,7 @@ class PageController extends Controller
             ]);
     }
 
-    public function store()
+    /*public function store()
     {
         $pageData = $this->page->getPageBySlug('stores');
 
@@ -119,7 +119,7 @@ class PageController extends Controller
             'slider'    => isset($slider) ? $slider :[],
             'content'   => isset($content) ? $content : ""
             ]);
-    }
+    }*/
 
     public function contactUs()
     {
@@ -496,6 +496,15 @@ class PageController extends Controller
                 ]; 
         }
         
+    }
+
+    public function store()
+    {
+        $stores = $this->storeRepository->getAll();
+
+        return view('frontend.page.store')->with([
+            'stores'  => $stores,
+        ]);
     }
 
 }

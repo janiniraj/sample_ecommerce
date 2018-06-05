@@ -106,7 +106,12 @@
                 $("#login-modal").modal('hide');
                 $("#register-modal").modal('show');
             });
+            $(".forgetpassword-button").on('click', function(){
+                $("#login-modal").modal('hide');
+                $("#forgetpassword-modal").modal('show');
+            });
             $(".back-login").on('click', function(){
+                $("#forgetpassword-modal").modal('hide');
                 $("#register-modal").modal('hide');
                 $("#login-modal").modal('show');
             });

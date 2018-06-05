@@ -381,7 +381,7 @@ $helper = new MenuHelper();
           {{ Form::close() }}
             
           <div class="login-help">
-            <a class="register-button" href="javascript:void(0)">Register</a> - <a href="#">Forgot Password</a>
+            <a class="register-button" href="javascript:void(0)">Register</a> - <a class="forgetpassword-button" href="javascript:void(0)">Forgot Password</a>
           </div>
         </div>
     </div>
@@ -431,6 +431,26 @@ $helper = new MenuHelper();
             <input type="submit" name="Submit" class="login loginmodal-submit" value="Submit">
           {{ Form::close() }}
             
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="forgetpassword-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                <span aria-hidden="true">×</span>
+            </button>
+            <h1>{{ trans('labels.frontend.passwords.reset_password_box_title') }}</h1><br>
+          {{ Form::open(['route' => 'frontend.auth.password.email.post', 'class' => 'form-horizontal']) }}
+            <input type="email" required name="email" placeholder="Email">            
+            <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          {{ Form::close() }}
+            
+            <div class="login-help">
+                <a class="back-login" href="javascript:void(0)">Back to Login</a>
+              </div>
+            </div>
         </div>
     </div>
 </div>
