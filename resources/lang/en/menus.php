@@ -105,6 +105,13 @@ return [
             'management' => 'Page Management',
             'main'       => 'Page',
         ],
+        'stores' => [
+            'all'        => 'All Stores',
+            'create'     => 'Create Store',
+            'edit'       => 'Edit Store',
+            'management' => 'Store Management',
+            'main'       => 'Store',
+        ],
     ],
 
     'language-picker' => [

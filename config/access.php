@@ -87,6 +87,11 @@ return [
     'mailinglist_table' => 'mailing_list',
 
     /*
+     * Stores
+     */
+    'store_table' => 'stores',
+
+    /*
      * Configurations for the user
      */
     'users' => [

@@ -188,6 +188,20 @@ return [
                 'slug' => 'Slug',
                 'content' => 'Content',
             ],
+            'stores' => [
+                'title' => 'Store Name (As per Google)',
+                'email' => 'Email',
+                'address' => 'Address',
+                'street' => 'Street',
+                'pobox' => 'Zip Code',
+                'city' => 'City',
+                'state' => 'State',
+                'country' => 'Country',
+                'phone' => 'Phone',
+                'amazon_link' => 'Amazon Link',
+                'ebay_link' => 'Ebay Link',
+                'custom_link' => 'Custom Link'
+            ],
         ],
 
         'frontend' => [

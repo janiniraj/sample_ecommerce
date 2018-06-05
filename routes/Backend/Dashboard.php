@@ -127,3 +127,15 @@ Route::group(['namespace' => 'Subscription'], function () {
     Route::post('subscriptions/get', 'SubscriptionTableController')
         ->name('subscriptions.get');
 });
+
+/**
+ *  Store Management
+ */
+Route::group(['namespace' => 'Store'], function () {
+    Route::resource('stores', 'StoreController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('stores/get', 'StoreTableController')
+        ->name('stores.get');
+});

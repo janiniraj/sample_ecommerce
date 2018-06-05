@@ -1,0 +1,146 @@
+<?php
+
+namespace App\Repositories\Backend\Store;
+
+use App\Repositories\BaseRepository;
+use App\Exceptions\GeneralException;
+use App\Models\Store\Store;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Utilities\FileUploads;
+use DB;
+
+/**
+ * Class StoreRepository.
+ */
+class StoreRepository extends BaseRepository
+{
+    /**
+     * Associated Repository Model.
+     */
+    const MODEL = Store::class;
+
+    /**
+     * @return mixed
+     */
+    public function getForDataTable()
+    {
+        return $this->query()
+            ->select([
+                config('access.store_table').'.id',
+                config('access.store_table').'.name',
+                config('access.store_table').'.pobox',
+                config('access.store_table').'.created_at',
+                config('access.store_table').'.updated_at',
+            ]);
+    }
+
+    /**
+     * @param array $input
+     *
+     * @throws GeneralException
+     *
+     * @return bool
+     */
+    public function create(array $input)
+    {
+        if ($this->query()->where('name', $input['name'])->first()) {
+            throw new GeneralException(trans('exceptions.backend.stores.already_exists'));
+        }
+
+        $input['shop'] = [
+            'amazon_link'   => isset($input['amazon_link']) ? $input['amazon_link'] : '',
+            'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',
+            'custom_link'   => isset($input['custom_link']) ? $input['custom_link'] : ''
+        ];
+
+        DB::transaction(function () use ($input) {
+            $stores = self::MODEL;
+            $stores = new $stores();
+            $stores->name = $input['name'];
+            $stores->email = $input['email'];
+            $stores->address = $input['address'];
+            $stores->street = $input['street'];
+            $stores->pobox = $input['pobox'];
+            $stores->city = $input['city'];
+            $stores->state = $input['state'];
+            $stores->country = $input['country'];
+            $stores->phone = $input['phone'];
+            $stores->phone = $input['phone'];
+            $stores->shop = json_encode($input['shop']);
+
+            if ($stores->save()) {
+
+                // event(new StoreCreated($stores));
+                return true;
+            }
+            throw new GeneralException(trans('exceptions.backend.stores.create_error'));
+        });
+    }
+
+    /**
+     * @param Model $permission
+     * @param  $input
+     *
+     * @throws GeneralException
+     *
+     * return bool
+     */
+     
+    public function update(Model $stores, array $input)
+    {
+        if ($this->query()->where('name', $input['name'])->where('id', '!=', $stores->id)->first()) {
+            throw new GeneralException(trans('exceptions.backend.stores.already_exists'));
+        }
+
+        $input['shop'] = [
+            'amazon_link'   => isset($input['amazon_link']) ? $input['amazon_link'] : '',
+            'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',
+            'custom_link'   => isset($input['custom_link']) ? $input['custom_link'] : ''
+        ];
+        
+        $stores->name = $input['name'];
+        $stores->email = $input['email'];
+        $stores->address = $input['address'];
+        $stores->street = $input['street'];
+        $stores->pobox = $input['pobox'];
+        $stores->city = $input['city'];
+        $stores->state = $input['state'];
+        $stores->country = $input['country'];
+        $stores->phone = $input['phone'];
+        $stores->phone = $input['phone'];
+        $stores->shop = json_encode($input['shop']);
+
+        DB::transaction(function () use ($stores, $input) {
+        	if ($stores->save()) {
+                // event(new StoreUpdated($stores));
+
+                return true;
+            }
+
+            throw new GeneralException(
+                trans('exceptions.backend.stores.update_error')
+            );
+        });
+    }
+
+    /**
+     * @param Model $category
+     *
+     * @throws GeneralException
+     *
+     * @return bool
+     */
+    public function delete(Model $category)
+    {
+        DB::transaction(function () use ($category) {
+
+            if ($category->delete()) {
+                // event(new StoreDeleted($category));
+
+                return true;
+            }
+
+            throw new GeneralException(trans('exceptions.backend.stores.delete_error'));
+        });
+    }
+}

@@ -237,6 +237,19 @@ return [
                 'all'            => 'All'
             ],
         ],
+        'stores' => [
+            'create'     => 'Create Store',
+            'edit'       => 'Edit Store',
+            'management' => 'Store Management',
+            'title' => 'Store',
+
+            'table' => [
+                'title'          => 'Store Name',
+                'pobox'         => 'Zip Code',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [

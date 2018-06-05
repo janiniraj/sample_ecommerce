@@ -79,6 +79,11 @@ return [
             'deleted' => 'The Review was successfully deleted.',
             'updated' => 'The Review was successfully updated.',
         ],
+        'stores' => [
+            'created' => 'The Store was successfully created.',
+            'deleted' => 'The Store was successfully deleted.',
+            'updated' => 'The Store was successfully updated.',
+        ],
     ],
 
     'frontend' => [

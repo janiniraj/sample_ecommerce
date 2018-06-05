@@ -118,6 +118,13 @@ return [
             'not_found'         => 'That Subscription does not exist.',
             'update_error'      => 'There was a problem updating this Subscription. Please try again.',
         ],
+        'stores' => [
+            'already_exists'    => 'That Store already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this Store. Please try again.',
+            'delete_error'      => 'There was a problem deleting this Store. Please try again.',
+            'not_found'         => 'That Store does not exist.',
+            'update_error'      => 'There was a problem updating this Store. Please try again.',
+        ],
     ],
 
     'frontend' => [

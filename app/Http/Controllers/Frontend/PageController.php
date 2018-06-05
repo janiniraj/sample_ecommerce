@@ -9,6 +9,7 @@ use App\Mail\contactEmail;
 use App\Mail\dealerEmail;
 use App\Repositories\Backend\Setting\SettingRepository;
 use App\Models\Mailinglist\Mailinglist;
+use App\Repositories\Backend\Store\StoreRepository;
 
 /**
  * Class PageController.
@@ -18,10 +19,11 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->page     = new PageRepository();
-        $this->slider   = new HomeSliderRepository(); 
-        $this->settings = new SettingRepository();
-        $this->mailinglist = new Mailinglist();
+        $this->page         = new PageRepository();
+        $this->slider       = new HomeSliderRepository(); 
+        $this->settings     = new SettingRepository();
+        $this->mailinglist  = new Mailinglist();
+        $this->stores       = new StoreRepository();
     }
 
     /**

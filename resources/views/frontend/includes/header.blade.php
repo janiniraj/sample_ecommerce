@@ -338,7 +338,7 @@ $helper = new MenuHelper();
                     <a class="dropdown-toggle" href="{{ route('frontend.page.contact-us') }}">Contact Us</a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('frontend.page.store') }}">Our Store</a></li>
-                        <li><a href="#">Inquire</a></li>
+                        <li><a href="{{ route('frontend.page.faq') }}">Inquire</a></li>
                         <li><a href="javascript:void(0);" data-toggle="modal" data-target="#mailing-modal">Join Mailing List</a></li>
                     </ul>
                 </li>
