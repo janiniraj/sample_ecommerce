@@ -454,3 +454,22 @@ $helper = new MenuHelper();
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="joinus-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                <span aria-hidden="true">×</span>
+            </button>
+            <h1>Join our Mailing List</h1><br>
+          {{ Form::open(['route' => 'frontend.page.mailing-submit', 'class' => 'form-horizontal', 'id' => 'joinusSubmitForm']) }}
+            <input type="text" required name="firstname" placeholder="First Name">
+            <input type="text" required name="lastname" placeholder="Last Name">
+            <input type="email" required name="email" placeholder="Email Address">
+            <input type="submit" name="Submit" class="login loginmodal-submit" value="Submit">
+
+          {{ Form::close() }}
+            <a class="btn btn-submit btn-no-thanks" href="javascript:void(0)" data-dismiss="modal" aria-label="Close">No Thanks</a>
+        </div>
+    </div>
+</div>

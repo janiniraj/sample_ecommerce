@@ -126,7 +126,7 @@
             //Checks if the cookie already exists
             if (!getCookie('firsttime')){
                 //Runs the code because the cookie doesn't exist and it's the user's first time
-                $("#mailing-modal").modal('show');
+                $("#joinus-modal").modal('show');
                 //Set's the cookie to true so there is a value and the code shouldn't run again.
                 setCookie('firsttime',true);
             }

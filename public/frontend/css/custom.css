@@ -386,3 +386,14 @@ body {
 .jssocials-share {
     display: block !important;
 }
+
+.btn-no-thanks {
+    width: 100%;
+    padding: 17px 15px;
+    border: 0;
+    color: #fff !important;
+    background-color: #808080;
+    font-size: 14px;
+    border-radius: 0px;
+    opacity: 1 !important;
+}

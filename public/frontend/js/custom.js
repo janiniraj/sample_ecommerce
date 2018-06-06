@@ -121,4 +121,37 @@ $(function(){
            }
          });
     });
+
+    $("#joinusSubmitForm").submit(function(e){
+      e.preventDefault();
+      var url = $(this).attr('action');
+      $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#joinusSubmitForm").serialize(),
+           success: function(data)
+           {
+              if(data.success == true)
+              {
+                swal({
+                    title:'Thank you!',
+                    text:data.message,
+                    type:'success'
+                  }).then(function() {
+                      $('#joinus-modal').modal('hide');
+                      $("#joinusSubmitForm").find("input[type=text], input[type=email]").val("");
+                  });
+              }
+              else
+              {
+
+              swal({
+                      title:'Errors',
+                      text:data.message,
+                      type:'error'
+                    });
+              }               
+           }
+         });
+    });
 });
