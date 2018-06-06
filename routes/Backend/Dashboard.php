@@ -111,6 +111,10 @@ Route::group(['namespace' => 'Review'], function () {
     Route::post('reviews/get', 'ReviewTableController')
         ->name('reviews.get');
 });
+
+/**
+ * Settings
+ */
 Route::group(['namespace' => 'Setting'], function () {
     Route::get('settings', 'SettingController@index')->name('settings.index');
     Route::post('settings', 'SettingController@saveData')->name('settings.store');
@@ -138,4 +142,13 @@ Route::group(['namespace' => 'Store'], function () {
     //For DataTables
     Route::post('stores/get', 'StoreTableController')
         ->name('stores.get');
+});
+
+Route::group(['namespace' => 'Mailinglist'], function () {
+    Route::resource('mailinglists', 'MailinglistController', ['except' =>
+        ['show']]);
+
+    //For DataTables
+    Route::post('mailinglists/get', 'MailinglistTableController')
+        ->name('mailinglists.get');
 });

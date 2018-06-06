@@ -33,8 +33,7 @@ trait Attribute
      */
     public function getActionButtonsAttribute()
     {
-        return '<div class="btn-group action-btn">
-                    ' .$this->getEditButtonAttribute(). '
+        return '<div class="btn-group action-btn">                    
                     ' .$this->getDeleteButtonAttribute(). '
                 </div>';
     }

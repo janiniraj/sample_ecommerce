@@ -27,8 +27,10 @@ class MailinglistRepository extends BaseRepository
         return $this->query()
             ->select([
                 config('access.mailinglist_table').'.id',
-                config('access.mailinglist_table').'.name',
-                config('access.mailinglist_table').'.slug',
+                config('access.mailinglist_table').'.firstname',
+                config('access.mailinglist_table').'.lastname',
+                config('access.mailinglist_table').'.email',
+                config('access.mailinglist_table').'.pobox',
                 config('access.mailinglist_table').'.created_at',
                 config('access.mailinglist_table').'.updated_at',
             ]);

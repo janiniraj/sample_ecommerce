@@ -84,6 +84,11 @@ return [
             'deleted' => 'The Store was successfully deleted.',
             'updated' => 'The Store was successfully updated.',
         ],
+        'mailinglists' => [
+            'created' => 'The Mailing List was successfully created.',
+            'deleted' => 'The Mailing List was successfully deleted.',
+            'updated' => 'The Mailing List was successfully updated.',
+        ],
     ],
 
     'frontend' => [

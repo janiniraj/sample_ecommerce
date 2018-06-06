@@ -250,6 +250,22 @@ return [
                 'all'            => 'All',
             ],
         ],
+
+        'mailinglists' => [
+            'create'     => 'Create Mailing List',
+            'edit'       => 'Edit Mailing List',
+            'management' => 'Mailing List Management',
+            'title' => 'Mailing List',
+
+            'table' => [
+                'firstname'      => 'First Name',
+                'lastname'       => 'Last Name',
+                'email'          => 'Email',
+                'pobox'          => 'Zip Code',
+                'createdat'      => 'Created At',
+                'all'            => 'All',
+            ],
+        ],
     ],
 
     'frontend' => [
