@@ -173,6 +173,12 @@
                     <span>Store Management</span>
                 </a>
             </li>
+            <li class="{{ active_class(Active::checkUriPattern('admin/mailinglists*')) }}">
+                <a href="{{ route('admin.mailinglists.index') }}">
+                    <i class="fa fa-envelope"></i>
+                    <span>Mailing Lists Management</span>
+                </a>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>
