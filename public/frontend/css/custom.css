@@ -397,3 +397,7 @@ body {
     border-radius: 0px;
     opacity: 1 !important;
 }
+
+.shop-icon img {
+    max-width: 50px;
+}

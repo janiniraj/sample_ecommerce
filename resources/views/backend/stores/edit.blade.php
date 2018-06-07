@@ -33,3 +33,36 @@
     </div>
 {{ Form::close() }}
 @endsection
+
+@section('after-scripts')
+    <script type="text/javascript">
+        $(".image1").on('change', function ()
+        {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-display1')
+                        .attr('src', e.target.result).removeClass('hidden');
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+        $(".image2").on('change', function ()
+        {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-display2')
+                        .attr('src', e.target.result).removeClass('hidden');
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+    </script>
+@endsection

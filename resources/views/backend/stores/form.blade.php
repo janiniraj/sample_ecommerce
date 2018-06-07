@@ -94,9 +94,45 @@
     </div><!--form control-->
 
     <div class="form-group">
-        {{ Form::label('custom_link', trans('validation.attributes.backend.stores.custom_link'), ['class' => 'col-lg-2 control-label required']) }}
+        {{ Form::label('custom_link1', 'Custom Link 1', ['class' => 'col-lg-2 control-label required']) }}
 
         <div class="col-lg-10">
-            {{ Form::text('custom_link', isset($shop) && isset($shop['custom_link']) ? $shop['custom_link'] : null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.stores.custom_link')]) }}
+            {{ Form::text('custom_link1', isset($shop) && isset($shop['custom_link1']) ? $shop['custom_link1'] : null, ['class' => 'form-control box-size', 'placeholder' => 'Custom Link 1']) }}
         </div><!--col-lg-10-->
     </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('custom_logo1', 'Custom Logo 1', ['class' => 'col-lg-2 control-label required']) }}
+
+        <div class="col-lg-10">
+            @if($shop['custom_logo1'])
+                <img class="logo-store image-display1" src="<?php echo url('/').'/stores/'.$shop['custom_logo1']; ?>" />
+            @endif            
+            {{ Form::file('custom_logo1', $attributes = array('class' => 'image1', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
+        </div><!--col-lg-10-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('custom_link2', 'Custom Link 2', ['class' => 'col-lg-2 control-label required']) }}
+
+        <div class="col-lg-10">
+            {{ Form::text('custom_link2', isset($shop) && isset($shop['custom_link2']) ? $shop['custom_link2'] : null, ['class' => 'form-control box-size', 'placeholder' => 'Custom Link 2']) }}
+        </div><!--col-lg-10-->
+    </div><!--form control-->
+
+    <div class="form-group">
+        {{ Form::label('custom_logo2', 'Custom Logo 2', ['class' => 'col-lg-2 control-label required']) }}
+
+        <div class="col-lg-10">
+            @if($shop['custom_logo2'])
+                <img class="logo-store image-display2" src="<?php echo url('/').'/stores/'.$shop['custom_logo2']; ?>" />
+            @endif
+            {{ Form::file('custom_logo2', $attributes = array('class' => 'image2', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
+        </div><!--col-lg-10-->
+    </div><!--form control-->
+
+    <style type="text/css">
+        img.logo-store {
+            max-height: 50px;
+        }
+    </style>

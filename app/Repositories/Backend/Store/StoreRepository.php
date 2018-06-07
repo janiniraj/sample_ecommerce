@@ -47,10 +47,37 @@ class StoreRepository extends BaseRepository
             throw new GeneralException(trans('exceptions.backend.stores.already_exists'));
         }
 
+        $basePath = public_path("stores");
+
+        if(isset($input['custom_logo1']) && is_object($input['custom_logo1']))
+        {
+            $imageName = time().$input['custom_logo1']->getClientOriginalName();
+
+            $input['custom_logo1']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo1'] = $imageName;
+        }
+
+        if(isset($input['custom_logo2']) && is_object($input['custom_logo2']))
+        {
+            $imageName = time().$input['custom_logo2']->getClientOriginalName();
+
+            $input['custom_logo2']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo2'] = $imageName;
+        }
+
         $input['shop'] = [
             'amazon_link'   => isset($input['amazon_link']) ? $input['amazon_link'] : '',
-            'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',
-            'custom_link'   => isset($input['custom_link']) ? $input['custom_link'] : ''
+            'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',            
+            'custom_link1'  => isset($input['custom_link1']) ? $input['custom_link1'] : '',
+            'custom_logo1'  => isset($input['custom_logo1']) ? $input['custom_logo1'] : '',
+            'custom_link2'  => isset($input['custom_link2']) ? $input['custom_link2'] : '',
+            'custom_logo2'  => isset($input['custom_logo2']) ? $input['custom_logo2'] : ''        
         ];
 
         DB::transaction(function () use ($input) {
@@ -92,10 +119,39 @@ class StoreRepository extends BaseRepository
             throw new GeneralException(trans('exceptions.backend.stores.already_exists'));
         }
 
+        $shopOriginal = json_decode($stores->shop, true);
+
+        $basePath = public_path("stores");
+
+        if(isset($input['custom_logo1']) && is_object($input['custom_logo1']))
+        {
+            $imageName = time().$input['custom_logo1']->getClientOriginalName();
+
+            $input['custom_logo1']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo1'] = $imageName;
+        }
+
+        if(isset($input['custom_logo2']) && is_object($input['custom_logo2']))
+        {
+            $imageName = time().$input['custom_logo2']->getClientOriginalName();
+
+            $input['custom_logo2']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo2'] = $imageName;
+        }
+
         $input['shop'] = [
             'amazon_link'   => isset($input['amazon_link']) ? $input['amazon_link'] : '',
             'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',
-            'custom_link'   => isset($input['custom_link']) ? $input['custom_link'] : ''
+            'custom_link1'  => isset($input['custom_link1']) ? $input['custom_link1'] : $shopOriginal['custom_link1'],
+            'custom_logo1'  => isset($input['custom_logo1']) ? $input['custom_logo1'] : $shopOriginal['custom_logo1'],
+            'custom_link2'  => isset($input['custom_link2']) ? $input['custom_link2'] : $shopOriginal['custom_link2'],
+            'custom_logo2'  => isset($input['custom_logo2']) ? $input['custom_logo2'] : $shopOriginal['custom_logo2']
         ];
         
         $stores->name = $input['name'];

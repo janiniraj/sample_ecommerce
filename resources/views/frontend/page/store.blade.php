@@ -35,8 +35,12 @@
                                 <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['ebay_link'] }}"><i class="fab fa-ebay "></i></a>
                             @endif
 
-                            @if(isset($shop['other_link']))
-                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['other_link'] }}"><i class="fas fa-link"></i></a>
+                            @if(isset($shop['custom_link1']) && $shop['custom_link1'] && isset($shop['custom_logo1']) && $shop['custom_logo1'])
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link1'] }}"><img src="{{ url('/').'/stores/'.$shop['custom_logo1'] }}" /></a>
+                            @endif
+
+                            @if(isset($shop['custom_link2']) && $shop['custom_link2'] && isset($shop['custom_logo2']) && $shop['custom_logo2'])
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link2'] }}"><img src="{{ url('/').'/stores/'.$shop['custom_logo2'] }}" /></a>
                             @endif
                         </p>
                     </div>
