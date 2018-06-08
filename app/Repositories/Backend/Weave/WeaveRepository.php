@@ -73,7 +73,7 @@ class WeaveRepository extends BaseRepository
      */
      
     public function update(Model $weaves, array $input)
-    {
+    {die("Dfdf");
         if ($this->query()->where('name', $input['name'])->where('id', '!=', $weaves->id)->first()) {
             throw new GeneralException(trans('exceptions.backend.weaves.already_exists'));
         }
