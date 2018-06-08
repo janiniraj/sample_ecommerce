@@ -113,3 +113,15 @@ if (! function_exists('homeRoute')) {
         return 'frontend.index';
     }
 }
+
+if (! function_exists('admin_url')) {
+    /**
+     * Helper to grab the application Admin Url.
+     *
+     * @return mixed
+     */
+    function admin_url()
+    {
+        return config('app.admin_url');
+    }
+}

@@ -12,7 +12,7 @@
                 <hr><h1><span>Site Map</span></h1>
             </div>
 
-            <img src="{{ url('/') }}/frontend/img/site-map/site-map.jpg" alt="Site Map" class="img-responsive">
+            <img src="{{ admin_url() }}/frontend/img/site-map/site-map.jpg" alt="Site Map" class="img-responsive">
         </div>
     </div>
 @endsection

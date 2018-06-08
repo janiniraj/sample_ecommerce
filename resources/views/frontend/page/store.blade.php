@@ -36,11 +36,11 @@
                             @endif
 
                             @if(isset($shop['custom_link1']) && $shop['custom_link1'] && isset($shop['custom_logo1']) && $shop['custom_logo1'])
-                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link1'] }}"><img src="{{ url('/').'/stores/'.$shop['custom_logo1'] }}" /></a>
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link1'] }}"><img src="{{ admin_url().'/stores/'.$shop['custom_logo1'] }}" /></a>
                             @endif
 
                             @if(isset($shop['custom_link2']) && $shop['custom_link2'] && isset($shop['custom_logo2']) && $shop['custom_logo2'])
-                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link2'] }}"><img src="{{ url('/').'/stores/'.$shop['custom_logo2'] }}" /></a>
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link2'] }}"><img src="{{ admin_url().'/stores/'.$shop['custom_logo2'] }}" /></a>
                             @endif
                         </p>
                     </div>

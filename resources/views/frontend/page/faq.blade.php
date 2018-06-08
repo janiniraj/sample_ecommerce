@@ -8,7 +8,7 @@
     <div class="container" id="faq">
         <div class="section">
             <div class="faq-poster">
-                <img src="{{ url("/") }}/frontend/img/faq/faq.jpg" alt="faq poster" class="img-responsive">
+                <img src="{{ admin_url() }}/frontend/img/faq/faq.jpg" alt="faq poster" class="img-responsive">
             </div>
 
             <div class="links">

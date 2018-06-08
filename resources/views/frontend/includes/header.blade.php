@@ -5,7 +5,7 @@ $helper = new MenuHelper();
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand main-logo" href="{{ url('/') }}"><img src="{{ url('/').'/logo.jpg' }}"></a>
+            <a class="navbar-brand main-logo" href="{{ url('/') }}"><img src="{{ admin_url().'/logo.jpg' }}"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -351,15 +351,15 @@ $helper = new MenuHelper();
                 <li class="dropdown language">
                     <a class="dropdown-toggle" href="#">Language</a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0);" id="English" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/us.png"></a></li>
-                        <li><a href="javascript:void(0);" id="French" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/fr.png"></a></li>
-                        <li><a href="javascript:void(0);" id="Chinese (Simplified)" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/ch.png"></a></li>
-                        <li><a href="javascript:void(0);" id="Spanish" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/sp.png"></a></li>
-                        <li><a href="javascript:void(0);" id="Arabic" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Arabic.png"></a></li>
-                        <li><a href="javascript:void(0);" id="German" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Germany.png"></a></li>
-                        <li><a href="javascript:void(0);" id="Hindi" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Indian.png"></a></li>
-                        <li><a href="javascript:void(0);" id="Italian" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Italain.jpg"></a></li>
-                        <li><a href="javascript:void(0);" id="Persian" onclick="translateLanguage(this.id);"><img src="{{ url('/') }}/frontend/img/flags/Persian.png"></a></li>
+                        <li><a href="javascript:void(0);" id="English" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/us.png"></a></li>
+                        <li><a href="javascript:void(0);" id="French" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/fr.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Chinese (Simplified)" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/ch.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Spanish" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/sp.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Arabic" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Arabic.png"></a></li>
+                        <li><a href="javascript:void(0);" id="German" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Germany.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Hindi" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Indian.png"></a></li>
+                        <li><a href="javascript:void(0);" id="Italian" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Italain.jpg"></a></li>
+                        <li><a href="javascript:void(0);" id="Persian" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Persian.png"></a></li>
                     </ul>
                 </li>
             </ul>

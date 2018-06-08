@@ -261,7 +261,7 @@
                             <div class="col-xs-6 item">
                                 <a href="{{ route('frontend.product.show', $product->id) }}">
                                     @php $images = json_decode($product->main_image, true); @endphp
-                                    <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="Item" class="img-responsive">
+                                    <img src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" alt="Item" class="img-responsive">
                                     <div class="text-center product-title">{{ $product->name }}</div>
                                 </a>
                             </div>

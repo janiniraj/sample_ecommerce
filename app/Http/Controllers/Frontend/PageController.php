@@ -47,7 +47,7 @@ class PageController extends Controller
             foreach($slider as $singleSlider)
             {
                 $sliderHtml .= '<div>
-                                    <img src="'.url('/').'/img/sliders/'.$singleSlider->image.'">
+                                    <img src="'.admin_url().'/img/sliders/'.$singleSlider->image.'">
                                 </div>';
             }
             $sliderHtml .='        </section>
@@ -355,7 +355,7 @@ class PageController extends Controller
 
         if(!empty($vendorPdfData))
         {
-            $vendorFormLink = url('/').'/settings/'.$vendorPdfData->value;
+            $vendorFormLink = admin_url().'/settings/'.$vendorPdfData->value;
         }
         else
         {
@@ -390,7 +390,7 @@ class PageController extends Controller
                     $basePath, $fileName
                 );
 
-        $fileUrl = url('/').'/dealerforms/'.$fileName;
+        $fileUrl = admin_url().'/dealerforms/'.$fileName;
         
         $data['form'] = $fileUrl;
 

@@ -10,7 +10,7 @@
                     </div>
                 @else
                     <div>
-                        <img src="{{ URL::to('/').'/img/sliders/'.$slide->image }}">
+                        <img src="{{ admin_url().'/img/sliders/'.$slide->image }}">
                         @if($slide->title)
                             <div class="slide-caption">
                                 <a href="{{url('/').'/'.$slide->url }}">
@@ -33,7 +33,7 @@
                 @foreach($categories as $category)
                     <div class="">
                         <figure class="snip1174 grey">
-                            <img src="{{ url('/').'/img/category/'.$category->icon }}" alt="sq-sample33" />
+                            <img src="{{ admin_url().'/img/category/'.$category->icon }}" alt="sq-sample33" />
                             <figcaption>
                                 <a href="{{ route('frontend.product.index', $category->category) }}">Quick View</a>
                                 <h2>{{ $category->category }}</h2>
@@ -52,7 +52,7 @@
                 @foreach($collections as $collection)
                     <div class="">
                         <figure class="snip1174 grey">
-                            <img src="{{ url('/').'/img/subcategory/'.$collection->icon }}" alt="sq-sample33" />
+                            <img src="{{ admin_url().'/img/subcategory/'.$collection->icon }}" alt="sq-sample33" />
                             <figcaption>
                                 <a href="{{ route('frontend.product.product-by-type').'?collection='.$collection->id }}">Quick View</a>
                                 <h2>{{ $collection->subcategory }}</h2>
@@ -72,7 +72,7 @@
                     @php $images = json_decode($product->main_image, true); @endphp
                     <div class="">
                         <figure class="snip1174 grey">
-                            <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                            <img src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
                             <figcaption>
                                 <a href="{{ route('frontend.product.show', $product->id) }}">Quick View</a>
                                 <h2>{{ $product->name }}</h2>
@@ -93,7 +93,7 @@
                     @php $images = json_decode($product->main_image, true); @endphp
                     <div class="">
                         <figure class="snip1174 grey">
-                            <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                            <img src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
                             <figcaption>
                                 <a href="{{ route('frontend.product.show', $product->id) }}">Quick View</a>
                                 <h2>{{ $product->name }}</h2>

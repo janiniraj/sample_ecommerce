@@ -21,10 +21,10 @@
                         $images = json_decode($product->main_image, true);
                     @endphp
                     <div class="xzoom-container col-md-12">
-                        <img class="xzoom" id="xzoom-default" src="{{ url('/'). '/img/products/thumbnail/'.$images[0] }}" xoriginal="{{ url('/'). '/img/products/'.$images[0] }}" />
+                        <img class="xzoom" id="xzoom-default" src="{{ admin_url(). '/img/products/thumbnail/'.$images[0] }}" xoriginal="{{ admin_url(). '/img/products/'.$images[0] }}" />
                         <div class="xzoom-thumbs">
                             @foreach($images as $singleKey => $singleValue)
-                                <a href="{{ url('/'). '/img/products/'.$singleValue }}"><img class="xzoom-gallery" width="80" src="{{ url('/'). '/img/products/thumbnail/'.$singleValue }}" ></a>
+                                <a href="{{ admin_url(). '/img/products/'.$singleValue }}"><img class="xzoom-gallery" width="80" src="{{ admin_url(). '/img/products/thumbnail/'.$singleValue }}" ></a>
                             @endforeach
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                         @php $images = json_decode($singleProduct->main_image, true); @endphp
                         <div class="">
                             <figure class="snip1174 grey">
-                                <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                                <img src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
                                 <figcaption>
                                     <a href="{{ route('frontend.product.show', $singleProduct->id) }}">Quick View</a>
                                     <h2>{{ $singleProduct->name }}</h2>
@@ -178,7 +178,7 @@
                         @php $images = json_decode($singleProduct->main_image, true); @endphp
                         <div class="">
                             <figure class="snip1174 grey">
-                                <img src="{{ URL::to('/').'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                                <img src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
                                 <figcaption>
                                     <a href="{{ route('frontend.product.show', $singleProduct->id) }}">Quick View</a>
                                     <h2>{{ $singleProduct->name }}</h2>
