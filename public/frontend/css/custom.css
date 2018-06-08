@@ -401,3 +401,10 @@ body {
 .shop-icon img {
     max-width: 50px;
 }
+
+.span-small-text {
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    margin-top: -5px;
+}
