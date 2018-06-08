@@ -3,7 +3,10 @@
 /**
  * All route names are prefixed with 'admin.'.
  */
-Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+//Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('dashboard', function(){
+    return redirect(admin_url().'/login');
+})->name('dashboard');
 Route::get('test', 'DashboardController@test')->name('test');
 
 /**
