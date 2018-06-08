@@ -105,7 +105,7 @@
         {{ Form::label('custom_logo1', 'Custom Logo 1', ['class' => 'col-lg-2 control-label required']) }}
 
         <div class="col-lg-10">
-            @if($shop['custom_logo1'])
+            @if(isset($shop) && isset($shop['custom_logo1']) && $shop['custom_logo1'])
                 <img class="logo-store image-display1" src="<?php echo url('/').'/stores/'.$shop['custom_logo1']; ?>" />
             @endif            
             {{ Form::file('custom_logo1', $attributes = array('class' => 'image1', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
@@ -124,7 +124,7 @@
         {{ Form::label('custom_logo2', 'Custom Logo 2', ['class' => 'col-lg-2 control-label required']) }}
 
         <div class="col-lg-10">
-            @if($shop['custom_logo2'])
+            @if(isset($shop) && isset($shop['custom_logo2']) && $shop['custom_logo2'])
                 <img class="logo-store image-display2" src="<?php echo url('/').'/stores/'.$shop['custom_logo2']; ?>" />
             @endif
             {{ Form::file('custom_logo2', $attributes = array('class' => 'image2', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
