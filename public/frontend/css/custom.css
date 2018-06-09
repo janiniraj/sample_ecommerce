@@ -408,3 +408,11 @@ body {
     text-align: center;
     margin-top: -5px;
 }
+
+.copyrights a {
+    color: blue;
+}
+
+ul.navbar-nav.social li.rounded a {
+    background-color: #777 !important;
+}
