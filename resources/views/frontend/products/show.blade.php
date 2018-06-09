@@ -98,7 +98,7 @@
                                 </tr>
                                 <tr>
                                     <td>Border Color</td>
-                                    <td>{!! (isset($product->borderColor) && $product->borderColor) ? '<span class="color-btn" style="background-color: '.$product->borderColor->name.'"> </span>' : '' !!}</td>
+                                    <td>{!! (isset($product->borderColor) && $product->borderColor) ? '<span class="color-btn" style="background-color: '.$product->borderColor->name.'"> </span>' : 'N/A' !!}</td>
                                 </tr>
                                 <tr>
                                     <td>Foundation</td>
