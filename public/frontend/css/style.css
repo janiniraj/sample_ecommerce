@@ -494,9 +494,9 @@ ul.social li a i:before {
 /* Added by Niraj for logo changes */
 
 @media screen and (min-width: 768px) {
-  .navbar-default .navbar-header a.navbar-brand {
+  /*.navbar-default .navbar-header a.navbar-brand {
     left: 720px;
-  }
+  }*/
   .logo-next-text {
     margin-top: -12px;
   }

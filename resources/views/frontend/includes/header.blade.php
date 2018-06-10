@@ -13,7 +13,7 @@ $helper = new MenuHelper();
             </button>
         </div>
         <div class="collapse navbar-collapse hidden-sm hidden-xs" id="socialNavbar">
-            <div class="logo-next-text" style="padding-left: 45%;font-size: 36px;position: absolute;">
+            <div class="logo-next-text hidden" style="padding-left: 45%;font-size: 36px;position: absolute;">
             <span>Pascoa</span>
             <span class="span-small-text">Since 1980</span>
             </div>
