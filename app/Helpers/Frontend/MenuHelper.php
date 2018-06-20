@@ -130,7 +130,7 @@ class MenuHelper
         {
             if($single->key == 'catalog')
             {
-                $this->catalogLink = url('/').'/settings/'.$single->value;
+                $this->catalogLink = env('ADMIN_URL').'/settings/'.$single->value;
             }
         }
 

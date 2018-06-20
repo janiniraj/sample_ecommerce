@@ -75,6 +75,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('about-us', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'about-style.css',
@@ -93,6 +95,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('press', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -149,7 +153,9 @@ class PageController extends Controller
             $iframeHtml = '<iframe style="border: 0;" src="https://maps.google.com/maps?q='.$addressData->value.'&hl=es;z=14&amp;output=embed" frameborder="0" allowfullscreen="allowfullscreen"></iframe>';
 
             $content = preg_replace('/<iframe\s+.*?\s+src=(".*?").*?<\/iframe>/', $iframeHtml, $content);
-        }        
+        }    
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);    
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -180,6 +186,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('history', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'history-style.css',
@@ -198,6 +206,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('awards-certifications', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -218,6 +228,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('terms-conditions', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'tnc-style.css',
@@ -236,6 +248,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('privacy-policy', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -256,6 +270,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('return-policy', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'return-style.css',
@@ -274,6 +290,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('showroom', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -294,6 +312,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('cleaning-restoration', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'cleaning-style.css',
@@ -313,6 +333,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('rug-school', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'rug-style.css',
@@ -331,6 +353,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('hospitality', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -369,6 +393,8 @@ class PageController extends Controller
         $dealerform = (string) $dealerformView;
         
         $content = str_replace("[[dealerform]]", $dealerform, $content);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -411,6 +437,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('careers', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'careers-style.css',
@@ -429,6 +457,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('site-map', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
@@ -449,6 +479,8 @@ class PageController extends Controller
 
         $content = $this->getSliderContent('faq', $pageData);
 
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
+
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
             'styleName' => 'faq-style.css',
@@ -467,6 +499,8 @@ class PageController extends Controller
         }
 
         $content = $this->getSliderContent('padding', $pageData);
+
+        $content = str_replace('/laravel-filemanager/', env('ADMIN_URL').'/laravel-filemanager/', $content);
 
         return view('frontend.page.main')->with([
             'pageData'  => $pageData,
