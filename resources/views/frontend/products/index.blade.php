@@ -273,7 +273,12 @@
                     @endif
                 </div>
 
-                {{ $products->links() }}
+                <?php 
+                    $queryParams = app('request')->query();
+                    unset($queryParams['page']);
+                ?>
+
+                {{ $products->appends($queryParams)->links() }}
 
             </div>
         </div>
@@ -296,6 +301,7 @@
         $(this).addClass('active');
         var fieldValue = $(this).attr('fieldvalue');
         $(this).closest('.panel.panel-default').find('.filter-input').val(fieldValue);
+        $("#filter_submit").click();
     });
     var elt = $('#filter_display');
     $('#filter_display').tagsinput({

@@ -416,3 +416,13 @@ body {
 ul.navbar-nav.social li.rounded a {
     background-color: #777 !important;
 }
+
+#imagemodal .modal-content {
+  background-color: #F7F7F7;
+}
+
+#imagemodal .close {
+    font-size: 35px;
+    position: relative;
+    top: -7px;
+}

@@ -55,6 +55,16 @@
     
 
     @include('frontend.includes.footer')
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">              
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <img src="" class="imagepreview" style="width: 100%;" >
+          </div>
+        </div>
+      </div>
+    </div>
 
 <!-- Scripts -->
 @yield('before-scripts')
@@ -130,6 +140,11 @@
                 //Set's the cookie to true so there is a value and the code shouldn't run again.
                 setCookie('firsttime',true);
             }
+
+            $(".image-popup").on('click', function(){
+                $("#imagemodal .imagepreview").prop('src', $(this).attr('src'));
+                $("#imagemodal").modal('show');
+            });
         });
     </script>
 @yield('after-scripts')
