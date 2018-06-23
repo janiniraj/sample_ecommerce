@@ -96,10 +96,11 @@
                                     <td>Color</td>
                                     <td>{!! (isset($product->color) && $product->color) ? '<span class="color-btn" style="background-color: '.$product->color->name.'"> </span>' : '' !!}</td>
                                 </tr>
+                                @if($product->type == 'rug')
                                 <tr>
                                     <td>Border Color</td>
                                     <td>{!! (isset($product->borderColor) && $product->borderColor) ? '<span class="color-btn" style="background-color: '.$product->borderColor->name.'"> </span>' : 'N/A' !!}</td>
-                                </tr>
+                                </tr>                                
                                 <tr>
                                     <td>Foundation</td>
                                     <td>{{ $product->foundation }}</td>
@@ -107,6 +108,12 @@
                                 <tr>
                                     <td>Knote per sq.</td>
                                     <td>{{ $product->knote_per_sq }}</td>
+                                </tr>
+                                @endif
+
+                                <tr>
+                                    <td>Country Of Origin</td>
+                                    <td>{{ $product->country_origin }}</td>
                                 </tr>
                             </table>
                         </div>

@@ -291,6 +291,8 @@
 <script>
     var filterData = <?php echo json_encode($filterDisplay); ?>;
 
+    var queryString = location.search;
+
     $(".filter-option").on('click', function (e) {
         $(this).closest('.panel.panel-default').find('.filter-option').each(function(){
             if($(this).hasClass('active'))
@@ -353,6 +355,7 @@
     }
 
     elt.on('itemRemoved', function(event) {
+        var redirect = true;
         if(event.item.type == 'Color')
         {
             $('select[name="color"]').val("");
@@ -366,6 +369,10 @@
         if(event.item.type == 'Category')
         {
             $('.filter-input[name="category"]').val("");
+
+            var url = "<?php echo route('frontend.product.product-by-type'); ?>"+queryString;
+            window.location.replace(url);
+            redirect = false;
         }
 
         if(event.item.type == 'Collection')
@@ -397,7 +404,12 @@
         {
             $('input[name="width_min"],input[name="width_max"],input[name="length_min"],input[name="length_max"]').val("")
         }
-        $("#filter_submit").click();
+
+        if(redirect == true)
+        {
+            $("#filter_submit").click();
+        }
+        
     });
 </script>
 @endsection
