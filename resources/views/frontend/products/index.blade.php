@@ -167,6 +167,7 @@
 
                     @if(!empty($colorList))
                         <div class="panel panel-default">
+                            <input type="hidden" name="color" class="filter-input">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#results-accordion" href="#collapse6">
@@ -176,13 +177,17 @@
                             </div>
                             <div id="collapse6" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <span class="color-label">Select Color: </span>
-                                    <select name="color" id="colorselector">
-                                        <option value="" data-color="#000">Color</option>
-                                        @foreach($colorList as $singleKey => $singleValue)
-                                            <option value="{{$singleValue->id}}" data-color="{{ $singleValue->name }}">{{ $singleValue->name }}</option>
+
+                                    <ul class="sub-filters">
+                                        @foreach($colorList as $single)
+                                            <li>
+                                                <a class="filter-option {{ isset($filterData['color']) && $filterData['color'] == $single->id ? 'active' : '' }}" fieldvalue="{{ $single->id }}" fieldvalue="{{ $single->id }}" href="javascript:void(0);">
+                                                    <span class="color-names" colorvalue="{{ $single->name }}">{{ $single->name }}</span>
+                                                    <span class="color-btn" style="background-color: {{ $single->name }}"> </span>
+                                                </a>
+                                            </li>
                                         @endforeach
-                                    </select>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -410,6 +415,15 @@
             $("#filter_submit").click();
         }
         
+    });
+
+    $(".color-names").each(function(e){
+        var colorValue = $(this).attr('colorvalue');
+        var n_match  = ntc.name(colorValue);
+        if(n_match[1].length)
+        {
+            $(this).html(n_match[1]);
+        }
     });
 </script>
 @endsection
