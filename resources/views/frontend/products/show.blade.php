@@ -75,7 +75,14 @@
                                     <td>
                                         @if(count($product->size))
                                             @foreach($product->size as $single)
-                                                <span class="badge badge-secondary">{{ $single->length+0 }} x {{ $single->width+0 }} feet</span>
+                                                @php
+                                                    $length = $single->length+0;
+                                                    $width = $single->width+0;
+                                                    $explodedLength = explode(".", $length);
+                                                    $explodedWidth = explode(".", $width);
+                                                @endphp
+
+                                                <span class="badge badge-secondary">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }} feet</span>
                                             @endforeach
                                         @endif
                                     </td>

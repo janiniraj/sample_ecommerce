@@ -136,7 +136,11 @@ class ProductController extends Controller
                     $filterData['width_min'] = $filterData['width_min']/12;
                     $filterData['width_max'] = $filterData['width_max']/12;
                 }
-                $products = $products->whereBetween('width', [$filterData['width_min'], $filterData['width_max']]);
+                /*$products = $products->whereBetween('width', [$filterData['width_min'], $filterData['width_max']]);*/
+
+                $products = $products->join('product_sizes as width_table', 'width_table.product_id', '=', 'products.id');
+                $products = $products->whereBetween('width_table.width', [$filterData['width_min'], $filterData['width_max']]);
+
             }
 
             if(isset($filterData['unit_length']) && $filterData['unit_length'] && isset($filterData['length_min']) && $filterData['length_min'] && isset($filterData['length_max']) && $filterData['length_max'])
@@ -146,7 +150,10 @@ class ProductController extends Controller
                     $filterData['width_min'] = $filterData['width_min']/12;
                     $filterData['width_max'] = $filterData['width_max']/12;
                 }
-                $products = $products->whereBetween('length', [$filterData['length_min'], $filterData['length_max']]);
+                /*$products = $products->whereBetween('length', [$filterData['length_min'], $filterData['length_max']]);*/
+
+                $products = $products->join('product_sizes as width_table', 'width_table.product_id', '=', 'products.id');
+                $products = $products->whereBetween('width_table.width', [$filterData['width_min'], $filterData['width_max']]);
             }
 
             if(isset($filterData['search']) && $filterData['search'])
