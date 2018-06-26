@@ -28,7 +28,7 @@
 
         <div class="row">
             <div class="col-sm-4 filters">
-                {{ Form::open(['method' => 'GET']) }}
+                {{ Form::open(['method' => 'GET', 'id' => 'product_filter_form']) }}
                 <ul class="filters-list">
                     <li class="list-header">Filters</li>
                 </ul>
@@ -425,5 +425,29 @@
             $(this).html(n_match[1]);
         }
     });
+
+    $("#product_filter_form").on('submit', function(e){
+        if($("input[name='width_min']").val() && $("input[name='width_max']").val() == '')
+        {
+            e.preventDefault();
+            alert("Enter the Max width in size.");
+        }
+        if($("input[name='width_max']").val() && $("input[name='width_min']").val() == '')
+        {
+            e.preventDefault();
+            alert("Enter the Min width in size.");
+        }
+
+        if($("input[name='length_min']").val() && $("input[name='length_max']").val() == '')
+        {
+            e.preventDefault();
+            alert("Enter the Max Length in size.");
+        }
+        if($("input[name='length_max']").val() && $("input[name='length_min']").val() == '')
+        {
+            e.preventDefault();
+            alert("Enter the Min Length in size.");
+        }
+    })
 </script>
 @endsection

@@ -147,13 +147,13 @@ class ProductController extends Controller
             {
                 if($filterData['unit_length'] == 'inch')
                 {
-                    $filterData['width_min'] = $filterData['width_min']/12;
-                    $filterData['width_max'] = $filterData['width_max']/12;
+                    $filterData['length_min'] = $filterData['length_min']/12;
+                    $filterData['length_max'] = $filterData['length_max']/12;
                 }
                 /*$products = $products->whereBetween('length', [$filterData['length_min'], $filterData['length_max']]);*/
 
-                $products = $products->join('product_sizes as width_table', 'width_table.product_id', '=', 'products.id');
-                $products = $products->whereBetween('width_table.width', [$filterData['width_min'], $filterData['width_max']]);
+                $products = $products->join('product_sizes as length_table', 'length_table.product_id', '=', 'products.id');
+                $products = $products->whereBetween('length_table.length', [$filterData['length_min'], $filterData['length_max']]);
             }
 
             if(isset($filterData['search']) && $filterData['search'])
