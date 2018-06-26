@@ -7,6 +7,9 @@
     body {
         padding-top: 135px;
     }
+    span.color-btn {
+        margin-top: 3px;
+    }
 </style>
 @endsection
 
@@ -101,12 +104,12 @@
                                 </tr>
                                 <tr>
                                     <td>Color</td>
-                                    <td>{!! (isset($product->color) && $product->color) ? '<span class="color-btn" style="background-color: '.$product->color->name.'"> </span>' : '' !!}</td>
+                                    <td>{!! (isset($product->color) && $product->color) ? '<span class="color-btn" style="background-color: '.$product->color->name.'"> </span><span class="color-names" colorvalue="'.$product->color->name.'"></span>' : '' !!}</td>
                                 </tr>
                                 @if($product->type == 'rug')
                                 <tr>
                                     <td>Border Color</td>
-                                    <td>{!! (isset($product->borderColor) && $product->borderColor) ? '<span class="color-btn" style="background-color: '.$product->borderColor->name.'"> </span>' : 'N/A' !!}</td>
+                                    <td>{!! (isset($product->borderColor) && $product->borderColor) ? '<span class="color-btn" style="background-color: '.$product->borderColor->name.'"> </span><span class="color-names" colorvalue="'.$product->borderColor->name.'"></span>' : 'N/A' !!}</td>
                                 </tr>                                
                                 <tr>
                                     <td>Foundation</td>
@@ -370,6 +373,15 @@
                 ratedFill: "#d4122e",
             });
         }
+
+        $(".color-names").each(function(e){
+            var colorValue = $(this).attr('colorvalue');
+            var n_match  = ntc.name(colorValue);
+            if(n_match[1].length)
+            {
+                $(this).html(n_match[1]);
+            }
+        });
     });
 </script>
 @endsection
