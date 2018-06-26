@@ -286,7 +286,7 @@ class ProductController extends Controller
 
         if(isset($filterData['length_min']) && $filterData['length_min'] && isset($filterData['length_max']) && $filterData['length_max'])
         {
-            $sizeDisplay[] = 'Width : '.$filterData['length_min']. ' - '. $filterData['length_max'].' '. ucfirst($filterData['unit_length']);
+            $sizeDisplay[] = 'Length : '.$filterData['length_min']. ' - '. $filterData['length_max'].' '. ucfirst($filterData['unit_length']);
         }
 
         if(!empty($sizeDisplay))
