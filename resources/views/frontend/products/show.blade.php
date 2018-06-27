@@ -102,6 +102,12 @@
                                     <td>Matterials</td>
                                     <td>{{ (isset($product->material) && $product->material) ? $product->material->name : '' }}</td>
                                 </tr>
+                                @if($product->type == 'rug')
+                                <tr>
+                                    <td>Weaves</td>
+                                    <td>{{ (isset($product->weave) && $product->weave) ? $product->weave->name : '' }}</td>
+                                </tr>
+                                @endif
                                 <tr>
                                     <td>Color</td>
                                     <td>{!! (isset($product->color) && $product->color) ? '<span class="color-btn" style="background-color: '.$product->color->name.'"> </span><span class="color-names" colorvalue="'.$product->color->name.'"></span>' : '' !!}</td>
