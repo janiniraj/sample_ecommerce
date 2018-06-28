@@ -131,6 +131,20 @@
                                     <td>Country Of Origin</td>
                                     <td>{{ $product->country_origin }}</td>
                                 </tr>
+                                @if($product->type == 'rug')
+                                    @if($product->age)
+                                    <tr>
+                                        <td>Age</td>
+                                        <td>{{ $product->age }}</td>
+                                    </tr>
+                                    @endif
+                                    @if($product->design)
+                                    <tr>
+                                        <td>Design</td>
+                                        <td>{{ $product->design }}</td>
+                                    </tr>
+                                    @endif
+                                @endif
                             </table>
                         </div>
                         <div id="shop" class="tab-pane fade text-center padding">

@@ -49,7 +49,9 @@ class Product extends Model
         'knote_per_sq',
         'shop',
         'country_origin',
-        'type'
+        'type',
+        'age',
+        'design'
         ];
 
     /**
