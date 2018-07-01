@@ -145,6 +145,12 @@
                                     </tr>
                                     @endif
                                 @endif
+                                @if($product->type == 'furniture')
+                                <tr>
+                                    <td>Dimension</td>
+                                    <td>{{ $product->dimension }}</td>
+                                </tr>
+                                @endif
                             </table>
                         </div>
                         <div id="shop" class="tab-pane fade text-center padding">

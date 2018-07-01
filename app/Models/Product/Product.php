@@ -51,7 +51,8 @@ class Product extends Model
         'country_origin',
         'type',
         'age',
-        'design'
+        'design',
+        'dimension'
         ];
 
     /**
