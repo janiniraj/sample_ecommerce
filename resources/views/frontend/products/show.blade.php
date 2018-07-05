@@ -108,10 +108,18 @@
                                     <td>{{ (isset($product->weave) && $product->weave) ? $product->weave->name : '' }}</td>
                                 </tr>
                                 @endif
+                                @if($product->colors)
                                 <tr>
                                     <td>Color</td>
-                                    <td>{!! (isset($product->color) && $product->color) ? '<span class="color-btn" style="background-color: '.$product->color->name.'"> </span><span class="color-names" colorvalue="'.$product->color->name.'"></span>' : '' !!}</td>
+                                    <td>
+                                        @foreach($product->colors as $single)
+                                            <div class="color-container">
+                                                {!! (isset($single->color) && $single->color) ? '<span class="color-btn" style="background-color: '.$single->color->name.'"> </span><span class="color-names" colorvalue="'.$single->color->name.'"></span>' : '' !!}
+                                            </div>
+                                        @endforeach                                    
+                                    </td>
                                 </tr>
+                                @endif                                
                                 @if($product->type == 'rug')
                                 <tr>
                                     <td>Border Color</td>
@@ -308,6 +316,11 @@
         </div>
 
     </div>
+    <style type="text/css">
+        .color-container {
+                display: table;
+        }
+    </style>
 @endsection
 
 @section('after-scripts')

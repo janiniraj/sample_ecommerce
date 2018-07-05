@@ -10,6 +10,7 @@ use App\Models\Material\Material;
 use App\Models\Weave\Weave;
 use App\Models\Product\ProductSize;
 use App\Models\Product\ProductReview;
+use App\Models\Product\ProductColor;
 
 /**
  * Class Relationship.
@@ -61,4 +62,9 @@ trait Relationship
     {
         return $this->hasMany(ProductReview::class);
     }
+
+    public function colors()
+	{
+		return $this->hasMany(ProductColor::class);
+	}
 }

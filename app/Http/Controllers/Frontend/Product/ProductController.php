@@ -121,7 +121,9 @@ class ProductController extends Controller
 
             if(isset($filterData['color']) && $filterData['color'])
             {
-                $products = $products->where('products.color_id', $filterData['color']);
+                //$products = $products->where('products.color_id', $filterData['color']);
+                $products->join('product_colors as color_table', 'color_table.product_id', '=', 'products.id');
+                $products = $products->where('color_table.color_id', $filterData['color']);
             }
 
             if(isset($filterData['shape']) && $filterData['shape'])
@@ -206,7 +208,9 @@ class ProductController extends Controller
 
         $weaveList = $weaveParam->join('weaves', 'weaves.id', '=', 'products.weave_id')->select('weaves.*')->groupBy('products.weave_id')->orderBy('weaves.name', 'ASC')->get();
 
-        $colorList = $colorParam->join('colors', 'colors.id', '=', 'products.color_id')->select('colors.*')->groupBy('products.color_id')->orderBy('colors.name', 'ASC')->get();       
+        $colorList = $colorParam
+                    ->join('product_colors as color_list_table', 'color_list_table.product_id', '=', 'products.id')
+                    ->join('colors', 'colors.id', '=', 'color_list_table.color_id')->select('colors.*')->groupBy('colors.id')->orderBy('colors.name', 'ASC')->get();       
 
         $filterDisplay = [];
 
@@ -353,7 +357,7 @@ class ProductController extends Controller
         {
             $averageStar = round($averageStarQuery->sumStar / $averageStarQuery->countStar);
         }
-
+        
         return view('frontend.products.show')->with([
             'product'       => $product,
             'newArrivals'   => $newArrivals,
