@@ -322,7 +322,7 @@ class ProductController extends Controller
     {
         $product = $this->products->find($productId);
 
-        $newArrivals = $this->products->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->limit(10)->get();
+        $newArrivals = $this->products->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->orderBy('id', 'DESC')->limit(10)->get();
 
         $productLike = $this->products->query()
                         ->where('category_id', '=', $product->category_id)

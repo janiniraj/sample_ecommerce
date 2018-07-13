@@ -24,7 +24,9 @@
                         $images = json_decode($product->main_image, true);
                     @endphp
                     <div class="xzoom-container col-md-12">
-                        <img class="xzoom" id="xzoom-default" src="{{ admin_url(). '/img/products/thumbnail/'.$images[0] }}" xoriginal="{{ admin_url(). '/img/products/'.$images[0] }}" />
+                        <div class="xzoom-main-image-container">
+                            <img class="xzoom" id="xzoom-default" src="{{ admin_url(). '/img/products/thumbnail/'.$images[0] }}" xoriginal="{{ admin_url(). '/img/products/'.$images[0] }}" />
+                        </div>
                         <div class="xzoom-thumbs">
                             @foreach($images as $singleKey => $singleValue)
                                 <a href="{{ admin_url(). '/img/products/'.$singleValue }}"><img class="xzoom-gallery" width="80" src="{{ admin_url(). '/img/products/thumbnail/'.$singleValue }}" ></a>
