@@ -61,5 +61,6 @@ $helper = new MenuHelper();
 
     </div>
 
-    <div class="copyrights"><p>© 2018 All Rights Reserved, Developed by <a href="http://noblemetric.com/">Nobel Metric</a></p></div>
+    <div class="copyrights"><p>© 2018 All Rights Reserved, Developed by <a href="http://noblemetric.com/">Nobel Metric</a></p>
+    <p>© 2018 All Rights Reserved, Developed by <a href="http://noblemetric.com/">Nobel Metric</a></p></div>
 </div>

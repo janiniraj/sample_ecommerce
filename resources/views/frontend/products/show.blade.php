@@ -197,7 +197,7 @@
                 <h2>Product Detail</h2>
                 <div class="row">
                     <div class="col-md-11 col-md-offset-1">
-                        <p>{{ $product->detail }}</p>
+                        {!! nl2br($product->detail) !!}
                     </div>
                 </div>
             </div>
@@ -322,6 +322,10 @@
         .color-container {
                 display: table;
         }
+        #iv-container {
+            z-index: 1050;
+            cursor: zoom-in;
+        }
     </style>
 @endsection
 
@@ -422,6 +426,15 @@
             {
                 $(this).html(n_match[1]);
             }
+        });
+        var viewer = ImageViewer();
+        $("#xzoom-default").on("click", function(){
+            var imgSrc = this.src,
+            highResolutionImage = $(this).attr("xoriginal");
+            
+            viewer.show(imgSrc, highResolutionImage);
+
+            $(".iv-container").attr("title", "Use Mouse to zoom in and out");
         });
     });
 </script>

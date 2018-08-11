@@ -189,6 +189,8 @@ class ProductController extends Controller
             }
         }
 
+        $products           = $products->where('products.status', 1);
+
         $categoryParam      = clone $products; 
         $collectionParam    = clone $products;
         $styleParam         = clone $products;
@@ -196,7 +198,7 @@ class ProductController extends Controller
         $weaveParam         = clone $products;
         $colorParam         = clone $products;
 
-        $products   = $products->paginate(config('constant.perPage'));
+        $products   = $products->select('products.*')->paginate(config('constant.perPage'));
 
         $categoryList = $categoryParam->join('categories', 'categories.id', '=', 'products.category_id')->select('categories.*')->groupBy('products.category_id')->orderBy('categories.category', 'ASC')->get();
 
@@ -322,7 +324,7 @@ class ProductController extends Controller
     {
         $product = $this->products->find($productId);
 
-        $newArrivals = $this->products->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->orderBy('id', 'DESC')->limit(10)->get();
+        $newArrivals = $this->products->query()->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
 
         $productLike = $this->products->query()
                         ->where('category_id', '=', $product->category_id)
@@ -445,7 +447,7 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->paginate(config('constant.perPage'));
+        $products = $products->where('created_at', '>=', date('Y-m-d', strtotime("-1 month")))->where('status', 1)->paginate(config('constant.perPage'));
 
         return view('frontend.products.new-arrival')->with([
             'products'          => $products,
@@ -612,7 +614,7 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->join('user_favourites', 'user_favourites.product_id', '=', 'products.id')->where('user_favourites.user_id', $user->id)->paginate(config('constant.perPage'));
+        $products = $products->join('user_favourites', 'user_favourites.product_id', '=', 'products.id')->where('user_favourites.user_id', $user->id)->where('status', 1)->paginate(config('constant.perPage'));
 
         return view('frontend.products.favourite')->with([
             'products'          => $products,

@@ -31,6 +31,7 @@
     {{ Html::style('/frontend/css/bootstrap-tagsinput.css') }}
 
     {{ Html::style('/frontend/css/custom.css') }}
+    {{ Html::style('/frontend/css/imageviewer.css') }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
@@ -82,6 +83,7 @@
     {!! Html::script('/frontend/js/bootstrap-tagsinput.min.js') !!}
     {!! Html::script('/frontend/js/color_name.js') !!}
     {!! Html::script('/frontend/js/custom.js') !!}
+    {!! Html::script('/frontend/js/imageviewer.js') !!}
     <script>
         $(function() {
             $('#colorselector').colorselector();
