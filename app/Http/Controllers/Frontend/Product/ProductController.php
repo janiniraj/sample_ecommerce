@@ -151,7 +151,8 @@ class ProductController extends Controller
 
             if(isset($filterData['search']) && $filterData['search'])
             {
-                $products = $products->where('products.name', 'LIKE', "%".$filterData['search']."%");
+                $products = $products->where('products.name', 'LIKE', "%".$filterData['search']."%")
+                                        ->orWhere('products.sku', 'LIKE', "%".$filterData['search']."%");
             }
 
             if(isset($filterData['sku']) && $filterData['sku'])

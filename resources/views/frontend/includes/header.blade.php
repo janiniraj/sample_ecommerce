@@ -48,6 +48,13 @@ $helper = new MenuHelper();
                 <li>
                     <a href="{{ route('frontend.product.product-by-type', ['type' => 'rug']) }}" class="dropdown-toggle" data-toggle="dropdown">Rug</a>
                     <ul class="dropdown-menu multi-level">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="{{ route('frontend.product.advance-search') }}">Search</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('frontend.product.advance-search') }}">Advanced Search</a></li>
+
+                            </ul>
+                        </li>
                         <li class="{{ count($helper->rugCategoryList) > 0 ? 'dropdown-submenu' : '' }}">
                             <a href="javascript:void(0);" class="{{ count($helper->rugCategoryList) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugCategoryList) > 0 ? 'data-toggle="dropdown"' : '' }}>Category</a>
                             @if(count($helper->rugCategoryList) > 0)
