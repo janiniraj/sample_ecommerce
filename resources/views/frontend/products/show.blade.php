@@ -51,6 +51,29 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row text-right">
+                        <div class="col-md-12">
+                            <h3 class="cost">
+                                Price: $<span class="price-display">75.00</span>
+                            </h3>
+                        </div>
+                        <div class="padding col-md-3 pull-right">
+                            <select class="form-control size-select">
+                                @foreach($product->size as $single)
+                                    @php
+                                        $length = $single->length+0;
+                                        $width = $single->width+0;
+                                        $explodedLength = explode(".", $length);
+                                        $explodedWidth = explode(".", $width);
+                                    @endphp
+                                @endforeach
+                                <option class="{{ $single->id }}">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }} feet</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-default add-to-cart">Add To Cart</button>
+                        </div>
+                    </div>
 
                     <ul class="nav nav-pills nav-justified">
                         <li class="active"><a data-toggle="pill" href="#specs">Specs</a></li>
