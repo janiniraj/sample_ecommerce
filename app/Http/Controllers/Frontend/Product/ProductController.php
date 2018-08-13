@@ -17,6 +17,7 @@ use Auth;
 use App\Models\Product\ProductReview;
 use DB;
 use App\Models\Product\ProductSize;
+use Session;
 
 /**
  * Class ProductController.
@@ -709,5 +710,50 @@ class ProductController extends Controller
         return response()->json([
             'price' => $price
         ]);
+    }
+
+    public function addToCart(Request $request) 
+    {
+        $postData = $request->all();
+
+        $sizeData = $this->productSize->find($postData['size_id']);
+        
+        $productData = $this->products->find($postData['product_id']);
+        if(empty($sizeData) || empty($productData))
+        {
+            return false;
+        }
+
+        $length = $sizeData->length+0;
+        $width = $sizeData->width+0;
+        $explodedLength = explode(".", $length);
+        $explodedWidth = explode(".", $width);
+
+        $sizeName = $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : ""). ' x '. $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "");
+
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');                
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+        
+        \Cart::session($cartId)->add(rand(0,9999),$productData->name,$sizeData->price, 1,array(
+                    'size'      => $sizeName,
+                    'size_id'   => $sizeData->id,
+                    'product_id' => $productData->id
+            ));
+        dd(\Cart::session($cartId)->getContent());
+        return true;
     }
 }

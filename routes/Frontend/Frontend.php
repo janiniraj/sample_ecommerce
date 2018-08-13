@@ -65,6 +65,7 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
     Route::post('write-review', 'ProductController@writeReview')->name('write-review');
 
     Route::get('get-price', 'ProductController@getPrice')->name('get-price');
+    Route::post('add-to-cart', 'ProductController@addToCart')->name('add-to-cart');
 });
 
 

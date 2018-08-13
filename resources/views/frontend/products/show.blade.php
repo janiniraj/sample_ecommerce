@@ -477,7 +477,20 @@
         });
         $(".add-to-cart").on('click', function(e){
             var sizeId = $(".size-select").val();
-
+            var csrfToken = window.Laravel.csrfToken;
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo route('frontend.product.add-to-cart'); ?>",
+                data: {
+                    "product_id": productId,
+                    "size_id": sizeId,
+                    "_token": csrfToken
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    console.log(data);
+                }
+            });
         });
     });
 </script>
