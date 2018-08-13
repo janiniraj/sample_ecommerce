@@ -747,13 +747,18 @@ class ProductController extends Controller
                 session(['cartSessionId' => $cartId]);
             }
         }
-        
+
         \Cart::session($cartId)->add(rand(0,9999),$productData->name,$sizeData->price, 1,array(
                     'size'      => $sizeName,
                     'size_id'   => $sizeData->id,
                     'product_id' => $productData->id
             ));
-        dd(\Cart::session($cartId)->getContent());
+        
         return true;
+    }
+
+    public function cart(Request $request)
+    {
+        return view('frontend.products.cart');
     }
 }

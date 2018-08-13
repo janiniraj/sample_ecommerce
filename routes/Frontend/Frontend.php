@@ -68,6 +68,7 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
     Route::post('add-to-cart', 'ProductController@addToCart')->name('add-to-cart');
 });
 
+Route::get('cart', 'Product\ProductController@cart')->name('cart');
 
 Route::post('email-subscription', 'FrontendController@emailSubscription')->name('email-subscription');
 Route::post('mailing-submit', 'PageController@mailingSubmit')->name('page.mailing-submit');
