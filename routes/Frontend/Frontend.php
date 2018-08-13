@@ -63,6 +63,8 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
     Route::get('/favourites', 'ProductController@favourites')->name('favourites');
     Route::get('advance-search', 'ProductController@advanceSearch')->name('advance-search');
     Route::post('write-review', 'ProductController@writeReview')->name('write-review');
+
+    Route::get('set-price', 'ProductController@setPrice')->name('set-price');
 });
 
 

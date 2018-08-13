@@ -50,6 +50,26 @@
                                 <div value="{{ $averageStar }}" class="rating-display"></div>
                             @endif
                         </div>
+                        <div class="col-md-12 text-right">
+                            <div class="col-md-6">
+                                <select class="form-control size-input" required="required" id="type" name="type">
+                                    @foreach($product->size as $single)
+                                        @php
+                                            $length = $single->length+0;
+                                            $width = $single->width+0;
+                                            $explodedLength = explode(".", $length);
+                                            $explodedWidth = explode(".", $width);
+                                        @endphp
+                                        <option value="{{ $single->id }}">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }}</option>
+                                    @endforeach
+                                </select>    
+                            </div>
+                            <div class="col-md-2 price-container">$<span class="price-display">{{ $product->size[0]->price }}</span></div>
+                            <div class="col-md-4">
+                                <button class="btn btn-add-to-cart">Add To Cart</button>    
+                            </div>                            
+                            
+                        </div>
                     </div>
 
                     <ul class="nav nav-pills nav-justified">
@@ -435,6 +455,22 @@
             viewer.show(imgSrc, highResolutionImage);
 
             $(".iv-container").attr("title", "Use Mouse to zoom in and out");
+        });
+
+        $(".size-input").on("click", function() {
+            var sizeId = $(this).val();
+            $.ajax({
+                url: "<?php echo route('frontend.product.set-price'); ?>",
+                type: 'GET',
+                data: {
+                    product_id: productId,
+                    size_id: sizeId
+                },
+                dataType: 'JSON',
+                success: function(data){
+                    $(".price-display").text(data.price);
+                }
+            });
         });
     });
 </script>

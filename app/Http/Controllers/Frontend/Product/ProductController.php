@@ -15,6 +15,7 @@ use Redirect;
 use App\Models\Product\UserFavourite;
 use Auth;
 use App\Models\Product\ProductReview;
+use App\Models\Product\ProductSize;
 use DB;
 
 /**
@@ -42,6 +43,23 @@ class ProductController extends Controller
         $this->color            = new ColorRepository();
         $this->userFavourite    = new UserFavourite();
         $this->productReview    = new ProductReview();
+        $this->productsize      = new ProductSize();
+    }
+
+    public function setPrice(Request $request)
+    {
+        $postData = $request->all();
+
+        $sizeData = $this->productsize->find($postData['size_id']);
+
+        $price = 0;
+        if($sizeData)
+        {
+            $price = $sizeData->price;
+        }
+        return response()->json([
+            'price' => $price
+        ]);
     }
 
     /**

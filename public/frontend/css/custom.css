@@ -426,3 +426,7 @@ ul.navbar-nav.social li.rounded a {
     position: relative;
     top: -7px;
 }
+.price-container {
+    font-size: 25px;
+    font-weight: bold;
+}
