@@ -16,6 +16,7 @@ use App\Models\Product\UserFavourite;
 use Auth;
 use App\Models\Product\ProductReview;
 use DB;
+use App\Models\Product\ProductSize;
 
 /**
  * Class ProductController.
@@ -42,6 +43,7 @@ class ProductController extends Controller
         $this->color            = new ColorRepository();
         $this->userFavourite    = new UserFavourite();
         $this->productReview    = new ProductReview();
+        $this->productSize      = new ProductSize();
     }
 
     /**
@@ -647,6 +649,10 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function writeReview(Request $request)
     {
         $postData = $request->all();
@@ -682,5 +688,26 @@ class ProductController extends Controller
                 'message'   => 'Error in writing Review.'
             ]);
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPrice(Request $request)
+    {
+        $postData = $request->all();
+
+        $sizeData = $this->productSize->find($postData['size_id']);
+
+        $price = 0;
+        if($sizeData)
+        {
+            $price = $sizeData->price;
+        }
+
+        return response()->json([
+            'price' => $price
+        ]);
     }
 }
