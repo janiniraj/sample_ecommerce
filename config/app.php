@@ -214,6 +214,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
 
+        Darryldecode\Cart\CartServiceProvider::class,
+
     ],
 
     /*
@@ -273,7 +275,9 @@ return [
         'Gravatar'    => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Html'        => Collective\Html\HtmlFacade::class,
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
-	'Image'       => Intervention\Image\Facades\Image::class
+	    'Image'       => Intervention\Image\Facades\Image::class,
+
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 

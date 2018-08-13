@@ -475,6 +475,10 @@
                 }
             });
         });
+        $(".add-to-cart").on('click', function(e){
+            var sizeId = $(".size-select").val();
+
+        });
     });
 </script>
 @endsection
