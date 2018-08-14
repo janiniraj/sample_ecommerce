@@ -26,6 +26,12 @@ $helper = new MenuHelper();
                     @endif
                 </li>
                 <li>
+                <a class="cart-nav" href="{{ route('frontend.checkout.cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span  class="cart-items-count"><span class=" notification-counter">{{ $helper->cartCount }}</span></span>
+                </a>
+                </li>
+                <li>
                 <a class="heart" href="{{ route('frontend.product.favourites') }}">
                     <i class="fas fa-heart"></i>
                     <span  class="cart-items-count"><span class=" notification-counter">{{ $helper->favouriteCount }}</span></span>

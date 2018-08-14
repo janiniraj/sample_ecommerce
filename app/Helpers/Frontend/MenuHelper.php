@@ -3,7 +3,7 @@
 use App\Models\Product\Product;
 use App\Models\Product\UserFavourite;
 use App\Models\Setting\Setting;
-use Auth;
+use Auth, Cart, Session;
 
 /**
  * Class MenuHelper.
@@ -77,6 +77,8 @@ class MenuHelper
 
     public $catalogLink;
 
+    public $cartCount;
+
     public function __construct()
     {
         $this->product          = new Product();
@@ -134,5 +136,24 @@ class MenuHelper
             }
         }
 
+        // Cart Logic
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');                
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        $this->cartCount = Cart::session($cartId)->getContent()->count();
     }
 }

@@ -17,7 +17,7 @@ use Auth;
 use App\Models\Product\ProductReview;
 use DB;
 use App\Models\Product\ProductSize;
-use Session;
+use Session, Cart;
 
 /**
  * Class ProductController.
@@ -545,7 +545,7 @@ class ProductController extends Controller
     {
         if(!Auth::check())
         {
-            return redirect()->route('frontend.index')->withFlashWarning("Login first to add products in favourite.");;
+            return redirect()->route('frontend.index')->withFlashWarning("Login first to add products in favourite.");
         }
 
         $user = AUth::user();
@@ -752,13 +752,47 @@ class ProductController extends Controller
             }
         }
 
-        \Cart::session($cartId)->add(rand(0,9999),$productData->name,$sizeData->price, 1,array(
-                    'size'      => $sizeName,
-                    'size_id'   => $sizeData->id,
-                    'product_id' => $productData->id
-            ));
+        $cartData = Cart::session($cartId)->getContent();
+
+        $updated = false;
+
+        if(!empty($cartData))
+        {
+            foreach($cartData as $singleKey => $singleValue)
+            {                
+                if($singleValue->attributes->size_id == $postData['size_id'] && $singleValue->attributes->product_id == $postData['product_id'])
+                {
+                    $quantity = $singleValue->quantity+1;
+
+                    Cart::session($cartId)->add($singleKey,$productData->name,$sizeData->price, $quantity,array(
+                            'size'      => $sizeName,
+                            'size_id'   => $sizeData->id,
+                            'product_id' => $productData->id
+                    ));
+                    $updated = true;
+                    break;
+                }
+            }
+
+            if($updated == true)
+            {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Product Quantity Increased.'
+                ]);
+            }
+        }
+
+        Cart::session($cartId)->add(rand(0,9999),$productData->name,$sizeData->price, 1,array(
+                'size'      => $sizeName,
+                'size_id'   => $sizeData->id,
+                'product_id' => $productData->id
+        ));
         
-        return true;
+        return response()->json([
+            'success' => true,
+            'message' => 'Product Added to Cart.'
+        ]);
     }
 
     public function cart(Request $request)

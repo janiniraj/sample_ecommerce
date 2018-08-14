@@ -438,3 +438,12 @@ h3.cost {
 .size-select {
     height: 40px;
 }
+
+ul.navbar-nav.social li a.cart-nav {
+    margin: 0 2px;
+    color: #777;
+}
+.cart-product-image {
+    max-height: 50px;
+    max-width: 80px;
+}

@@ -20,45 +20,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Product Name Dada</td>
-                            <td>In stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">124,90 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Product Name Toto</td>
-                            <td>In stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">33,90 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Product Name Titi</td>
-                            <td>In stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">70,00 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
+                        @foreach($cartData->getContent() as $singleKey => $singleValue)
+                            <tr>
+                                @php 
+                                $productData = $productRepository->find($singleValue->attributes->product_id);
+
+                                $images = json_decode($productData->main_image, true);
+                                @endphp
+                                <td><img class="cart-product-image" src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" /> </td>
+                                <td>
+                                {{ $singleValue->name }}
+                                <br/>
+                                {{ $singleValue->attributes->size }}
+                                </td>
+                                <td>In stock</td>
+                                <td><input class="form-control" type="number" value="{{ $singleValue->quantity }}" /></td>
+                                <td class="text-right">$ {{ $singleValue->price * $singleValue->quantity }}</td>
+                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            </tr>
+                        @endforeach
+                        
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Sub-Total</td>
-                            <td class="text-right">255,90 €</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Shipping</td>
-                            <td class="text-right">6,90 €</td>
+                            <td class="text-right">$ {{ $cartData->getSubTotal() }}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -66,16 +54,16 @@
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
+                            <td class="text-right"><strong>$ {{ $cartData->getTotal() }}</strong></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col mb-2">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light">Continue Shopping</button>
+                    <button onclick='function test(){ window.location = "<?php echo route('frontend.index'); ?>"; } test();' class="btn btn-block btn-light">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
                     <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
