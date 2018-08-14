@@ -115,7 +115,7 @@ img.xzoom {
     width: 100% !important;
 }
 #header .slick-slide .slide-caption h1 {
-    color: #fff;
+    color: #191919;
 }
 span.color-btn {
     display: block;
@@ -414,5 +414,5 @@ body {
 }
 
 ul.navbar-nav.social li.rounded a {
-    background-color: #777 !important;
+    background-color: #bfc1c2 !important;
 }

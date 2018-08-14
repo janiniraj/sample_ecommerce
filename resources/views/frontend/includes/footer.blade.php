@@ -16,7 +16,7 @@ $helper = new MenuHelper();
                 <li><a href="{{ route('frontend.page.site-map') }}">Site Map</a></li>
             </ul>
             <ul>
-                <li class="list-heading no-arrow"><a href="{{ route('frontend.page.contact-us') }}">Contact Us</a></li>
+                <li class="list-heading no-arrow"><a href="">Services</a></li>
                 <li><a href="{{ route('frontend.page.cleaning-restoration') }}">Cleaning & Restoration</a></li>
                 <li><a href="{{ route('frontend.page.padding') }}">Padding</a></li>
                 <li><a href="{{ route('frontend.page.rug-school') }}">Rug School</a></li>
@@ -61,5 +61,5 @@ $helper = new MenuHelper();
 
     </div>
 
-    <div class="copyrights"><p>© 2018 All Rights Reserved, Developed by <a href="http://noblemetric.com/">Nobel Metric</a></p></div>
+    <div class="copyrights"><p>© 2018 All Rights Reserved</p></div>
 </div>

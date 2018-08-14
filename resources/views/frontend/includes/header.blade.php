@@ -5,7 +5,7 @@ $helper = new MenuHelper();
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand main-logo" href="{{ url('/') }}"><img src="{{ admin_url().'/logo.jpg' }}"></a>
+   
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -13,9 +13,9 @@ $helper = new MenuHelper();
             </button>
         </div>
         <div class="collapse navbar-collapse hidden-sm hidden-xs" id="socialNavbar">
-            <div class="logo-next-text hidden" style="padding-left: 45%;font-size: 36px;position: absolute;">
-            <span>Pascoa</span>
-            <span class="span-small-text">Since 1980</span>
+            <div class="logo-next-text" style="padding-left: 1%;font-size: 50px;position: absolute;">
+            <span>Noblemetric </span>
+            <span class="span-small-text">website development </span>
             </div>
             <ul class="nav navbar-nav navbar-right social">
                 <li>
@@ -38,7 +38,7 @@ $helper = new MenuHelper();
             </ul>
 
             <ul class="nav navbar-nav navbar-right social phonenumber">
-                <li><a class="number">001 1234 5678</a></li>
+                <li><a class="number">1888.640.5666</a></li>
                 <li class="rounded"><a class="phone" href="#"><i class="fas fa-phone"></i></a></li>
             </ul>
         </div>
@@ -341,8 +341,8 @@ $helper = new MenuHelper();
                     <a class="dropdown-toggle" href="{{ route('frontend.page.contact-us') }}">Contact Us</a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('frontend.page.store') }}">Our Store</a></li>
-                        <li><a href="{{ route('frontend.page.faq') }}">Inquire</a></li>
-                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#mailing-modal">Join Mailing List</a></li>
+                        <li><a href="{{ route('frontend.page.show-room') }}">Show Room</a></li>
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#mailing-modal">Store Credit</a></li>
                     </ul>
                 </li>
 
@@ -362,7 +362,7 @@ $helper = new MenuHelper();
                         <li><a href="javascript:void(0);" id="German" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Germany.png"></a></li>
                         <li><a href="javascript:void(0);" id="Hindi" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Indian.png"></a></li>
                         <li><a href="javascript:void(0);" id="Italian" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Italain.jpg"></a></li>
-                        <li><a href="javascript:void(0);" id="Persian" onclick="translateLanguage(this.id);"><img src="{{ admin_url() }}/frontend/img/flags/Persian.png"></a></li>
+                        
                     </ul>
                 </li>
             </ul>
@@ -464,11 +464,11 @@ $helper = new MenuHelper();
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                 <span aria-hidden="true">×</span>
             </button>
-            <h1>Join our Mailing List</h1><br>
+            <h1> Welcome on Board Recieve up to  Store Credit Now</h1><br>
           {{ Form::open(['route' => 'frontend.page.mailing-submit', 'class' => 'form-horizontal', 'id' => 'joinusSubmitForm']) }}
-            <input type="text" required name="firstname" placeholder="First Name">
-            <input type="text" required name="lastname" placeholder="Last Name">
-            <input type="email" required name="email" placeholder="Email Address">
+            <input type="text" required name="firstname" placeholder="*First Name">
+            <input type="text" required name="lastname" placeholder="*Last Name">
+            <input type="email" required name="email" placeholder="*Email Address">
             <input type="submit" name="Submit" class="login loginmodal-submit" value="Submit">
 
           {{ Form::close() }}
