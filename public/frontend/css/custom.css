@@ -426,3 +426,15 @@ ul.navbar-nav.social li.rounded a {
     position: relative;
     top: -7px;
 }
+
+h3.cost {
+    margin-top: 5px;
+}
+
+.padding-bottom {
+    padding-bottom: 15px;
+}
+
+.size-select {
+    height: 40px;
+}

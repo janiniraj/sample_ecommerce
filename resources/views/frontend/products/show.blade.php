@@ -51,27 +51,27 @@
                             @endif
                         </div>
                     </div>
-                    <div class="row text-right">
-                        <div class="col-md-12">
-                            <h3 class="cost">
-                                Price: $ <span class="price-display">{{ $product->size[0]->price }}</span>
-                            </h3>
-                        </div>
-                        <div class="padding col-md-3 pull-right">
-                            <select class="form-control size-select">
-                                @foreach($product->size as $single)
-                                    @php
-                                        $length = $single->length+0;
-                                        $width = $single->width+0;
-                                        $explodedLength = explode(".", $length);
-                                        $explodedWidth = explode(".", $width);
-                                    @endphp
-                                    <option value="{{ $single->id }}">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }} feet</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="btn btn-default add-to-cart">Add To Cart</button>
+                    <div class="row">
+                        <div class="col-md-12 padding-bottom">
+                            <div class="col-md-4">
+                                <h3 class="cost">
+                                    Price : $ <span class="price-display">{{ $product->size[0]->price }}</span>
+                                </h3>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control size-select">
+                                    @foreach($product->size as $single)
+                                        @php
+                                            $length = $single->length+0;
+                                            $width = $single->width+0;
+                                            $explodedLength = explode(".", $length);
+                                            $explodedWidth = explode(".", $width);
+                                        @endphp
+                                        <option value="{{ $single->id }}">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }} feet</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button class="btn btn-default add-to-cart col-md-4">Add To Cart</button>
                         </div>
                     </div>
 

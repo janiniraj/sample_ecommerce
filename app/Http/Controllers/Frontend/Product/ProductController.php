@@ -712,6 +712,10 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     public function addToCart(Request $request) 
     {
         $postData = $request->all();
