@@ -27,11 +27,12 @@
 
                                 $images = json_decode($productData->main_image, true);
                                 @endphp
-                                <td><img class="cart-product-image" src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" /> </td>
+                                <td><a href="{{ route('frontend.product.show', $singleValue->attributes->product_id) }}"><img class="cart-product-image" src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" /></a> </td>
                                 <td>
-                                {{ $singleValue->name }}
+                                <a href="{{ route('frontend.product.show', $singleValue->attributes->product_id) }}">{{ $singleValue->name }}
+                                </a>
                                 <br/>
-                                {{ $singleValue->attributes->size }}
+                                {{ $singleValue->attributes->size }}                                
                                 </td>
                                 <td>In stock</td>
                                 <td><input class="form-control" type="number" value="{{ $singleValue->quantity }}" /></td>

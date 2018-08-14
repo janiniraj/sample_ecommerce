@@ -488,7 +488,7 @@
                 },
                 dataType: "JSON",
                 success: function(data) {
-                    console.log(data);
+                    window.location = "<?php echo route('frontend.checkout.cart'); ?>";
                 }
             });
         });
