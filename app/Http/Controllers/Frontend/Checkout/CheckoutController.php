@@ -42,8 +42,8 @@ class CheckoutController extends Controller
         }
 
         $cartData = Cart::session($cartId);
-
-        if(empty($cartData))
+        
+        if(empty($cartData->getContent()->count()))
         {
         	return redirect()->route('frontend.index')->withFlashWarning("No Product in the Cart.");
         }
