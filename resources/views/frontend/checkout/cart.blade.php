@@ -64,7 +64,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button onclick='function test(){ window.location = "<?php echo route('frontend.index'); ?>"; } test();' class="btn btn-block btn-light">Continue Shopping</button>
+                    <button onclick='function test(){ window.location = "<?php echo url()->previous(); ?>"; } test();' class="btn btn-block btn-light">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
                     <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
