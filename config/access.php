@@ -92,6 +92,11 @@ return [
     'store_table' => 'stores',
 
     /*
+     * Activity Table
+     */
+    'activity_table' => 'activities',
+
+    /*
      * Configurations for the user
      */
     'users' => [

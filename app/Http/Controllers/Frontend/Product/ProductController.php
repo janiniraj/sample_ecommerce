@@ -520,6 +520,8 @@ class ProductController extends Controller
                 }
                 else
                 {
+                    $this->createActivityLog(Auth::user()->id, $postData['product_id'], 'add_wishlist');
+
                     $this->userFavourite->create([
                         'user_id'       => Auth::user()->id,
                         'product_id'    => $postData['product_id']
