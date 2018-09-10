@@ -216,6 +216,8 @@ return [
 
         Darryldecode\Cart\CartServiceProvider::class,
 
+        Stevebauman\Location\LocationServiceProvider::class,
+
     ],
 
     /*
@@ -278,6 +280,8 @@ return [
 	    'Image'       => Intervention\Image\Facades\Image::class,
 
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+
+        'Location' => Stevebauman\Location\Facades\Location::class,
 
     ],
 
