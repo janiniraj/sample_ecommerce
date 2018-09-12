@@ -147,6 +147,14 @@
                 $("#imagemodal .imagepreview").prop('src', $(this).attr('src'));
                 $("#imagemodal").modal('show');
             });
+
+            $.ajax({
+                url:"<?php echo url('/'); ?>"+"/visitor",
+                type: "GET",
+                success: function(){
+
+                }
+            });
         });
     </script>
 @yield('after-scripts')

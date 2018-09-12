@@ -10,6 +10,8 @@ use App\Mail\dealerEmail;
 use App\Repositories\Backend\Setting\SettingRepository;
 use App\Models\Mailinglist\Mailinglist;
 use App\Repositories\Backend\Store\StoreRepository;
+use Location;
+use App\Models\Visitor\Visitor;
 
 /**
  * Class PageController.
@@ -23,7 +25,26 @@ class PageController extends Controller
         $this->slider           = new HomeSliderRepository(); 
         $this->settings         = new SettingRepository();
         $this->mailinglist      = new Mailinglist();
-        $this->storeRepository  = new StoreRepository();
+        $this->storeRepository  = new StoreRepository();        
+    }
+
+    public function visitor()
+    {
+        $this->visitor = new Visitor();
+        $ip = \Request::ip();
+
+        $data = Location::get($ip);
+
+        $this->visitor->ip = $ip;
+        $this->visitor->country_code = $data->countryCode;
+        $this->visitor->zip_code = $data->zipCode;
+        $this->visitor->latitude = $data->latitude;
+        $this->visitor->longitude = $data->longitude;
+        $this->visitor->count = 1;
+
+        $this->visitor->save();
+
+        return "true";
     }
 
     /**
