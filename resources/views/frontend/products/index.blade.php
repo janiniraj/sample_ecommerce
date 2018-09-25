@@ -21,7 +21,16 @@
             </div>
             <div class="results-limit col-md-4">
                 <select name="resultsLimiter" id="resultsLimiter">
-                    <option value="">{{ 'Showing '. (($products->currentPage()-1)*config('constant.perPage')+1).'-'.(($products->currentPage()-1)*config('constant.perPage')+$products->count()).' of '.$products->total() }} results</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 10) ? 'selected' : ''; ?> value="10">10 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 20) ? 'selected' : ''; ?> value="20">20 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 30) ? 'selected' : ''; ?> value="30">30 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 40) ? 'selected' : ''; ?> value="40">40 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 50) ? 'selected' : ''; ?> value="50">50 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 60) ? 'selected' : ''; ?> value="60">60 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 70) ? 'selected' : ''; ?> value="70">70 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 80) ? 'selected' : ''; ?> value="80">80 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 90) ? 'selected' : ''; ?> value="90">90 Products Per Page</option>
+                    <option <?php echo (isset($_GET['perpage']) && $_GET['perpage'] == 100) ? 'selected' : ''; ?> value="100">100 Products Per Page</option>
                 </select>
             </div>
         </div>
@@ -448,6 +457,42 @@
             e.preventDefault();
             alert("Enter the Min Length in size.");
         }
-    })
+    });
+    $("#resultsLimiter").on('change', function(e){
+        var perPage = $(this).val();        
+        var isQueryStringExist = window.location.search;
+        if(isQueryStringExist)
+        {
+            var isExistPerPage = getUrlParameter('perpage');
+            if(isExistPerPage === undefined)
+            {
+                window.location.href = window.location.href+"&perpage="+perPage;
+            }
+            else
+            {
+                window.location.href = location.href.replace("perpage="+isExistPerPage, "perpage="+perPage);
+            }
+        }
+        else
+        {
+            window.location.href = window.location.href+"?perpage="+perPage;
+        }
+
+    });
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 </script>
 @endsection

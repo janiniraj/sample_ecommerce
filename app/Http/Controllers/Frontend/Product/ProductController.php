@@ -56,6 +56,8 @@ class ProductController extends Controller
      */
     public function index($categoryName = NULL, Request $request)
     {
+        $perPage = config('constant.perPage');
+
         $filterData = $request->all();
 
         if(isset($filterData['category']) && $filterData['category'])
@@ -201,7 +203,12 @@ class ProductController extends Controller
         $weaveParam         = clone $products;
         $colorParam         = clone $products;
 
-        $products   = $products->select('products.*')->paginate(config('constant.perPage'));
+        if(isset($filterData['perpage']) && $filterData['perpage'])
+        {
+            $perPage = $filterData['perpage'];
+        }
+
+        $products   = $products->select('products.*')->paginate($perPage);
 
         $categoryList = $categoryParam->join('categories', 'categories.id', '=', 'products.category_id')->select('categories.*')->groupBy('products.category_id')->orderBy('categories.category', 'ASC')->get();
 
