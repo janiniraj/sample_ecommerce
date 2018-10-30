@@ -642,12 +642,12 @@ class ProductController extends Controller
 
     public function advanceSearch(Request $request)
     {
-        $categoryList   = $this->categories->getAll();
-        $collectionList = $this->subcategories->getAll();        
-        $styleList      = $this->style->getAll();
-        $materialList   = $this->material->getAll();
-        $weaveList      = $this->weave->getAll();
-        $colorList      = $this->color->getAll();
+        $categoryList   = $this->categories->query()->orderBy('category', 'ASC')->get();        
+        $collectionList = $this->subcategories->query()->orderBy('subcategory', 'ASC')->get();       
+        $styleList      = $this->style->query()->orderBy('name', 'ASC')->get();
+        $materialList   = $this->material->query()->orderBy('name', 'ASC')->get();
+        $weaveList      = $this->weave->query()->orderBy('name', 'ASC')->get();
+        $colorList      = $this->color->query()->orderBy('display_name', 'ASC')->get();
 
         return view('frontend.products.advance-search')->with([
             'categoryList'      => $categoryList,
@@ -807,5 +807,28 @@ class ProductController extends Controller
     public function cart(Request $request)
     {
         return view('frontend.products.cart');
+    }
+
+    public function getSuggestion(Request $request)
+    {
+        $data       = $request->all();
+        $finalArray = [];
+
+        if(isset($data['term']) && $data['term'])
+        {
+            $products = $this->products->query()->where('status', 1)->where('name', 'LIKE', $data['term'].'%')->get();
+
+            foreach ($products as $key => $value) 
+            {
+                $finalArray[$key] = [
+                    'id' => $value->id,
+                    'label' => $value->name,
+                    'value' => $value->name
+                ];
+            }
+        }
+
+        return response()->json($finalArray);
+        
     }
 }

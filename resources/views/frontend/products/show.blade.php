@@ -258,7 +258,9 @@
                         @php $images = json_decode($singleProduct->main_image, true); @endphp
                         <div class="">
                             <figure class="snip1174 grey">
+                                @if(isset($images[0]))
                                 <img src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" alt="sq-sample33" />
+                                @endif
                                 <figcaption>
                                     <a href="{{ route('frontend.product.show', $singleProduct->id) }}">Quick View</a>
                                     <h2>{{ $singleProduct->name }}</h2>

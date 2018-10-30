@@ -68,6 +68,8 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
 
     Route::get('get-price', 'ProductController@getPrice')->name('get-price');
     Route::post('add-to-cart', 'ProductController@addToCart')->name('add-to-cart');
+
+    Route::get('get-suggestion', 'ProductController@getSuggestion')->name('get-suggestion');
 });
 
 Route::group(['namespace' => 'Checkout', 'as' => 'checkout.', 'prefix' => 'checkout'], function () {

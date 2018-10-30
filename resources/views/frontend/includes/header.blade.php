@@ -2,6 +2,8 @@
 use App\Helpers\Frontend\MenuHelper;
 $helper = new MenuHelper();
 ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -67,7 +69,7 @@ $helper = new MenuHelper();
                         <li class="{{ count($helper->rugCollection) > 0 ? 'dropdown-submenu' : '' }}">
                             <a href="javascript:void(0);" class="{{ count($helper->rugCollection) > 0 ? 'dropdown-toggle' : '' }}" {{ count($helper->rugCollection) > 0 ? 'data-toggle="dropdown"' : '' }}>Collections</a>
                             @if(count($helper->rugCollection) > 0)
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu sub-sub-menu">
                                     @foreach($helper->rugCollection as $single)
                                         <li><a href="{{ route('frontend.product.product-by-type').'?type=rug&collection='.$single->id }}">{{ $single->subcategory }}</a></li>
                                     @endforeach
@@ -354,6 +356,17 @@ $helper = new MenuHelper();
 
 
             </ul>
+
+            <div class="col-sm-3 col-md-3">
+                {{ Form::open(['method' => 'GET', 'class' => 'navbar-form', 'url' => route('frontend.product.product-by-type')]) }}
+                    <div class="input-group">
+                        <input id="headerSearch" type="text" class="form-control" placeholder="Search" name="search" required>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                {{ Form::close() }}
+            </div>
 
             <ul class="nav navbar-nav navbar-right">
                 <div id="google_translate_element" style="display: none"></div>

@@ -447,3 +447,10 @@ ul.navbar-nav.social li a.cart-nav {
     max-height: 50px;
     max-width: 80px;
 }
+.navbar-form .btn {
+    padding: 3.5px 10px;
+}
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete 
+{
+  z-index: 9990;
+}

@@ -10,7 +10,7 @@ use App\Mail\dealerEmail;
 use App\Repositories\Backend\Setting\SettingRepository;
 use App\Models\Mailinglist\Mailinglist;
 use App\Repositories\Backend\Store\StoreRepository;
-use Location;
+use Location, URL;
 use App\Models\Visitor\Visitor;
 
 /**
@@ -429,15 +429,17 @@ class PageController extends Controller
     {
         $data = $request->all();
 
+        $ext = $data['form']->extension();
+
         $basePath = public_path("dealerforms");
 
-        $fileName = time().'.pdf';
+        $fileName = time().'.'.$ext;
 
         $data['form']->move(
                     $basePath, $fileName
                 );
 
-        $fileUrl = admin_url().'/dealerforms/'.$fileName;
+        $fileUrl = URL::to('/').'/dealerforms/'.$fileName;
         
         $data['form'] = $fileUrl;
 

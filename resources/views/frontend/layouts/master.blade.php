@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @yield('after-styles')
 
 <!-- Scripts -->
@@ -154,6 +156,15 @@
                 success: function(){
 
                 }
+            });
+
+            $( "#headerSearch" ).autocomplete({
+              source: "<?php echo route('frontend.product.get-suggestion'); ?>",
+              minLength: 2,
+              select: function( event, ui ) {
+                $( "#headerSearch" ).val(ui.item.value);
+                $( "#headerSearch" ).closest('form').submit();
+              }
             });
         });
     </script>
