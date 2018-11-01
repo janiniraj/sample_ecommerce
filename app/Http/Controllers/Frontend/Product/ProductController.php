@@ -708,17 +708,34 @@ class ProductController extends Controller
     {
         $postData = $request->all();
 
-        $sizeData = $this->productSize->find($postData['size_id']);
+            $sizeData = $this->productSize->find($postData['size_id']);
 
-        $price = 0;
-        if($sizeData)
+        if(Auth::check())
         {
-            $price = $sizeData->price;
-        }
+            $user = Auth::user();
+            $role = $user->role->first();
 
-        return response()->json([
-            'price' => $price
-        ]);
+            if($role == 'Affiliate')
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            $price = 0;
+            if($sizeData)
+            {
+                $price = $sizeData->price;
+            }
+
+            return response()->json([
+                'price' => $price
+            ]);  
+        }        
     }
 
     /**
