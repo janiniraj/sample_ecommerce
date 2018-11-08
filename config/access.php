@@ -97,6 +97,21 @@ return [
     'activity_table' => 'activities',
 
     /*
+     * User Address
+     */
+    'user_address_table' => 'user_addresses',
+
+    /*
+     * Order
+     */
+    'order_table' => 'orders',
+
+    /*
+     * Order Product
+     */
+    'order_product_table' => 'order_products',
+
+    /*
      * Configurations for the user
      */
     'users' => [
