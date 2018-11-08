@@ -53,4 +53,36 @@ class CheckoutController extends Controller
         	'productSize'		=> $this->productSize
         	]);
     }
+
+    public function checkout(Request $request)
+    {
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        $cartData = Cart::session($cartId);
+
+        if(empty($cartData->getContent()->count()))
+        {
+            return redirect()->route('frontend.index')->withFlashWarning("No Product in the Cart.");
+        }
+        return view('frontend.checkout.checkout')->with([
+            'cartData' 			=> $cartData,
+            'productRepository' => $this->productRepository,
+            'productSize'		=> $this->productSize
+        ]);
+    }
 }

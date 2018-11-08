@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
 
 Route::group(['namespace' => 'Checkout', 'as' => 'checkout.', 'prefix' => 'checkout'], function () {
     Route::get('cart', 'CheckoutController@cart')->name('cart');
+    Route::get('checkout', 'CheckoutController@checkout')->name('checkout');
 });
 
 
