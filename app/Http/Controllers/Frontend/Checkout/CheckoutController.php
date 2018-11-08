@@ -18,6 +18,7 @@ class CheckoutController extends Controller
 		$this->productRepository 	= new ProductRepository();
 		$this->productSize			= new ProductSize();
 	}
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -52,5 +53,30 @@ class CheckoutController extends Controller
         	'productRepository' => $this->productRepository,
         	'productSize'		=> $this->productSize
         	]);
+    }
+
+    public function removeItemFromCart($itemId)
+    {
+        $cartId = Session::get('cartSessionId');
+
+        Cart::session($cartId)->remove($itemId);
+
+        $cartData = Cart::session($cartId);
+        //dd($cartData);
+
+        return redirect()->route('frontend.checkout.cart')->withFlashWarning("Item Successfully Deleted.");
+    }
+
+    public function checkout()
+    {
+        $cartId = Session::get('cartSessionId');
+
+        $cartData = Cart::session($cartId);
+
+        return view('frontend.checkout.checkout')->with([
+            'cartData'          => $cartData,
+            'productRepository' => $this->productRepository,
+            'productSize'       => $this->productSize
+            ]);
     }
 }

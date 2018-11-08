@@ -37,7 +37,7 @@
                                 <td>In stock</td>
                                 <td><input class="form-control" type="number" value="{{ $singleValue->quantity }}" /></td>
                                 <td class="text-right">$ {{ $singleValue->price * $singleValue->quantity }}</td>
-                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                <td class="text-right"><a href="{{ route('frontend.checkout.cart.remove-item', $singleValue->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
                             </tr>
                         @endforeach
                         
@@ -67,7 +67,7 @@
                     <button onclick='function test(){ window.location = "<?php echo url()->previous(); ?>"; } test();' class="btn btn-block btn-light">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                    <a href="{{ route('frontend.checkout.checkout') }}" class="btn btn-lg btn-block btn-success text-uppercase">Checkout</a>
                 </div>
             </div>
         </div>

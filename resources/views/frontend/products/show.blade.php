@@ -51,30 +51,40 @@
                             @endif
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 padding-bottom">
-                            <div class="col-md-4">
-                                <h3 class="cost">
-                                    Price : $ <span class="price-display">{{ $product->size[0]->price }}</span>
-                                </h3>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control size-select">
-                                    @foreach($product->size as $single)
+                    @if(Auth::check())
+                        <div class="row">
+                            <div class="col-md-12 padding-bottom">
+                                <div class="col-md-4">
+                                    <h3 class="cost">
                                         @php
-                                            $length = $single->length+0;
-                                            $width = $single->width+0;
-                                            $explodedLength = explode(".", $length);
-                                            $explodedWidth = explode(".", $width);
+                                            $user = Auth::user();
+                                            $role = $user->roles->first();
                                         @endphp
-                                        <option value="{{ $single->id }}">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }} feet</option>
-                                    @endforeach
-                                </select>
+                                        @if($role->name == 'Affiliate')
+                                            Price : $ <span class="price-display">{{ $product->size[0]->price_affiliate }}</span>
+                                        @else
+                                            Price : $ <span class="price-display">{{ $product->size[0]->price }}</span>
+                                        @endif
+                                        
+                                    </h3>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control size-select">
+                                        @foreach($product->size as $single)
+                                            @php
+                                                $length = $single->length+0;
+                                                $width = $single->width+0;
+                                                $explodedLength = explode(".", $length);
+                                                $explodedWidth = explode(".", $width);
+                                            @endphp
+                                            <option value="{{ $single->id }}">{{ $explodedLength[0]."'".(isset($explodedLength[1]) ? $explodedLength[1]."''" : "") }} x {{ $explodedWidth[0]."'".(isset($explodedWidth[1]) ? $explodedWidth[1]."''" : "") }} feet</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button class="btn btn-default add-to-cart col-md-4">Add To Cart</button>
                             </div>
-                            <button class="btn btn-default add-to-cart col-md-4">Add To Cart</button>
                         </div>
-                    </div>
-
+                    @endif
                     <ul class="nav nav-pills nav-justified">
                         <li class="active"><a data-toggle="pill" href="#specs">Specs</a></li>
                         <li><a data-toggle="pill" href="#shop">Shop</a></li>
