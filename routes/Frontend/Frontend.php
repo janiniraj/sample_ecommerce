@@ -77,6 +77,8 @@ Route::group(['namespace' => 'Checkout', 'as' => 'checkout.', 'prefix' => 'check
 
     Route::get('cart/remove-item/{id}', 'CheckoutController@removeItemFromCart')->name('cart.remove-item');
     Route::get('checkout', 'CheckoutController@checkout')->name('checkout');
+    Route::post('add_user_address', 'CheckoutController@AddUserAddress')->name('add_user_address');
+    
 });
 
 

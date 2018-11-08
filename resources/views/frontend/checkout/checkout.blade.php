@@ -10,169 +10,21 @@
                         </h2>
                         <hr/>
                         <div class="shopping_cart">
-                            <form class="form-horizontal" role="form" action="" method="post" id="payment-form">
-                                <div class="panel-group" id="accordion">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Contact and Billing Information</a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseOne" class="panel-collapse collapse in">
-                                            <div class="panel-body">
-                                                <b>Help us keep your account safe and secure, please verify your billing
-                                                    information.</b>
-                                                <br/><br/>
-                                                <table class="table table-striped" style="font-weight: bold;">
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_email">Best Email:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_email" name="email"
-                                                                   required="required" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_first_name">First name:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_first_name" name="first_name"
-                                                                   required="required" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_last_name">Last name:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_last_name" name="last_name"
-                                                                   required="required" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_address_line_1">Address:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_address_line_1"
-                                                                   name="address_line_1" required="required" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_address_line_2">Unit / Suite #:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_address_line_2"
-                                                                   name="address_line_2" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_city">City:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_city" name="city"
-                                                                   required="required" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_state">State:</label></td>
-                                                        <td>
-                                                            <select class="form-control" id="id_state" name="state">
-                                                                <option value="AK">Alaska</option>
-                                                                <option value="AL">Alabama</option>
-                                                                <option value="AZ">Arizona</option>
-                                                                <option value="AR">Arkansas</option>
-                                                                <option value="CA">California</option>
-                                                                <option value="CO">Colorado</option>
-                                                                <option value="CT">Connecticut</option>
-                                                                <option value="DE">Delaware</option>
-                                                                <option value="FL">Florida</option>
-                                                                <option value="GA">Georgia</option>
-                                                                <option value="HI">Hawaii</option>
-                                                                <option value="ID">Idaho</option>
-                                                                <option value="IL">Illinois</option>
-                                                                <option value="IN">Indiana</option>
-                                                                <option value="IA">Iowa</option>
-                                                                <option value="KS">Kansas</option>
-                                                                <option value="KY">Kentucky</option>
-                                                                <option value="LA">Louisiana</option>
-                                                                <option value="ME">Maine</option>
-                                                                <option value="MD">Maryland</option>
-                                                                <option value="MA">Massachusetts</option>
-                                                                <option value="MI">Michigan</option>
-                                                                <option value="MN">Minnesota</option>
-                                                                <option value="MS">Mississippi</option>
-                                                                <option value="MO">Missouri</option>
-                                                                <option value="MT">Montana</option>
-                                                                <option value="NE">Nebraska</option>
-                                                                <option value="NV">Nevada</option>
-                                                                <option value="NH">New Hampshire</option>
-                                                                <option value="NJ">New Jersey</option>
-                                                                <option value="NM">New Mexico</option>
-                                                                <option value="NY">New York</option>
-                                                                <option value="NC">North Carolina</option>
-                                                                <option value="ND">North Dakota</option>
-                                                                <option value="OH">Ohio</option>
-                                                                <option value="OK">Oklahoma</option>
-                                                                <option value="OR">Oregon</option>
-                                                                <option value="PA">Pennsylvania</option>
-                                                                <option value="RI">Rhode Island</option>
-                                                                <option value="SC">South Carolina</option>
-                                                                <option value="SD">South Dakota</option>
-                                                                <option value="TN">Tennessee</option>
-                                                                <option value="TX">Texas</option>
-                                                                <option value="UT">Utah</option>
-                                                                <option value="VT">Vermont</option>
-                                                                <option value="VA">Virginia</option>
-                                                                <option value="WA">Washington</option>
-                                                                <option value="DC">Washington D.C.</option>
-                                                                <option value="WV">West Virginia</option>
-                                                                <option value="WI">Wisconsin</option>
-                                                                <option value="WY">Wyoming</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_postalcode">Postalcode:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_postalcode" name="postalcode"
-                                                                   required="required" type="text"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 175px;">
-                                                            <label for="id_phone">Phone:</label></td>
-                                                        <td>
-                                                            <input class="form-control" id="id_phone" name="phone" type="text"/>
-                                                        </td>
-                                                    </tr>
+                            <div class="panel-group" id="accordion">
 
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <div style="text-align: center; width:100%;"><a style="width:100%;"
-                                                                                            data-toggle="collapse"
-                                                                                            data-parent="#accordion"
-                                                                                            href="#collapseTwo"
-                                                                                            class=" btn btn-success"
-                                                                                            onclick="$(this).fadeOut(); $('#payInfo').fadeIn();">Continue to Shipping Information»</a></div>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Contact and Billing Information</a>
                                         </h4>
                                     </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Contact and Shipping Information</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="panel-body">
+                                        {{ Form::open(['route' => 'frontend.checkout.add_user_address', 'id' => 'user_billing', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) }}
+
+                                            {{ Form::hidden('user_id', Auth::user()->id) }}
+                                            {{ Form::hidden('type', 'billing') }}
+
                                             <b>Help us keep your account safe and secure, please verify your billing
                                                 information.</b>
                                             <br/><br/>
@@ -181,15 +33,15 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_email">Best Email:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_email" name="email"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_email" name="email" value="{{ isset($billingAddress->email) ? $billingAddress->email : '' }}" 
+                                                               required="required" type="email"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_first_name">First name:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_first_name" name="first_name"
+                                                        <input class="form-control" id="id_first_name" name="first_name" value="{{ isset($billingAddress->first_name) ? $billingAddress->first_name : '' }}"
                                                                required="required" type="text"/>
                                                     </td>
                                                 </tr>
@@ -197,7 +49,7 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_last_name">Last name:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_last_name" name="last_name"
+                                                        <input class="form-control" id="id_last_name" name="last_name" value="{{ isset($billingAddress->last_name) ? $billingAddress->last_name : '' }}"
                                                                required="required" type="text"/>
                                                     </td>
                                                 </tr>
@@ -205,23 +57,23 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_address_line_1">Address:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_address_line_1"
-                                                               name="address_line_1" required="required" type="text"/>
+                                                        <input class="form-control" id="id_address_line_1" value="{{ isset($billingAddress->address) ? $billingAddress->address : '' }}"
+                                                               name="address" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_address_line_2">Unit / Suite #:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_address_line_2"
-                                                               name="address_line_2" type="text"/>
+                                                        <input class="form-control" id="id_address_line_2" value="{{ isset($billingAddress->street) ? $billingAddress->street : '' }}"
+                                                               name="street" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_city">City:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_city" name="city"
+                                                        <input class="form-control" id="id_city" name="city" value="{{ isset($billingAddress->city) ? $billingAddress->city : '' }}"
                                                                required="required" type="text"/>
                                                     </td>
                                                 </tr>
@@ -230,57 +82,57 @@
                                                         <label for="id_state">State:</label></td>
                                                     <td>
                                                         <select class="form-control" id="id_state" name="state">
-                                                            <option value="AK">Alaska</option>
-                                                            <option value="AL">Alabama</option>
-                                                            <option value="AZ">Arizona</option>
-                                                            <option value="AR">Arkansas</option>
-                                                            <option value="CA">California</option>
-                                                            <option value="CO">Colorado</option>
-                                                            <option value="CT">Connecticut</option>
-                                                            <option value="DE">Delaware</option>
-                                                            <option value="FL">Florida</option>
-                                                            <option value="GA">Georgia</option>
+                                                            <option {{ isset($billingAddress->state) && $billingAddress->state == "AK" ? "selected" : "" }} value="AK">Alaska</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "AL" ? "selected" : "" }} value="AL">Alabama</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "AZ" ? "selected" : "" }} value="AZ">Arizona</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "AR" ? "selected" : "" }} value="AR">Arkansas</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "CA" ? "selected" : "" }} value="CA">California</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "CO" ? "selected" : "" }} value="CO">Colorado</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "CT" ? "selected" : "" }} value="CT">Connecticut</option>
+                                                            <option {{ isset($billingAddress->state) && $billingAddress->state == "DE" ? "selected" : "" }}  value="DE">Delaware</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "FL" ? "selected" : "" }} value="FL">Florida</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "GA" ? "selected" : "" }} value="GA">Georgia</option>
                                                             <option value="HI">Hawaii</option>
-                                                            <option value="ID">Idaho</option>
-                                                            <option value="IL">Illinois</option>
-                                                            <option value="IN">Indiana</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "ID" ? "selected" : "" }} value="ID">Idaho</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "IL" ? "selected" : "" }} value="IL">Illinois</option>
+                                                            <option {{ isset($billingAddress->state) && $billingAddress->state == "IN" ? "selected" : "" }}  value="IN">Indiana</option>
                                                             <option value="IA">Iowa</option>
-                                                            <option value="KS">Kansas</option>
-                                                            <option value="KY">Kentucky</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "KS" ? "selected" : "" }} value="KS">Kansas</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "KY" ? "selected" : "" }} value="KY">Kentucky</option>
                                                             <option value="LA">Louisiana</option>
-                                                            <option value="ME">Maine</option>
-                                                            <option value="MD">Maryland</option>
-                                                            <option value="MA">Massachusetts</option>
-                                                            <option value="MI">Michigan</option>
-                                                            <option value="MN">Minnesota</option>
-                                                            <option value="MS">Mississippi</option>
-                                                            <option value="MO">Missouri</option>
-                                                            <option value="MT">Montana</option>
-                                                            <option value="NE">Nebraska</option>
-                                                            <option value="NV">Nevada</option>
-                                                            <option value="NH">New Hampshire</option>
-                                                            <option value="NJ">New Jersey</option>
-                                                            <option value="NM">New Mexico</option>
-                                                            <option value="NY">New York</option>
-                                                            <option value="NC">North Carolina</option>
-                                                            <option value="ND">North Dakota</option>
-                                                            <option value="OH">Ohio</option>
-                                                            <option value="OK">Oklahoma</option>
-                                                            <option value="OR">Oregon</option>
-                                                            <option value="PA">Pennsylvania</option>
-                                                            <option value="RI">Rhode Island</option>
-                                                            <option value="SC">South Carolina</option>
-                                                            <option value="SD">South Dakota</option>
-                                                            <option value="TN">Tennessee</option>
-                                                            <option value="TX">Texas</option>
-                                                            <option value="UT">Utah</option>
-                                                            <option value="VT">Vermont</option>
-                                                            <option value="VA">Virginia</option>
-                                                            <option value="WA">Washington</option>
-                                                            <option value="DC">Washington D.C.</option>
-                                                            <option value="WV">West Virginia</option>
-                                                            <option value="WI">Wisconsin</option>
-                                                            <option value="WY">Wyoming</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "ME" ? "selected" : "" }} value="ME">Maine</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MD" ? "selected" : "" }} value="MD">Maryland</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MA" ? "selected" : "" }} value="MA">Massachusetts</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MI" ? "selected" : "" }} value="MI">Michigan</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MN" ? "selected" : "" }} value="MN">Minnesota</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MS" ? "selected" : "" }} value="MS">Mississippi</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MO" ? "selected" : "" }} value="MO">Missouri</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "MT" ? "selected" : "" }} value="MT">Montana</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NE" ? "selected" : "" }} value="NE">Nebraska</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NV" ? "selected" : "" }} value="NV">Nevada</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NH" ? "selected" : "" }} value="NH">New Hampshire</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NJ" ? "selected" : "" }} value="NJ">New Jersey</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NM" ? "selected" : "" }} value="NM">New Mexico</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NY" ? "selected" : "" }} value="NY">New York</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "NC" ? "selected" : "" }} value="NC">North Carolina</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "ND" ? "selected" : "" }} value="ND">North Dakota</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "OH" ? "selected" : "" }} value="OH">Ohio</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "OK" ? "selected" : "" }} value="OK">Oklahoma</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "OR" ? "selected" : "" }} value="OR">Oregon</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "PA" ? "selected" : "" }} value="PA">Pennsylvania</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "RI" ? "selected" : "" }} value="RI">Rhode Island</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "SC" ? "selected" : "" }} value="SC">South Carolina</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "SD" ? "selected" : "" }} value="SD">South Dakota</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "TN" ? "selected" : "" }} value="TN">Tennessee</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "TX" ? "selected" : "" }} value="TX">Texas</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "UT" ? "selected" : "" }} value="UT">Utah</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "VT" ? "selected" : "" }} value="VT">Vermont</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "VA" ? "selected" : "" }} value="VA">Virginia</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "WA" ? "selected" : "" }} value="WA">Washington</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "DC" ? "selected" : "" }} value="DC">Washington D.C.</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "WV" ? "selected" : "" }} value="WV">West Virginia</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "WI" ? "selected" : "" }} value="WI">Wisconsin</option>
+                                                            <option  {{ isset($billingAddress->state) && $billingAddress->state == "WY" ? "selected" : "" }} value="WY">Wyoming</option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -288,7 +140,7 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_postalcode">Postalcode:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_postalcode" name="postalcode"
+                                                        <input class="form-control" id="id_postalcode" name="postal_code" value="{{ isset($billingAddress->postal_code) ? $billingAddress->postal_code : '' }}"
                                                                required="required" type="text"/>
                                                     </td>
                                                 </tr>
@@ -296,7 +148,165 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_phone">Phone:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_phone" name="phone" type="text"/>
+                                                        <input class="form-control" id="id_phone" name="phone" value="{{ isset($billingAddress->phone) ? $billingAddress->phone : '' }}" type="text"/>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                            {{ Form::close() }}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <div style="text-align: center; width:100%;">
+                                                
+                                                <a style="width:100%;" class=" btn btn-success billing-submit">Continue to Shipping Information»</a>   
+                                            </div>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Contact and Shipping Information</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ Form::open(['route' => 'frontend.checkout.add_user_address', 'id' => 'user_shipping', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) }}
+
+                                                {{ Form::hidden('user_id', Auth::user()->id) }}
+                                                {{ Form::hidden('type', 'shipping') }}
+
+                                            <b>Help us keep your account safe and secure, please verify your Shipping
+                                                information.</b>
+                                            <br/><br/>
+                                            <table class="table table-striped" style="font-weight: bold;">
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_email">Best Email:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_email2" name="email" value="{{ isset($shippingAddress->email) ? $shippingAddress->email : '' }}" 
+                                                                   required="required" type="email"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_first_name">First name:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_first_name2" value="{{ isset($shippingAddress->first_name) ? $shippingAddress->first_name : '' }}" name="first_name"
+                                                               required="required" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_last_name">Last name:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_last_name2" name="last_name" value="{{ isset($shippingAddress->last_name) ? $shippingAddress->last_name : '' }}"
+                                                               required="required" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_address_line_1">Address:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_address_line_1_2" value="{{ isset($shippingAddress->address) ? $shippingAddress->address : '' }}"
+                                                               name="address" required="required" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_address_line_2">Unit / Suite #:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_address_line_2_2" value="{{ isset($shippingAddress->street) ? $shippingAddress->street : '' }}"
+                                                               name="street" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_city">City:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_city2" name="city" value="{{ isset($shippingAddress->city) ? $shippingAddress->city : '' }}"
+                                                               required="required" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_state">State:</label></td>
+                                                    <td>
+                                                        <select class="form-control" id="id_state2" name="state">
+                                                            <option {{ isset($shippingAddress->state) && $shippingAddress->state == "AK" ? "selected" : "" }} value="AK">Alaska</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "AL" ? "selected" : "" }} value="AL">Alabama</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "AZ" ? "selected" : "" }} value="AZ">Arizona</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "AR" ? "selected" : "" }} value="AR">Arkansas</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "CA" ? "selected" : "" }} value="CA">California</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "CO" ? "selected" : "" }} value="CO">Colorado</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "CT" ? "selected" : "" }} value="CT">Connecticut</option>
+                                                            <option {{ isset($shippingAddress->state) && $shippingAddress->state == "DE" ? "selected" : "" }}  value="DE">Delaware</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "FL" ? "selected" : "" }} value="FL">Florida</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "GA" ? "selected" : "" }} value="GA">Georgia</option>
+                                                            <option value="HI">Hawaii</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "ID" ? "selected" : "" }} value="ID">Idaho</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "IL" ? "selected" : "" }} value="IL">Illinois</option>
+                                                            <option {{ isset($shippingAddress->state) && $shippingAddress->state == "IN" ? "selected" : "" }}  value="IN">Indiana</option>
+                                                            <option value="IA">Iowa</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "KS" ? "selected" : "" }} value="KS">Kansas</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "KY" ? "selected" : "" }} value="KY">Kentucky</option>
+                                                            <option value="LA">Louisiana</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "ME" ? "selected" : "" }} value="ME">Maine</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MD" ? "selected" : "" }} value="MD">Maryland</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MA" ? "selected" : "" }} value="MA">Massachusetts</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MI" ? "selected" : "" }} value="MI">Michigan</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MN" ? "selected" : "" }} value="MN">Minnesota</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MS" ? "selected" : "" }} value="MS">Mississippi</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MO" ? "selected" : "" }} value="MO">Missouri</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "MT" ? "selected" : "" }} value="MT">Montana</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NE" ? "selected" : "" }} value="NE">Nebraska</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NV" ? "selected" : "" }} value="NV">Nevada</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NH" ? "selected" : "" }} value="NH">New Hampshire</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NJ" ? "selected" : "" }} value="NJ">New Jersey</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NM" ? "selected" : "" }} value="NM">New Mexico</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NY" ? "selected" : "" }} value="NY">New York</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "NC" ? "selected" : "" }} value="NC">North Carolina</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "ND" ? "selected" : "" }} value="ND">North Dakota</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "OH" ? "selected" : "" }} value="OH">Ohio</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "OK" ? "selected" : "" }} value="OK">Oklahoma</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "OR" ? "selected" : "" }} value="OR">Oregon</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "PA" ? "selected" : "" }} value="PA">Pennsylvania</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "RI" ? "selected" : "" }} value="RI">Rhode Island</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "SC" ? "selected" : "" }} value="SC">South Carolina</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "SD" ? "selected" : "" }} value="SD">South Dakota</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "TN" ? "selected" : "" }} value="TN">Tennessee</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "TX" ? "selected" : "" }} value="TX">Texas</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "UT" ? "selected" : "" }} value="UT">Utah</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "VT" ? "selected" : "" }} value="VT">Vermont</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "VA" ? "selected" : "" }} value="VA">Virginia</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "WA" ? "selected" : "" }} value="WA">Washington</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "DC" ? "selected" : "" }} value="DC">Washington D.C.</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "WV" ? "selected" : "" }} value="WV">West Virginia</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "WI" ? "selected" : "" }} value="WI">Wisconsin</option>
+                                                            <option  {{ isset($shippingAddress->state) && $shippingAddress->state == "WY" ? "selected" : "" }} value="WY">Wyoming</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_postalcode2">Postalcode:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_postalcode2" name="postal_code"
+                                                        value="{{ isset($shippingAddress->postal_code) ? $shippingAddress->postal_code : '' }}" required="required" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 175px;">
+                                                        <label for="id_phone2">Phone:</label></td>
+                                                    <td>
+                                                        <input class="form-control" id="id_phone2" value="{{ isset($shippingAddress->phone) ? $shippingAddress->phone : '' }}" name="phone" type="text"/>
                                                     </td>
                                                 </tr>
 
@@ -304,19 +314,17 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <div style="text-align: center;"><a data-toggle="collapse"
-                                                                                data-parent="#accordion"
-                                                                                href="#collapseThree"
-                                                                                class=" btn   btn-success" id="payInfo"
-                                                                                style="width:100%;display: none;" onclick="$(this).fadeOut();
-                   document.getElementById('collapseThree').scrollIntoView()">Enter Payment Information »</a>
+                                            <div style="text-align: center;">
+                                                <a class=" btn   btn-success shipping-submit" id="payInfo" style="width:100%;display: none;">Enter Payment Information »</a>
                                             </div>
                                         </h4>
                                     </div>
                                 </div>
+
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
@@ -416,9 +424,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
                         </div>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -427,6 +436,54 @@
 
 @section('after-scripts')
     <script>
+    $(document).ready(function(){
+        $("#user_billing").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                url:      $(this).attr('action'),
+                type:     $(this).attr('method'),
+                data:     $(this).serialize(),
+                success: function(data) {
+                    $('#accordion .in').collapse('hide');
+                    $(".billing-submit").fadeOut(); 
+                    $('#collapseTwo').collapse('show');
+                    $(".shipping-submit").fadeIn();
+                }
+            });
+        });
 
+        $("#user_shipping").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                url:      $(this).attr('action'),
+                type:     $(this).attr('method'),
+                data:     $(this).serialize(),
+                success: function(data) {
+                    if(data.rates)
+                    {
+                        alert("Shipping Charges Added: $"+data.rates);
+
+                        $('#accordion .in').collapse('hide');
+                        $(".shipping-submit").fadeOut(); 
+                        $('#collapseThree').collapse('show');
+                    }
+                    else
+                    {
+                        alert("Error in Address.");
+                    }                    
+                }
+            });
+        });
+
+        $(".billing-submit").on("click", function(){
+            $("#user_billing").submit();
+        });
+
+        $(".shipping-submit").on("click", function(){
+            $("#user_shipping").submit();
+            //$(this).fadeOut(); 
+            //$('#payInfo').fadeIn();
+        });
+    });
     </script>
 @endsection

@@ -17,7 +17,7 @@ class UserAddress extends Model
      */
     protected $table;
 
-    protected $fillable = ["name", "status"];
+    protected $fillable = ["email", "first_name", "user_id", "last_name", "address", "street", "city", "state", "country", "postal_code", "phone", "type", "created_at", "updated_at"];
 
     public function __construct(array $attributes = [])
     {
