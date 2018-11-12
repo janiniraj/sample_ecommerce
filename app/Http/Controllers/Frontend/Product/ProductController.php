@@ -736,8 +736,10 @@ class ProductController extends Controller
             }              
         } 
 
+        $finalPrice = number_format($sizeData->width*$sizeData->length*$price, 2, '.', '');
+
         return response()->json([
-            'price' => $price
+            'price' => $finalPrice
         ]);       
     }
 
@@ -812,7 +814,21 @@ class ProductController extends Controller
             }
         }
 
-        Cart::session($cartId)->add(rand(0,9999),$productData->name,$sizeData->price, 1,array(
+        $user = Auth::user();
+        $role = $user->roles->first();
+        if($role->name == 'Affiliate')
+        {
+            $price = $sizeData->price_affiliate;
+        }
+        else
+        {
+            $price = $sizeData->price;
+        }
+
+
+        $finalPrice = number_format($sizeData->width*$sizeData->length*$price, 2, '.', '');
+
+        Cart::session($cartId)->add(rand(0,9999),$productData->name,$finalPrice, 1,array(
                 'size'      => $sizeName,
                 'size_id'   => $sizeData->id,
                 'product_id' => $productData->id
