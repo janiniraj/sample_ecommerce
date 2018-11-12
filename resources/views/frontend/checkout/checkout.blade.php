@@ -33,48 +33,42 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_email">Best Email:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_email" name="email" value="{{ isset($billingAddress->email) ? $billingAddress->email : '' }}" 
-                                                               required="required" type="email"/>
+                                                        <input class="form-control" id="id_email" name="email" value="{{ isset($billingAddress->email) ? $billingAddress->email : '' }}" required="required" type="email"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_first_name">First name:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_first_name" name="first_name" value="{{ isset($billingAddress->first_name) ? $billingAddress->first_name : '' }}"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_first_name" name="first_name" value="{{ isset($billingAddress->first_name) ? $billingAddress->first_name : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_last_name">Last name:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_last_name" name="last_name" value="{{ isset($billingAddress->last_name) ? $billingAddress->last_name : '' }}"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_last_name" name="last_name" value="{{ isset($billingAddress->last_name) ? $billingAddress->last_name : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_address_line_1">Address:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_address_line_1" value="{{ isset($billingAddress->address) ? $billingAddress->address : '' }}"
-                                                               name="address" required="required" type="text"/>
+                                                        <input class="form-control" id="id_address_line_1" value="{{ isset($billingAddress->address) ? $billingAddress->address : '' }}" name="address" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_address_line_2">Unit / Suite #:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_address_line_2" value="{{ isset($billingAddress->street) ? $billingAddress->street : '' }}"
-                                                               name="street" type="text"/>
+                                                        <input class="form-control" id="id_address_line_2" value="{{ isset($billingAddress->street) ? $billingAddress->street : '' }}" name="street" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_city">City:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_city" name="city" value="{{ isset($billingAddress->city) ? $billingAddress->city : '' }}"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_city" name="city" value="{{ isset($billingAddress->city) ? $billingAddress->city : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -140,8 +134,7 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_postalcode">Postalcode:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_postalcode" name="postal_code" value="{{ isset($billingAddress->postal_code) ? $billingAddress->postal_code : '' }}"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_postalcode" name="postal_code" value="{{ isset($billingAddress->postal_code) ? $billingAddress->postal_code : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -191,48 +184,42 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_email">Best Email:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_email2" name="email" value="{{ isset($shippingAddress->email) ? $shippingAddress->email : '' }}" 
-                                                                   required="required" type="email"/>
+                                                        <input class="form-control" id="id_email2" name="email" value="{{ isset($shippingAddress->email) ? $shippingAddress->email : '' }}" required="required" type="email"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_first_name">First name:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_first_name2" value="{{ isset($shippingAddress->first_name) ? $shippingAddress->first_name : '' }}" name="first_name"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_first_name2" value="{{ isset($shippingAddress->first_name) ? $shippingAddress->first_name : '' }}" name="first_name" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_last_name">Last name:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_last_name2" name="last_name" value="{{ isset($shippingAddress->last_name) ? $shippingAddress->last_name : '' }}"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_last_name2" name="last_name" value="{{ isset($shippingAddress->last_name) ? $shippingAddress->last_name : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_address_line_1">Address:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_address_line_1_2" value="{{ isset($shippingAddress->address) ? $shippingAddress->address : '' }}"
-                                                               name="address" required="required" type="text"/>
+                                                        <input class="form-control" id="id_address_line_1_2" value="{{ isset($shippingAddress->address) ? $shippingAddress->address : '' }}" name="address" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_address_line_2">Unit / Suite #:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_address_line_2_2" value="{{ isset($shippingAddress->street) ? $shippingAddress->street : '' }}"
-                                                               name="street" type="text"/>
+                                                        <input class="form-control" id="id_address_line_2_2" value="{{ isset($shippingAddress->street) ? $shippingAddress->street : '' }}" name="street" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 175px;">
                                                         <label for="id_city">City:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_city2" name="city" value="{{ isset($shippingAddress->city) ? $shippingAddress->city : '' }}"
-                                                               required="required" type="text"/>
+                                                        <input class="form-control" id="id_city2" name="city" value="{{ isset($shippingAddress->city) ? $shippingAddress->city : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -298,8 +285,7 @@
                                                     <td style="width: 175px;">
                                                         <label for="id_postalcode2">Postalcode:</label></td>
                                                     <td>
-                                                        <input class="form-control" id="id_postalcode2" name="postal_code"
-                                                        value="{{ isset($shippingAddress->postal_code) ? $shippingAddress->postal_code : '' }}" required="required" type="text"/>
+                                                        <input class="form-control" id="id_postalcode2" name="postal_code" value="{{ isset($shippingAddress->postal_code) ? $shippingAddress->postal_code : '' }}" required="required" type="text"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -342,20 +328,16 @@
                                                     <label class="col-sm-3 control-label" for="card-holder-name">Name on
                                                         Card</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" stripe-data="name"
-                                                               id="name-on-card" placeholder="Card Holder's Name">
+                                                        <input type="text" class="form-control" stripe-data="name" id="name-on-card" placeholder="Card Holder's Name">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label" for="card-number">Card
                                                         Number</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" stripe-data="number"
-                                                               id="card-number" placeholder="Debit/Credit Card Number">
+                                                        <input type="text" class="form-control" stripe-data="number" id="card-number" placeholder="Debit/Credit Card Number">
                                                         <br/>
-                                                        <div><img class="pull-right"
-                                                                  src="https://s3.amazonaws.com/hiresnetwork/imgs/cc.png"
-                                                                  style="max-width: 250px; padding-bottom: 20px;">
+                                                        <div><img class="pull-right" src="https://s3.amazonaws.com/hiresnetwork/imgs/cc.png" style="max-width: 250px; padding-bottom: 20px;">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -364,9 +346,7 @@
                                                         <div class="col-sm-9">
                                                             <div class="row">
                                                                 <div class="col-xs-3">
-                                                                    <select class="form-control col-sm-2"
-                                                                            data-stripe="exp-month" id="card-exp-month"
-                                                                            style="margin-left:5px;">
+                                                                    <select class="form-control col-sm-2" data-stripe="exp-month" id="card-exp-month" style="margin-left:5px;">
                                                                         <option>Month</option>
                                                                         <option value="01">Jan (01)</option>
                                                                         <option value="02">Feb (02)</option>
@@ -383,8 +363,7 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-xs-3">
-                                                                    <select class="form-control" data-stripe="exp-year"
-                                                                            id="card-exp-year">
+                                                                    <select class="form-control" data-stripe="exp-year" id="card-exp-year">
                                                                         <option value="2016">2016</option>
                                                                         <option value="2017">2017</option>
                                                                         <option value="2018">2018</option>
@@ -402,8 +381,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-3 control-label" for="cvv">Card CVC</label>
                                                         <div class="col-sm-3">
-                                                            <input type="text" class="form-control" stripe-data="cvc"
-                                                                   id="card-cvc" placeholder="Security Code">
+                                                            <input type="text" class="form-control" stripe-data="cvc" id="card-cvc" placeholder="Security Code">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -411,15 +389,11 @@
                                                         </div>
                                                     </div>
                                             </fieldset>
-                                            <button type="submit" class="btn btn-success btn-lg" style="width:100%;">Pay
-                                                Now
+                                            <button type="submit" class="btn btn-success btn-lg" style="width:100%;">Pay Now
                                             </button>
                                             <br/>
                                             <div style="text-align: left;"><br/>
-                                                By submiting this order you are agreeing to our <a href="/legal/billing/">universal
-                                                    billing agreement</a>, and <a href="/legal/terms/">terms of service</a>.
-                                                If you have any questions about our products or services please contact us
-                                                before placing this order.
+                                                By submiting this order you are agreeing to our <a href="/legal/billing/">universal billing agreement</a>, and <a href="/legal/terms/">terms of service</a>. If you have any questions about our products or services please contact us before placing this order.
                                             </div>
                                         </div>
                                     </div>

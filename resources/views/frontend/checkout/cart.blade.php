@@ -35,7 +35,7 @@
                                 {{ $singleValue->attributes->size }}                                
                                 </td>
                                 <td>In stock</td>
-                                <td><input class="form-control" type="number" value="{{ $singleValue->quantity }}" /></td>
+                                <td><input class="form-control input-quantity" type="number" value="{{ $singleValue->quantity }}" /><button class="btn btn-sm btn-quantity">Update</button></td>
                                 <td class="text-right">$ {{ $singleValue->price * $singleValue->quantity }}</td>
                                 <td class="text-right"><a href="{{ route('frontend.checkout.cart.remove-item', $singleValue->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
                             </tr>
