@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
  */
 class CheckoutController extends Controller
 {
-
+    /**
+     * CheckoutController constructor.
+     */
 	public function __construct()
 	{
 		$this->productRepository 	= new ProductRepository();
@@ -58,18 +60,71 @@ class CheckoutController extends Controller
         	]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cartUpdate(Request $request)
+    {
+        $postData = $request->all();
+
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        Cart::session($cartId)->update($postData['item_id'], array(
+            'quantity' => array(
+                'relative' => false,
+                'value' => $postData['quantity']
+            )
+        ));
+
+        return redirect()->route('frontend.checkout.cart');
+    }
+
+    /**
+     * @param $itemId
+     * @return mixed
+     */
     public function removeItemFromCart($itemId)
     {
-        $cartId = Session::get('cartSessionId');
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
 
         Cart::session($cartId)->remove($itemId);
-
-        $cartData = Cart::session($cartId);
-        //dd($cartData);
-
         return redirect()->route('frontend.checkout.cart')->withFlashWarning("Item Successfully Deleted.");
     }
 
+    /**
+     * @return $this
+     */
     public function checkout()
     {
         $userId = Auth::user()->id;
@@ -97,6 +152,10 @@ class CheckoutController extends Controller
             ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function AddUserAddress(Request $request)
     {
         $postData = $request->all();

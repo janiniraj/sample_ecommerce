@@ -454,3 +454,12 @@ ul.navbar-nav.social li a.cart-nav {
 {
   z-index: 9990;
 }
+.input-quantity {
+    width: 60%;
+    float: left;
+}
+
+.btn-quantity {
+    padding: 3px 15px;
+    margin-left: 15px;
+}
