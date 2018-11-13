@@ -74,7 +74,7 @@ Route::group(['namespace' => 'Product', 'as' => 'product.'], function () {
 
 Route::group(['namespace' => 'Checkout', 'as' => 'checkout.', 'prefix' => 'checkout'], function () {
     Route::get('cart', 'CheckoutController@cart')->name('cart');
-
+    Route::post('cart-update', 'CheckoutController@cartUpdate')->name('cart-update');
     Route::get('cart/remove-item/{id}', 'CheckoutController@removeItemFromCart')->name('cart.remove-item');
     Route::get('checkout', 'CheckoutController@checkout')->name('checkout');
     Route::post('add_user_address', 'CheckoutController@AddUserAddress')->name('add_user_address');

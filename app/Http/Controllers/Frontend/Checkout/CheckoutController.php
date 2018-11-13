@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
  */
 class CheckoutController extends Controller
 {
-
+    /**
+     * CheckoutController constructor.
+     */
 	public function __construct()
 	{
 		$this->productRepository 	= new ProductRepository();
@@ -58,6 +60,10 @@ class CheckoutController extends Controller
         	]);
     }
 
+    /**
+     * @param $itemId
+     * @return mixed
+     */
     public function removeItemFromCart($itemId)
     {
         $cartId = Session::get('cartSessionId');
@@ -70,6 +76,9 @@ class CheckoutController extends Controller
         return redirect()->route('frontend.checkout.cart')->withFlashWarning("Item Successfully Deleted.");
     }
 
+    /**
+     * @return $this
+     */
     public function checkout()
     {
         $userId = Auth::user()->id;
@@ -97,6 +106,10 @@ class CheckoutController extends Controller
             ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function AddUserAddress(Request $request)
     {
         $postData = $request->all();
