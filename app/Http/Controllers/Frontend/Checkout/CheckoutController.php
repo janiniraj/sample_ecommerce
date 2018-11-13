@@ -119,7 +119,6 @@ class CheckoutController extends Controller
         }
 
         Cart::session($cartId)->remove($itemId);
-
         return redirect()->route('frontend.checkout.cart')->withFlashWarning("Item Successfully Deleted.");
     }
 
