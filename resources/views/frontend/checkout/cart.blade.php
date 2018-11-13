@@ -36,11 +36,11 @@
                                 </td>
                                 <td>In stock</td>
                                 {{ Form::open(['route' => 'frontend.checkout.cart-update', 'class' => 'form-horizontal cart-update', 'role' => 'form', 'method' => 'post']) }}
-
+                                    {{ Form::hidden('item_id', $singleKey) }}
+                                    <td><input name="quantity" class="form-control input-quantity" type="number" value="{{ $singleValue->quantity }}" /><button class="btn btn-sm btn-quantity">Update</button></td>
+                                    <td class="text-right">$ {{ $singleValue->price * $singleValue->quantity }}</td>
                                 {{ Form::close() }}
-                                <td><input class="form-control input-quantity" type="number" value="{{ $singleValue->quantity }}" /><button class="btn btn-sm btn-quantity">Update</button></td>
-                                <td class="text-right">$ {{ $singleValue->price * $singleValue->quantity }}</td>
-                                <td class="text-right"><a href="{{ route('frontend.checkout.cart.remove-item', $singleValue->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
+                                <td class="text-right"><a href="{{ route('frontend.checkout.cart.remove-item', $singleKey) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
                             </tr>
                         @endforeach
                         
