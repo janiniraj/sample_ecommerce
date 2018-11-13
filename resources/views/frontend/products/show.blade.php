@@ -69,7 +69,7 @@
                                             @php 
                                                 $finalPrice = number_format($product->size[0]->width*$product->size[0]->length*$product->size[0]->price, 2, '.', '');
                                             @endphp
-                                            Price : $ <span class="price-display">{{ $product->size[0]->price }}</span>
+                                            Price : $ <span class="price-display">{{ $finalPrice }}</span>
                                         @endif
                                         
                                     </h3>
