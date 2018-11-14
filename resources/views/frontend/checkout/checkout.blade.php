@@ -314,6 +314,71 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOverview">OverView</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOverview" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col"> </th>
+                                                            <th scope="col">Product</th>
+                                                            <th scope="col">Available</th>
+                                                            <th scope="col" class="text-center">Quantity</th>
+                                                            <th scope="col" class="text-right">Price</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($cartData->getContent() as $singleKey => $singleValue)
+                                                            <tr>
+                                                                @php
+                                                                    $productData = $productRepository->find($singleValue->attributes->product_id);
+
+                                                                    $images = json_decode($productData->main_image, true);
+                                                                @endphp
+                                                                <td><a href="{{ route('frontend.product.show', $singleValue->attributes->product_id) }}"><img class="cart-product-image" src="{{ admin_url().'/img/products/thumbnail/'.$images[0] }}" /></a> </td>
+                                                                <td>
+                                                                    <a href="{{ route('frontend.product.show', $singleValue->attributes->product_id) }}">{{ $singleValue->name }}
+                                                                    </a>
+                                                                    <br/>
+                                                                    {{ $singleValue->attributes->size }}
+                                                                </td>
+                                                                <td>In stock</td>
+                                                                <td>{{ $singleValue->quantity }}</td>
+                                                                <td class="text-right">$ {{ $singleValue->price * $singleValue->quantity }}</td>
+                                                            </tr>
+                                                        @endforeach
+
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Sub-Total</td>
+                                                            <td class="text-right">$ {{ $cartData->getSubTotal() }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><strong>Total</strong></td>
+                                                            <td class="text-right"><strong>$ {{ $cartData->getTotal() }}</strong></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                                                 <b>Payment Information</b>
                                             </a>
