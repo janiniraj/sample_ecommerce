@@ -129,7 +129,22 @@ class CheckoutController extends Controller
     {
         $userId = Auth::user()->id;
 
-        $cartId = Session::get('cartSessionId');
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
 
         $cartData = Cart::session($cartId);
 

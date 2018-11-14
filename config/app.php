@@ -218,6 +218,8 @@ return [
 
         Stevebauman\Location\LocationServiceProvider::class,
 
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class
+
     ],
 
     /*
