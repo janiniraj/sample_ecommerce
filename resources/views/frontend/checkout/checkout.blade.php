@@ -329,7 +329,6 @@
                                                             <th scope="col">Available</th>
                                                             <th scope="col" class="text-center">Quantity</th>
                                                             <th scope="col" class="text-right">Price</th>
-                                                            <th> </th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>

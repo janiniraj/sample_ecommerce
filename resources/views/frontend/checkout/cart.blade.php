@@ -43,7 +43,16 @@
                                 <td class="text-right"><a href="{{ route('frontend.checkout.cart.remove-item', $singleKey) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
                             </tr>
                         @endforeach
-                        
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            {{ Form::open(['route' => 'frontend.checkout.apply-promo', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) }}
+                                <td><input type="text" name="promocode" placeholder="Promo Code" class="form-control"></td>
+                                <td class="text-right"><button class="btn btn-sm btn-quantity btn-success">Apply</button></td>
+                            {{ Form::close() }}
+                        </tr>
                         <tr>
                             <td></td>
                             <td></td>
