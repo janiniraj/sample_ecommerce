@@ -112,6 +112,11 @@ return [
     'order_product_table' => 'order_products',
 
     /*
+     * Promos
+     */
+    'promo_table' => 'promos',
+
+    /*
      * Configurations for the user
      */
     'users' => [

@@ -8,6 +8,8 @@ use App\Models\Product\ProductSize;
 use App\Repositories\Backend\Product\ProductRepository;
 use App\Models\UserAddress\UserAddress;
 use Illuminate\Http\Request;
+use Darryldecode\Cart\CartCondition;
+use App\Models\Promo\Promo;
 
 /**
  * Class CheckoutController.
@@ -22,6 +24,7 @@ class CheckoutController extends Controller
 		$this->productRepository 	= new ProductRepository();
 		$this->productSize			= new ProductSize();
         $this->userAddress          = new UserAddress();
+        $this->promo                = new Promo();
 	}
 
     /**
@@ -281,5 +284,25 @@ class CheckoutController extends Controller
         }
 
         return response()->json(true);
+    }
+
+    public function applyPromo(Request $request)
+    {
+        $postData = $request->all();
+
+        $condition = new CartCondition(array(
+            'name' => 'VAT 12.5%',
+            'type' => 'tax',
+            'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+            'value' => '12.5%',
+            'attributes' => array( // attributes field is optional
+                'description' => 'Value added tax',
+                'more_data' => 'more data here'
+            )
+        ));
+
+        Cart::condition($condition);
+        Cart::session($userId)->condition($condition);
+        dd($postData);
     }
 }
