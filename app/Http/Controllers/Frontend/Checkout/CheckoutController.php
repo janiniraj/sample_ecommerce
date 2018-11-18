@@ -10,6 +10,7 @@ use App\Models\UserAddress\UserAddress;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\CartCondition;
 use App\Models\Promo\Promo;
+use App\Models\Product\Product;
 
 /**
  * Class CheckoutController.
@@ -25,6 +26,7 @@ class CheckoutController extends Controller
 		$this->productSize			= new ProductSize();
         $this->userAddress          = new UserAddress();
         $this->promo                = new Promo();
+        $this->product              = new Product();
 	}
 
     /**
@@ -59,7 +61,8 @@ class CheckoutController extends Controller
         return view('frontend.checkout.cart')->with([
         	'cartData' 			=> $cartData,
         	'productRepository' => $this->productRepository,
-        	'productSize'		=> $this->productSize
+        	'productSize'		=> $this->productSize,
+            'promos'            => $cartData->getConditionsByType('promo')
         	]);
     }
 
@@ -70,6 +73,8 @@ class CheckoutController extends Controller
     public function cartUpdate(Request $request)
     {
         $postData = $request->all();
+
+        $this->productSize;
 
         if(Auth::check())
         {
@@ -86,6 +91,17 @@ class CheckoutController extends Controller
                 $cartId = rand(0,9999);
                 session(['cartSessionId' => $cartId]);
             }
+        }
+
+        $cartData = Cart::session($cartId);
+
+        $sizeId = $cartData->get($postData['item_id'])->attributes->size_id;
+
+        $sizeData = $this->productSize->find($sizeId);
+
+        if(isset($sizeData->quantity) && $sizeData->quantity < $postData['quantity'])
+        {
+            return redirect()->route('frontend.checkout.cart')->withFlashWarning("Not Enough Quantity Available to Update.");
         }
 
         Cart::session($cartId)->update($postData['item_id'], array(
@@ -273,6 +289,45 @@ class CheckoutController extends Controller
                     $passRates = (array)$rates->RatedShipment[0]->TotalCharges->MonetaryValue;
                 }
 
+                if(Auth::check())
+                {
+                    $cartId = Auth::user()->id;
+                }
+                else
+                {
+                    if(Session::has('cartSessionId'))
+                    {
+                        $cartId = Session::get('cartSessionId');                
+                    }
+                    else
+                    {
+                        $cartId = rand(0,9999);
+                        session(['cartSessionId' => $cartId]);
+                    }
+                }
+
+                $cartData = Cart::session($cartId);
+
+                $checkCartCondition = $cartData->getConditionsByType('shipping');
+
+                if($checkCartCondition->count() > 0)
+                {
+                    foreach ($checkCartCondition as $key => $value) 
+                    {
+                        $cartData->removeCartCondition($key);
+                    }
+                }
+
+                $condition = new CartCondition(array(
+                    'name' => 'shipping',
+                    'type' => 'shipping',
+                    'target' => 'total',
+                    'value' => $passRates,
+                    'attributes' => array()
+                ));
+
+                //Cart::session($cartId)->condition($condition);
+
                 return response()->json([
                     'rates' => $passRates
                     ]);
@@ -290,19 +345,108 @@ class CheckoutController extends Controller
     {
         $postData = $request->all();
 
-        $condition = new CartCondition(array(
-            'name' => 'VAT 12.5%',
-            'type' => 'tax',
-            'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
-            'value' => '12.5%',
-            'attributes' => array( // attributes field is optional
-                'description' => 'Value added tax',
-                'more_data' => 'more data here'
-            )
-        ));
+        $checkPromo = $this->promo->where('code', $postData['promocode'])->first();
 
-        Cart::condition($condition);
-        Cart::session($userId)->condition($condition);
-        dd($postData);
+        if(!$checkPromo)
+        {
+            return redirect()->route('frontend.checkout.cart')->withFlashWarning("No such Promocode Exist.");
+        }
+
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');                
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        $cartData = Cart::session($cartId);
+
+        $checkCartCondition = $cartData->getConditionsByType('promo');
+        
+        if($checkCartCondition->count() > 0)
+        {
+            $promos = $checkCartCondition->all();
+
+            $promoList = array_keys($promos);
+
+            if(in_array($postData['promocode'], $promoList))
+            {
+                return redirect()->route('frontend.checkout.cart')->withFlashWarning("Procode Already Applied.");
+            }
+
+            return redirect()->route('frontend.checkout.cart')->withFlashWarning("Only One Promocode can be applicable.");
+        }
+        else
+        {
+            if($checkPromo->type == 'flat')
+            {
+                $lessVal = '-'.$checkPromo->discount;
+            }
+            else
+            {
+                $lessVal = '-'.$checkPromo->discount.'%';
+            }
+
+            $condition = new CartCondition(array(
+                'name' => $postData['promocode'],
+                'type' => 'promo',
+                'target' => 'total',
+                'value' => $lessVal,
+                'attributes' => array()
+            ));   
+        }
+
+        Cart::session($cartId)->condition($condition);
+
+        return redirect()->route('frontend.checkout.cart')->withFlashSuccess("Promocode Successfully Applied.");
+    }
+
+    public function removePromo(Request $request)
+    {
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');                
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        $cartData = Cart::session($cartId);
+
+        $checkCartCondition = $cartData->getConditionsByType('promo');
+
+        if($checkCartCondition->count() == 0)
+        {
+            return redirect()->route('frontend.checkout.cart')->withFlashWarning("No Promocode Applied.");
+        }
+
+        $promos = $checkCartCondition->all();
+
+        foreach ($promos as $key => $value) 
+        {
+            $cartData->removeCartCondition($key);
+        }
+
+        return redirect()->route('frontend.checkout.cart')->withFlashSuccess("Promocode removed Successfully.");
+        
     }
 }

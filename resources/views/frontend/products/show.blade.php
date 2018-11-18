@@ -93,7 +93,12 @@
                     @endif
                     <ul class="nav nav-pills nav-justified">
                         <li class="active"><a data-toggle="pill" href="#specs">Specs</a></li>
-                        <li><a data-toggle="pill" href="#shop">Shop</a></li>
+                        @if(Auth::check())
+                            <li><a data-toggle="pill" href="#shop">Shop</a></li>
+                        @else
+                            <li><a data-toggle="modal" data-target="#login-modal" href="javascript:void(0);">Shop</a></li>
+                        @endif
+                        
                         <li><a href="#reviews-section">Review</a></li>
                     </ul>
 
@@ -393,6 +398,7 @@
 
         $(".share").on('click', function(){
             $("#shareIcons").toggleClass( "hidden", 1000 );
+            $("#shareIcons").attr('style','');
         });
 
         var productId = $("#product_id").val();
@@ -506,7 +512,15 @@
                 },
                 dataType: "JSON",
                 success: function(data) {
-                    window.location = "<?php echo route('frontend.checkout.cart'); ?>";
+                    if(data.success == false)
+                    {
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        window.location = "<?php echo route('frontend.checkout.cart'); ?>";    
+                    }
+                    
                 }
             });
         });

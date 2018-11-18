@@ -356,12 +356,37 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            <td></td>
                                                             <td>Sub-Total</td>
                                                             <td class="text-right">$ {{ $cartData->getSubTotal() }}</td>
                                                         </tr>
+
+                                                        @if($cartData->getConditionsByType('shipping')->count() > 0)
+                                                            @php
+                                                                $shippingDetails = $cartData->getConditionsByType('shipping')->first();
+                                                            @endphp
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>PromoCode ({{ $promoCodeDetails->getName() }})</td>
+                                                                <td class="text-right">{{$promoCodeDetails->getValue() }}</td>
+                                                            </tr>
+                                                        @endif
+
+                                                        @if($cartData->getConditionsByType('promo')->count() > 0)
+                                                            @php
+                                                                $promoCodeDetails = $cartData->getConditionsByType('promo')->first();
+                                                            @endphp
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>PromoCode ({{ $promoCodeDetails->getName() }})</td>
+                                                                <td class="text-right">{{$promoCodeDetails->getValue() }}</td>
+                                                            </tr>
+                                                        @endif
+
                                                         <tr>
-                                                            <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -504,7 +529,7 @@
 
                         $('#accordion .in').collapse('hide');
                         $(".shipping-submit").fadeOut(); 
-                        $('#collapseThree').collapse('show');
+                        $('#collapseOverview').collapse('show');
                     }
                     else
                     {

@@ -26,7 +26,7 @@
     {{ Html::style('/frontend/css/product-style.css') }}
     
     {{ Html::style('/frontend/css/xzoom.css') }}
-    {{ Html::style('/frontend/css/jquery.fancybox.js') }}
+    {{ Html::script('/frontend/js/jquery.fancybox.js') }}
     {{ Html::style('/frontend/css/magnific-popup.css') }}
     {{ Html::style('/frontend/css/bootstrap-tagsinput.css') }}
 

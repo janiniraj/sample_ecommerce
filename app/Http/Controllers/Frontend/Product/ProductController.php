@@ -752,11 +752,22 @@ class ProductController extends Controller
         $postData = $request->all();
 
         $sizeData = $this->productSize->find($postData['size_id']);
+
+        if($sizeData->quantity < 1)
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product is Out of Stock.'
+            ]);
+        }
         
         $productData = $this->products->find($postData['product_id']);
         if(empty($sizeData) || empty($productData))
         {
-            return false;
+            return response()->json([
+                'success' => false,
+                'message' => 'Product Size not available.'
+            ]);
         }
 
         $length = $sizeData->length+0;

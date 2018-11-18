@@ -19,7 +19,7 @@
                             <th> </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                                       
                         @foreach($cartData->getContent() as $singleKey => $singleValue)
                             <tr>
                                 @php 
@@ -53,6 +53,7 @@
                                 <td class="text-right"><button class="btn btn-sm btn-quantity btn-success">Apply</button></td>
                             {{ Form::close() }}
                         </tr>
+
                         <tr>
                             <td></td>
                             <td></td>
@@ -61,6 +62,21 @@
                             <td>Sub-Total</td>
                             <td class="text-right">$ {{ $cartData->getSubTotal() }}</td>
                         </tr>
+
+                        @if($cartData->getConditionsByType('promo')->count() > 0)
+                            @php
+                                $promoCodeDetails = $cartData->getConditionsByType('promo')->first();
+                            @endphp
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>PromoCode ({{ $promoCodeDetails->getName() }})<a href="{{ route('frontend.checkout.remove-promo') }}" class="btn btn-sm btn-default btn-quantity">Remove</a></td>
+                                <td class="text-right">{{$promoCodeDetails->getValue() }}</td>
+                            </tr>
+                        @endif
+                        
                         <tr>
                             <td></td>
                             <td></td>
