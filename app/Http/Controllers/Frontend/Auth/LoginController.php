@@ -50,6 +50,8 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+        $postData = $request->all();
+
         /*
          * Check to see if the users account is confirmed and active
          */
@@ -73,6 +75,11 @@ class LoginController extends Controller
         // If only allowed one session at a time
         if (config('access.users.single_login')) {
             app()->make(UserSessionRepository::class)->clearSessionExceptCurrent($user);
+        }
+
+        if(isset($postData['url']) && $postData['url'])
+        {
+            return redirect($postData['url']);
         }
 
         return redirect()->intended($this->redirectPath());

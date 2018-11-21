@@ -397,8 +397,12 @@ $helper = new MenuHelper();
             </button>
             <h1>Login to Your Account</h1><br>
           {{ Form::open(['route' => 'frontend.auth.login.post', 'class' => 'form-horizontal']) }}
+          @php
+            $actualLink = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            @endphp
             <input type="email" required name="email" placeholder="Email">
             <input type="password" required name="password" placeholder="Password">
+            <input type="hidden" required name="url" value="{{ $actualLink }}">
             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           {{ Form::close() }}
             
