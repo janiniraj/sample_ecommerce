@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Darryldecode\Cart\CartCondition;
 use App\Models\Promo\Promo;
 use App\Models\Product\Product;
+use Srmklive\PayPal\Services\ExpressCheckout;
+use Srmklive\PayPal\Services\AdaptivePayments;
 
 /**
  * Class CheckoutController.
@@ -286,7 +288,7 @@ class CheckoutController extends Controller
                 $rates = $rate->getRate($shipment);
                 if(isset($rates->RatedShipment) && isset($rates->RatedShipment[0]))
                 {
-                    $passRates = (array)$rates->RatedShipment[0]->TotalCharges->MonetaryValue;
+                    $passRates = $rates->RatedShipment[0]->TotalCharges->MonetaryValue;
                 }
 
                 if(Auth::check())
@@ -308,7 +310,7 @@ class CheckoutController extends Controller
 
                 $cartData = Cart::session($cartId);
 
-                $checkCartCondition = $cartData->getConditionsByType('shipping');
+                $checkCartCondition = $cartData->getConditionsByType('coupon');
 
                 if($checkCartCondition->count() > 0)
                 {
@@ -320,13 +322,13 @@ class CheckoutController extends Controller
 
                 $condition = new CartCondition(array(
                     'name' => 'shipping',
-                    'type' => 'shipping',
+                    'type' => 'coupon',
                     'target' => 'total',
-                    'value' => $passRates,
+                    'value' => '+'.$passRates,
                     'attributes' => array()
                 ));
 
-                //Cart::session($cartId)->condition($condition);
+                Cart::session($cartId)->condition($condition);
 
                 return response()->json([
                     'rates' => $passRates
@@ -448,5 +450,84 @@ class CheckoutController extends Controller
 
         return redirect()->route('frontend.checkout.cart')->withFlashSuccess("Promocode removed Successfully.");
         
+    }
+
+    public function beforePayment(Request $request)
+    {
+
+        $provider = new ExpressCheckout;
+        $provider->setCurrency('USD');
+
+        $data = [];
+        $data['items'] = [
+            [
+                'name' => 'Product 1',
+                'price' => 9.99,
+                'qty' => 1
+            ],
+            [
+                'name' => 'Product 2',
+                'price' => 4.99,
+                'qty' => 2
+            ]
+        ];
+
+        $data['invoice_id'] = 1;
+        $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
+        $data['return_url'] = url('/payment/success');
+        $data['cancel_url'] = url('/cart');
+
+        $total = 0;
+        foreach($data['items'] as $item) {
+            $total += $item['price']*$item['qty'];
+        }
+
+        $data['total'] = $total;
+
+        //give a discount of 10% of the order amount
+        $data['shipping_discount'] = round((10 / 100) * $total, 2);        
+        $response = $provider->setExpressCheckout($data);
+        if((isset($response['type']) && $response['type'] == 'error') || (isset($response['paypal_link']) && !$response['paypal_link']))
+        {
+            return redirect()->route('frontend.checkout.cart')->withFlashWarning("Error in Checkout with Paypal, Please try again later.");
+        }
+        else
+        {
+            return redirect($response['paypal_link']);    
+        }        
+
+    }
+
+    public function afterPayment(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function overview()
+    {
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');                
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        $cartData = Cart::session($cartId);
+
+        return view('frontend.checkout.overview')->with([
+            'cartData'          => $cartData,
+            'productRepository' => $this->productRepository,
+            'productSize'       => $this->productSize,
+        ]);
     }
 }

@@ -80,6 +80,9 @@ Route::group(['namespace' => 'Checkout', 'as' => 'checkout.', 'prefix' => 'check
     Route::post('add_user_address', 'CheckoutController@AddUserAddress')->name('add_user_address');
     Route::post('apply-promo', 'CheckoutController@applyPromo')->name('apply-promo');
     Route::get('remove-promo', 'CheckoutController@removePromo')->name('remove-promo');
+    Route::get('before-payment', 'CheckoutController@beforePayment')->name('before-payment');
+    Route::get('payment/success', 'CheckoutController@afterPayment')->name('after-payment');
+    Route::get('overview', 'CheckoutController@overview')->name('overview');
 });
 
 
