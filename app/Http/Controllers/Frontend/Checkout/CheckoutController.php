@@ -455,38 +455,64 @@ class CheckoutController extends Controller
     public function beforePayment(Request $request)
     {
 
+        if(Auth::check())
+        {
+            $cartId = Auth::user()->id;
+        }
+        else
+        {
+            if(Session::has('cartSessionId'))
+            {
+                $cartId = Session::get('cartSessionId');                
+            }
+            else
+            {
+                $cartId = rand(0,9999);
+                session(['cartSessionId' => $cartId]);
+            }
+        }
+
+        $cartData = Cart::session($cartId);
+
         $provider = new ExpressCheckout;
         $provider->setCurrency('USD');
 
         $data = [];
-        $data['items'] = [
-            [
-                'name' => 'Product 1',
-                'price' => 9.99,
-                'qty' => 1
-            ],
-            [
-                'name' => 'Product 2',
-                'price' => 4.99,
-                'qty' => 2
-            ]
-        ];
 
-        $data['invoice_id'] = 1;
-        $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
-        $data['return_url'] = url('/payment/success');
-        $data['cancel_url'] = url('/cart');
+        foreach($cartData->getContent() as $singleKey => $singleValue)
+        {
+            $productData = $this->productRepository->find($singleValue->attributes->product_id);
+
+            $data['items'][] = [
+                                    'name' => $singleValue->name,
+                                    'price' => $singleValue->price,
+                                    'qty' => $singleValue->quantity
+                                ];
+        }
+
+        $data['invoice_id']             = 1;
+        $data['invoice_description']    = "Order #{$data['invoice_id']} Invoice";
+        $data['return_url']             = url('/payment/success');
+        $data['cancel_url']             = url('/cart');
 
         $total = 0;
-        foreach($data['items'] as $item) {
+        foreach($data['items'] as $item) 
+        {
             $total += $item['price']*$item['qty'];
         }
 
         $data['total'] = $total;
 
         //give a discount of 10% of the order amount
-        $data['shipping_discount'] = round((10 / 100) * $total, 2);        
+        $shippingCondition = $cartData->getConditionsByType('coupon');
+        if($shippingCondition->count() > 0)
+        {
+            $shippingData       = $shippingCondition->first();            
+            $data['shipping']   = (float)str_replace('+', '', $shippingData->getValue());  
+        }
+
         $response = $provider->setExpressCheckout($data);
+
         if((isset($response['type']) && $response['type'] == 'error') || (isset($response['paypal_link']) && !$response['paypal_link']))
         {
             return redirect()->route('frontend.checkout.cart')->withFlashWarning("Error in Checkout with Paypal, Please try again later.");
@@ -494,8 +520,7 @@ class CheckoutController extends Controller
         else
         {
             return redirect($response['paypal_link']);    
-        }        
-
+        }
     }
 
     public function afterPayment(Request $request)
