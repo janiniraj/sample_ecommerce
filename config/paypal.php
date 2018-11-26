@@ -10,7 +10,7 @@ return [
         'username'    => 'janiniraj1992-facilitator_api1.gmail.com',
         'password'    => 'NABQA2S8RGSD7PL3',
         'secret'      => 'EJuc8WRI2XViAdNymorPl-sBHaP91y7kR-6TYpgaKpqnuq9fpCjM-dw1PzHeRMRSmgno4pos9D506vmJ',
-        'certificate' => 'AStZL5ICQYi8KjUzrBlzaHsppm4_XpCQg3lH6Oc9GNspI59X1ZTqXVCd1jEsy2-E9vE1Hshnc1hSYHK8',
+        'certificate' => 'AFcWxV21C7fd0v3bYYYRCpSSRl31AGoUwn-Nsy8eUvfGpae-kdlnXW6J',
         'app_id'      => 'APP-13T51814SM408674A', // Used for testing Adaptive Payments API in sandbox mode
     ],
     'live' => [

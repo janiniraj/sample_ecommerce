@@ -495,20 +495,45 @@ class CheckoutController extends Controller
         $data['return_url']             = url('/payment/success');
         $data['cancel_url']             = url('/cart');
 
+        if($shippingCondition->count() > 0)
+        {
+            $shippingData       = $shippingCondition->first();
+
+            $data['items'][] = [
+                                    'name' => 'shipping',
+                                    'price' => (float)str_replace('+', '', $shippingData->getValue()),
+                                    'qty' => 1
+                                ];
+        }
+
         $total = 0;
         foreach($data['items'] as $item) 
         {
             $total += $item['price']*$item['qty'];
         }
 
-        $data['total'] = $total;
+        $data['total'] = $total;      
 
         //give a discount of 10% of the order amount
         $shippingCondition = $cartData->getConditionsByType('coupon');
-        if($shippingCondition->count() > 0)
+        /*if($shippingCondition->count() > 0)
         {
             $shippingData       = $shippingCondition->first();            
             $data['shipping']   = (float)str_replace('+', '', $shippingData->getValue());  
+        }*/
+
+        
+
+        $checkCartCondition = $cartData->getConditionsByType('promo');
+
+        if($checkCartCondition->count() > 0)
+        {
+            foreach ($checkCartCondition as $key => $value) 
+            {
+                $value = $value->getValue();
+            }
+
+            $data['shipping_discount'] = round($value, 2);
         }
 
         $response = $provider->setExpressCheckout($data);
