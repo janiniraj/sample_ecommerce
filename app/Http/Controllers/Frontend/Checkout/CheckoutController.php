@@ -148,6 +148,30 @@ class CheckoutController extends Controller
      */
     public function checkout()
     {
+        /*$address = new \Ups\Entity\Address();
+        $address->setAttentionName('Test Test');
+        $address->setBuildingName('Test');
+        $address->setAddressLine1('Address Line 1');
+        $address->setAddressLine2('Address Line 2');
+        $address->setAddressLine3('Address Line 3');
+        $address->setStateProvinceCode('NY');
+        $address->setCity('New York');
+        $address->setCountryCode('US');
+        $address->setPostalCode('10000');
+
+        $xav = new \Ups\AddressValidation(env('UPS_ACCESS_KEY'),
+                    env('UPS_USERID'),
+                    env('UPS_PASSWORD'));
+        $xav->activateReturnObjectOnValidate(); //This is optional
+        try {
+            $response = $xav->validate($address, $requestOption = \Ups\AddressValidation::REQUEST_OPTION_ADDRESS_VALIDATION, $maxSuggestion = 15);
+            dd($response);
+        } catch (Exception $e) {
+            var_dump($e);
+        }
+
+        dd("dfdfdfdfdfdf");*/
+
         $userId = Auth::user()->id;
 
         if(Auth::check())
@@ -402,7 +426,7 @@ class CheckoutController extends Controller
             $condition = new CartCondition(array(
                 'name' => $postData['promocode'],
                 'type' => 'promo',
-                'target' => 'total',
+                'target' => 'subtotal',
                 'value' => $lessVal,
                 'attributes' => array()
             ));   
@@ -495,46 +519,66 @@ class CheckoutController extends Controller
         $data['return_url']             = url('/payment/success');
         $data['cancel_url']             = url('/cart');
 
-        if($shippingCondition->count() > 0)
-        {
-            $shippingData       = $shippingCondition->first();
-
-            $data['items'][] = [
-                                    'name' => 'shipping',
-                                    'price' => (float)str_replace('+', '', $shippingData->getValue()),
-                                    'qty' => 1
-                                ];
-        }
-
         $total = 0;
         foreach($data['items'] as $item) 
         {
             $total += $item['price']*$item['qty'];
         }
 
-        $data['total'] = $total;      
+        $checkCartCondition = $cartData->getConditionsByType('promo');
+
+        if($checkCartCondition->count() > 0)
+        {
+            $promoData  = $checkCartCondition->first();
+
+            $promoName  = $promoData->getName();
+            $promoVal   = $promoData->getValue();
+
+            $promoObjData = $this->promo->where('code', $promoName)->first();
+
+            if($promoObjData->type == 'percentage')
+            {
+                $promoPriceVal = round(($promoObjData->discount / 100) * $total, 2);
+            }
+            else
+            {
+                $promoPriceVal = $promoObjData->discount;
+            }
+
+            $data['items'][] = [
+                                    'name' => 'Discount',
+                                    'price' => '-'.$promoPriceVal,
+                                    'qty' => 1
+                                ];
+
+            $total = $total - $promoPriceVal;
+        }  
+
+        $shippingCondition = $cartData->getConditionsByType('coupon');
+
+        if($shippingCondition->count() > 0)
+        {
+            $shippingData       = $shippingCondition->first();
+            $priceShipping      = (float)str_replace('+', '', $shippingData->getValue());
+
+            $data['items'][] = [
+                                    'name' => 'Shipping',
+                                    'price' => $priceShipping,
+                                    'qty' => 1
+                                ];
+
+            $total = $total+ $priceShipping;
+        } 
+
+        $data['total'] = $total;
 
         //give a discount of 10% of the order amount
-        $shippingCondition = $cartData->getConditionsByType('coupon');
+        
         /*if($shippingCondition->count() > 0)
         {
             $shippingData       = $shippingCondition->first();            
             $data['shipping']   = (float)str_replace('+', '', $shippingData->getValue());  
         }*/
-
-        
-
-        $checkCartCondition = $cartData->getConditionsByType('promo');
-
-        if($checkCartCondition->count() > 0)
-        {
-            foreach ($checkCartCondition as $key => $value) 
-            {
-                $value = $value->getValue();
-            }
-
-            $data['shipping_discount'] = round($value, 2);
-        }
 
         $response = $provider->setExpressCheckout($data);
 

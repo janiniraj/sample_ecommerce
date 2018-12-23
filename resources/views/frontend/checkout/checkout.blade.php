@@ -31,7 +31,7 @@
                                             <table class="table table-striped" style="font-weight: bold;">
                                                 <tr>
                                                     <td style="width: 175px;">
-                                                        <label for="id_email">Best Email:</label></td>
+                                                        <label for="id_email">Email:</label></td>
                                                     <td>
                                                         <input class="form-control" id="id_email" name="email" value="{{ isset($billingAddress->email) ? $billingAddress->email : '' }}" required="required" type="email"/>
                                                     </td>
@@ -178,11 +178,13 @@
 
                                             <b>Help us keep your account safe and secure, please verify your Shipping
                                                 information.</b>
+                                                <br/><br/>
+                                            <input class="same-as-billing" type="checkbox" /><b>Same As Billing Address</b>
                                             <br/><br/>
                                             <table class="table table-striped" style="font-weight: bold;">
                                                 <tr>
                                                     <td style="width: 175px;">
-                                                        <label for="id_email">Best Email:</label></td>
+                                                        <label for="id_email">Email:</label></td>
                                                     <td>
                                                         <input class="form-control" id="id_email2" name="email" value="{{ isset($shippingAddress->email) ? $shippingAddress->email : '' }}" required="required" type="email"/>
                                                     </td>
@@ -413,7 +415,7 @@
                                         <div class="panel-body">
                                             <span class='payment-errors'></span>
                                             
-                                            <a href="{{ route('frontend.checkout.before-payment') }}" type="submit" class="btn btn-success btn-lg" style="width:100%;">Pay with Paypal
+                                            <a href="{{ route('frontend.checkout.before-payment') }}" type="submit" class="btn btn-success btn-lg before-payment" style="width:100%;">Pay with Paypal
                                             </a>
                                             <br/>
                                             <div style="text-align: left;"><br/>
@@ -491,6 +493,68 @@
                      $('#collapseOverview').html(data);                  
                 }
             });
+        });
+
+        $(".before-payment").on("click", function(e){
+            e.preventDefault();
+            
+            var billingBlankField = false;
+            $("#user_billing input").each(function(){
+                if($(this).val() == "")
+                {
+                    billingBlankField = true;
+                }
+            });
+
+            var shippingBlankField = false;
+            $("#user_shipping input").each(function(){
+                if($(this).val() == "")
+                {
+                    shippingBlankField = true;
+                }
+            });
+
+            if(billingBlankField == true)
+            {
+                alert("Fields in Billing Address are must to fill.");
+                $('#accordion .in').collapse('hide');                
+                $('#collapseOne').collapse('show');
+                $(".billing-submit").fadeIn();
+            }
+            else if(shippingBlankField == true)
+            {
+                alert("Fields in Shipping Address are must to fill.");
+                $('#accordion .in').collapse('hide');                
+                $(".billing-submit").fadeOut(); 
+                $('#collapseTwo').collapse('show');
+                $(".shipping-submit").fadeIn();
+            }
+            else
+            {
+                window.location.replace($(this).attr('href'));
+            }
+        });
+
+        $(".same-as-billing").on("change", function(){
+
+            if($(this).is(':checked')) {
+
+                $("#user_billing input, #user_billing select").each(function(){
+                    if($(this).attr('type') != "hidden")
+                    {
+                        var inputName = $(this).attr('name');
+                        var inputVal = $(this).val();
+
+                        $("#user_shipping input, #user_shipping select").filter(':visible').each(function(){
+                            
+                            if($(this).attr('name') == inputName)
+                            {
+                                $(this).val(inputVal);
+                            }
+                        });
+                    }                    
+                });
+            }
         });
     });
     </script>
