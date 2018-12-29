@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e467adf8986c2da91de22ab238fc8d06",
-    "content-hash": "e43cbfdfddf418902d058551c409e985",
+    "hash": "927895a9c40774c4420585250fc36144",
+    "content-hash": "db5908641d9da6d7e9c02c53c0587a10",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -3211,6 +3211,53 @@
                 "dump"
             ],
             "time": "2018-10-02 16:33:53"
+        },
+        {
+            "name": "taxjar/taxjar-php",
+            "version": "v1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/taxjar/taxjar-php.git",
+                "reference": "b13519498787f61e82dc4456c2951c277db65047"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/taxjar/taxjar-php/zipball/b13519498787f61e82dc4456c2951c277db65047",
+                "reference": "b13519498787f61e82dc4456c2951c277db65047",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0.2",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "internations/http-mock": "0.10.1",
+                "phpunit/phpunit": "4.8.*",
+                "silex/silex": "2.2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TaxJar\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "TaxJar"
+                }
+            ],
+            "description": "Sales Tax API Client for PHP 5.5+",
+            "homepage": "https://www.taxjar.com/",
+            "keywords": [
+                "api",
+                "sales tax",
+                "taxjar"
+            ],
+            "time": "2018-11-30 17:13:42"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

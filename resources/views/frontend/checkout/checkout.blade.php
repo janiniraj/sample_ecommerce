@@ -471,6 +471,9 @@
                     {
                         alert("Error in Address.");
                     }                    
+                },
+                error: function() {
+                    alert("Pincode and State doesn't match.");
                 }
             });
         });

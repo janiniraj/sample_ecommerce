@@ -13,6 +13,7 @@ use App\Models\Promo\Promo;
 use App\Models\Product\Product;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Srmklive\PayPal\Services\AdaptivePayments;
+//require __DIR__ . '/vendor/autoload.php';
 
 /**
  * Class CheckoutController.
@@ -343,6 +344,52 @@ class CheckoutController extends Controller
                         $cartData->removeCartCondition($key);
                     }
                 }
+
+                // Tax Start
+                try
+                {
+                    //Calculate Taxes
+                    $client = \TaxJar\Client::withApiKey(env('TAXJAR_API_KEY'));
+        
+                    $order_taxes = $client->taxForOrder([
+                          'from_country'    => 'US',
+                          'from_zip'        => '07001',
+                          'from_state'      => 'NJ',
+                          'to_country'      => 'US',
+                          'to_zip'          => $postData['postal_code'],
+                          'to_state'        => $postData['state'],
+                          'amount'          => $cartData->getSubTotal(),
+                          'shipping'        => $passRates
+                    ]);
+
+                    if(isset($order_taxes->amount_to_collect))
+                    {
+                        $tax = $order_taxes->amount_to_collect;
+
+                        $condition = new CartCondition(array(
+                            'name' => 'tax',
+                            'type' => 'coupon',
+                            'target' => 'total',
+                            'value' => '+'.$tax,
+                            'attributes' => array()
+                        ));
+
+                        Cart::session($cartId)->condition($condition);
+                    }
+                    else
+                    {
+                        return response()->json([
+                            'error' => "Error in State and Zipcode validation."
+                        ]); 
+                    }
+                }
+                catch(Exception $e)
+                {
+                    return response()->json([
+                        'error' => "Error in State and Zipcode validation."
+                    ]);
+                }
+                // Tax End
 
                 $condition = new CartCondition(array(
                     'name' => 'shipping',

@@ -67,16 +67,15 @@
                 @endif
 
                 @if($cartData->getConditionsByType('coupon')->count() > 0)
-                    @php
-                        $shippingDetails = $cartData->getConditionsByType('coupon')->first();
-                    @endphp
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ $shippingDetails->getName() }}</td>
-                        <td class="text-right">$ {{ str_replace('+', '', $shippingDetails->getValue()) }}</td>
-                    </tr>
+                    @foreach($cartData->getConditionsByType('coupon') as $couponK => $couponV)
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $couponV->getName() }}</td>
+                            <td class="text-right">$ {{ str_replace('+', '', $couponV->getValue()) }}</td>
+                        </tr>
+                    @endforeach                    
                 @endif
 
                 <tr>
