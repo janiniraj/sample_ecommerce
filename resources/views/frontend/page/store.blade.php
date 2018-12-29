@@ -42,6 +42,18 @@
                             @if(isset($shop['custom_link2']) && $shop['custom_link2'] && isset($shop['custom_logo2']) && $shop['custom_logo2'])
                                 <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link2'] }}"><img src="{{ admin_url().'/stores/'.$shop['custom_logo2'] }}" /></a>
                             @endif
+
+                            @if(isset($shop['custom_link3']) && $shop['custom_link3'] && isset($shop['custom_logo3']) && $shop['custom_logo3'])
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link3'] }}"><img src="{{ admin_url().'/stores/'.$shop['custom_logo3'] }}" /></a>
+                            @endif
+
+                            @if(isset($shop['custom_link4']) && $shop['custom_link4'] && isset($shop['custom_logo4']) && $shop['custom_logo4'])
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link4'] }}"><img src="{{ admin_url().'/stores/'.$shop['custom_logo4'] }}" /></a>
+                            @endif
+
+                            @if(isset($shop['custom_link5']) && $shop['custom_link5'] && isset($shop['custom_logo5']) && $shop['custom_logo5'])
+                                <a class="shop-icon fa-3x" target="_blank" href="{{ $shop['custom_link5'] }}"><img src="{{ admin_url().'/stores/'.$shop['custom_logo5'] }}" /></a>
+                            @endif
                         </p>
                     </div>
                     <div class="col-sm-6">
